@@ -8,7 +8,7 @@ export class AppSignup {
 
     render() {
         return (
-            <ion-content>Signup</ion-content>
+            <ion-content>Signup<ion-button href="/">Go Home</ion-button></ion-content>
         );
     }
 }

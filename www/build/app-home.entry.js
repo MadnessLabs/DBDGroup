@@ -7,7 +7,7 @@ let AppHome = class {
     registerInstance(this, hostRef);
   }
   render() {
-    return (h("ion-conten", null, "Home Page"));
+    return (h("ion-conten", null, "Home Page", h("ion-button", { href: "/signup" }, "Sign up")));
   }
 };
 AppHome.style = appHomeCss;

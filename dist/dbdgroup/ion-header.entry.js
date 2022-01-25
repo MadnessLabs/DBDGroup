@@ -1,6 +1,6 @@
 import { i as readTask, l as writeTask, r as registerInstance, h, j as Host, k as getElement } from './index-fb33124a.js';
 import { g as getIonMode } from './ionic-global-712b4bdd.js';
-import { f as clamp, i as inheritAttributes } from './helpers-345e0e01.js';
+import { f as clamp, i as inheritAttributes } from './helpers-f29910fe.js';
 import { h as hostContext } from './theme-12606872.js';
 
 const TRANSITION = 'all 0.2s ease-in-out';

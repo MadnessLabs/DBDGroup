@@ -1,5 +1,5 @@
 import { r as registerInstance, i as readTask, l as writeTask, m as forceUpdate, h, j as Host, k as getElement } from './index-fb33124a.js';
-import { c as componentOnReady } from './helpers-345e0e01.js';
+import { c as componentOnReady } from './helpers-f29910fe.js';
 
 const CELL_TYPE_ITEM = 'item';
 const CELL_TYPE_HEADER = 'header';
