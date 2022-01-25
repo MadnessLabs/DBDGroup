@@ -8,7 +8,13 @@ export class AppSignup {
 
     render() {
         return (
-            <ion-content>Signup<ion-button href="/">Go Home</ion-button></ion-content>
+            <ion-content>
+                <form>
+                    <ion-input type="email" name="email" value="" />
+                    <ion-input type="password" name="password" value="" />
+                    <ion-button type="submit">Submit</ion-button>
+                </form>
+            </ion-content>
         );
     }
 }
