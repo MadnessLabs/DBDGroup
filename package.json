@@ -2,7 +2,15 @@
   "name": "@madnesslabs/dbdgroup",
   "version": "1.0.0",
   "description": "Hey, my friend Stickman407 is hosting a dead by daylight tournament on the (Survivor/Killer) 29th and 30th 5pm central (Group Stage). Elimination rounds will be the weekend after feb 5th and 6th. I'm inviting you to play in it, it's a for fun tourney. Looking for 16 survivors and 4 killers. First come first serve.",
-  "main": "dist/index.js",
+  "private": false,
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.js",
+  "es2015": "./dist/esm/index.mjs",
+  "es2017": "./dist/esm/index.mjs",
+  "types": "./dist/types/components.d.ts",
+  "unpkg": "./dist/dbdgroup/dbdgroup.js",
+  "collection:main": "./dist/collection/index.js",
+  "collection": "./dist/collection/collection-manifest.json",
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
@@ -17,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/MadnessLabs/DBDGroup/issues"
   },
-  "homepage": "https://github.com/MadnessLabs/DBDGroup#readme",
+  "homepage": "https://deadbydaylight.group",
   "devDependencies": {
     "@stencil/core": "^2.13.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
