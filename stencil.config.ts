@@ -30,4 +30,5 @@ export const config: Config = {
     after: [nodePolyfills()],
   },
   globalStyle: "src/global.css",
+  globalScript: "src/global.ts",
 };

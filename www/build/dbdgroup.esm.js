@@ -1,5 +1,5 @@
 import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-fb33124a.js';
-import { g as globalScripts } from './app-globals-2c5a75f2.js';
+import { g as globalScripts } from './app-globals-a52a8059.js';
 import './ionic-global-712b4bdd.js';
 
 /*
