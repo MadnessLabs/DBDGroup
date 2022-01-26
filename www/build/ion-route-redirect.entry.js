@@ -1,4 +1,4 @@
-import { r as registerInstance, f as createEvent } from './index-fb33124a.js';
+import { r as registerInstance, k as createEvent } from './index-7eb109b0.js';
 
 let RouteRedirect = class {
   constructor(hostRef) {

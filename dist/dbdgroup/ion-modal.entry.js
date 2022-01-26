@@ -1,13 +1,13 @@
-import { r as registerInstance, f as createEvent, l as writeTask, h, j as Host, k as getElement } from './index-fb33124a.js';
-import { g as getIonMode, c as config } from './ionic-global-712b4bdd.js';
-import { a as attachComponent, d as detachComponent } from './framework-delegate-f742dd2a.js';
-import { B as BACKDROP, a as prepareOverlay, p as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-445ee75e.js';
+import { r as registerInstance, k as createEvent, f as writeTask, h, m as Host, n as getElement } from './index-7eb109b0.js';
+import { g as getIonMode, c as config } from './ionic-global-3d53dc76.js';
+import { a as attachComponent, d as detachComponent } from './framework-delegate-2ba29a70.js';
+import { B as BACKDROP, a as prepareOverlay, p as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-2249be8f.js';
 import { g as getClassMap } from './theme-12606872.js';
-import { d as deepReady } from './index-93256f38.js';
-import { c as createAnimation } from './animation-78f2bf70.js';
+import { d as deepReady } from './index-443193f4.js';
+import { c as createAnimation } from './animation-8c89c00f.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-ed243a9b.js';
 import { createGesture } from './index-d086042f.js';
-import { f as clamp } from './helpers-f29910fe.js';
+import { f as clamp } from './helpers-9be588b4.js';
 import './hardware-back-button-508e48cf.js';
 
 // Defaults for the card swipe animation

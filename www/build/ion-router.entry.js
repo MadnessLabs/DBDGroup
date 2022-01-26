@@ -1,5 +1,5 @@
-import { r as registerInstance, f as createEvent, k as getElement } from './index-fb33124a.js';
-import { c as componentOnReady, m as debounce } from './helpers-f29910fe.js';
+import { r as registerInstance, k as createEvent, n as getElement } from './index-7eb109b0.js';
+import { c as componentOnReady, m as debounce } from './helpers-9be588b4.js';
 
 const ROUTER_INTENT_NONE = 'root';
 const ROUTER_INTENT_FORWARD = 'forward';
