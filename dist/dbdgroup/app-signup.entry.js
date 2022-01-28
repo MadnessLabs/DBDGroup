@@ -255,7 +255,7 @@ const IonicSlides = (opts) => {
   extendParams(slidesParams);
 };
 
-const appSignupCss = "ion-content{--background:none;background:url('../../assets/dbd-background.png');background-position:center top;background-repeat:no-repeat;background-size:contain;background-color:rgb(66, 66, 66)}.choices{height:50px;text-align:center;font-size:x-large}";
+const appSignupCss = "ion-content{--background:none;background:url('../../assets/dbd-background.png');background-position:center top;background-repeat:no-repeat;background-size:contain;background-color:rgb(66, 66, 66)}.choices{text-align:center;font-size:x-large}";
 
 let AppSignup = class {
   constructor(hostRef) {
