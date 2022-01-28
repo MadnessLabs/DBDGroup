@@ -37,7 +37,9 @@ export class AppSignup {
         return (
             <ion-content>
                 <form>
-                    <ion-input type="email" name="email" value="" />
+                    <ion-label position="floating">E-mail</ion-label>
+                    <ion-input type="text" name="email" value="" />
+                    <ion-label position="floating">Password</ion-label>
                     <ion-input type="password" name="password" value="" />
                     <ion-button type="submit" color="tertiary">Submit</ion-button>
                 </form>
@@ -45,12 +47,14 @@ export class AppSignup {
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-grid>
-                                    <ion-row>
-                                        <ion-col><ion-text color="tertiary">Survivor</ion-text></ion-col>
-                                        <ion-col>Killer</ion-col>
-                                    </ion-row>
-                                </ion-grid>
+                                <div class='choices'>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col><ion-text color="danger">Killer</ion-text></ion-col>
+                                            <ion-col><ion-text color="tertiary">Survivor</ion-text></ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </div>
                             </ion-card>
                         </ion-col>
                     </ion-row>
