@@ -9,7 +9,7 @@ export class AppHome {
 
     render() {
         return (
-            <ion-conten>Home Page</ion-conten>
+            <ion-conten>Home Page<ion-button href="/signup">Sign up<ion-button></ion-button></ion-button></ion-conten>
         );
     }
 }

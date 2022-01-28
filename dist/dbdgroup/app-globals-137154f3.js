@@ -1,4 +1,4 @@
-import { i as initialize } from './ionic-global-712b4bdd.js';
+import { i as initialize } from './ionic-global-3d53dc76.js';
 
 const global$1 = (typeof global !== "undefined" ? global :
   typeof self !== "undefined" ? self :
@@ -2577,7 +2577,7 @@ function isVersionServiceProvider(provider) {
 }
 
 const name$o = "@firebase/app";
-const version$1$1 = "0.7.14";
+const version$1$1 = "0.7.15";
 
 /**
  * @license
@@ -2644,7 +2644,7 @@ const name$2$1 = "@firebase/firestore";
 const name$1$1 = "@firebase/firestore-compat";
 
 const name$p = "firebase";
-const version$3 = "9.6.4";
+const version$3 = "9.6.5";
 
 /**
  * @license
@@ -3111,7 +3111,7 @@ function registerCoreComponents(variant) {
 registerCoreComponents('');
 
 var name$2 = "firebase";
-var version$2 = "9.6.4";
+var version$2 = "9.6.5";
 
 /**
  * @license

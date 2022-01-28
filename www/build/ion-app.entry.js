@@ -1,5 +1,5 @@
-import { r as registerInstance, n as Build, h, j as Host, k as getElement } from './index-fb33124a.js';
-import { a as isPlatform, c as config, g as getIonMode } from './ionic-global-712b4bdd.js';
+import { r as registerInstance, i as Build, h, m as Host, n as getElement } from './index-7eb109b0.js';
+import { a as isPlatform, c as config, g as getIonMode } from './ionic-global-3d53dc76.js';
 
 const appCss = "html.plt-mobile ion-app{user-select:none}html.plt-mobile ion-app [contenteditable]{user-select:text}ion-app.force-statusbar-padding{--ion-safe-area-top:20px}";
 
@@ -12,13 +12,13 @@ let App = class {
       rIC(async () => {
         const isHybrid = isPlatform(window, 'hybrid');
         if (!config.getBoolean('_testing')) {
-          import('./tap-click-a8f27c37.js').then(module => module.startTapClick(config));
+          import('./tap-click-94110dae.js').then(module => module.startTapClick(config));
         }
         if (config.getBoolean('statusTap', isHybrid)) {
-          import('./status-tap-960109d5.js').then(module => module.startStatusTap());
+          import('./status-tap-72a61244.js').then(module => module.startStatusTap());
         }
         if (config.getBoolean('inputShims', needInputShims())) {
-          import('./input-shims-d2c391d3.js').then(module => module.startInputShims(config));
+          import('./input-shims-40c41ad4.js').then(module => module.startInputShims(config));
         }
         const hardwareBackButtonModule = await import('./hardware-back-button-508e48cf.js');
         if (config.getBoolean('hardwareBackButton', isHybrid)) {

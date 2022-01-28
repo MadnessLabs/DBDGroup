@@ -1,4 +1,4 @@
-import { r as registerInstance, h, j as Host, k as getElement } from './index-fb33124a.js';
+import { r as registerInstance, h, m as Host, n as getElement } from './index-7eb109b0.js';
 
 const navLink = (el, routerDirection, component, componentProps, routerAnimation) => {
   const nav = el.closest('ion-nav');

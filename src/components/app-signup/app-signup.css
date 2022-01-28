@@ -1,0 +1,4 @@
+ion-content {
+    --background: url("/assets/images/my-background.jpg") no-repeat bottom center /
+        cover;
+  }
