@@ -5,8 +5,12 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
+import { Firestore } from "firebase/firestore";
+import { Auth } from "firebase/auth";
 export namespace Components {
     interface AppHome {
+        "auth": Auth;
+        "db": Firestore;
     }
     interface AppSignup {
     }
@@ -40,6 +44,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppHome {
+        "auth"?: Auth;
+        "db"?: Firestore;
     }
     interface AppSignup {
     }
