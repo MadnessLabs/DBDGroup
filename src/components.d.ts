@@ -8,16 +8,30 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 export namespace Components {
+    interface AppAdmin {
+        "auth": Auth;
+        "db": Firestore;
+    }
     interface AppHome {
         "auth": Auth;
         "db": Firestore;
     }
     interface AppSignup {
     }
+    interface AppTournament {
+        "db": Firestore;
+        "tournamentId": string;
+    }
     interface DbdgroupRouter {
     }
 }
 declare global {
+    interface HTMLAppAdminElement extends Components.AppAdmin, HTMLStencilElement {
+    }
+    var HTMLAppAdminElement: {
+        prototype: HTMLAppAdminElement;
+        new (): HTMLAppAdminElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
@@ -30,6 +44,12 @@ declare global {
         prototype: HTMLAppSignupElement;
         new (): HTMLAppSignupElement;
     };
+    interface HTMLAppTournamentElement extends Components.AppTournament, HTMLStencilElement {
+    }
+    var HTMLAppTournamentElement: {
+        prototype: HTMLAppTournamentElement;
+        new (): HTMLAppTournamentElement;
+    };
     interface HTMLDbdgroupRouterElement extends Components.DbdgroupRouter, HTMLStencilElement {
     }
     var HTMLDbdgroupRouterElement: {
@@ -37,23 +57,35 @@ declare global {
         new (): HTMLDbdgroupRouterElement;
     };
     interface HTMLElementTagNameMap {
+        "app-admin": HTMLAppAdminElement;
         "app-home": HTMLAppHomeElement;
         "app-signup": HTMLAppSignupElement;
+        "app-tournament": HTMLAppTournamentElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
     }
 }
 declare namespace LocalJSX {
+    interface AppAdmin {
+        "auth"?: Auth;
+        "db"?: Firestore;
+    }
     interface AppHome {
         "auth"?: Auth;
         "db"?: Firestore;
     }
     interface AppSignup {
     }
+    interface AppTournament {
+        "db"?: Firestore;
+        "tournamentId"?: string;
+    }
     interface DbdgroupRouter {
     }
     interface IntrinsicElements {
+        "app-admin": AppAdmin;
         "app-home": AppHome;
         "app-signup": AppSignup;
+        "app-tournament": AppTournament;
         "dbdgroup-router": DbdgroupRouter;
     }
 }
@@ -61,8 +93,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-signup": LocalJSX.AppSignup & JSXBase.HTMLAttributes<HTMLAppSignupElement>;
+            "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
         }
     }
