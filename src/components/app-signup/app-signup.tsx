@@ -36,6 +36,10 @@ export class AppSignup {
     render() {
         return (
             <ion-content>
+                <ion-button href="https://discord.com/oauth2/authorize?response_type=code&client_id=938334670196723812&scope=identify%20guilds.join%20email&state=15773059ghq9183habn&redirect_uri=https://deadbydaylight.group/oauth/callback&prompt=consent">
+                    <ion-icon slot="start" name="logo-discord" />
+                    Login with Discord
+                </ion-button>
                 <form>
                     <ion-label position="floating">E-mail</ion-label>
                     <ion-input type="text" name="email" value="" />

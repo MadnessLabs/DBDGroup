@@ -6,7 +6,12 @@
   "hosting": {
     "public": "www",
     "ignore": ["firebase.json", "**/node_modules/**"],
+    "trailingSlash": false,
     "rewrites": [
+      {
+        "source": "/oauth/**",
+        "function": "oauth"
+      },
       {
         "source": "**",
         "destination": "/index.html"
@@ -35,5 +40,9 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "functions": {
+    "source": "functions",
+    "predeploy": "cd functions && npm run build"
   }
 }
