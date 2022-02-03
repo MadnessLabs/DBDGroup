@@ -10,22 +10,21 @@ const httpRequest_1 = require("./units/httpRequest/httpRequest");
 exports.oauth = functions.https.onRequest(async (request, response) => {
     const input = (request === null || request === void 0 ? void 0 : request.body) || (request === null || request === void 0 ? void 0 : request.params) || (request === null || request === void 0 ? void 0 : request.query);
     const code = (input === null || input === void 0 ? void 0 : input.code) || null;
+    const creds = Buffer.from(`${env_1.default("discord.id")}:${env_1.default("discord.secret")}`).toString("base64");
     try {
         const oauthData = await httpRequest_1.default({
-            host: "discord.com",
+            host: "discordapp.com",
             path: "/api/oauth2/token",
             port: 443,
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
+                Authorization: `Basic ${creds}`,
             },
         }, {
-            client_id: env_1.default("discord.id"),
-            client_secret: env_1.default("discord.secret"),
             code,
             grant_type: "authorization_code",
             redirect_uri: `https://deadbydaylight.group/oauth/callback`,
-            scope: "identify email",
         });
         console.log(oauthData);
         response.redirect("https://deadbydaylight.group/discord");

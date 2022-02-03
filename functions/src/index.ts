@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
 import env from "./env";
-import * as DiscordOauth2 from "discord-oauth2";
+import httpRequest from "./units/httpRequest/httpRequest";
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -8,19 +8,27 @@ import * as DiscordOauth2 from "discord-oauth2";
 export const oauth = functions.https.onRequest(async (request, response) => {
   const input = request?.body || request?.params || request?.query;
   const code = input?.code || null;
+  const creds = Buffer.from(
+    `${env("discord.id")}:${env("discord.secret")}`
+  ).toString("base64");
   try {
-    const oauth = new DiscordOauth2({
-      clientId: env("discord.id"),
-      clientSecret: env("discord.secret"),
-      redirectUri: `https://deadbydaylight.group/oauth/callback`,
-    });
-    const oauthData = oauth.tokenRequest({
-      // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
-      refreshToken: "D43f5y0ahjqew82jZ4NViEr2YafMKhue",
-      grantType: "authorization_code",
-      scope: ["identify", "email", "guilds"],
-      code,
-    });
+    const oauthData = await httpRequest(
+      {
+        host: "discordapp.com",
+        path: "/api/oauth2/token",
+        port: 443,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${creds}`,
+        },
+      },
+      {
+        code,
+        grant_type: "authorization_code",
+        redirect_uri: `https://deadbydaylight.group/oauth/callback`,
+      }
+    );
     console.log(oauthData);
     response.redirect("https://deadbydaylight.group/discord");
   } catch (e) {
