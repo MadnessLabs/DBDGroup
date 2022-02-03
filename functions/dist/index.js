@@ -8,12 +8,13 @@ const httpRequest_1 = require("./units/httpRequest/httpRequest");
 // // https://firebase.google.com/docs/functions/typescript
 //
 exports.oauth = functions.https.onRequest(async (request, response) => {
-    const input = (request === null || request === void 0 ? void 0 : request.body) || (request === null || request === void 0 ? void 0 : request.params) || (request === null || request === void 0 ? void 0 : request.query);
-    const code = (input === null || input === void 0 ? void 0 : input.code) || null;
+    var _a;
+    const code = ((_a = request === null || request === void 0 ? void 0 : request.query) === null || _a === void 0 ? void 0 : _a.code) || null;
     const creds = Buffer.from(`${env_1.default("discord.id")}:${env_1.default("discord.secret")}`).toString("base64");
     try {
+        console.log(code, creds);
         const oauthData = await httpRequest_1.default({
-            host: "discordapp.com",
+            host: "discord.com",
             path: "/api/oauth2/token",
             port: 443,
             method: "POST",
