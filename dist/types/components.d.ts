@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
+import { AuthService } from "@fireenjin/sdk";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
@@ -15,6 +16,10 @@ export namespace Components {
     interface AppHome {
         "auth": Auth;
         "db": Firestore;
+    }
+    interface AppProfile {
+        "auth": AuthService;
+        "userId": string;
     }
     interface AppSignup {
     }
@@ -38,6 +43,12 @@ declare global {
         prototype: HTMLAppHomeElement;
         new (): HTMLAppHomeElement;
     };
+    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
+    }
+    var HTMLAppProfileElement: {
+        prototype: HTMLAppProfileElement;
+        new (): HTMLAppProfileElement;
+    };
     interface HTMLAppSignupElement extends Components.AppSignup, HTMLStencilElement {
     }
     var HTMLAppSignupElement: {
@@ -59,6 +70,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
         "app-home": HTMLAppHomeElement;
+        "app-profile": HTMLAppProfileElement;
         "app-signup": HTMLAppSignupElement;
         "app-tournament": HTMLAppTournamentElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
@@ -73,6 +85,10 @@ declare namespace LocalJSX {
         "auth"?: Auth;
         "db"?: Firestore;
     }
+    interface AppProfile {
+        "auth"?: AuthService;
+        "userId"?: string;
+    }
     interface AppSignup {
     }
     interface AppTournament {
@@ -84,6 +100,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "app-admin": AppAdmin;
         "app-home": AppHome;
+        "app-profile": AppProfile;
         "app-signup": AppSignup;
         "app-tournament": AppTournament;
         "dbdgroup-router": DbdgroupRouter;
@@ -95,6 +112,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
+            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-signup": LocalJSX.AppSignup & JSXBase.HTMLAttributes<HTMLAppSignupElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
