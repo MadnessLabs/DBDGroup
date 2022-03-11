@@ -150,7 +150,7 @@ html.ios ion-modal.modal-card .ion-page {
 .ion-color-warning {
   --ion-color-base: var(--ion-color-warning, #ffc409) !important;
   --ion-color-base-rgb: var(--ion-color-warning-rgb, 255, 196, 9) !important;
-  --ion-color-contrast: var(--ion-color-warning-contrast, #000) !important;
+  --ion-color-contrast: var(--ion-color-warning-contrast, #fff) !important;
   --ion-color-contrast-rgb: var(--ion-color-warning-contrast-rgb, 0, 0, 0) !important;
   --ion-color-shade: var(--ion-color-warning-shade, #e0ac08) !important;
   --ion-color-tint: var(--ion-color-warning-tint, #ffca22) !important;

@@ -1,0 +1,1205 @@
+{
+    "job": {
+        "userIds": [
+            "bumAIXVSbIR0SX9C8wISPkdLkQX2"
+        ],
+        "amountOwed": 0,
+        "isFranchise": false,
+        "updatedAt": "2022-03-04T22:03:49.486Z",
+        "location": {
+            "token": "WzH2xHzRRZ6TFmdaBaVSMEGEoLkbrqvts2G5lRKE",
+            "owner": {
+                "path": "users/C8cD2359mPbOKC3UiMQ29iuAJOr2",
+                "id": "C8cD2359mPbOKC3UiMQ29iuAJOr2"
+            },
+            "id": "D4FPVbsajRNSFGmnxet5",
+            "isSearchable": true,
+            "name": "Southern Illinois",
+            "createdAt": "2022-02-07T22:06:25.171Z",
+            "type": "corporate",
+            "defaultPayModel": {
+                "id": "1ypBm5BW7lGj5FgxHzIS",
+                "path": "paymodels/1ypBm5BW7lGj5FgxHzIS"
+            }
+        },
+        "services": [
+            {
+                "quantity": 1,
+                "amount": 5,
+                "total": 84.5,
+                "id": "djLVTHxdTK1e5y4f74uX",
+                "price": 16.9,
+                "service": {
+                    "referencePage": null,
+                    "type": "mitigation",
+                    "unit": "EA",
+                    "category": null,
+                    "id": "djLVTHxdTK1e5y4f74uX",
+                    "description": null,
+                    "group": "PPE",
+                    "smartScoping": null,
+                    "code": "PPER",
+                    "name": "Disposable rain suit",
+                    "prices": {
+                        "codeBlue": null,
+                        "default": "16.9",
+                        "americanfamily": null,
+                        "msd": null
+                    },
+                    "updatedAt": "2022-03-07T06:36:04.801Z",
+                    "costs": {
+                        "material": null,
+                        "labor": null
+                    },
+                    "autofill": {
+                        "var": null
+                    },
+                    "rental": null,
+                    "Youtube Video": null,
+                    "createdAt": "2022-03-07T06:36:04.801Z",
+                    "tab": "General"
+                },
+                "createdAt": {
+                    "_nanoseconds": 544000000,
+                    "_seconds": 1646714040
+                }
+            },
+            {
+                "price": 15.17,
+                "service": {
+                    "description": null,
+                    "type": "mitigation",
+                    "id": "p1rRFeiO26atflixCPPC",
+                    "prices": {
+                        "americanfamily": null,
+                        "msd": null,
+                        "codeBlue": null,
+                        "default": "15.17"
+                    },
+                    "autofill": {
+                        "var": null
+                    },
+                    "updatedAt": "2022-03-07T06:36:04.801Z",
+                    "smartScoping": null,
+                    "code": "PPE",
+                    "name": "Add for personal protective equipment (hazardous cleanup)",
+                    "Youtube Video": null,
+                    "referencePage": null,
+                    "rental": null,
+                    "unit": "EA",
+                    "category": null,
+                    "costs": {
+                        "labor": null,
+                        "material": null
+                    },
+                    "tab": "General",
+                    "createdAt": "2022-03-07T06:36:04.801Z",
+                    "group": "PPE"
+                },
+                "amount": 5,
+                "id": "p1rRFeiO26atflixCPPC",
+                "quantity": 1,
+                "createdAt": {
+                    "_seconds": 1646722609,
+                    "_nanoseconds": 261000000
+                },
+                "total": 75.85
+            }
+        ],
+        "title": "Bobby Johnson",
+        "isSearchable": true,
+        "customer": {
+            "photo": null,
+            "trade": null,
+            "email": "bobby@madnesslabs.net",
+            "lastName": "Johnson",
+            "firstName": "Bobby",
+            "updatedAt": "2022-02-15T20:22:47.046Z",
+            "slackHandle": null,
+            "address": null,
+            "billingAddress": null,
+            "id": "bumAIXVSbIR0SX9C8wISPkdLkQX2",
+            "phone": "13143133351"
+        },
+        "status": "claim",
+        "sites": [
+            {
+                "level": null,
+                "photos": [
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A02%3A16.002Z_200x200.webp?alt=media&token=c447909b-0fc8-42f8-8485-91c0ba779819",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "default": false,
+                        "createdAt": "2022-03-04T20:02:18.086Z",
+                        "inventoryId": null,
+                        "tags": [],
+                        "serviceId": null,
+                        "site": {
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI",
+                            "id": "gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "id": "9E5NNySHI3ysj6StBKFu"
+                    },
+                    {
+                        "tags": [],
+                        "id": "NYhSkmjvEIz9iylF5TNk",
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-04T19%3A04%3A00.771Z_200x200.webp?alt=media&token=3c20b7e0-aa9f-4929-aea2-9d5e857c0d20",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-04T19:04:17.300Z"
+                    },
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-04T18%3A56%3A52.436Z_200x200.webp?alt=media&token=1b7c60e4-8d59-4004-b6b8-4746b7bafa3c",
+                        "createdAt": "2022-03-04T18:57:15.476Z",
+                        "tags": [],
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "id": "ONskhZ6WERGN9YcVEmZl",
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        }
+                    },
+                    {
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A02%3A14.458Z_200x200.webp?alt=media&token=d50b148b-9491-4d63-994c-7076a5d94e57",
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "inventoryId": null,
+                        "serviceId": null,
+                        "tags": [],
+                        "createdAt": "2022-03-04T20:02:18.121Z",
+                        "id": "Q2pVhgH6zdhbFWNtl9i4",
+                        "default": false
+                    },
+                    {
+                        "tags": [],
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A26%3A46.224Z_200x200.webp?alt=media&token=dc83f43e-42e1-4d38-b000-9c41419a7f48",
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-03T04:26:56.382Z",
+                        "id": "i5hohJbNmlW4bM2KWhEH",
+                        "site": {
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI",
+                            "id": "gaqwPHl4OZs7VHVubjrI"
+                        }
+                    },
+                    {
+                        "tags": [],
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A02%3A35.738Z_200x200.webp?alt=media&token=4cab1854-160e-4bd6-9884-827e4e72285b",
+                        "serviceId": null,
+                        "id": "jVnMx1K2Jv1mHS3IWU1U",
+                        "default": false,
+                        "site": {
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI",
+                            "id": "gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-04T20:02:37.722Z",
+                        "inventoryId": null
+                    },
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A28%3A56.890Z_200x200.webp?alt=media&token=9fcf6eb2-f02e-4d1d-be62-eab41f45caf0",
+                        "createdAt": "2022-03-03T04:29:04.525Z",
+                        "id": "n013FRViTGEenh07pSrW",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "tags": []
+                    },
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A29%3A04.963Z_200x200.webp?alt=media&token=98cdbc9e-f0f0-40dc-ae3b-2f5de2b94e5d",
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "tags": [],
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-03T04:30:44.207Z",
+                        "id": "n1kjxwIhopFzdGGVdk6a"
+                    },
+                    {
+                        "inventoryId": null,
+                        "default": false,
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A02%3A34.173Z_200x200.webp?alt=media&token=2ae76542-8695-4760-af1e-33013288ab4d",
+                        "id": "rlg7jWnAHwq5bkRjcSKA",
+                        "tags": [],
+                        "serviceId": null,
+                        "createdAt": "2022-03-04T20:02:37.772Z"
+                    },
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-04T18%3A56%3A52.436Z_200x200.webp?alt=media&token=8bd687e2-8de8-4585-9a63-6633ef4ac545",
+                        "tags": [],
+                        "id": "sn8HPxgsUVUMgMKFMQV7",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-04T18:57:15.958Z",
+                        "site": {
+                            "id": "gaqwPHl4OZs7VHVubjrI",
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI"
+                        }
+                    },
+                    {
+                        "createdAt": "2022-03-03T04:30:52.497Z",
+                        "site": {
+                            "path": "sites/gaqwPHl4OZs7VHVubjrI",
+                            "id": "gaqwPHl4OZs7VHVubjrI"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A30%3A44.745Z_200x200.webp?alt=media&token=7304b764-8194-4c29-9ea9-f2d8045fd8e2",
+                        "id": "u0t7aNVNLUYXNEn6NjRd",
+                        "tags": [],
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        }
+                    }
+                ],
+                "areas": [],
+                "class": null,
+                "chamber": 0,
+                "areaTotalCuft": 0,
+                "ceilingType": null,
+                "job": {
+                    "id": "6nmeV4ShtUXYTLkwesYW",
+                    "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                },
+                "affectedAreaTotalSqft": 0,
+                "jobId": "6nmeV4ShtUXYTLkwesYW",
+                "areaTotalSqft": 0,
+                "affectedAreaTotalCuft": 0,
+                "createdAt": "2022-02-21T05:32:41.137Z",
+                "name": "Upstairs",
+                "floorType": null,
+                "affectedAreas": [],
+                "updatedAt": "2022-02-21T05:32:43.871Z",
+                "wallType": null,
+                "equipment": {
+                    "config": {
+                        "validatorOptions": {},
+                        "validateModels": false
+                    },
+                    "path": "sites/gaqwPHl4OZs7VHVubjrI/SiteEquipments",
+                    "firestoreColRef": {
+                        "_firestore": {
+                            "projectId": "the-flood-team"
+                        },
+                        "_allowUndefined": true,
+                        "_serializer": {
+                            "allowUndefined": true
+                        },
+                        "_queryOptions": {
+                            "collectionId": "SiteEquipments",
+                            "requireConsistency": true,
+                            "parentPath": {
+                                "segments": [
+                                    "sites",
+                                    "gaqwPHl4OZs7VHVubjrI"
+                                ]
+                            },
+                            "converter": {},
+                            "allDescendants": false,
+                            "kindless": false,
+                            "fieldFilters": [],
+                            "fieldOrders": []
+                        }
+                    },
+                    "colMetadata": {
+                        "propertyKey": "equipment",
+                        "name": "SiteEquipments",
+                        "subCollections": [],
+                        "segments": [
+                            "sites",
+                            "SiteEquipments"
+                        ]
+                    }
+                },
+                "id": "gaqwPHl4OZs7VHVubjrI",
+                "services": [
+                    {
+                        "quantity": 5,
+                        "price": 5,
+                        "total": 125,
+                        "createdAt": {
+                            "_nanoseconds": 895000000,
+                            "_seconds": 1645430875
+                        },
+                        "service": null,
+                        "amount": 5,
+                        "id": "21ljxOOD2UnoYA4DTysq"
+                    },
+                    {
+                        "amount": 33,
+                        "quantity": 1,
+                        "id": "MVjs06HmgaCv8PYkTZly",
+                        "service": null,
+                        "total": 2541,
+                        "createdAt": {
+                            "_nanoseconds": 923000000,
+                            "_seconds": 1645467564
+                        },
+                        "price": 77
+                    },
+                    {
+                        "amount": 55,
+                        "quantity": 1,
+                        "total": 26.95,
+                        "service": null,
+                        "createdAt": {
+                            "_nanoseconds": 975000000,
+                            "_seconds": 1645471465
+                        },
+                        "id": "QRvhrmQaRIrLUQyGYjYA",
+                        "price": 0.49
+                    },
+                    {
+                        "total": 1459.3000000000002,
+                        "id": "SpbITzJwjg6bTSzc7pk8",
+                        "quantity": 1,
+                        "service": null,
+                        "createdAt": {
+                            "_seconds": 1645471133,
+                            "_nanoseconds": 118000000
+                        },
+                        "price": 291.86,
+                        "amount": 5
+                    },
+                    {
+                        "createdAt": {
+                            "_seconds": 1646714002,
+                            "_nanoseconds": 4000000
+                        },
+                        "quantity": 1,
+                        "service": {
+                            "name": "2\" Submersible pump with hose (per hour)",
+                            "group": "Submersible",
+                            "referencePage": null,
+                            "Youtube Video": null,
+                            "code": "EXTWPC",
+                            "unit": "HR",
+                            "updatedAt": "2022-03-07T06:36:04.829Z",
+                            "createdAt": "2022-03-07T06:36:04.829Z",
+                            "smartScoping": null,
+                            "tab": "Pump out",
+                            "prices": {
+                                "msd": null,
+                                "codeBlue": null,
+                                "americanfamily": null,
+                                "default": "54.48"
+                            },
+                            "id": "Vgsij8gxajWLZAuBPoyi",
+                            "description": null,
+                            "rental": null,
+                            "category": null,
+                            "autofill": {
+                                "var": null
+                            },
+                            "costs": {
+                                "material": null,
+                                "labor": null
+                            },
+                            "type": "mitigation"
+                        },
+                        "total": 272.4,
+                        "amount": 5,
+                        "price": 54.48,
+                        "id": "Vgsij8gxajWLZAuBPoyi"
+                    },
+                    {
+                        "amount": 5,
+                        "service": null,
+                        "total": 355,
+                        "id": "o2dvCZ42ejgYQI0syh4H",
+                        "price": 71,
+                        "quantity": 1,
+                        "createdAt": {
+                            "_nanoseconds": 212000000,
+                            "_seconds": 1645434330
+                        }
+                    }
+                ]
+            },
+            {
+                "job": {
+                    "id": "6nmeV4ShtUXYTLkwesYW",
+                    "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                },
+                "affectedAreas": [
+                    {
+                        "height": 8,
+                        "lnft": null,
+                        "length": 8,
+                        "cuft": 512,
+                        "width": 8,
+                        "sqft": 64
+                    }
+                ],
+                "ftmsId": null,
+                "areaTotalSqft": 128,
+                "createdAt": "2022-02-07T21:32:18.194Z",
+                "ceilingType": "Dropped Ceiling",
+                "floorType": "Concrete",
+                "level": 1,
+                "services": [
+                    {
+                        "id": "76qraUPJoIv93qOcH2yP",
+                        "price": 0,
+                        "createdAt": {
+                            "_nanoseconds": 201000000,
+                            "_seconds": 1644697577
+                        },
+                        "service": null,
+                        "total": 0,
+                        "quantity": 1,
+                        "amount": 0
+                    },
+                    {
+                        "amount": 0,
+                        "id": "DiQilvWSbNJyRs3DRDEc",
+                        "service": null,
+                        "createdAt": {
+                            "_nanoseconds": 955000000,
+                            "_seconds": 1644722962
+                        },
+                        "quantity": 1,
+                        "total": 0,
+                        "price": 0
+                    },
+                    {
+                        "price": 0,
+                        "total": 0,
+                        "id": "JSSzzNwptRY08cksg1v2",
+                        "amount": 0,
+                        "createdAt": {
+                            "_nanoseconds": 682000000,
+                            "_seconds": 1644630632
+                        },
+                        "service": null,
+                        "quantity": 1
+                    },
+                    {
+                        "id": "LycuerY2qfmB4pYjhXQX",
+                        "price": 0,
+                        "quantity": 1,
+                        "createdAt": {
+                            "_nanoseconds": 407000000,
+                            "_seconds": 1644697836
+                        },
+                        "total": 0,
+                        "service": null,
+                        "amount": 0
+                    },
+                    {
+                        "quantity": 1,
+                        "total": 26.95,
+                        "id": "QRvhrmQaRIrLUQyGYjYA",
+                        "createdAt": {
+                            "_nanoseconds": 511000000,
+                            "_seconds": 1645471469
+                        },
+                        "price": 0.49,
+                        "amount": 55,
+                        "service": null
+                    },
+                    {
+                        "updatedAt": {
+                            "_nanoseconds": 672000000,
+                            "_seconds": 1645419785
+                        },
+                        "price": 0,
+                        "createdAt": {
+                            "_nanoseconds": 833000000,
+                            "_seconds": 1644722960
+                        },
+                        "amount": 0,
+                        "quantity": 0,
+                        "id": "RybS2Ct0y3LUNlsP0cLn",
+                        "total": 0,
+                        "service": null
+                    },
+                    {
+                        "price": 0,
+                        "id": "SpbITzJwjg6bTSzc7pk8",
+                        "createdAt": {
+                            "_nanoseconds": 690000000,
+                            "_seconds": 1644722961
+                        },
+                        "service": null,
+                        "total": 0,
+                        "quantity": 1,
+                        "amount": 0
+                    },
+                    {
+                        "id": "TGgzxHuMV00zwQLKbZcw",
+                        "quantity": 1,
+                        "createdAt": {
+                            "_seconds": 1644377361,
+                            "_nanoseconds": 575000000
+                        },
+                        "price": 0,
+                        "service": null,
+                        "amount": 0,
+                        "total": 0
+                    },
+                    {
+                        "price": 0,
+                        "service": null,
+                        "createdAt": {
+                            "_seconds": 1644696515,
+                            "_nanoseconds": 334000000
+                        },
+                        "id": "bxGuGgNJe4ozHMkK5nLI",
+                        "total": 0,
+                        "quantity": 1,
+                        "amount": 0
+                    },
+                    {
+                        "id": "mIutgCm3QB1mmmfnLSOq",
+                        "service": null,
+                        "quantity": 1,
+                        "price": 0,
+                        "amount": 0,
+                        "total": 0,
+                        "createdAt": {
+                            "_seconds": 1644696516,
+                            "_nanoseconds": 381000000
+                        }
+                    },
+                    {
+                        "price": 54.48,
+                        "total": 272.4,
+                        "amount": 5,
+                        "createdAt": {
+                            "_seconds": 1645433828,
+                            "_nanoseconds": 530000000
+                        },
+                        "service": null,
+                        "quantity": 1,
+                        "id": "xBUTB5ZHooB76WrjWWKd"
+                    },
+                    {
+                        "createdAt": {
+                            "_seconds": 1644696094,
+                            "_nanoseconds": 855000000
+                        },
+                        "amount": 0,
+                        "quantity": 1,
+                        "id": "xzQ3CmcIKo96iybNFxiL",
+                        "total": 0,
+                        "price": 0,
+                        "service": null
+                    }
+                ],
+                "class": null,
+                "areaTotalCuft": 1024,
+                "chamber": 1,
+                "name": "Basement",
+                "updatedAt": "2022-02-20T17:24:04.379Z",
+                "equipment": {
+                    "firestoreColRef": {
+                        "_allowUndefined": true,
+                        "_serializer": {
+                            "allowUndefined": true
+                        },
+                        "_queryOptions": {
+                            "parentPath": {
+                                "segments": [
+                                    "sites",
+                                    "tXlryUMdE75Oe9cu2lj6"
+                                ]
+                            },
+                            "converter": {},
+                            "fieldOrders": [],
+                            "allDescendants": false,
+                            "collectionId": "SiteEquipments",
+                            "fieldFilters": [],
+                            "requireConsistency": true,
+                            "kindless": false
+                        },
+                        "_firestore": {
+                            "projectId": "the-flood-team"
+                        }
+                    },
+                    "colMetadata": {
+                        "propertyKey": "equipment",
+                        "name": "SiteEquipments",
+                        "subCollections": [],
+                        "segments": [
+                            "sites",
+                            "SiteEquipments"
+                        ]
+                    },
+                    "config": {
+                        "validatorOptions": {},
+                        "validateModels": false
+                    },
+                    "path": "sites/tXlryUMdE75Oe9cu2lj6/SiteEquipments"
+                },
+                "wallType": "Drywall",
+                "jobId": "6nmeV4ShtUXYTLkwesYW",
+                "areas": [
+                    {
+                        "cuft": 512,
+                        "height": 8,
+                        "sqft": 64,
+                        "length": 8,
+                        "width": 8,
+                        "lnft": null
+                    },
+                    {
+                        "height": 8,
+                        "width": 8,
+                        "sqft": 64,
+                        "cuft": 512,
+                        "length": 8
+                    }
+                ],
+                "photos": [
+                    {
+                        "site": {
+                            "path": "sites/tXlryUMdE75Oe9cu2lj6",
+                            "id": "tXlryUMdE75Oe9cu2lj6"
+                        },
+                        "tags": [],
+                        "createdAt": "2022-02-24T08:08:16.206Z",
+                        "id": "4shezAcAX1wI6bxE5SNb",
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-02-24T08%3A07%3A50.226Z_200x200.webp?alt=media&token=edf515e9-7ebc-4311-9b77-d03ea17e9ee7"
+                    },
+                    {
+                        "tags": [],
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-02-24T08:08:24.044Z",
+                        "id": "DieYhlJW7XqScxBTNjmg",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-02-24T08%3A07%3A50.226Z_200x200.webp?alt=media&token=ebfdf153-fe86-422b-86dd-abdc873232fd",
+                        "site": {
+                            "id": "tXlryUMdE75Oe9cu2lj6",
+                            "path": "sites/tXlryUMdE75Oe9cu2lj6"
+                        }
+                    },
+                    {
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-02-24T08%3A07%3A50.226Z_200x200.webp?alt=media&token=3f230a54-ef05-4055-abcf-5aaf90fc0df2",
+                        "id": "bZIfFlVbfEyLkawnuhQz",
+                        "tags": [],
+                        "createdAt": "2022-02-24T08:08:18.026Z",
+                        "site": {
+                            "id": "tXlryUMdE75Oe9cu2lj6",
+                            "path": "sites/tXlryUMdE75Oe9cu2lj6"
+                        }
+                    },
+                    {
+                        "id": "iu9PdHZikQJSv4TZBjAS",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-02-24T08%3A07%3A50.226Z_200x200.webp?alt=media&token=057b6674-7369-4ddd-b443-1ac7c4f9993a",
+                        "site": {
+                            "id": "tXlryUMdE75Oe9cu2lj6",
+                            "path": "sites/tXlryUMdE75Oe9cu2lj6"
+                        },
+                        "tags": [],
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-02-24T08:08:16.649Z"
+                    },
+                    {
+                        "tags": [],
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-03T04:24:41.858Z",
+                        "site": {
+                            "path": "sites/tXlryUMdE75Oe9cu2lj6",
+                            "id": "tXlryUMdE75Oe9cu2lj6"
+                        },
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A24%3A29.800Z_200x200.webp?alt=media&token=5f13d6bc-2591-457a-bf10-b9fc42126693",
+                        "id": "oS5xDmpRMvIPvlyxqShJ"
+                    }
+                ],
+                "affectedAreaTotalSqft": 64,
+                "affectedAreaTotalCuft": 512,
+                "id": "tXlryUMdE75Oe9cu2lj6"
+            },
+            {
+                "jobId": "6nmeV4ShtUXYTLkwesYW",
+                "name": "Boom Boom Room",
+                "updatedAt": "2022-02-07T22:27:15.175Z",
+                "job": {
+                    "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                    "id": "6nmeV4ShtUXYTLkwesYW"
+                },
+                "photos": [
+                    {
+                        "id": "EjasnZ54IWIzTxr18qlC",
+                        "site": {
+                            "path": "sites/OgJKmCaARV4IXr2YForz",
+                            "id": "OgJKmCaARV4IXr2YForz"
+                        },
+                        "createdAt": "2022-03-03T04:40:56.102Z",
+                        "tags": [],
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A40%3A48.669Z_200x200.webp?alt=media&token=02e08f6d-dc89-45ad-87d3-a1b638fd988b",
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        }
+                    },
+                    {
+                        "site": {
+                            "id": "OgJKmCaARV4IXr2YForz",
+                            "path": "sites/OgJKmCaARV4IXr2YForz"
+                        },
+                        "tags": [],
+                        "createdAt": "2022-03-03T03:42:12.161Z",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T03%3A41%3A55.548Z_200x200.webp?alt=media&token=dffe8c78-e6ea-4507-9b53-aba863f39b94",
+                        "id": "SzUiIjvQjNszVyfVXmJC",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        }
+                    },
+                    {
+                        "createdAt": "2022-03-03T04:41:56.776Z",
+                        "id": "XUhggrngy01U8PWBhMpH",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T04%3A41%3A50.925Z_200x200.webp?alt=media&token=fd0c11b6-ec3a-4d64-973b-9bf76ffe66db",
+                        "site": {
+                            "path": "sites/OgJKmCaARV4IXr2YForz",
+                            "id": "OgJKmCaARV4IXr2YForz"
+                        },
+                        "tags": [],
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        }
+                    },
+                    {
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos%2F2022-03-03T03%3A36%3A18.864Z_200x200.webp?alt=media&token=08e10aff-b101-4bbb-9571-6eba8088d094",
+                        "tags": [],
+                        "id": "hYwktqPuqfDxFPqXOiMu",
+                        "createdAt": "2022-03-03T03:36:23.090Z",
+                        "job": {
+                            "id": "6nmeV4ShtUXYTLkwesYW",
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "site": {
+                            "id": "OgJKmCaARV4IXr2YForz",
+                            "path": "sites/OgJKmCaARV4IXr2YForz"
+                        }
+                    }
+                ],
+                "createdAt": "2022-02-07T22:25:44.680Z",
+                "affectedAreaTotalCuft": 2304,
+                "services": [
+                    {
+                        "updatedAt": {
+                            "_seconds": 1645431012,
+                            "_nanoseconds": 507000000
+                        },
+                        "service": null,
+                        "total": 50,
+                        "id": "21ljxOOD2UnoYA4DTysq",
+                        "price": 5,
+                        "amount": 10,
+                        "createdAt": {
+                            "_nanoseconds": 286000000,
+                            "_seconds": 1645430998
+                        },
+                        "quantity": 1
+                    },
+                    {
+                        "price": 5,
+                        "id": "DiQilvWSbNJyRs3DRDEc",
+                        "service": null,
+                        "createdAt": {
+                            "_seconds": 1645413772,
+                            "_nanoseconds": 972000000
+                        },
+                        "total": 125,
+                        "amount": 5,
+                        "quantity": 5
+                    },
+                    {
+                        "id": "DpYQ2oWm3glE6mUD4082",
+                        "createdAt": {
+                            "_seconds": 1645420625,
+                            "_nanoseconds": 176000000
+                        },
+                        "amount": 5,
+                        "updatedAt": {
+                            "_seconds": 1645467118,
+                            "_nanoseconds": 244000000
+                        },
+                        "service": null,
+                        "quantity": 1,
+                        "total": 1.1500000000000001,
+                        "price": 0.23
+                    },
+                    {
+                        "quantity": 6,
+                        "service": null,
+                        "total": 216,
+                        "price": 6,
+                        "id": "MVjs06HmgaCv8PYkTZly",
+                        "createdAt": {
+                            "_nanoseconds": 760000000,
+                            "_seconds": 1645427251
+                        },
+                        "amount": 6,
+                        "updatedAt": {
+                            "_seconds": 1645427780,
+                            "_nanoseconds": 406000000
+                        }
+                    },
+                    {
+                        "quantity": 1,
+                        "id": "QRvhrmQaRIrLUQyGYjYA",
+                        "amount": 55,
+                        "createdAt": {
+                            "_seconds": 1645471462,
+                            "_nanoseconds": 396000000
+                        },
+                        "total": 26.95,
+                        "price": 0.49,
+                        "service": null
+                    },
+                    {
+                        "createdAt": {
+                            "_seconds": 1645413495,
+                            "_nanoseconds": 858000000
+                        },
+                        "amount": 0,
+                        "updatedAt": {
+                            "_seconds": 1645414762,
+                            "_nanoseconds": 934000000
+                        },
+                        "id": "RybS2Ct0y3LUNlsP0cLn",
+                        "quantity": 0,
+                        "price": 0,
+                        "service": null,
+                        "total": 0
+                    },
+                    {
+                        "service": {
+                            "name": "2\" Submersible pump with hose (per hour)",
+                            "autofill": {
+                                "var": null
+                            },
+                            "referencePage": null,
+                            "Youtube Video": null,
+                            "code": "EXTWPC",
+                            "description": null,
+                            "smartScoping": null,
+                            "createdAt": "2022-03-07T06:36:04.829Z",
+                            "unit": "HR",
+                            "category": null,
+                            "id": "Vgsij8gxajWLZAuBPoyi",
+                            "costs": {
+                                "material": null,
+                                "labor": null
+                            },
+                            "type": "mitigation",
+                            "prices": {
+                                "americanfamily": null,
+                                "codeBlue": null,
+                                "default": "54.48",
+                                "msd": null
+                            },
+                            "group": "Submersible",
+                            "rental": null,
+                            "updatedAt": "2022-03-07T06:36:04.829Z",
+                            "tab": "Pump out"
+                        },
+                        "quantity": 1,
+                        "total": 326.88,
+                        "id": "Vgsij8gxajWLZAuBPoyi",
+                        "createdAt": {
+                            "_nanoseconds": 882000000,
+                            "_seconds": 1646730938
+                        },
+                        "price": 54.48,
+                        "amount": 6
+                    },
+                    {
+                        "createdAt": {
+                            "_nanoseconds": 788000000,
+                            "_seconds": 1645414260
+                        },
+                        "id": "o2dvCZ42ejgYQI0syh4H",
+                        "quantity": 5,
+                        "price": 5,
+                        "total": 125,
+                        "service": null,
+                        "amount": 5
+                    },
+                    {
+                        "quantity": 1,
+                        "amount": 5,
+                        "updatedAt": {
+                            "_seconds": 1645469854,
+                            "_nanoseconds": 647000000
+                        },
+                        "total": 500,
+                        "id": "xBUTB5ZHooB76WrjWWKd",
+                        "createdAt": {
+                            "_seconds": 1645435244,
+                            "_nanoseconds": 68000000
+                        },
+                        "price": 100,
+                        "service": null
+                    }
+                ],
+                "areaTotalSqft": 0,
+                "affectedAreaTotalSqft": 288,
+                "class": null,
+                "id": "OgJKmCaARV4IXr2YForz",
+                "chamber": 1,
+                "areas": [],
+                "floorType": "VCT",
+                "areaTotalCuft": 0,
+                "ceilingType": null,
+                "equipment": {
+                    "path": "sites/OgJKmCaARV4IXr2YForz/SiteEquipments",
+                    "config": {
+                        "validateModels": false,
+                        "validatorOptions": {}
+                    },
+                    "colMetadata": {
+                        "name": "SiteEquipments",
+                        "subCollections": [],
+                        "propertyKey": "equipment",
+                        "segments": [
+                            "sites",
+                            "SiteEquipments"
+                        ]
+                    },
+                    "firestoreColRef": {
+                        "_queryOptions": {
+                            "collectionId": "SiteEquipments",
+                            "parentPath": {
+                                "segments": [
+                                    "sites",
+                                    "OgJKmCaARV4IXr2YForz"
+                                ]
+                            },
+                            "requireConsistency": true,
+                            "fieldFilters": [],
+                            "fieldOrders": [],
+                            "allDescendants": false,
+                            "kindless": false,
+                            "converter": {}
+                        },
+                        "_firestore": {
+                            "projectId": "the-flood-team"
+                        },
+                        "_serializer": {
+                            "allowUndefined": true
+                        },
+                        "_allowUndefined": true
+                    }
+                },
+                "affectedAreas": [
+                    {
+                        "length": 24,
+                        "height": 8,
+                        "cuft": 2304,
+                        "width": 12,
+                        "sqft": 288,
+                        "lnft": null
+                    }
+                ],
+                "level": 2,
+                "wallType": "Drywall",
+                "ftmsId": null
+            },
+            {
+                "equipment": {
+                    "colMetadata": {
+                        "name": "SiteEquipments",
+                        "subCollections": [],
+                        "segments": [
+                            "sites",
+                            "SiteEquipments"
+                        ],
+                        "propertyKey": "equipment"
+                    },
+                    "firestoreColRef": {
+                        "_firestore": {
+                            "projectId": "the-flood-team"
+                        },
+                        "_serializer": {
+                            "allowUndefined": true
+                        },
+                        "_queryOptions": {
+                            "fieldOrders": [],
+                            "converter": {},
+                            "fieldFilters": [],
+                            "requireConsistency": true,
+                            "kindless": false,
+                            "parentPath": {
+                                "segments": [
+                                    "sites",
+                                    "n9QUIY9moiWGFdxGUbEy"
+                                ]
+                            },
+                            "allDescendants": false,
+                            "collectionId": "SiteEquipments"
+                        },
+                        "_allowUndefined": true
+                    },
+                    "path": "sites/n9QUIY9moiWGFdxGUbEy/SiteEquipments",
+                    "config": {
+                        "validateModels": false,
+                        "validatorOptions": {}
+                    }
+                },
+                "ceilingType": null,
+                "createdAt": "2022-03-04T20:03:05.125Z",
+                "wallType": null,
+                "chamber": 0,
+                "services": [],
+                "affectedAreas": [],
+                "photos": [
+                    {
+                        "default": false,
+                        "tags": [],
+                        "site": {
+                            "path": "sites/n9QUIY9moiWGFdxGUbEy",
+                            "id": "n9QUIY9moiWGFdxGUbEy"
+                        },
+                        "inventoryId": null,
+                        "serviceId": null,
+                        "id": "4kDCqrrd08UcItvQ6Bli",
+                        "createdAt": "2022-03-04T20:03:21.745Z",
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A03%3A11.771Z_200x200.webp?alt=media&token=8146210d-fb7f-4f29-9aa1-3e033c49f805",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        }
+                    },
+                    {
+                        "serviceId": null,
+                        "url": "https://firebasestorage.googleapis.com/v0/b/the-flood-team.appspot.com/o/jobs%2F6nmeV4ShtUXYTLkwesYW%2Fphotos2022-03-04T20%3A03%3A13.289Z_200x200.webp?alt=media&token=ac323acb-9184-4867-9744-9b4bae36b9e9",
+                        "job": {
+                            "path": "jobs/6nmeV4ShtUXYTLkwesYW",
+                            "id": "6nmeV4ShtUXYTLkwesYW"
+                        },
+                        "createdAt": "2022-03-04T20:03:15.319Z",
+                        "default": false,
+                        "tags": [],
+                        "site": {
+                            "path": "sites/n9QUIY9moiWGFdxGUbEy",
+                            "id": "n9QUIY9moiWGFdxGUbEy"
+                        },
+                        "inventoryId": null,
+                        "id": "iPfqESyhnVaaKUMel8bs"
+                    }
+                ],
+                "level": 3,
+                "areas": [],
+                "name": "Attic",
+                "affectedAreaTotalSqft": 0,
+                "floorType": null,
+                "job": {
+                    "id": "6nmeV4ShtUXYTLkwesYW",
+                    "path": "jobs/6nmeV4ShtUXYTLkwesYW"
+                },
+                "areaTotalSqft": 0,
+                "class": null,
+                "id": "n9QUIY9moiWGFdxGUbEy",
+                "jobId": "6nmeV4ShtUXYTLkwesYW",
+                "areaTotalCuft": 0,
+                "affectedAreaTotalCuft": 0
+            }
+        ],
+        "payModel": null,
+        "referral": {
+            "trade": null,
+            "billingAddress": null,
+            "slackHandle": null,
+            "updatedAt": "2022-02-15T20:22:47.046Z",
+            "email": "bobby@madnesslabs.net",
+            "address": null,
+            "lastName": "Johnson",
+            "firstName": "Bobby",
+            "id": "bumAIXVSbIR0SX9C8wISPkdLkQX2",
+            "phone": "13143133351",
+            "photo": null
+        },
+        "address": null,
+        "createdAt": "2022-02-07T09:39:03.369Z",
+        "amountDeducted": 0,
+        "amountBilled": 0,
+        "phone": "+13143133351",
+        "dateOfLoss": null,
+        "id": "6nmeV4ShtUXYTLkwesYW",
+        "payments": []
+    },
+    "totals": {
+        "levels": {
+            "0": 4779.65,
+            "1": 299.34999999999997,
+            "2": 1370.98,
+            "3": 0
+        },
+        "sites": {
+            "n9QUIY9moiWGFdxGUbEy": 0,
+            "gaqwPHl4OZs7VHVubjrI": 4779.65,
+            "OgJKmCaARV4IXr2YForz": 1370.98,
+            "tXlryUMdE75Oe9cu2lj6": 299.34999999999997
+        },
+        "amountDeducted": 0,
+        "amountOwed": 0,
+        "general": 160.35,
+        "amountPaid": 0
+    },
+    "app": {
+        "url": "https://theflood.team"
+    }
+}
