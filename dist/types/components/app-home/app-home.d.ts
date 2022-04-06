@@ -3,7 +3,7 @@ import { Firestore } from "firebase/firestore";
 export declare class AppHome {
   formData: {
     name?: string;
-    type?: string;
+    email?: string;
   };
   db: Firestore;
   auth: Auth;

@@ -1,5 +1,5 @@
-import { Auth } from 'firebase/auth';
-import { Firestore } from 'firebase/firestore';
+import { Auth } from "firebase/auth";
+import { Firestore } from "firebase/firestore";
 export declare class AppAdmin {
   db: Firestore;
   auth: Auth;

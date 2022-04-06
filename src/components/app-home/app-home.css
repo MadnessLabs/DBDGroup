@@ -1,0 +1,8 @@
+ion-content {
+    --background: none;
+    /* background: url("/assets/dbdtrees.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain; */
+    background-color: rgb(66, 66, 66);
+  }
