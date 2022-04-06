@@ -4,7 +4,7 @@ import { j as jh, i as ia, F as Fh } from './index.esm2017-e414a212.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
-const appHomeCss = "ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:repeat;background-size:fill;background-color:rgb(66, 66, 66)}fireenjin-form{max-width:700px;background-color:#3d0105;text-align:center;margin:0 auto;font-family:sans-serif;opacity:0.6;border-style:ridge;border-color:#7a7a79}#bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}";
+const appHomeCss = "ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:repeat;background-size:fill;background-color:rgb(66, 66, 66)}fireenjin-form{max-width:650px;background-color:#3d0105;text-align:center;margin:0 auto;font-family:sans-serif;opacity:0.6;border-style:ridge;border-color:#7a7a79}#bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}";
 
 let AppHome = class {
   constructor(hostRef) {
@@ -30,7 +30,7 @@ let AppHome = class {
     var _a, _b;
     return (h("ion-content", null, h("ion-grid", null, h("ion-row", { style: {
         "justify-content": "center"
-      } }, h("ion-col", { size: "4", style: {
+      } }, h("ion-col", { "size-sm": "10", "size-md": "4", style: {
         "text-align": "center"
       } }, h("ion-card", { style: {
         opacity: ".6",

@@ -42,7 +42,7 @@ export class AppHome {
           <ion-row style={{
             "justify-content":"center"
           }}>
-            <ion-col size="4" style={{
+            <ion-col size-sm="10" size-md="4" style={{
               "text-align":"center"
             }}>
               <ion-card
