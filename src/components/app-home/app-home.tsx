@@ -55,7 +55,9 @@ export class AppHome {
             <ion-col>
         <ion-card
         style={{
-          "opacity":".6"
+          "opacity":".6",
+          "border-style":"ridge",
+          "border-color":"#7a7a79"
         }}>
           <h1
             style={{
@@ -74,7 +76,9 @@ export class AppHome {
             "text-align": "center",
             margin: "0 auto",
             "font-family": "sans-serif",
-            "opacity":".6"
+            "opacity":".6",
+            "border-style":"ridge",
+            "border-color":"#7a7a79"
           }}
         >
           <ion-list>

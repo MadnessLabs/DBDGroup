@@ -32,7 +32,9 @@ let AppHome = class {
         "margin-left": "-10px",
         "margin-top": "-10px"
       }, height: 1050, width: 650 }))), h("ion-col", null, h("ion-card", { style: {
-        "opacity": ".6"
+        "opacity": ".6",
+        "border-style": "ridge",
+        "border-color": "#7a7a79"
       } }, h("h1", { style: {
         "text-align": "center",
         "font-family": "sans-serif",
@@ -43,7 +45,9 @@ let AppHome = class {
         "text-align": "center",
         margin: "0 auto",
         "font-family": "sans-serif",
-        "opacity": ".6"
+        "opacity": ".6",
+        "border-style": "ridge",
+        "border-color": "#7a7a79"
       } }, h("ion-list", null, h("ion-item", null, h("ion-label", { style: {
         "text-align": "center",
         "font-family": "sans-serif",
