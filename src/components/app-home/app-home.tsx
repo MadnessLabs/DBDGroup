@@ -39,99 +39,60 @@ export class AppHome {
     return (
       <ion-content>
         <ion-grid>
-          <ion-row>
-            <ion-col size="4">
-            <div>
-                <img src="/assets/dbdtrees1.png"
-                 style={{
-                    "margin-left":"-10px",
-                    "margin-top":"-10px"
+          <ion-row style={{
+            "justify-content":"center"
+          }}>
+            <ion-col size="4" style={{
+              "text-align":"center"
+            }}>
+              <ion-card
+                style={{
+                  opacity: ".6",
+                  "border-style": "ridge",
+                  "border-color": "#7a7a79",
                 }}
-                height={1050}
-                width={650}
-                ></img>
-              </div>
+              >
+                <h1
+                  style={{
+                    "font-family": "sans-serif",
+                    color: "white",
+                  }}
+                >
+                  <b>DEAD BY DAYLIGHT GROUP SIGN-UP</b>
+                </h1>
+              </ion-card>
+              <fireenjin-form>
+                <ion-list>
+                  <ion-item>
+                    <ion-label
+                      style={{
+                        "font-size": "20px",
+                        "font-family": "sans-serif",
+                        color: "white",
+                      }}
+                      position="floating"
+                    >
+                      <b>Name</b>
+                    </ion-label>
+                    <ion-input name="name" value={this.formData?.name} />
+                  </ion-item>
+                  <ion-item>
+                    <ion-label
+                      style={{
+                        "font-size": "20px",
+                        "font-family": "sans-serif",
+                      }}
+                      position="floating"
+                    >
+                      <b>E-mail</b>
+                    </ion-label>
+                    <ion-input name="email" value={this.formData?.email} />
+                  </ion-item>
+                </ion-list>
+              </fireenjin-form>
+                <img id="bLogo" src="/assets/dbdlogoblack.png"></img>
             </ion-col>
-            <ion-col>
-        <ion-card
-        style={{
-          "opacity":".6",
-          "border-style":"ridge",
-          "border-color":"#7a7a79"
-        }}>
-          <h1
-            style={{
-              "text-align": "center",
-              "font-family": "sans-serif",
-              color: "white",
-            }}
-          >
-            <b>DEAD BY DAYLIGHT GROUP SIGN-UP</b>
-          </h1>
-        </ion-card>
-        <fireenjin-form
-          style={{
-            "max-width": "700px",
-            "background-color": "#3d0105",
-            "text-align": "center",
-            margin: "0 auto",
-            "font-family": "sans-serif",
-            "opacity":".6",
-            "border-style":"ridge",
-            "border-color":"#7a7a79"
-          }}
-        >
-          <ion-list>
-            <ion-item>
-              <ion-label
-                style={{
-                  "text-align": "center",
-                  "font-family": "sans-serif",
-                  color: "white",
-                }}
-              >
-                <b>Name</b>
-              </ion-label>
-              <ion-input name="name" value={this.formData?.name} />
-            </ion-item>
-            <ion-item>
-              <ion-label
-                style={{
-                  "font-size": "20px",
-                  "font-family": "sans-serif",
-                }}
-                position="stacked"
-              >
-                <b>E-mail</b>
-              </ion-label>
-              <ion-input name="email" value={this.formData?.email} />
-            </ion-item>
-          </ion-list>
-        </fireenjin-form>
-        <div>
-                <img src="/assets/dbdlogoblack.png"
-                 style={{
-                  "margin-left":"200px",
-                  "margin-top":"450px",
-              }}
-              height={250}
-              width={270}
-                ></img>
-              </div>
-        </ion-col>
-        <ion-col size="4">
-        <div>
-                <img src="/assets/dbdtrees.png"
-                 style={{
-                  "margin-left":"20px",
-                  "margin-top":"-10px"
-              }}
-              height={1050}
-              width={650}
-                ></img>
-              </div>
-        </ion-col>
-        </ion-row>
+          </ion-row>
         </ion-grid>
       </ion-content>
     );
