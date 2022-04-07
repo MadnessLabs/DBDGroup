@@ -57,25 +57,25 @@ export class AppAdmin {
                   </ion-item>
                   <ion-list slot="content">
                     <ion-item>
-                      <a href="www.https://deadbydaylight.group/tournament">
+                      <a href="https://deadbydaylight.group/tournament">
                         Tournament sign-up
                       </a>
                     </ion-item>
                     <ion-item>
-                      <a href="www.https://deadbydaylight.group/list">
+                      <a href="https://deadbydaylight.group/list">
                         Tournament List
                       </a>
                     </ion-item>
                     <ion-item>
-                      <a href="www.https://deadbydaylight.group/profile">
+                      <a href="https://deadbydaylight.group/profile">
                         Profile
                       </a>
                     </ion-item>
                     <ion-item>
-                      <a href="www.https://deadbydaylight.group/admin">Admin</a>
+                      <a href="https://deadbydaylight.group/admin">Admin</a>
                     </ion-item>
                     <ion-item>
-                      <a href="www.https://deadbydaylight.group">Home</a>
+                      <a href="https://deadbydaylight.group">Home</a>
                     </ion-item>
                   </ion-list>
                 </ion-accordion>
