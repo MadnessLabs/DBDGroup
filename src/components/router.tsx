@@ -1,6 +1,7 @@
+import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
 import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
-import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
+
 
 @Component({
   tag: "dbdgroup-router",
@@ -106,7 +107,7 @@ export class AppRoot implements ComponentInterface {
           componentProps={this.componentProps}
         />
         <ion-route
-          url="/profile/:userId"
+          url="/profile"
           component="app-profile"
           componentProps={this.componentProps}
         />

@@ -1,5 +1,5 @@
-import { ComponentInterface } from "../stencil-public-runtime";
 import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
+import { ComponentInterface } from "../stencil-public-runtime";
 export declare class AppRoot implements ComponentInterface {
   app: import("@firebase/app").FirebaseApp;
   auth: AuthService;

@@ -1,30 +1,9 @@
 import { r as registerInstance, j as Build, h } from './index-e5ab994a.js';
-import { r as registerVersion, E as ErrorFactory, L as Logger, a as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, b as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, f as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Pc, T as lc, U as Sc, i as il, V as ul, W as ol, X as wc, Z as el, g as gc, Y as Yh, $ as rl, a0 as al, a1 as Dh, a2 as xh, a3 as kh, a4 as vh } from './index.esm2017-64852796.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
+import { E as ErrorFactory, L as Logger, a as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, b as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, f as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, r as registerVersion, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Pc, T as lc, U as Sc, i as il, V as ul, W as ol, X as wc, Z as el, g as gc, Y as Yh, $ as rl, a0 as al, a1 as Dh, a2 as xh, a3 as kh, a4 as vh } from './index.esm2017-64852796.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-93ec9c7a.js';
 import './global-e1c7e609.js';
-
-var name$3 = "firebase";
-var version$3 = "9.6.10";
-
-/**
- * @license
- * Copyright 2020 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-registerVersion(name$3, version$3, 'app');
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -9555,8 +9534,8 @@ class PhoneMultiFactorGenerator {
  */
 PhoneMultiFactorGenerator.FACTOR_ID = 'phone';
 
-var name$2 = "@firebase/auth";
-var version$2 = "0.19.11";
+var name$3 = "@firebase/auth";
+var version$3 = "0.19.11";
 
 /**
  * @license
@@ -9701,9 +9680,9 @@ function registerAuth(clientPlatform) {
         const auth = _castAuth(container.getProvider("auth" /* AUTH */).getImmediate());
         return (auth => new AuthInterop(auth))(auth);
     }, "PRIVATE" /* PRIVATE */).setInstantiationMode("EXPLICIT" /* EXPLICIT */));
-    registerVersion(name$2, version$2, getVersionForPlatform(clientPlatform));
+    registerVersion(name$3, version$3, getVersionForPlatform(clientPlatform));
     // BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
-    registerVersion(name$2, version$2, 'esm2017');
+    registerVersion(name$3, version$3, 'esm2017');
 }
 
 /**
@@ -9746,8 +9725,8 @@ function getAuth(app = getApp()) {
 }
 registerAuth("Browser" /* BROWSER */);
 
-const name$1 = "@firebase/database";
-const version$1 = "0.12.7";
+const name$2 = "@firebase/database";
+const version$2 = "0.12.7";
 
 /**
  * @license
@@ -23504,9 +23483,9 @@ function registerDatabase(variant) {
         const appCheckProvider = container.getProvider('app-check-internal');
         return repoManagerDatabaseFromApp(app, authProvider, appCheckProvider, url);
     }, "PUBLIC" /* PUBLIC */).setMultipleInstances(true));
-    registerVersion(name$1, version$1, variant);
+    registerVersion(name$2, version$2, variant);
     // BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
-    registerVersion(name$1, version$1, 'esm2017');
+    registerVersion(name$2, version$2, 'esm2017');
 }
 
 /**
@@ -24807,8 +24786,8 @@ async function call(functionsInstance, name, data, options) {
     return { data: decodedData };
 }
 
-const name = "@firebase/functions";
-const version = "0.7.10";
+const name$1 = "@firebase/functions";
+const version$1 = "0.7.10";
 
 /**
  * @license
@@ -24840,9 +24819,9 @@ function registerFunctions(fetchImpl, variant) {
         return new FunctionsService(app, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain, fetchImpl);
     };
     _registerComponent(new Component(FUNCTIONS_TYPE, factory, "PUBLIC" /* PUBLIC */).setMultipleInstances(true));
-    registerVersion(name, version, variant);
+    registerVersion(name$1, version$1, variant);
     // BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
-    registerVersion(name, version, 'esm2017');
+    registerVersion(name$1, version$1, 'esm2017');
 }
 
 /**
@@ -33989,6 +33968,27 @@ if (window && !window.FireEnjin) {
     window.FireEnjin = FireEnjin;
 }
 
+var name = "firebase";
+var version = "9.6.10";
+
+/**
+ * @license
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+registerVersion(name, version, 'app');
+
 let AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
@@ -34065,7 +34065,7 @@ let AppRoot = class {
     });
   }
   render() {
-    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/list", component: "app-list", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile/:userId", component: "app-profile", componentProps: this.componentProps })));
+    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/list", component: "app-list", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile", component: "app-profile", componentProps: this.componentProps })));
   }
 };
 
