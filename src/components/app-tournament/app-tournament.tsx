@@ -27,7 +27,7 @@ export class AppTournament {
               "justify-content": "center",
             }}
           >
-            <ion-col size="8" size-sm="2">
+            <ion-col size="8" size-md="2">
               <ion-accordion-group>
                 <ion-accordion value="colors" toggle-icon="arrow-down-circle">
                   <ion-item
