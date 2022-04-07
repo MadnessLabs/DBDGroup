@@ -21,10 +21,10 @@ export class AppList {
           <ion-row
             style={{
               "justify-content": "center",
-              "padding":"0px"
+              padding: "0px",
             }}
           >
-            <ion-col size="8" size-sm="4">
+            <ion-col size="8" size-sm="2">
               <ion-accordion-group>
                 <ion-accordion value="colors" toggle-icon="arrow-down-circle">
                   <ion-item
@@ -47,9 +47,7 @@ export class AppList {
                       </a>
                     </ion-item>
                     <ion-item>
-                      <a href="https://deadbydaylight.group/profile">
-                        Profile
-                      </a>
+                      <a href="https://deadbydaylight.group/profile">Profile</a>
                     </ion-item>
                     <ion-item>
                       <a href="https://deadbydaylight.group/admin">Admin</a>
@@ -65,12 +63,12 @@ export class AppList {
           <ion-row
             style={{
               "justify-content": "center",
-              "padding":"0px"
+              padding: "0px",
             }}
           >
             <ion-col
-              size-sm="10"
-              size-md="4"
+              size="12"
+              size-sm="4"
               style={{
                 "text-align": "center",
                 "border-color": "transparent",
