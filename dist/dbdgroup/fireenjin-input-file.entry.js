@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, h, m as getElement } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, h, m as getElement } from './index-e5ab994a.js';
 
 const inputFileCss = "fireenjin-input-file ion-card{width:95%;margin:15px auto;background-color:var(--ion-color-light-tint);--background-color:var(--ion-color-light-tint);padding:0}fireenjin-input-file ion-card.drag-over{opacity:0.8}fireenjin-input-file ion-card ion-item{padding:5px 0;background-color:var(--ion-color-light-tint);--ion-color-base:var(--ion-color-light-tint);--background:var(--ion-color-light-tint);pointer-events:none}fireenjin-input-file ion-card ion-item ion-icon{height:50px;width:50px;color:var(--ion-color-medium)}fireenjin-input-file ion-card ion-item h2{font-size:20px;color:var(--ion-color-dark);margin:0}fireenjin-input-file ion-card ion-item p{color:var(--ion-color-darker-grey);margin:0}fireenjin-input-file ion-card:hover{cursor:pointer}fireenjin-input-file ion-card:hover h2{color:var(--ion-color-primary)}fireenjin-input-file ion-card:hover ion-icon{color:var(--ion-color-primary)}fireenjin-input-file input{float:left;height:0;width:0;visibility:hidden}";
 
@@ -8,6 +8,7 @@ let InputFile = class {
     this.fireenjinUpload = createEvent(this, "fireenjinUpload", 7);
     this.ionInput = createEvent(this, "ionInput", 7);
     this.type = "file";
+    this.disabled = false;
     /**
      * The endpoint to upload to
      */
@@ -101,7 +102,7 @@ let InputFile = class {
     this.dragOver = false;
   }
   render() {
-    return (h("ion-card", { class: { "drag-over": this.dragOver }, onDragEnter: (event) => this.onDragEnter(event), onDragOver: (event) => this.onDragOver(event), onDrag: (event) => this.onDrag(event), onDrop: (event) => this.onDrop(event), onDragLeave: (event) => this.onDragLeave(event), onClick: () => this.openFile() }, h("ion-item", { lines: "none" }, h("ion-icon", { name: this.icon ? this.icon : "document", slot: "start" }), h("div", null, h("h2", null, this.dragOver
+    return (h("ion-card", { disabled: this.disabled, class: { "drag-over": this.dragOver }, onDragEnter: (event) => this.onDragEnter(event), onDragOver: (event) => this.onDragOver(event), onDrag: (event) => this.onDrag(event), onDrop: (event) => this.onDrop(event), onDragLeave: (event) => this.onDragLeave(event), onClick: () => this.openFile() }, h("ion-item", { lines: "none" }, h("ion-icon", { name: this.icon ? this.icon : "document", slot: "start" }), h("div", null, h("h2", null, this.dragOver
       ? "Drop File Here"
       : this.label
         ? this.label
@@ -109,7 +110,7 @@ let InputFile = class {
       ? this.selectedFile
       : this.defaultValue
         ? this.defaultValue
-        : "Select a letterhead"))), h("input", { type: "file", onChange: (event) => this.selectFile(event), accept: this.accept ? this.accept : null, value: "blah" })));
+        : "Select a letterhead"))), h("input", { disabled: this.disabled, type: "file", onChange: (event) => this.selectFile(event), accept: this.accept ? this.accept : null, value: "blah" })));
   }
   get fileUploaderEl() { return getElement(this); }
   static get watchers() { return {

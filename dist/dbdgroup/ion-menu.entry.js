@@ -1,12 +1,12 @@
-import { r as registerInstance, l as createEvent, j as Build, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { c as config, g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { g as getTimeGivenProgression } from './cubic-bezier-a7ad9c8e.js';
-import { GESTURE_CONTROLLER } from './index-c31991b6.js';
-import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-b5b4d5eb.js';
-import { m as menuController } from './index-ae4d9ece.js';
-import { g as getOverlay } from './overlays-884665fe.js';
-import './hardware-back-button-b6ccf74a.js';
-import './animation-ff813219.js';
+import { r as registerInstance, l as createEvent, j as Build, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { c as config, g as getIonMode } from './ionic-global-fc3774f0.js';
+import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { GESTURE_CONTROLLER } from './index-dd414b33.js';
+import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-e7913fb8.js';
+import { m as menuController } from './index-acba08f2.js';
+import { g as getOverlay } from './overlays-03fac0f0.js';
+import './hardware-back-button-fa04d6e9.js';
+import './animation-e960c982.js';
 
 const menuIosCss = ":host{--width:304px;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--background:var(--ion-background-color, #fff);left:0;right:0;top:0;bottom:0;display:none;position:absolute;contain:strict}:host(.show-menu){display:block}.menu-inner{left:0;right:auto;top:0;bottom:0;transform:translate3d(-9999px,  0,  0);display:flex;position:absolute;flex-direction:column;justify-content:space-between;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);contain:strict}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{left:unset;right:unset;left:auto;right:0}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{transform:translate3d(calc(-1 * -9999px),  0,  0)}:host(.menu-side-start) .menu-inner{--ion-safe-area-right:0px;right:auto;left:0}:host(.menu-side-end) .menu-inner{--ion-safe-area-left:0px;right:0;left:auto;}ion-backdrop{display:none;opacity:0.01;z-index:-1}@media (max-width: 340px){.menu-inner{--width:264px}}:host(.menu-type-reveal){z-index:0}:host(.menu-type-reveal.show-menu) .menu-inner{transform:translate3d(0,  0,  0)}:host(.menu-type-overlay){z-index:1000}:host(.menu-type-overlay) .show-backdrop{display:block;cursor:pointer}:host(.menu-pane-visible){width:var(--width);min-width:var(--min-width);max-width:var(--max-width)}:host(.menu-pane-visible) .menu-inner{left:0;right:0;width:auto;transform:none !important;box-shadow:none !important}:host(.menu-pane-visible) ion-backdrop{display:hidden !important;}:host(.menu-type-push){z-index:1000}:host(.menu-type-push) .show-backdrop{display:block}";
 
@@ -83,7 +83,7 @@ let Menu = class {
     this.updateState();
     this.ionMenuChange.emit({
       disabled: this.disabled,
-      open: this._isOpen
+      open: this._isOpen,
     });
   }
   sideChanged() {
@@ -105,9 +105,7 @@ let Menu = class {
       this.disabled = true;
       return;
     }
-    const content = this.contentId !== undefined
-      ? document.getElementById(this.contentId)
-      : null;
+    const content = this.contentId !== undefined ? document.getElementById(this.contentId) : null;
     if (content === null) {
       console.error('Menu: must have a "content" element to listen for drag events on.');
       return;
@@ -122,17 +120,17 @@ let Menu = class {
     this.sideChanged();
     // register this menu with the app's menu controller
     menuController._register(this);
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: document,
       gestureName: 'menu-swipe',
       gesturePriority: 30,
       threshold: 10,
       blurOnStart: true,
-      canStart: ev => this.canStart(ev),
+      canStart: (ev) => this.canStart(ev),
       onWillStart: () => this.onWillStart(),
       onStart: () => this.onStart(),
-      onMove: ev => this.onMove(ev),
-      onEnd: ev => this.onEnd(ev),
+      onMove: (ev) => this.onMove(ev),
+      onEnd: (ev) => this.onEnd(ev),
     });
     this.updateState();
   }
@@ -162,9 +160,7 @@ let Menu = class {
   }
   onBackdropClick(ev) {
     if (this._isOpen && this.lastOnEnd < ev.timeStamp - 100) {
-      const shouldClose = (ev.composedPath)
-        ? !ev.composedPath().includes(this.menuInnerEl)
-        : false;
+      const shouldClose = ev.composedPath ? !ev.composedPath().includes(this.menuInnerEl) : false;
       if (shouldClose) {
         ev.preventDefault();
         ev.stopPropagation();
@@ -313,8 +309,8 @@ let Menu = class {
     const easing = mode === 'ios' ? iosEasing : mdEasing;
     const easingReverse = mode === 'ios' ? iosEasingReverse : mdEasingReverse;
     const ani = this.animation
-      .direction((isReversed) ? 'reverse' : 'normal')
-      .easing((isReversed) ? easingReverse : easing)
+      .direction(isReversed ? 'reverse' : 'normal')
+      .easing(isReversed ? easingReverse : easing)
       .onFinish(() => {
       if (ani.getDirection() === 'reverse') {
         ani.direction('normal');
@@ -358,7 +354,7 @@ let Menu = class {
       return;
     }
     // the cloned animation should not use an easing curve during seek
-    this.animation.progressStart(true, (this._isOpen) ? 1 : 0);
+    this.animation.progressStart(true, this._isOpen ? 1 : 0);
   }
   onMove(detail) {
     if (!this.isAnimating || !this.animation) {
@@ -367,7 +363,7 @@ let Menu = class {
     }
     const delta = computeDelta(detail.deltaX, this._isOpen, this.isEndSide);
     const stepValue = delta / this.width;
-    this.animation.progressStep((this._isOpen) ? 1 - stepValue : stepValue);
+    this.animation.progressStep(this._isOpen ? 1 - stepValue : stepValue);
   }
   onEnd(detail) {
     if (!this.isAnimating || !this.animation) {
@@ -384,22 +380,26 @@ let Menu = class {
     const shouldCompleteRight = velocity >= 0 && (velocity > 0.2 || detail.deltaX > z);
     const shouldCompleteLeft = velocity <= 0 && (velocity < -0.2 || detail.deltaX < -z);
     const shouldComplete = isOpen
-      ? isEndSide ? shouldCompleteRight : shouldCompleteLeft
-      : isEndSide ? shouldCompleteLeft : shouldCompleteRight;
+      ? isEndSide
+        ? shouldCompleteRight
+        : shouldCompleteLeft
+      : isEndSide
+        ? shouldCompleteLeft
+        : shouldCompleteRight;
     let shouldOpen = !isOpen && shouldComplete;
     if (isOpen && !shouldComplete) {
       shouldOpen = true;
     }
     this.lastOnEnd = detail.currentTime;
     // Account for rounding errors in JS
-    let newStepValue = (shouldComplete) ? 0.001 : -0.001;
+    let newStepValue = shouldComplete ? 0.001 : -0.001;
     /**
      * TODO: stepValue can sometimes return a negative
      * value, but you can't have a negative time value
      * for the cubic bezier curve (at least with web animations)
      * Not sure if the negative step value is an error or not
      */
-    const adjustedStepValue = (stepValue < 0) ? 0.01 : stepValue;
+    const adjustedStepValue = stepValue < 0 ? 0.01 : stepValue;
     /**
      * Animation will be reversed here, so need to
      * reverse the easing curve as well
@@ -408,12 +408,13 @@ let Menu = class {
      * to the new easing curve, as `stepValue` is going to be given
      * in terms of a linear curve.
      */
-    newStepValue += getTimeGivenProgression([0, 0], [0.4, 0], [0.6, 1], [1, 1], clamp(0, adjustedStepValue, 0.9999))[0] || 0;
-    const playTo = (this._isOpen) ? !shouldComplete : shouldComplete;
+    newStepValue +=
+      getTimeGivenProgression([0, 0], [0.4, 0], [0.6, 1], [1, 1], clamp(0, adjustedStepValue, 0.9999))[0] || 0;
+    const playTo = this._isOpen ? !shouldComplete : shouldComplete;
     this.animation
       .easing('cubic-bezier(0.4, 0.0, 0.6, 1)')
       .onFinish(() => this.afterAnimation(shouldOpen), { oneTimeCallback: true })
-      .progressEnd((playTo) ? 1 : 0, (this._isOpen) ? 1 - newStepValue : newStepValue, 300);
+      .progressEnd(playTo ? 1 : 0, this._isOpen ? 1 - newStepValue : newStepValue, 300);
   }
   beforeAnimation(shouldOpen) {
     assert(!this.isAnimating, '_before() should not be called while animating');
@@ -535,8 +536,8 @@ let Menu = class {
         'menu-enabled': !disabled,
         'menu-side-end': isEndSide,
         'menu-side-start': !isEndSide,
-        'menu-pane-visible': isPaneVisible
-      } }, h("div", { class: "menu-inner", part: "container", ref: el => this.menuInnerEl = el }, h("slot", null)), h("ion-backdrop", { ref: el => this.backdropEl = el, class: "menu-backdrop", tappable: false, stopPropagation: false, part: "backdrop" })));
+        'menu-pane-visible': isPaneVisible,
+      } }, h("div", { class: "menu-inner", part: "container", ref: (el) => (this.menuInnerEl = el) }, h("slot", null)), h("ion-backdrop", { ref: (el) => (this.backdropEl = el), class: "menu-backdrop", tappable: false, stopPropagation: false, part: "backdrop" })));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

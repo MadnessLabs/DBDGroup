@@ -1,31 +1,30 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { f as focusElement, m as findItemLabel, l as getAriaLabel, d as renderHiddenInput } from './helpers-b5b4d5eb.js';
-import { c as popoverController, f as actionSheetController, h as alertController } from './overlays-884665fe.js';
-import { h as hostContext } from './theme-c336c9d9.js';
-import './hardware-back-button-b6ccf74a.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { f as focusElement, m as findItemLabel, l as getAriaLabel, d as renderHiddenInput } from './helpers-e7913fb8.js';
+import { c as popoverController, f as actionSheetController, h as alertController } from './overlays-03fac0f0.js';
+import { h as hostContext } from './theme-7ef00c83.js';
+import './hardware-back-button-fa04d6e9.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
 const watchForOptions = (containerEl, tagName, onChange) => {
-  /* tslint:disable-next-line */
   if (typeof MutationObserver === 'undefined') {
     return;
   }
-  const mutation = new MutationObserver(mutationList => {
+  const mutation = new MutationObserver((mutationList) => {
     onChange(getSelectedOption(mutationList, tagName));
   });
   mutation.observe(containerEl, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
   return mutation;
 };
 const getSelectedOption = (mutationList, tagName) => {
   let newOption;
-  mutationList.forEach(mut => {
-    // tslint:disable-next-line: prefer-for-of
+  mutationList.forEach((mut) => {
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < mut.addedNodes.length; i++) {
       newOption = findCheckedOption(mut.addedNodes[i], tagName) || newOption;
     }
@@ -36,9 +35,7 @@ const findCheckedOption = (el, tagName) => {
   if (el.nodeType !== 1) {
     return undefined;
   }
-  const options = (el.tagName === tagName.toUpperCase())
-    ? [el]
-    : Array.from(el.querySelectorAll(tagName));
+  const options = el.tagName === tagName.toUpperCase() ? [el] : Array.from(el.querySelectorAll(tagName));
   return options.find((o) => o.value === el.value);
 };
 
@@ -83,9 +80,9 @@ let Select = class {
     this.interface = 'alert';
     /**
      * Any additional options that the `alert`, `action-sheet` or `popover` interface
-     * can take. See the [ion-alert docs](../alert), the
-     * [ion-action-sheet docs](../action-sheet) and the
-     * [ion-popover docs](../popover) for the
+     * can take. See the [ion-alert docs](./alert), the
+     * [ion-action-sheet docs](./action-sheet) and the
+     * [ion-popover docs](./popover) for the
      * create options for each interface.
      *
      * Note: `interfaceOptions` will not override `inputs` or `buttons` with the `alert` interface.
@@ -139,7 +136,7 @@ let Select = class {
     if (this.disabled || this.isExpanded) {
       return undefined;
     }
-    const overlay = this.overlay = await this.createOverlay(event);
+    const overlay = (this.overlay = await this.createOverlay(event));
     this.isExpanded = true;
     overlay.onDidDismiss().then(() => {
       this.overlay = undefined;
@@ -149,7 +146,7 @@ let Select = class {
     await overlay.present();
     // focus selected option for popovers
     if (this.interface === 'popover') {
-      let indexOfSelected = this.childOpts.map(o => o.value).indexOf(this.value);
+      let indexOfSelected = this.childOpts.map((o) => o.value).indexOf(this.value);
       indexOfSelected = indexOfSelected > -1 ? indexOfSelected : 0; // default to first option if nothing selected
       const selectedEl = overlay.querySelector(`.select-interface-option:nth-child(${indexOfSelected + 1})`);
       if (selectedEl) {
@@ -194,24 +191,26 @@ let Select = class {
         }
         break;
       case 'alert':
-        const inputType = (this.multiple ? 'checkbox' : 'radio');
+        const inputType = this.multiple ? 'checkbox' : 'radio';
         overlay.inputs = this.createAlertInputs(childOpts, inputType, value);
         break;
     }
   }
   createActionSheetButtons(data, selectValue) {
-    const actionSheetButtons = data.map(option => {
+    const actionSheetButtons = data.map((option) => {
       const value = getOptionValue(option);
       // Remove hydrated before copying over classes
-      const copyClasses = Array.from(option.classList).filter(cls => cls !== 'hydrated').join(' ');
+      const copyClasses = Array.from(option.classList)
+        .filter((cls) => cls !== 'hydrated')
+        .join(' ');
       const optClass = `${OPTION_CLASS} ${copyClasses}`;
       return {
-        role: (isOptionSelected(selectValue, value, this.compareWith) ? 'selected' : ''),
+        role: isOptionSelected(selectValue, value, this.compareWith) ? 'selected' : '',
         text: option.textContent,
         cssClass: optClass,
         handler: () => {
           this.value = value;
-        }
+        },
       };
     });
     // Add "cancel" button
@@ -220,15 +219,17 @@ let Select = class {
       role: 'cancel',
       handler: () => {
         this.ionCancel.emit();
-      }
+      },
     });
     return actionSheetButtons;
   }
   createAlertInputs(data, inputType, selectValue) {
-    const alertInputs = data.map(option => {
+    const alertInputs = data.map((option) => {
       const value = getOptionValue(option);
       // Remove hydrated before copying over classes
-      const copyClasses = Array.from(option.classList).filter(cls => cls !== 'hydrated').join(' ');
+      const copyClasses = Array.from(option.classList)
+        .filter((cls) => cls !== 'hydrated')
+        .join(' ');
       const optClass = `${OPTION_CLASS} ${copyClasses}`;
       return {
         type: inputType,
@@ -236,16 +237,18 @@ let Select = class {
         label: option.textContent || '',
         value,
         checked: isOptionSelected(selectValue, value, this.compareWith),
-        disabled: option.disabled
+        disabled: option.disabled,
       };
     });
     return alertInputs;
   }
   createPopoverOptions(data, selectValue) {
-    const popoverOptions = data.map(option => {
+    const popoverOptions = data.map((option) => {
       const value = getOptionValue(option);
       // Remove hydrated before copying over classes
-      const copyClasses = Array.from(option.classList).filter(cls => cls !== 'hydrated').join(' ');
+      const copyClasses = Array.from(option.classList)
+        .filter((cls) => cls !== 'hydrated')
+        .join(' ');
       const optClass = `${OPTION_CLASS} ${copyClasses}`;
       return {
         text: option.textContent || '',
@@ -258,7 +261,7 @@ let Select = class {
           if (!this.multiple) {
             this.close();
           }
-        }
+        },
       };
     });
     return popoverOptions;
@@ -277,7 +280,7 @@ let Select = class {
     // full width of the item when it presents
     if (item && (item.classList.contains('item-label-floating') || item.classList.contains('item-label-stacked'))) {
       event = Object.assign(Object.assign({}, ev), { detail: {
-          ionShadowTarget: item
+          ionShadowTarget: item,
         } });
       size = 'cover';
     }
@@ -289,15 +292,16 @@ let Select = class {
         message: interfaceOptions.message,
         multiple,
         value,
-        options: this.createPopoverOptions(this.childOpts, value)
+        options: this.createPopoverOptions(this.childOpts, value),
       } });
     /**
      * Workaround for Stencil to autodefine
      * ion-select-popover and ion-popover when
      * using Custom Elements build.
      */
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     if (false) {
+      // eslint-disable-next-line
       // @ts-ignore
       document.createElement('ion-select-popover');
       document.createElement('ion-popover');
@@ -313,8 +317,9 @@ let Select = class {
      * ion-action-sheet when
      * using Custom Elements build.
      */
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     if (false) {
+      // eslint-disable-next-line
       // @ts-ignore
       document.createElement('ion-action-sheet');
     }
@@ -322,9 +327,9 @@ let Select = class {
   }
   async openAlert() {
     const label = this.getLabel();
-    const labelText = (label) ? label.textContent : null;
+    const labelText = label ? label.textContent : null;
     const interfaceOptions = this.interfaceOptions;
-    const inputType = (this.multiple ? 'checkbox' : 'radio');
+    const inputType = this.multiple ? 'checkbox' : 'radio';
     const mode = getIonMode(this);
     const alertOpts = Object.assign(Object.assign({ mode }, interfaceOptions), { header: interfaceOptions.header ? interfaceOptions.header : labelText, inputs: this.createAlertInputs(this.childOpts, inputType, this.value), buttons: [
         {
@@ -332,23 +337,27 @@ let Select = class {
           role: 'cancel',
           handler: () => {
             this.ionCancel.emit();
-          }
+          },
         },
         {
           text: this.okText,
           handler: (selectedValues) => {
             this.value = selectedValues;
-          }
-        }
-      ], cssClass: ['select-alert', interfaceOptions.cssClass,
-        (this.multiple ? 'multiple-select-alert' : 'single-select-alert')] });
+          },
+        },
+      ], cssClass: [
+        'select-alert',
+        interfaceOptions.cssClass,
+        this.multiple ? 'multiple-select-alert' : 'single-select-alert',
+      ] });
     /**
      * Workaround for Stencil to autodefine
      * ion-alert when
      * using Custom Elements build.
      */
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     if (false) {
+      // eslint-disable-next-line
       // @ts-ignore
       document.createElement('ion-alert');
     }
@@ -387,9 +396,9 @@ let Select = class {
   }
   emitStyle() {
     this.ionStyle.emit({
-      'interactive': true,
+      interactive: true,
       'interactive-disabled': this.disabled,
-      'select': true,
+      select: true,
       'select-disabled': this.disabled,
       'has-placeholder': this.placeholder !== undefined,
       'has-value': this.hasValue(),
@@ -410,22 +419,20 @@ let Select = class {
     }
     const selectTextClasses = {
       'select-text': true,
-      'select-placeholder': addPlaceholderClass
+      'select-placeholder': addPlaceholderClass,
     };
     const textPart = addPlaceholderClass ? 'placeholder' : 'text';
     // If there is a label then we need to concatenate it with the
     // current value (or placeholder) and a comma so it separates
     // nicely when the screen reader announces it, otherwise just
     // announce the value / placeholder
-    const displayLabel = labelText !== undefined
-      ? (selectText !== '' ? `${selectText}, ${labelText}` : labelText)
-      : selectText;
+    const displayLabel = labelText !== undefined ? (selectText !== '' ? `${selectText}, ${labelText}` : labelText) : selectText;
     return (h(Host, { onClick: this.onClick, role: "button", "aria-haspopup": "listbox", "aria-disabled": disabled ? 'true' : null, "aria-label": displayLabel, class: {
         [mode]: true,
         'in-item': hostContext('ion-item', el),
         'select-disabled': disabled,
-        'select-expanded': isExpanded
-      } }, h("div", { "aria-hidden": "true", class: selectTextClasses, part: textPart }, selectText), h("div", { class: "select-icon", role: "presentation", part: "icon" }, h("div", { class: "select-icon-inner" })), h("label", { id: labelId }, displayLabel), h("button", { type: "button", disabled: disabled, id: inputId, "aria-labelledby": labelId, "aria-haspopup": "listbox", "aria-expanded": `${isExpanded}`, onFocus: this.onFocus, onBlur: this.onBlur, ref: (focusEl => this.focusEl = focusEl) })));
+        'select-expanded': isExpanded,
+      } }, h("div", { "aria-hidden": "true", class: selectTextClasses, part: textPart }, selectText), h("div", { class: "select-icon", role: "presentation", part: "icon" }, h("div", { class: "select-icon-inner" })), h("label", { id: labelId }, displayLabel), h("button", { type: "button", disabled: disabled, id: inputId, "aria-labelledby": labelId, "aria-haspopup": "listbox", "aria-expanded": `${isExpanded}`, onFocus: this.onFocus, onBlur: this.onBlur, ref: (focusEl) => (this.focusEl = focusEl) })));
   }
   get el() { return getElement(this); }
   static get watchers() { return {
@@ -440,7 +447,7 @@ const isOptionSelected = (currentValue, compareValue, compareWith) => {
     return false;
   }
   if (Array.isArray(currentValue)) {
-    return currentValue.some(val => compareOptions(val, compareValue, compareWith));
+    return currentValue.some((val) => compareOptions(val, compareValue, compareWith));
   }
   else {
     return compareOptions(currentValue, compareValue, compareWith);
@@ -448,9 +455,7 @@ const isOptionSelected = (currentValue, compareValue, compareWith) => {
 };
 const getOptionValue = (el) => {
   const value = el.value;
-  return (value === undefined)
-    ? el.textContent || ''
-    : value;
+  return value === undefined ? el.textContent || '' : value;
 };
 const parseValue = (value) => {
   if (value == null) {
@@ -478,8 +483,8 @@ const generateText = (opts, value, compareWith) => {
   }
   if (Array.isArray(value)) {
     return value
-      .map(v => textForValue(opts, v, compareWith))
-      .filter(opt => opt !== null)
+      .map((v) => textForValue(opts, v, compareWith))
+      .filter((opt) => opt !== null)
       .join(', ');
   }
   else {
@@ -487,12 +492,10 @@ const generateText = (opts, value, compareWith) => {
   }
 };
 const textForValue = (opts, value, compareWith) => {
-  const selectOpt = opts.find(opt => {
+  const selectOpt = opts.find((opt) => {
     return compareOptions(getOptionValue(opt), value, compareWith);
   });
-  return selectOpt
-    ? selectOpt.textContent
-    : null;
+  return selectOpt ? selectOpt.textContent : null;
 };
 let selectIds = 0;
 const OPTION_CLASS = 'select-interface-option';

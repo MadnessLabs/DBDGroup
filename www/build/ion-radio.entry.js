@@ -1,7 +1,7 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { b as addEventListener, a as removeEventListener, l as getAriaLabel } from './helpers-b5b4d5eb.js';
-import { c as createColorClasses, h as hostContext } from './theme-c336c9d9.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { b as addEventListener, a as removeEventListener, l as getAriaLabel } from './helpers-e7913fb8.js';
+import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
 
 const radioIosCss = ":host{--inner-border-radius:50%;display:inline-block;position:relative;box-sizing:border-box;user-select:none;z-index:2}:host(.radio-disabled){pointer-events:none}.radio-icon{display:flex;align-items:center;justify-content:center;width:100%;height:100%;contain:layout size style}.radio-icon,.radio-inner{box-sizing:border-box}label{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;appearance:none;outline:none;display:flex;align-items:center;opacity:0}[dir=rtl] label,:host-context([dir=rtl]) label{left:unset;right:unset;right:0}label::-moz-focus-inner{border:0}input{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;margin:0;padding:0;border:0;outline:0;clip:rect(0 0 0 0);opacity:0;overflow:hidden;-webkit-appearance:none;-moz-appearance:none}:host(:focus){outline:none}:host{--color-checked:var(--ion-color-primary, #3880ff);width:15px;height:24px}:host(.ion-color.radio-checked) .radio-inner{border-color:var(--ion-color-base)}.item-radio.item-ios ion-label{margin-left:0}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.item-radio.item-ios ion-label{margin-left:unset;-webkit-margin-start:0;margin-inline-start:0}}.radio-inner{width:33%;height:50%}:host(.radio-checked) .radio-inner{transform:rotate(45deg);border-width:2px;border-top-width:0;border-left-width:0;border-style:solid;border-color:var(--color-checked)}:host(.radio-disabled){opacity:0.3}:host(.ion-focused) .radio-icon::after{border-radius:var(--inner-border-radius);left:-9px;top:-8px;display:block;position:absolute;width:36px;height:36px;background:var(--ion-color-primary-tint, #4c8dff);content:\"\";opacity:0.2}:host-context([dir=rtl]):host(.ion-focused) .radio-icon::after,:host-context([dir=rtl]).ion-focused .radio-icon::after{left:unset;right:unset;right:-9px}:host(.in-item){margin-left:10px;margin-right:11px;margin-top:8px;margin-bottom:8px;display:block;position:static}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host(.in-item){margin-left:unset;margin-right:unset;-webkit-margin-start:10px;margin-inline-start:10px;-webkit-margin-end:11px;margin-inline-end:11px}}:host(.in-item[slot=start]){margin-left:3px;margin-right:21px;margin-top:8px;margin-bottom:8px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host(.in-item[slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:3px;margin-inline-start:3px;-webkit-margin-end:21px;margin-inline-end:21px}}";
 
@@ -61,7 +61,7 @@ let Radio = class {
     if (this.value === undefined) {
       this.value = this.inputId;
     }
-    const radioGroup = this.radioGroup = this.el.closest('ion-radio-group');
+    const radioGroup = (this.radioGroup = this.el.closest('ion-radio-group'));
     if (radioGroup) {
       this.updateState();
       addEventListener(radioGroup, 'ionChange', this.updateState);
@@ -90,10 +90,10 @@ let Radio = class {
     return (h(Host, { "aria-checked": `${checked}`, "aria-hidden": disabled ? 'true' : null, "aria-labelledby": label ? labelId : null, role: "radio", tabindex: buttonTabindex, onFocus: this.onFocus, onBlur: this.onBlur, onClick: this.onClick, class: createColorClasses(color, {
         [mode]: true,
         'in-item': hostContext('ion-item', el),
-        'interactive': true,
+        interactive: true,
         'radio-checked': checked,
         'radio-disabled': disabled,
-      }) }, h("div", { class: "radio-icon", part: "container" }, h("div", { class: "radio-inner", part: "mark" }), h("div", { class: "radio-ripple" })), h("label", { htmlFor: inputId }, labelText), h("input", { type: "radio", checked: checked, disabled: disabled, tabindex: "-1", id: inputId, ref: nativeEl => this.nativeInput = nativeEl })));
+      }) }, h("div", { class: "radio-icon", part: "container" }, h("div", { class: "radio-inner", part: "mark" }), h("div", { class: "radio-ripple" })), h("label", { htmlFor: inputId }, labelText), h("input", { type: "radio", checked: checked, disabled: disabled, tabindex: "-1", id: inputId, ref: (nativeEl) => (this.nativeInput = nativeEl) })));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

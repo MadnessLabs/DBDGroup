@@ -22,6 +22,49 @@ export class AppTournament {
       <ion-content>
         The tournament is on {this.tournamentId}
         <ion-grid>
+          <ion-row
+            style={{
+              "justify-content": "center",
+            }}
+          >
+            <ion-col size="2">
+              <ion-accordion-group>
+                <ion-accordion value="colors" toggle-icon="arrow-down-circle">
+                  <ion-item
+                    style={{
+                      "text-align": "center",
+                    }}
+                    slot="header"
+                  >
+                    <ion-label>Links</ion-label>
+                  </ion-item>
+                  <ion-list slot="content">
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/tournament">
+                        Tournament sign-up
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/list">
+                        Tournament List
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/profile">
+                        Profile
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/admin">Admin</a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group">Home</a>
+                    </ion-item>
+                  </ion-list>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ion-col>
+          </ion-row>
           <ion-row>
             <ion-col>
               <ion-card>
@@ -140,7 +183,9 @@ export class AppTournament {
                   cancelText="Dismiss"
                 >
                   <ion-select-option value="killer">killer</ion-select-option>
-                  <ion-select-option value="survivor">survivor</ion-select-option>
+                  <ion-select-option value="survivor">
+                    survivor
+                  </ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item>

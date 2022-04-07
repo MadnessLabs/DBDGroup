@@ -1,8 +1,8 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { e as clamp, k as debounceEvent, i as inheritAttributes, l as getAriaLabel, d as renderHiddenInput } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { e as clamp, k as debounceEvent, i as inheritAttributes, l as getAriaLabel, d as renderHiddenInput } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
-import { c as createColorClasses, h as hostContext } from './theme-c336c9d9.js';
+import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
 
 const rangeIosCss = ":host{--knob-handle-size:calc(var(--knob-size) * 2);display:flex;position:relative;flex:3;align-items:center;font-family:var(--ion-font-family, inherit);user-select:none;z-index:2}:host(.range-disabled){pointer-events:none}::slotted(ion-label){flex:initial}::slotted(ion-icon[slot]){font-size:24px}.range-slider{position:relative;flex:1;width:100%;height:var(--height);contain:size layout style;cursor:grab;touch-action:pan-y}:host(.range-pressed) .range-slider{cursor:grabbing}.range-pin{position:absolute;background:var(--ion-color-base);color:var(--ion-color-contrast);text-align:center;box-sizing:border-box}.range-knob-handle{left:0;top:calc((var(--height) - var(--knob-handle-size)) / 2);margin-left:calc(0px - var(--knob-handle-size) / 2);position:absolute;width:var(--knob-handle-size);height:var(--knob-handle-size);text-align:center}[dir=rtl] .range-knob-handle,:host-context([dir=rtl]) .range-knob-handle{left:unset;right:unset;right:0}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.range-knob-handle{margin-left:unset;-webkit-margin-start:calc(0px - var(--knob-handle-size) / 2);margin-inline-start:calc(0px - var(--knob-handle-size) / 2)}}[dir=rtl] .range-knob-handle,:host-context([dir=rtl]) .range-knob-handle{left:unset}.range-knob-handle:active,.range-knob-handle:focus{outline:none}.range-bar{border-radius:var(--bar-border-radius);left:0;top:calc((var(--height) - var(--bar-height)) / 2);position:absolute;width:100%;height:var(--bar-height);background:var(--bar-background);pointer-events:none}[dir=rtl] .range-bar,:host-context([dir=rtl]) .range-bar{left:unset;right:unset;right:0}[dir=rtl] .range-bar,:host-context([dir=rtl]) .range-bar{left:unset}.range-knob{border-radius:var(--knob-border-radius);left:calc(50% - var(--knob-size) / 2);top:calc(50% - var(--knob-size) / 2);position:absolute;width:var(--knob-size);height:var(--knob-size);background:var(--knob-background);box-shadow:var(--knob-box-shadow);z-index:2;pointer-events:none}[dir=rtl] .range-knob,:host-context([dir=rtl]) .range-knob{left:unset;right:unset;right:calc(50% - var(--knob-size) / 2)}[dir=rtl] .range-knob,:host-context([dir=rtl]) .range-knob{left:unset}:host(.range-pressed) .range-bar-active{will-change:left, right}:host(.in-item){width:100%}:host(.in-item) ::slotted(ion-label){align-self:center}:host{--knob-border-radius:50%;--knob-background:#ffffff;--knob-box-shadow:0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02);--knob-size:28px;--bar-height:2px;--bar-background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);--bar-background-active:var(--ion-color-primary, #3880ff);--bar-border-radius:0;--height:42px;padding-left:16px;padding-right:16px;padding-top:8px;padding-bottom:8px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host(.ion-color) .range-bar-active,:host(.ion-color) .range-tick-active{background:var(--ion-color-base)}::slotted([slot=start]){margin-left:0;margin-right:16px;margin-top:0;margin-bottom:0}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){::slotted([slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:16px;margin-inline-end:16px}}::slotted([slot=end]){margin-left:16px;margin-right:0;margin-top:0;margin-bottom:0}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){::slotted([slot=end]){margin-left:unset;margin-right:unset;-webkit-margin-start:16px;margin-inline-start:16px;-webkit-margin-end:0;margin-inline-end:0}}:host(.range-has-pin){padding-top:20px}.range-bar-active{bottom:0;width:auto;background:var(--bar-background-active)}.range-tick{margin-left:-1px;border-radius:0;position:absolute;top:18px;width:2px;height:8px;background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);pointer-events:none}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.range-tick{margin-left:unset;-webkit-margin-start:-1px;margin-inline-start:-1px}}.range-tick-active{background:var(--bar-background-active)}.range-pin{transform:translate3d(0,  28px,  0) scale(0.01);padding-left:8px;padding-right:8px;padding-top:8px;padding-bottom:8px;display:inline-block;position:relative;top:-20px;min-width:28px;transition:transform 120ms ease;background:transparent;color:var(--ion-text-color, #000);font-size:12px;text-align:center}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.range-pin{padding-left:unset;padding-right:unset;-webkit-padding-start:8px;padding-inline-start:8px;-webkit-padding-end:8px;padding-inline-end:8px}}.range-knob-pressed .range-pin{transform:translate3d(0,  0,  0) scale(1)}:host(.range-disabled){opacity:0.5}";
 
@@ -83,7 +83,7 @@ let Range = class {
       if (this.dualKnobs) {
         return {
           lower: this.clampBounds(value.lower),
-          upper: this.clampBounds(value.upper)
+          upper: this.clampBounds(value.upper),
         };
       }
       else {
@@ -93,14 +93,14 @@ let Range = class {
     this.setupGesture = async () => {
       const rangeSlider = this.rangeSlider;
       if (rangeSlider) {
-        this.gesture = (await import('./index-c31991b6.js')).createGesture({
+        this.gesture = (await import('./index-dd414b33.js')).createGesture({
           el: rangeSlider,
           gestureName: 'range',
           gesturePriority: 100,
           threshold: 0,
-          onStart: ev => this.onStart(ev),
-          onMove: ev => this.onMove(ev),
-          onEnd: ev => this.onEnd(ev),
+          onStart: (ev) => this.onStart(ev),
+          onMove: (ev) => this.onMove(ev),
+          onEnd: (ev) => this.onEnd(ev),
         });
         this.gesture.enable(!this.disabled);
       }
@@ -166,7 +166,7 @@ let Range = class {
      * If user has custom ID set then we should
      * not assign the default incrementing ID.
      */
-    this.rangeId = (this.el.hasAttribute('id')) ? this.el.getAttribute('id') : `ion-r-${rangeIds++}`;
+    this.rangeId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : `ion-r-${rangeIds++}`;
     this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
   }
   componentDidLoad() {
@@ -201,7 +201,7 @@ let Range = class {
       }
       return {
         lower: 0,
-        upper: value
+        upper: value,
       };
     }
     else {
@@ -213,23 +213,19 @@ let Range = class {
   }
   emitStyle() {
     this.ionStyle.emit({
-      'interactive': true,
-      'interactive-disabled': this.disabled
+      interactive: true,
+      'interactive-disabled': this.disabled,
     });
   }
   onStart(detail) {
-    const rect = this.rect = this.rangeSlider.getBoundingClientRect();
+    const rect = (this.rect = this.rangeSlider.getBoundingClientRect());
     const currentX = detail.currentX;
     // figure out which knob they started closer to
     let ratio = clamp(0, (currentX - rect.left) / rect.width, 1);
     if (isRTL(this.el)) {
       ratio = 1 - ratio;
     }
-    this.pressedKnob =
-      !this.dualKnobs ||
-        Math.abs(this.ratioA - ratio) < Math.abs(this.ratioB - ratio)
-        ? 'A'
-        : 'B';
+    this.pressedKnob = !this.dualKnobs || Math.abs(this.ratioA - ratio) < Math.abs(this.ratioB - ratio) ? 'A' : 'B';
     this.setFocus(this.pressedKnob);
     // update the active knob's position
     this.update(currentX);
@@ -299,7 +295,7 @@ let Range = class {
       ? valA
       : {
         lower: Math.min(valA, valB),
-        upper: Math.max(valA, valB)
+        upper: Math.max(valA, valB),
       };
     this.noUpdate = false;
   }
@@ -312,7 +308,7 @@ let Range = class {
     }
   }
   render() {
-    const { min, max, step, el, handleKeyboard, pressedKnob, disabled, pin, ratioLower, ratioUpper, inheritedAttributes, rangeId, pinFormatter } = this;
+    const { min, max, step, el, handleKeyboard, pressedKnob, disabled, pin, ratioLower, ratioUpper, inheritedAttributes, rangeId, pinFormatter, } = this;
     /**
      * Look for external label, ion-label, or aria-labelledby.
      * If none, see if user placed an aria-label on the host
@@ -330,12 +326,12 @@ let Range = class {
     const end = rtl ? 'left' : 'right';
     const tickStyle = (tick) => {
       return {
-        [start]: tick[start]
+        [start]: tick[start],
       };
     };
     const barStyle = {
       [start]: barStart,
-      [end]: barEnd
+      [end]: barEnd,
     };
     const ticks = [];
     if (this.snaps && this.ticks) {
@@ -355,10 +351,10 @@ let Range = class {
         'in-item': hostContext('ion-item', el),
         'range-disabled': disabled,
         'range-pressed': pressedKnob !== undefined,
-        'range-has-pin': pin
-      }) }, h("slot", { name: "start" }), h("div", { class: "range-slider", ref: rangeEl => this.rangeSlider = rangeEl }, ticks.map(tick => (h("div", { style: tickStyle(tick), role: "presentation", class: {
+        'range-has-pin': pin,
+      }) }, h("slot", { name: "start" }), h("div", { class: "range-slider", ref: (rangeEl) => (this.rangeSlider = rangeEl) }, ticks.map((tick) => (h("div", { style: tickStyle(tick), role: "presentation", class: {
         'range-tick': true,
-        'range-tick-active': tick.active
+        'range-tick-active': tick.active,
       }, part: tick.active ? 'tick-active' : 'tick' }))), h("div", { class: "range-bar", role: "presentation", part: "bar" }), h("div", { class: "range-bar range-bar-active", role: "presentation", style: barStyle, part: "bar-active" }), renderKnob(rtl, {
       knob: 'A',
       pressed: pressedKnob === 'A',
@@ -370,20 +366,21 @@ let Range = class {
       handleKeyboard,
       min,
       max,
-      labelText
-    }), this.dualKnobs && renderKnob(rtl, {
-      knob: 'B',
-      pressed: pressedKnob === 'B',
-      value: this.valB,
-      ratio: this.ratioB,
-      pin,
-      pinFormatter,
-      disabled,
-      handleKeyboard,
-      min,
-      max,
-      labelText
-    })), h("slot", { name: "end" })));
+      labelText,
+    }), this.dualKnobs &&
+      renderKnob(rtl, {
+        knob: 'B',
+        pressed: pressedKnob === 'B',
+        value: this.valB,
+        ratio: this.ratioB,
+        pin,
+        pinFormatter,
+        disabled,
+        handleKeyboard,
+        min,
+        max,
+        labelText,
+      })), h("slot", { name: "end" })));
   }
   get el() { return getElement(this); }
   static get watchers() { return {
@@ -419,8 +416,8 @@ const renderKnob = (rtl, { knob, value, ratio, min, max, disabled, pressed, pin,
       'range-knob-b': knob === 'B',
       'range-knob-pressed': pressed,
       'range-knob-min': value === min,
-      'range-knob-max': value === max
-    }, style: knobStyle(), role: "slider", tabindex: disabled ? -1 : 0, "aria-label": labelText, "aria-valuemin": min, "aria-valuemax": max, "aria-disabled": disabled ? 'true' : null, "aria-valuenow": value }, pin && h("div", { class: "range-pin", role: "presentation", part: "pin" }, pinFormatter(value)), h("div", { class: "range-knob", role: "presentation", part: "knob" })));
+      'range-knob-max': value === max,
+    }, style: knobStyle(), role: "slider", tabindex: disabled ? -1 : 0, "aria-label": labelText, "aria-valuemin": min, "aria-valuemax": max, "aria-disabled": disabled ? 'true' : null, "aria-valuenow": value }, pin && (h("div", { class: "range-pin", role: "presentation", part: "pin" }, pinFormatter(value))), h("div", { class: "range-knob", role: "presentation", part: "knob" })));
 };
 const ratioToValue = (ratio, min, max, step) => {
   let value = (max - min) * ratio;

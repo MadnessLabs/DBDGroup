@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
+import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
 
 const cardContentIosCss = "ion-card-content{display:block;position:relative}.card-content-ios{padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;font-size:16px;line-height:1.4}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.card-content-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:20px;padding-inline-end:20px}}.card-content-ios h1{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:24px;font-weight:normal}.card-content-ios h2{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:16px;font-weight:normal}.card-content-ios h3,.card-content-ios h4,.card-content-ios h5,.card-content-ios h6{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:14px;font-weight:normal}.card-content-ios p{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:14px}ion-card-header+.card-content-ios{padding-top:0}";
 
@@ -14,7 +14,7 @@ let CardContent = class {
     return (h(Host, { class: {
         [mode]: true,
         // Used internally for styling
-        [`card-content-${mode}`]: true
+        [`card-content-${mode}`]: true,
       } }));
   }
 };

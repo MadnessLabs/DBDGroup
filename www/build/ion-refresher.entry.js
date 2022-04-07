@@ -1,9 +1,9 @@
-import { i as writeTask, r as registerInstance, l as createEvent, o as readTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { a as isPlatform, g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { g as getTimeGivenProgression } from './cubic-bezier-a7ad9c8e.js';
-import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-b5b4d5eb.js';
-import { h as hapticImpact } from './haptic-fedcde92.js';
-import { c as createAnimation } from './animation-ff813219.js';
+import { i as writeTask, r as registerInstance, l as createEvent, o as readTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { a as isPlatform, g as getIonMode } from './ionic-global-fc3774f0.js';
+import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
+import { h as hapticImpact } from './haptic-a9e94599.js';
+import { c as createAnimation } from './animation-e960c982.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -14,38 +14,38 @@ const getRefresherAnimationType = (contentEl) => {
   return hasHeader ? 'translate' : 'scale';
 };
 const createPullingAnimation = (type, pullingSpinner, refresherEl) => {
-  return type === 'scale' ? createScaleAnimation(pullingSpinner, refresherEl) : createTranslateAnimation(pullingSpinner, refresherEl);
+  return type === 'scale'
+    ? createScaleAnimation(pullingSpinner, refresherEl)
+    : createTranslateAnimation(pullingSpinner, refresherEl);
 };
 const createBaseAnimation = (pullingRefresherIcon) => {
   const spinner = pullingRefresherIcon.querySelector('ion-spinner');
   const circle = spinner.shadowRoot.querySelector('circle');
   const spinnerArrowContainer = pullingRefresherIcon.querySelector('.spinner-arrow-container');
   const arrowContainer = pullingRefresherIcon.querySelector('.arrow-container');
-  const arrow = (arrowContainer) ? arrowContainer.querySelector('ion-icon') : null;
-  const baseAnimation = createAnimation()
-    .duration(1000)
-    .easing('ease-out');
+  const arrow = arrowContainer ? arrowContainer.querySelector('ion-icon') : null;
+  const baseAnimation = createAnimation().duration(1000).easing('ease-out');
   const spinnerArrowContainerAnimation = createAnimation()
     .addElement(spinnerArrowContainer)
     .keyframes([
     { offset: 0, opacity: '0.3' },
     { offset: 0.45, opacity: '0.3' },
     { offset: 0.55, opacity: '1' },
-    { offset: 1, opacity: '1' }
+    { offset: 1, opacity: '1' },
   ]);
   const circleInnerAnimation = createAnimation()
     .addElement(circle)
     .keyframes([
     { offset: 0, strokeDasharray: '1px, 200px' },
-    { offset: 0.20, strokeDasharray: '1px, 200px' },
+    { offset: 0.2, strokeDasharray: '1px, 200px' },
     { offset: 0.55, strokeDasharray: '100px, 200px' },
-    { offset: 1, strokeDasharray: '100px, 200px' }
+    { offset: 1, strokeDasharray: '100px, 200px' },
   ]);
   const circleOuterAnimation = createAnimation()
     .addElement(spinner)
     .keyframes([
     { offset: 0, transform: 'rotate(-90deg)' },
-    { offset: 1, transform: 'rotate(210deg)' }
+    { offset: 1, transform: 'rotate(210deg)' },
   ]);
   /**
    * Only add arrow animation if present
@@ -57,17 +57,17 @@ const createBaseAnimation = (pullingRefresherIcon) => {
       .addElement(arrowContainer)
       .keyframes([
       { offset: 0, transform: 'rotate(0deg)' },
-      { offset: 0.30, transform: 'rotate(0deg)' },
+      { offset: 0.3, transform: 'rotate(0deg)' },
       { offset: 0.55, transform: 'rotate(280deg)' },
-      { offset: 1, transform: 'rotate(400deg)' }
+      { offset: 1, transform: 'rotate(400deg)' },
     ]);
     const arrowAnimation = createAnimation()
       .addElement(arrow)
       .keyframes([
       { offset: 0, transform: 'translateX(2px) scale(0)' },
-      { offset: 0.30, transform: 'translateX(2px) scale(0)' },
+      { offset: 0.3, transform: 'translateX(2px) scale(0)' },
       { offset: 0.55, transform: 'translateX(-1.5px) scale(1)' },
-      { offset: 1, transform: 'translateX(-1.5px) scale(1)' }
+      { offset: 1, transform: 'translateX(-1.5px) scale(1)' },
     ]);
     baseAnimation.addAnimation([arrowContainerAnimation, arrowAnimation]);
   }
@@ -88,7 +88,7 @@ const createScaleAnimation = (pullingRefresherIcon, refresherEl) => {
     .addElement(pullingRefresherIcon)
     .keyframes([
     { offset: 0, transform: `scale(0) translateY(-${height}px)` },
-    { offset: 1, transform: 'scale(1) translateY(100px)' }
+    { offset: 1, transform: 'scale(1) translateY(100px)' },
   ]);
   return createBaseAnimation(pullingRefresherIcon).addAnimation([spinnerAnimation]);
 };
@@ -107,7 +107,7 @@ const createTranslateAnimation = (pullingRefresherIcon, refresherEl) => {
     .addElement(pullingRefresherIcon)
     .keyframes([
     { offset: 0, transform: `translateY(-${height}px)` },
-    { offset: 1, transform: 'translateY(100px)' }
+    { offset: 1, transform: 'translateY(100px)' },
   ]);
   return createBaseAnimation(pullingRefresherIcon).addAnimation([spinnerAnimation]);
 };
@@ -143,7 +143,7 @@ const handleScrollWhilePulling = (ticks, numTicks, pullAmount) => {
 const handleScrollWhileRefreshing = (spinner, lastVelocityY) => {
   writeTask(() => {
     // If user pulls down quickly, the spinner should spin faster
-    spinner.style.setProperty('--refreshing-rotation-duration', (lastVelocityY >= 1.0) ? '0.5s' : '2s');
+    spinner.style.setProperty('--refreshing-rotation-duration', lastVelocityY >= 1.0 ? '0.5s' : '2s');
     spinner.style.setProperty('opacity', '1');
   });
 };
@@ -170,7 +170,7 @@ const shouldUseNativeRefresher = async (referenceEl, mode) => {
   if (!refresherContent) {
     return Promise.resolve(false);
   }
-  await new Promise(resolve => componentOnReady(refresherContent, resolve));
+  await new Promise((resolve) => componentOnReady(refresherContent, resolve));
   const pullingSpinner = referenceEl.querySelector('ion-refresher-content .refresher-pulling ion-spinner');
   const refreshingSpinner = referenceEl.querySelector('ion-refresher-content .refresher-refreshing ion-spinner');
   return (pullingSpinner !== null &&
@@ -289,7 +289,7 @@ let Refresher = class {
     this.didRefresh = false;
     this.needsCompletion = false;
     this.pointerDown = false;
-    this.animations.forEach(ani => ani.destroy());
+    this.animations.forEach((ani) => ani.destroy());
     this.animations = [];
     this.progress = 0;
     this.state = 1 /* Inactive */;
@@ -299,7 +299,7 @@ let Refresher = class {
     const ticks = pullingSpinner.shadowRoot.querySelectorAll('svg');
     let MAX_PULL = this.scrollEl.clientHeight * 0.16;
     const NUM_TICKS = ticks.length;
-    writeTask(() => ticks.forEach(el => el.style.setProperty('animation', 'none')));
+    writeTask(() => ticks.forEach((el) => el.style.setProperty('animation', 'none')));
     this.scrollListenerCallback = () => {
       // If pointer is not on screen or refresher is not active, ignore scroll
       if (!this.pointerDown && this.state === 1 /* Inactive */) {
@@ -338,8 +338,8 @@ let Refresher = class {
          * gesture before the refresher completes, we want the
          * refresher tick marks to quickly fade out.
          */
-        const offset = (this.didStart) ? 30 : 0;
-        const pullAmount = this.progress = clamp(0, (Math.abs(scrollTop) - offset) / MAX_PULL, 1);
+        const offset = this.didStart ? 30 : 0;
+        const pullAmount = (this.progress = clamp(0, (Math.abs(scrollTop) - offset) / MAX_PULL, 1));
         const shouldShowRefreshingSpinner = this.state === 8 /* Refreshing */ || pullAmount === 1;
         if (shouldShowRefreshingSpinner) {
           if (this.pointerDown) {
@@ -365,7 +365,7 @@ let Refresher = class {
       });
     };
     this.scrollEl.addEventListener('scroll', this.scrollListenerCallback);
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.scrollEl,
       gestureName: 'refresher',
       gesturePriority: 31,
@@ -388,7 +388,7 @@ let Refresher = class {
           MAX_PULL = this.scrollEl.clientHeight * 0.16;
         }
       },
-      onMove: ev => {
+      onMove: (ev) => {
         this.lastVelocityY = ev.velocityY;
       },
       onEnd: () => {
@@ -417,13 +417,15 @@ let Refresher = class {
         refreshingCircle.style.setProperty('animation-delay', '-655ms');
       });
     }
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.scrollEl,
       gestureName: 'refresher',
       gesturePriority: 31,
       direction: 'y',
       threshold: 5,
-      canStart: () => this.state !== 8 /* Refreshing */ && this.state !== 32 /* Completing */ && this.scrollEl.scrollTop === 0,
+      canStart: () => this.state !== 8 /* Refreshing */ &&
+        this.state !== 32 /* Completing */ &&
+        this.scrollEl.scrollTop === 0,
       onStart: (ev) => {
         ev.data = { animation: undefined, didStart: false, cancelled: false };
       },
@@ -456,10 +458,8 @@ let Refresher = class {
         writeTask(() => this.scrollEl.style.removeProperty('--overflow'));
         if (this.progress <= 0.4) {
           this.gesture.enable(false);
-          ev.data.animation
-            .progressEnd(0, this.progress, 500)
-            .onFinish(() => {
-            this.animations.forEach(ani => ani.destroy());
+          ev.data.animation.progressEnd(0, this.progress, 500).onFinish(() => {
+            this.animations.forEach((ani) => ani.destroy());
             this.animations = [];
             this.gesture.enable(true);
             this.state = 1 /* Inactive */;
@@ -470,13 +470,13 @@ let Refresher = class {
         const snapBackAnimation = createSnapBackAnimation(pullingRefresherIcon);
         this.animations.push(snapBackAnimation);
         writeTask(async () => {
-          pullingRefresherIcon.style.setProperty('--ion-pulling-refresher-translate', `${(progress * 100)}px`);
+          pullingRefresherIcon.style.setProperty('--ion-pulling-refresher-translate', `${progress * 100}px`);
           ev.data.animation.progressEnd();
           await snapBackAnimation.play();
           this.beginRefresh();
           ev.data.animation.destroy();
         });
-      }
+      },
     });
     this.disabledChanged();
   }
@@ -515,14 +515,14 @@ let Refresher = class {
       console.error('<ion-refresher> must be used inside an <ion-content>');
       return;
     }
-    await new Promise(resolve => componentOnReady(contentEl, resolve));
+    await new Promise((resolve) => componentOnReady(contentEl, resolve));
     this.scrollEl = await contentEl.getScrollElement();
     this.backgroundContentEl = getElementRoot(contentEl).querySelector('#background-content');
     if (await shouldUseNativeRefresher(this.el, getIonMode(this))) {
       this.setupNativeRefresher(contentEl);
     }
     else {
-      this.gesture = (await import('./index-c31991b6.js')).createGesture({
+      this.gesture = (await import('./index-dd414b33.js')).createGesture({
         el: contentEl,
         gestureName: 'refresher',
         gesturePriority: 31,
@@ -531,7 +531,7 @@ let Refresher = class {
         passive: false,
         canStart: () => this.canStart(),
         onStart: () => this.onStart(),
-        onMove: ev => this.onMove(ev),
+        onMove: (ev) => this.onMove(ev),
         onEnd: () => this.onEnd(),
       });
       this.disabledChanged();
@@ -628,7 +628,7 @@ let Refresher = class {
     if ((this.state & 56 /* _BUSY_ */) !== 0) {
       return;
     }
-    const pullFactor = (Number.isNaN(this.pullFactor) || this.pullFactor < 0) ? 1 : this.pullFactor;
+    const pullFactor = Number.isNaN(this.pullFactor) || this.pullFactor < 0 ? 1 : this.pullFactor;
     const deltaY = detail.deltaY * pullFactor;
     // don't bother if they're scrolling up
     // and have not already started dragging
@@ -719,7 +719,7 @@ let Refresher = class {
     // emit "refresh" because it was pulled down far enough
     // and they let go to begin refreshing
     this.ionRefresh.emit({
-      complete: this.complete.bind(this)
+      complete: this.complete.bind(this),
     });
   }
   close(state, delay) {
@@ -740,15 +740,15 @@ let Refresher = class {
     if (this.nativeRefresher) {
       return;
     }
-    this.appliedStyles = (y > 0);
+    this.appliedStyles = y > 0;
     writeTask(() => {
       if (this.scrollEl && this.backgroundContentEl) {
         const scrollStyle = this.scrollEl.style;
         const backgroundStyle = this.backgroundContentEl.style;
-        scrollStyle.transform = backgroundStyle.transform = ((y > 0) ? `translateY(${y}px) translateZ(0px)` : '');
+        scrollStyle.transform = backgroundStyle.transform = y > 0 ? `translateY(${y}px) translateZ(0px)` : '';
         scrollStyle.transitionDuration = backgroundStyle.transitionDuration = duration;
         scrollStyle.transitionDelay = backgroundStyle.transitionDelay = delay;
-        scrollStyle.overflow = (overflowVisible ? 'hidden' : '');
+        scrollStyle.overflow = overflowVisible ? 'hidden' : '';
       }
     });
   }

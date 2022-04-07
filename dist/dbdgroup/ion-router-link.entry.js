@@ -1,6 +1,6 @@
-import { r as registerInstance, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { o as openURL, c as createColorClasses } from './theme-c336c9d9.js';
+import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { o as openURL, c as createColorClasses } from './theme-7ef00c83.js';
 
 const routerLinkCss = ":host{--background:transparent;--color:var(--ion-color-primary, #3880ff);background:var(--background);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}a{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit}";
 
@@ -21,11 +21,11 @@ let RouterLink = class {
     const attrs = {
       href: this.href,
       rel: this.rel,
-      target: this.target
+      target: this.target,
     };
     return (h(Host, { onClick: this.onClick, class: createColorClasses(this.color, {
         [mode]: true,
-        'ion-activatable': true
+        'ion-activatable': true,
       }) }, h("a", Object.assign({}, attrs), h("slot", null))));
   }
 };

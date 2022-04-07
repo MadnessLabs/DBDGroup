@@ -1,7 +1,7 @@
-import { o as readTask, i as writeTask, r as registerInstance, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { e as clamp, c as componentOnReady, i as inheritAttributes } from './helpers-b5b4d5eb.js';
-import { h as hostContext } from './theme-c336c9d9.js';
+import { o as readTask, i as writeTask, r as registerInstance, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { e as clamp, c as componentOnReady, i as inheritAttributes } from './helpers-e7913fb8.js';
+import { h as hostContext } from './theme-7ef00c83.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -31,16 +31,16 @@ const createHeaderIndex = (headerEl) => {
         el: toolbar,
         background: toolbar.shadowRoot.querySelector('.toolbar-background'),
         ionTitleEl,
-        innerTitleEl: (ionTitleEl) ? ionTitleEl.shadowRoot.querySelector('.toolbar-title') : null,
-        ionButtonsEl: Array.from(toolbar.querySelectorAll('ion-buttons')) || []
+        innerTitleEl: ionTitleEl ? ionTitleEl.shadowRoot.querySelector('.toolbar-title') : null,
+        ionButtonsEl: Array.from(toolbar.querySelectorAll('ion-buttons')) || [],
       };
-    }) || []
+    }) || [],
   };
 };
 const handleContentScroll = (scrollEl, scrollHeaderIndex, contentEl) => {
   readTask(() => {
     const scrollTop = scrollEl.scrollTop;
-    const scale = clamp(1, 1 + (-scrollTop / 500), 1.1);
+    const scale = clamp(1, 1 + -scrollTop / 500, 1.1);
     // Native refresher should not cause titles to scale
     const nativeRefresher = contentEl.querySelector('ion-refresher.refresher-native');
     if (nativeRefresher === null) {
@@ -82,8 +82,8 @@ const handleToolbarBorderIntersection = (ev, mainHeaderIndex, scrollTop) => {
    * the content is transformed which can cause the intersection observer to erroneously
    * fire here as well.
    */
-  const scale = (ev[0].intersectionRatio > 0.9 || scrollTop <= 0) ? 0 : ((1 - ev[0].intersectionRatio) * 100) / 75;
-  setToolbarBackgroundOpacity(mainHeaderIndex.el, (scale === 1) ? undefined : scale);
+  const scale = ev[0].intersectionRatio > 0.9 || scrollTop <= 0 ? 0 : ((1 - ev[0].intersectionRatio) * 100) / 75;
+  setToolbarBackgroundOpacity(mainHeaderIndex.el, scale === 1 ? undefined : scale);
 };
 /**
  * If toolbars are intersecting, hide the scrollable toolbar content
@@ -136,13 +136,13 @@ const setHeaderActive = (headerIndex, active = true) => {
   }
 };
 const scaleLargeTitles = (toolbars = [], scale = 1, transition = false) => {
-  toolbars.forEach(toolbar => {
+  toolbars.forEach((toolbar) => {
     const ionTitle = toolbar.ionTitleEl;
     const titleDiv = toolbar.innerTitleEl;
     if (!ionTitle || ionTitle.size !== 'large') {
       return;
     }
-    titleDiv.style.transition = (transition) ? TRANSITION : '';
+    titleDiv.style.transition = transition ? TRANSITION : '';
     titleDiv.style.transform = `scale3d(${scale}, ${scale}, 1)`;
   });
 };
@@ -150,7 +150,7 @@ const handleHeaderFade = (scrollEl, baseEl, condenseHeader) => {
   readTask(() => {
     const scrollTop = scrollEl.scrollTop;
     const baseElHeight = baseEl.clientHeight;
-    const fadeStart = (condenseHeader) ? condenseHeader.clientHeight : 0;
+    const fadeStart = condenseHeader ? condenseHeader.clientHeight : 0;
     /**
      * If we are using fade header with a condense
      * header, then the toolbar backgrounds should
@@ -163,14 +163,14 @@ const handleHeaderFade = (scrollEl, baseEl, condenseHeader) => {
      * using just the condense header the content
      * should overflow out of the container.
      */
-    if ((condenseHeader !== null) && (scrollTop < fadeStart)) {
+    if (condenseHeader !== null && scrollTop < fadeStart) {
       baseEl.style.setProperty('--opacity-scale', '0');
       scrollEl.style.setProperty('clip-path', `inset(${baseElHeight}px 0px 0px 0px)`);
       return;
     }
     const distanceToStart = scrollTop - fadeStart;
     const fadeDuration = 10;
-    const scale = clamp(0, (distanceToStart / fadeDuration), 1);
+    const scale = clamp(0, distanceToStart / fadeDuration, 1);
     writeTask(() => {
       scrollEl.style.removeProperty('clip-path');
       baseEl.style.setProperty('--opacity-scale', scale.toString());
@@ -200,12 +200,14 @@ let Header = class {
         console.error('ion-header requires a content to collapse. Make sure there is an ion-content.');
         return;
       }
-      await new Promise(resolve => componentOnReady(contentEl, resolve));
-      const scrollEl = this.scrollEl = await contentEl.getScrollElement();
+      await new Promise((resolve) => componentOnReady(contentEl, resolve));
+      const scrollEl = (this.scrollEl = await contentEl.getScrollElement());
       /**
        * Handle fading of toolbars on scroll
        */
-      this.contentScrollCallback = () => { handleHeaderFade(this.scrollEl, this.el, condenseHeader); };
+      this.contentScrollCallback = () => {
+        handleHeaderFade(this.scrollEl, this.el, condenseHeader);
+      };
       scrollEl.addEventListener('scroll', this.contentScrollCallback);
       handleHeaderFade(this.scrollEl, this.el, condenseHeader);
     };
@@ -233,7 +235,7 @@ let Header = class {
     this.destroyCollapsibleHeader();
     if (hasCondense) {
       const pageEl = this.el.closest('ion-app,ion-page,.ion-page,page-inner');
-      const contentEl = (pageEl) ? pageEl.querySelector('ion-content') : null;
+      const contentEl = pageEl ? pageEl.querySelector('ion-content') : null;
       // Cloned elements are always needed in iOS transition
       writeTask(() => {
         const title = cloneElement('ion-title');
@@ -244,8 +246,10 @@ let Header = class {
     }
     else if (hasFade) {
       const pageEl = this.el.closest('ion-app,ion-page,.ion-page,page-inner');
-      const contentEl = (pageEl) ? pageEl.querySelector('ion-content') : null;
-      const condenseHeader = (contentEl) ? contentEl.querySelector('ion-header[collapse="condense"]') : null;
+      const contentEl = pageEl ? pageEl.querySelector('ion-content') : null;
+      const condenseHeader = contentEl
+        ? contentEl.querySelector('ion-header[collapse="condense"]')
+        : null;
       await this.setupFadeHeader(contentEl, condenseHeader);
     }
   }
@@ -271,7 +275,7 @@ let Header = class {
     if (typeof IntersectionObserver === 'undefined') {
       return;
     }
-    await new Promise(resolve => componentOnReady(contentEl, resolve));
+    await new Promise((resolve) => componentOnReady(contentEl, resolve));
     this.scrollEl = await contentEl.getScrollElement();
     const headers = pageEl.querySelectorAll('ion-header');
     this.collapsibleMainHeader = Array.from(headers).find((header) => header.collapse !== 'condense');
@@ -291,15 +295,22 @@ let Header = class {
      * as well as progressively showing/hiding the main header
      * border as the top-most toolbar collapses or expands.
      */
-    const toolbarIntersection = (ev) => { handleToolbarIntersection(ev, mainHeaderIndex, scrollHeaderIndex, this.scrollEl); };
-    this.intersectionObserver = new IntersectionObserver(toolbarIntersection, { root: contentEl, threshold: [0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+    const toolbarIntersection = (ev) => {
+      handleToolbarIntersection(ev, mainHeaderIndex, scrollHeaderIndex, this.scrollEl);
+    };
+    this.intersectionObserver = new IntersectionObserver(toolbarIntersection, {
+      root: contentEl,
+      threshold: [0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+    });
     this.intersectionObserver.observe(scrollHeaderIndex.toolbars[scrollHeaderIndex.toolbars.length - 1].el);
     /**
      * Handle scaling of large iOS titles and
      * showing/hiding border on last toolbar
      * in primary header
      */
-    this.contentScrollCallback = () => { handleContentScroll(this.scrollEl, scrollHeaderIndex, contentEl); };
+    this.contentScrollCallback = () => {
+      handleContentScroll(this.scrollEl, scrollHeaderIndex, contentEl);
+    };
     this.scrollEl.addEventListener('scroll', this.contentScrollCallback);
     writeTask(() => {
       if (this.collapsibleMainHeader !== undefined) {
@@ -320,8 +331,7 @@ let Header = class {
         [`header-translucent`]: this.translucent,
         [`header-collapse-${collapse}`]: true,
         [`header-translucent-${mode}`]: this.translucent,
-      } }, inheritedAttributes), mode === 'ios' && translucent &&
-      h("div", { class: "header-background" }), h("slot", null)));
+      } }, inheritedAttributes), mode === 'ios' && translucent && h("div", { class: "header-background" }), h("slot", null)));
   }
   get el() { return getElement(this); }
 };

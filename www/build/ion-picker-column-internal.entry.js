@@ -1,8 +1,8 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { r as raf, g as getElementRoot } from './helpers-b5b4d5eb.js';
-import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-fedcde92.js';
-import { c as createColorClasses } from './theme-c336c9d9.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { r as raf, g as getElementRoot } from './helpers-e7913fb8.js';
+import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-a9e94599.js';
+import { c as createColorClasses } from './theme-7ef00c83.js';
 
 const pickerColumnInternalIosCss = ":host{padding-left:16px;padding-right:16px;padding-top:0px;padding-bottom:0px;height:200px;outline:none;font-size:22px;scroll-snap-type:y mandatory;overflow-x:hidden;overflow-y:scroll;scrollbar-width:none;text-align:center}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host::-webkit-scrollbar{display:none}:host .picker-item{height:34px;line-height:34px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;scroll-snap-align:center}:host .picker-item-empty{scroll-snap-align:none}:host(.picker-column-active) .picker-item.picker-item-active{color:var(--ion-color-base)}@media (any-hover: hover){:host(:focus){outline:none;background:rgba(var(--ion-color-base-rgb), 0.2)}}";
 
@@ -36,12 +36,18 @@ let PickerColumnInternal = class {
      */
     this.numericInput = false;
     this.centerPickerItemInView = (target, smooth = true) => {
-      this.el.scroll({
+      const { el, isColumnVisible } = this;
+      if (isColumnVisible) {
         // (Vertical offset from parent) - (three empty picker rows) + (half the height of the target to ensure the scroll triggers)
-        top: target.offsetTop - (3 * target.clientHeight) + (target.clientHeight / 2),
-        left: 0,
-        behavior: smooth ? 'smooth' : undefined
-      });
+        const top = target.offsetTop - 3 * target.clientHeight + target.clientHeight / 2;
+        if (el.scrollTop !== top) {
+          el.scroll({
+            top,
+            left: 0,
+            behavior: smooth ? 'smooth' : undefined,
+          });
+        }
+      }
     };
     /**
      * When ionInputModeChange is emitted, each column
@@ -89,8 +95,8 @@ let PickerColumnInternal = class {
            * which is the month/year that we want to select
            */
           const bbox = el.getBoundingClientRect();
-          const centerX = bbox.x + (bbox.width / 2);
-          const centerY = bbox.y + (bbox.height / 2);
+          const centerX = bbox.x + bbox.width / 2;
+          const centerY = bbox.y + bbox.height / 2;
           const activeElement = el.shadowRoot.elementFromPoint(centerX, centerY);
           if (activeEl !== null) {
             activeEl.classList.remove(PICKER_COL_ACTIVE);
@@ -117,7 +123,7 @@ let PickerColumnInternal = class {
             const index = parseInt(dataIndex, 10);
             const selectedItem = this.items[index];
             if (selectedItem.value !== this.value) {
-              this.value = selectedItem.value;
+              this.setValue(selectedItem.value);
               hapticSelectionEnd();
               this.hapticsStarted = false;
             }
@@ -139,15 +145,10 @@ let PickerColumnInternal = class {
   valueChange() {
     if (this.isColumnVisible) {
       /**
-       * Only scroll the active item into view and emit the value
-       * change, when the picker column is actively visible to the user.
+       * Only scroll the active item into view when the picker column
+       * is actively visible to the user.
        */
-      const { items, value } = this;
       this.scrollActiveItemIntoView();
-      const findItem = items.find(item => item.value === value);
-      if (findItem) {
-        this.ionChange.emit(findItem);
-      }
     }
   }
   /**
@@ -161,6 +162,7 @@ let PickerColumnInternal = class {
       var _a;
       const ev = entries[0];
       if (ev.isIntersecting) {
+        this.isColumnVisible = true;
         /**
          * Because this initial call to scrollActiveItemIntoView has to fire before
          * the scroll listener is set up, we need to manage the active class manually.
@@ -170,14 +172,13 @@ let PickerColumnInternal = class {
         this.scrollActiveItemIntoView();
         (_a = this.activeItem) === null || _a === void 0 ? void 0 : _a.classList.add(PICKER_COL_ACTIVE);
         this.initializeScrollListener();
-        this.isColumnVisible = true;
       }
       else {
+        this.isColumnVisible = false;
         if (this.destroyScrollListener) {
           this.destroyScrollListener();
           this.destroyScrollListener = undefined;
         }
-        this.isColumnVisible = false;
       }
     };
     new IntersectionObserver(visibleCallback, { threshold: 0.01 }).observe(this.el);
@@ -186,11 +187,38 @@ let PickerColumnInternal = class {
       parentEl.addEventListener('ionInputModeChange', (ev) => this.inputModeChange(ev));
     }
   }
+  componentDidRender() {
+    var _a;
+    const { activeItem, items, isColumnVisible, value } = this;
+    if (isColumnVisible) {
+      if (activeItem) {
+        this.scrollActiveItemIntoView();
+      }
+      else if (((_a = items[0]) === null || _a === void 0 ? void 0 : _a.value) !== value) {
+        /**
+         * If the picker column does not have an active item and the current value
+         * does not match the first item in the picker column, that means
+         * the value is out of bounds. In this case, we assign the value to the
+         * first item to match the scroll position of the column.
+         *
+         */
+        this.setValue(items[0].value);
+      }
+    }
+  }
   /** @internal  */
   async scrollActiveItemIntoView() {
     const activeEl = this.activeItem;
     if (activeEl) {
       this.centerPickerItemInView(activeEl, false);
+    }
+  }
+  setValue(value) {
+    const { items } = this;
+    this.value = value;
+    const findItem = items.find((item) => item.value === value);
+    if (findItem) {
+      this.ionChange.emit(findItem);
     }
   }
   get activeItem() {
@@ -202,7 +230,7 @@ let PickerColumnInternal = class {
     return (h(Host, { tabindex: 0, class: createColorClasses(color, {
         [mode]: true,
         ['picker-column-active']: isActive,
-        ['picker-column-numeric-input']: numericInput
+        ['picker-column-numeric-input']: numericInput,
       }) }, h("div", { class: "picker-item picker-item-empty" }, "\u00A0"), h("div", { class: "picker-item picker-item-empty" }, "\u00A0"), h("div", { class: "picker-item picker-item-empty" }, "\u00A0"), items.map((item, index) => {
       return (h("div", { class: "picker-item", "data-value": item.value, "data-index": index, onClick: (ev) => {
           this.centerPickerItemInView(ev.target);

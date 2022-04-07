@@ -1,15 +1,15 @@
-import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode, c as config } from './ionic-global-48c6f4a1.js';
-import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-d5ceb96c.js';
-import { e as clamp, g as getElementRoot, r as raf } from './helpers-b5b4d5eb.js';
-import { KEYBOARD_DID_OPEN } from './keyboard-2503e874.js';
-import { B as BACKDROP, p as prepareOverlay, a as present, b as activeAnimations, d as dismiss, e as eventMethod } from './overlays-884665fe.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { d as deepReady } from './index-3f3f61b5.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import { g as getTimeGivenProgression } from './cubic-bezier-a7ad9c8e.js';
-import { createGesture } from './index-c31991b6.js';
-import './hardware-back-button-b6ccf74a.js';
+import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
+import { e as clamp, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
+import { KEYBOARD_DID_OPEN } from './keyboard-7e8329b3.js';
+import { B as BACKDROP, p as prepareOverlay, a as present, b as activeAnimations, d as dismiss, e as eventMethod } from './overlays-03fac0f0.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { d as deepReady } from './index-03e2d32b.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { createGesture } from './index-dd414b33.js';
+import './hardware-back-button-fa04d6e9.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -23,8 +23,7 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
   let isOpen = false;
   const canStart = (detail) => {
     const target = detail.event.target;
-    if (target === null ||
-      !target.closest) {
+    if (target === null || !target.closest) {
       return true;
     }
     const contentOrFooter = target.closest('ion-content, ion-footer');
@@ -37,7 +36,7 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
     return false;
   };
   const onStart = () => {
-    animation.progressStart(true, (isOpen) ? 1 : 0);
+    animation.progressStart(true, isOpen ? 1 : 0);
   };
   const onMove = (detail) => {
     const step = clamp(0.0001, detail.deltaY / height, 0.9999);
@@ -48,7 +47,7 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
     const step = clamp(0.0001, detail.deltaY / height, 0.9999);
     const threshold = (detail.deltaY + velocity * 1000) / height;
     const shouldComplete = threshold >= 0.5;
-    let newStepValue = (shouldComplete) ? -0.001 : 0.001;
+    let newStepValue = shouldComplete ? -0.001 : 0.001;
     if (!shouldComplete) {
       animation.easing('cubic-bezier(1, 0, 0.68, 0.28)');
       newStepValue += getTimeGivenProgression([0, 0], [1, 0], [0.68, 0.28], [1, 1], step)[0];
@@ -57,7 +56,9 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
       animation.easing('cubic-bezier(0.32, 0.72, 0, 1)');
       newStepValue += getTimeGivenProgression([0, 0], [0.32, 0.72], [0, 1], [1, 1], step)[0];
     }
-    const duration = (shouldComplete) ? computeDuration(step * height, velocity) : computeDuration((1 - step) * height, velocity);
+    const duration = shouldComplete
+      ? computeDuration(step * height, velocity)
+      : computeDuration((1 - step) * height, velocity);
     isOpen = shouldComplete;
     gesture.enable(false);
     animation
@@ -66,7 +67,7 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
         gesture.enable(true);
       }
     })
-      .progressEnd((shouldComplete) ? 1 : 0, newStepValue, duration);
+      .progressEnd(shouldComplete ? 1 : 0, newStepValue, duration);
     if (shouldComplete) {
       onDismiss();
     }
@@ -80,7 +81,7 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
     canStart,
     onStart,
     onMove,
-    onEnd
+    onEnd,
   });
   return gesture;
 };
@@ -137,7 +138,7 @@ const getBackdropValueForSheet = (x, backdropBreakpoint) => {
    * backdrop offset given an arbitrary
    * gesture offset.
    */
-  return (x * slope) + b;
+  return x * slope + b;
 };
 
 /*!
@@ -152,19 +153,17 @@ const createSheetEnterAnimation = (opts) => {
    */
   const shouldShowBackdrop = backdropBreakpoint === undefined || backdropBreakpoint < currentBreakpoint;
   const initialBackdrop = shouldShowBackdrop ? `calc(var(--backdrop-opacity) * ${currentBreakpoint})` : '0';
-  const backdropAnimation = createAnimation('backdropAnimation')
-    .fromTo('opacity', 0, initialBackdrop);
+  const backdropAnimation = createAnimation('backdropAnimation').fromTo('opacity', 0, initialBackdrop);
   if (shouldShowBackdrop) {
     backdropAnimation
       .beforeStyles({
-      'pointer-events': 'none'
+      'pointer-events': 'none',
     })
       .afterClearStyles(['pointer-events']);
   }
-  const wrapperAnimation = createAnimation('wrapperAnimation')
-    .keyframes([
+  const wrapperAnimation = createAnimation('wrapperAnimation').keyframes([
     { offset: 0, opacity: 1, transform: 'translateY(100%)' },
-    { offset: 1, opacity: 1, transform: `translateY(${100 - (currentBreakpoint * 100)}%)` }
+    { offset: 1, opacity: 1, transform: `translateY(${100 - currentBreakpoint * 100}%)` },
   ]);
   return { wrapperAnimation, backdropAnimation };
 };
@@ -178,19 +177,17 @@ const createSheetLeaveAnimation = (opts) => {
   const backdropValue = `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(currentBreakpoint, backdropBreakpoint)})`;
   const defaultBackdrop = [
     { offset: 0, opacity: backdropValue },
-    { offset: 1, opacity: 0 }
+    { offset: 1, opacity: 0 },
   ];
   const customBackdrop = [
     { offset: 0, opacity: backdropValue },
     { offset: backdropBreakpoint, opacity: 0 },
-    { offset: 1, opacity: 0 }
+    { offset: 1, opacity: 0 },
   ];
-  const backdropAnimation = createAnimation('backdropAnimation')
-    .keyframes(backdropBreakpoint !== 0 ? customBackdrop : defaultBackdrop);
-  const wrapperAnimation = createAnimation('wrapperAnimation')
-    .keyframes([
-    { offset: 0, opacity: 1, transform: `translateY(${100 - (currentBreakpoint * 100)}%)` },
-    { offset: 1, opacity: 1, transform: `translateY(100%)` }
+  const backdropAnimation = createAnimation('backdropAnimation').keyframes(backdropBreakpoint !== 0 ? customBackdrop : defaultBackdrop);
+  const wrapperAnimation = createAnimation('wrapperAnimation').keyframes([
+    { offset: 0, opacity: 1, transform: `translateY(${100 - currentBreakpoint * 100}%)` },
+    { offset: 1, opacity: 1, transform: `translateY(100%)` },
   ]);
   return { wrapperAnimation, backdropAnimation };
 };
@@ -202,11 +199,10 @@ const createEnterAnimation$1 = () => {
   const backdropAnimation = createAnimation()
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  const wrapperAnimation = createAnimation()
-    .fromTo('transform', 'translateY(100vh)', 'translateY(0vh)');
+  const wrapperAnimation = createAnimation().fromTo('transform', 'translateY(100vh)', 'translateY(0vh)');
   return { backdropAnimation, wrapperAnimation };
 };
 /**
@@ -216,11 +212,8 @@ const iosEnterAnimation = (baseEl, opts) => {
   const { presentingEl, currentBreakpoint } = opts;
   const root = getElementRoot(baseEl);
   const { wrapperAnimation, backdropAnimation } = currentBreakpoint !== undefined ? createSheetEnterAnimation(opts) : createEnterAnimation$1();
-  backdropAnimation
-    .addElement(root.querySelector('ion-backdrop'));
-  wrapperAnimation
-    .addElement(root.querySelectorAll('.modal-wrapper, .modal-shadow'))
-    .beforeStyles({ 'opacity': 1 });
+  backdropAnimation.addElement(root.querySelector('ion-backdrop'));
+  wrapperAnimation.addElement(root.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({ opacity: 1 });
   const baseAnimation = createAnimation('entering-base')
     .addElement(baseEl)
     .easing('cubic-bezier(0.32,0.72,0,1)')
@@ -228,13 +221,12 @@ const iosEnterAnimation = (baseEl, opts) => {
     .addAnimation(wrapperAnimation);
   if (presentingEl) {
     const isMobile = window.innerWidth < 768;
-    const hasCardModal = (presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined);
+    const hasCardModal = presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined;
     const presentingElRoot = getElementRoot(presentingEl);
-    const presentingAnimation = createAnimation()
-      .beforeStyles({
-      'transform': 'translateY(0)',
+    const presentingAnimation = createAnimation().beforeStyles({
+      transform: 'translateY(0)',
       'transform-origin': 'top center',
-      'overflow': 'hidden'
+      overflow: 'hidden',
     });
     const bodyEl = document.body;
     if (isMobile) {
@@ -243,19 +235,19 @@ const iosEnterAnimation = (baseEl, opts) => {
        * No need to worry about statusbar padding since engines like Gecko
        * are not used as the engine for standalone Cordova/Capacitor apps
        */
-      const transformOffset = (!CSS.supports('width', 'max(0px, 1px)')) ? '30px' : 'max(30px, var(--ion-safe-area-top))';
+      const transformOffset = !CSS.supports('width', 'max(0px, 1px)') ? '30px' : 'max(30px, var(--ion-safe-area-top))';
       const modalTransform = hasCardModal ? '-10px' : transformOffset;
       const toPresentingScale = SwipeToCloseDefaults.MIN_PRESENTING_SCALE;
       const finalTransform = `translateY(${modalTransform}) scale(${toPresentingScale})`;
       presentingAnimation
         .afterStyles({
-        'transform': finalTransform
+        transform: finalTransform,
       })
         .beforeAddWrite(() => bodyEl.style.setProperty('background-color', 'black'))
         .addElement(presentingEl)
         .keyframes([
         { offset: 0, filter: 'contrast(1)', transform: 'translateY(0px) scale(1)', borderRadius: '0px' },
-        { offset: 1, filter: 'contrast(0.85)', transform: finalTransform, borderRadius: '10px 10px 0 0' }
+        { offset: 1, filter: 'contrast(0.85)', transform: finalTransform, borderRadius: '10px 10px 0 0' },
       ]);
       baseAnimation.addAnimation(presentingAnimation);
     }
@@ -265,25 +257,25 @@ const iosEnterAnimation = (baseEl, opts) => {
         wrapperAnimation.fromTo('opacity', '0', '1');
       }
       else {
-        const toPresentingScale = (hasCardModal) ? SwipeToCloseDefaults.MIN_PRESENTING_SCALE : 1;
+        const toPresentingScale = hasCardModal ? SwipeToCloseDefaults.MIN_PRESENTING_SCALE : 1;
         const finalTransform = `translateY(-10px) scale(${toPresentingScale})`;
         presentingAnimation
           .afterStyles({
-          'transform': finalTransform
+          transform: finalTransform,
         })
           .addElement(presentingElRoot.querySelector('.modal-wrapper'))
           .keyframes([
           { offset: 0, filter: 'contrast(1)', transform: 'translateY(0) scale(1)' },
-          { offset: 1, filter: 'contrast(0.85)', transform: finalTransform }
+          { offset: 1, filter: 'contrast(0.85)', transform: finalTransform },
         ]);
         const shadowAnimation = createAnimation()
           .afterStyles({
-          'transform': finalTransform
+          transform: finalTransform,
         })
           .addElement(presentingElRoot.querySelector('.modal-shadow'))
           .keyframes([
           { offset: 0, opacity: '1', transform: 'translateY(0) scale(1)' },
-          { offset: 1, opacity: '0', transform: finalTransform }
+          { offset: 1, opacity: '0', transform: finalTransform },
         ]);
         baseAnimation.addAnimation([presentingAnimation, shadowAnimation]);
       }
@@ -299,10 +291,8 @@ const iosEnterAnimation = (baseEl, opts) => {
  * (C) Ionic http://ionicframework.com - MIT License
  */
 const createLeaveAnimation$1 = () => {
-  const backdropAnimation = createAnimation()
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  const wrapperAnimation = createAnimation()
-    .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)');
+  const backdropAnimation = createAnimation().fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  const wrapperAnimation = createAnimation().fromTo('transform', 'translateY(0vh)', 'translateY(100vh)');
   return { backdropAnimation, wrapperAnimation };
 };
 /**
@@ -313,9 +303,7 @@ const iosLeaveAnimation = (baseEl, opts, duration = 500) => {
   const root = getElementRoot(baseEl);
   const { wrapperAnimation, backdropAnimation } = currentBreakpoint !== undefined ? createSheetLeaveAnimation(opts) : createLeaveAnimation$1();
   backdropAnimation.addElement(root.querySelector('ion-backdrop'));
-  wrapperAnimation
-    .addElement(root.querySelectorAll('.modal-wrapper, .modal-shadow'))
-    .beforeStyles({ 'opacity': 1 });
+  wrapperAnimation.addElement(root.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({ opacity: 1 });
   const baseAnimation = createAnimation('leaving-base')
     .addElement(baseEl)
     .easing('cubic-bezier(0.32,0.72,0,1)')
@@ -323,33 +311,31 @@ const iosLeaveAnimation = (baseEl, opts, duration = 500) => {
     .addAnimation(wrapperAnimation);
   if (presentingEl) {
     const isMobile = window.innerWidth < 768;
-    const hasCardModal = (presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined);
+    const hasCardModal = presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined;
     const presentingElRoot = getElementRoot(presentingEl);
     const presentingAnimation = createAnimation()
       .beforeClearStyles(['transform'])
       .afterClearStyles(['transform'])
-      .onFinish(currentStep => {
+      .onFinish((currentStep) => {
       // only reset background color if this is the last card-style modal
       if (currentStep !== 1) {
         return;
       }
       presentingEl.style.setProperty('overflow', '');
-      const numModals = Array.from(bodyEl.querySelectorAll('ion-modal')).filter(m => m.presentingElement !== undefined).length;
+      const numModals = Array.from(bodyEl.querySelectorAll('ion-modal')).filter((m) => m.presentingElement !== undefined).length;
       if (numModals <= 1) {
         bodyEl.style.setProperty('background-color', '');
       }
     });
     const bodyEl = document.body;
     if (isMobile) {
-      const transformOffset = (!CSS.supports('width', 'max(0px, 1px)')) ? '30px' : 'max(30px, var(--ion-safe-area-top))';
+      const transformOffset = !CSS.supports('width', 'max(0px, 1px)') ? '30px' : 'max(30px, var(--ion-safe-area-top))';
       const modalTransform = hasCardModal ? '-10px' : transformOffset;
       const toPresentingScale = SwipeToCloseDefaults.MIN_PRESENTING_SCALE;
       const finalTransform = `translateY(${modalTransform}) scale(${toPresentingScale})`;
-      presentingAnimation
-        .addElement(presentingEl)
-        .keyframes([
+      presentingAnimation.addElement(presentingEl).keyframes([
         { offset: 0, filter: 'contrast(0.85)', transform: finalTransform, borderRadius: '10px 10px 0 0' },
-        { offset: 1, filter: 'contrast(1)', transform: 'translateY(0px) scale(1)', borderRadius: '0px' }
+        { offset: 1, filter: 'contrast(1)', transform: 'translateY(0px) scale(1)', borderRadius: '0px' },
       ]);
       baseAnimation.addAnimation(presentingAnimation);
     }
@@ -359,25 +345,25 @@ const iosLeaveAnimation = (baseEl, opts, duration = 500) => {
         wrapperAnimation.fromTo('opacity', '1', '0');
       }
       else {
-        const toPresentingScale = (hasCardModal) ? SwipeToCloseDefaults.MIN_PRESENTING_SCALE : 1;
+        const toPresentingScale = hasCardModal ? SwipeToCloseDefaults.MIN_PRESENTING_SCALE : 1;
         const finalTransform = `translateY(-10px) scale(${toPresentingScale})`;
         presentingAnimation
           .addElement(presentingElRoot.querySelector('.modal-wrapper'))
           .afterStyles({
-          'transform': 'translate3d(0, 0, 0)'
+          transform: 'translate3d(0, 0, 0)',
         })
           .keyframes([
           { offset: 0, filter: 'contrast(0.85)', transform: finalTransform },
-          { offset: 1, filter: 'contrast(1)', transform: 'translateY(0) scale(1)' }
+          { offset: 1, filter: 'contrast(1)', transform: 'translateY(0) scale(1)' },
         ]);
         const shadowAnimation = createAnimation()
           .addElement(presentingElRoot.querySelector('.modal-shadow'))
           .afterStyles({
-          'transform': 'translateY(0) scale(1)'
+          transform: 'translateY(0) scale(1)',
         })
           .keyframes([
           { offset: 0, opacity: '0', transform: finalTransform },
-          { offset: 1, opacity: '1', transform: 'translateY(0) scale(1)' }
+          { offset: 1, opacity: '1', transform: 'translateY(0) scale(1)' },
         ]);
         baseAnimation.addAnimation([presentingAnimation, shadowAnimation]);
       }
@@ -396,13 +382,12 @@ const createEnterAnimation = () => {
   const backdropAnimation = createAnimation()
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  const wrapperAnimation = createAnimation()
-    .keyframes([
+  const wrapperAnimation = createAnimation().keyframes([
     { offset: 0, opacity: 0.01, transform: 'translateY(40px)' },
-    { offset: 1, opacity: 1, transform: `translateY(0px)` }
+    { offset: 1, opacity: 1, transform: `translateY(0px)` },
   ]);
   return { backdropAnimation, wrapperAnimation };
 };
@@ -413,10 +398,8 @@ const mdEnterAnimation = (baseEl, opts) => {
   const { currentBreakpoint } = opts;
   const root = getElementRoot(baseEl);
   const { wrapperAnimation, backdropAnimation } = currentBreakpoint !== undefined ? createSheetEnterAnimation(opts) : createEnterAnimation();
-  backdropAnimation
-    .addElement(root.querySelector('ion-backdrop'));
-  wrapperAnimation
-    .addElement(root.querySelector('.modal-wrapper'));
+  backdropAnimation.addElement(root.querySelector('ion-backdrop'));
+  wrapperAnimation.addElement(root.querySelector('.modal-wrapper'));
   return createAnimation()
     .addElement(baseEl)
     .easing('cubic-bezier(0.36,0.66,0.04,1)')
@@ -428,12 +411,10 @@ const mdEnterAnimation = (baseEl, opts) => {
  * (C) Ionic http://ionicframework.com - MIT License
  */
 const createLeaveAnimation = () => {
-  const backdropAnimation = createAnimation()
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  const wrapperAnimation = createAnimation()
-    .keyframes([
+  const backdropAnimation = createAnimation().fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  const wrapperAnimation = createAnimation().keyframes([
     { offset: 0, opacity: 0.99, transform: `translateY(0px)` },
-    { offset: 1, opacity: 0, transform: 'translateY(40px)' }
+    { offset: 1, opacity: 0, transform: 'translateY(40px)' },
   ]);
   return { backdropAnimation, wrapperAnimation };
 };
@@ -459,27 +440,49 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
   // Defaults for the sheet swipe animation
   const defaultBackdrop = [
     { offset: 0, opacity: 'var(--backdrop-opacity)' },
-    { offset: 1, opacity: 0.01 }
+    { offset: 1, opacity: 0.01 },
   ];
   const customBackdrop = [
     { offset: 0, opacity: 'var(--backdrop-opacity)' },
     { offset: 1 - backdropBreakpoint, opacity: 0 },
-    { offset: 1, opacity: 0 }
+    { offset: 1, opacity: 0 },
   ];
   const SheetDefaults = {
     WRAPPER_KEYFRAMES: [
       { offset: 0, transform: 'translateY(0%)' },
-      { offset: 1, transform: 'translateY(100%)' }
+      { offset: 1, transform: 'translateY(100%)' },
     ],
-    BACKDROP_KEYFRAMES: (backdropBreakpoint !== 0) ? customBackdrop : defaultBackdrop
+    BACKDROP_KEYFRAMES: backdropBreakpoint !== 0 ? customBackdrop : defaultBackdrop,
   };
   const contentEl = baseEl.querySelector('ion-content');
   const height = wrapperEl.clientHeight;
   let currentBreakpoint = initialBreakpoint;
   let offset = 0;
-  const wrapperAnimation = animation.childAnimations.find(ani => ani.id === 'wrapperAnimation');
-  const backdropAnimation = animation.childAnimations.find(ani => ani.id === 'backdropAnimation');
+  const wrapperAnimation = animation.childAnimations.find((ani) => ani.id === 'wrapperAnimation');
+  const backdropAnimation = animation.childAnimations.find((ani) => ani.id === 'backdropAnimation');
   const maxBreakpoint = breakpoints[breakpoints.length - 1];
+  const enableBackdrop = () => {
+    baseEl.style.setProperty('pointer-events', 'auto');
+    backdropEl.style.setProperty('pointer-events', 'auto');
+    /**
+     * When the backdrop is enabled, elements such
+     * as inputs should not be focusable outside
+     * the sheet.
+     */
+    baseEl.classList.remove('ion-disable-focus-trap');
+  };
+  const disableBackdrop = () => {
+    baseEl.style.setProperty('pointer-events', 'none');
+    backdropEl.style.setProperty('pointer-events', 'none');
+    /**
+     * When the backdrop is enabled, elements such
+     * as inputs should not be focusable outside
+     * the sheet.
+     * Adding this class disables focus trapping
+     * for the sheet temporarily.
+     */
+    baseEl.classList.add('ion-disable-focus-trap');
+  };
   /**
    * After the entering animation completes,
    * we need to set the animation to go from
@@ -499,9 +502,13 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
      * ion-backdrop and .modal-wrapper always have pointer-events: auto
      * applied, so the modal content can still be interacted with.
      */
-    const backdropEnabled = currentBreakpoint > backdropBreakpoint;
-    baseEl.style.setProperty('pointer-events', backdropEnabled ? 'auto' : 'none');
-    backdropEl.style.setProperty('pointer-events', backdropEnabled ? 'auto' : 'none');
+    const shouldEnableBackdrop = currentBreakpoint > backdropBreakpoint;
+    if (shouldEnableBackdrop) {
+      enableBackdrop();
+    }
+    else {
+      disableBackdrop();
+    }
   }
   if (contentEl && currentBreakpoint !== maxBreakpoint) {
     contentEl.scrollY = false;
@@ -544,7 +551,7 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
      * relative to where the user dragged.
      */
     const initialStep = 1 - currentBreakpoint;
-    offset = clamp(0.0001, initialStep + (detail.deltaY / height), 0.9999);
+    offset = clamp(0.0001, initialStep + detail.deltaY / height, 0.9999);
     animation.progressStep(offset);
   };
   const onEnd = (detail) => {
@@ -567,11 +574,17 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
     if (wrapperAnimation && backdropAnimation) {
       wrapperAnimation.keyframes([
         { offset: 0, transform: `translateY(${offset * 100}%)` },
-        { offset: 1, transform: `translateY(${(1 - closest) * 100}%)` }
+        { offset: 1, transform: `translateY(${(1 - closest) * 100}%)` },
       ]);
       backdropAnimation.keyframes([
-        { offset: 0, opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(1 - offset, backdropBreakpoint)})` },
-        { offset: 1, opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(closest, backdropBreakpoint)})` }
+        {
+          offset: 0,
+          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(1 - offset, backdropBreakpoint)})`,
+        },
+        {
+          offset: 1,
+          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(closest, backdropBreakpoint)})`,
+        },
       ]);
       animation.progressStep(0);
     }
@@ -608,9 +621,13 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
              * Backdrop should become enabled
              * after the backdropBreakpoint value
              */
-            const backdropEnabled = currentBreakpoint > backdropBreakpoint;
-            baseEl.style.setProperty('pointer-events', backdropEnabled ? 'auto' : 'none');
-            backdropEl.style.setProperty('pointer-events', backdropEnabled ? 'auto' : 'none');
+            const shouldEnableBackdrop = currentBreakpoint > backdropBreakpoint;
+            if (shouldEnableBackdrop) {
+              enableBackdrop();
+            }
+            else {
+              disableBackdrop();
+            }
             gesture.enable(true);
           });
         }
@@ -638,7 +655,7 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
     canStart,
     onStart,
     onMove,
-    onEnd
+    onEnd,
   });
   return gesture;
 };
@@ -710,7 +727,7 @@ let Modal = class {
       if (destroyTriggerInteraction) {
         destroyTriggerInteraction();
       }
-      const triggerEl = (trigger !== undefined) ? document.getElementById(trigger) : null;
+      const triggerEl = trigger !== undefined ? document.getElementById(trigger) : null;
       if (!triggerEl) {
         return;
       }
@@ -740,7 +757,7 @@ let Modal = class {
         const ev = new CustomEvent(name, {
           bubbles: false,
           cancelable: false,
-          detail: modalEvent.detail
+          detail: modalEvent.detail,
         });
         el.dispatchEvent(ev);
       }
@@ -774,7 +791,7 @@ let Modal = class {
      * If user has custom ID set then we should
      * not assign the default incrementing ID.
      */
-    this.modalId = (this.el.hasAttribute('id')) ? this.el.getAttribute('id') : `ion-modal-${this.modalIndex}`;
+    this.modalId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : `ion-modal-${this.modalIndex}`;
     this.isSheetModal = breakpoints !== undefined && initialBreakpoint !== undefined;
     if (breakpoints !== undefined && initialBreakpoint !== undefined && !breakpoints.includes(initialBreakpoint)) {
       console.warn('[Ionic Warning]: Your breakpoints array must include the initialBreakpoint value.');
@@ -803,7 +820,7 @@ let Modal = class {
     if (this.workingDelegate && !force) {
       return {
         delegate: this.workingDelegate,
-        inline: this.inline
+        inline: this.inline,
       };
     }
     /**
@@ -816,8 +833,8 @@ let Modal = class {
      * correct place.
      */
     const parentEl = this.el.parentNode;
-    const inline = this.inline = parentEl !== null && !this.hasController;
-    const delegate = this.workingDelegate = (inline) ? this.delegate || this.coreDelegate : this.delegate;
+    const inline = (this.inline = parentEl !== null && !this.hasController);
+    const delegate = (this.workingDelegate = inline ? this.delegate || this.coreDelegate : this.delegate);
     return { inline, delegate };
   }
   /**
@@ -843,7 +860,11 @@ let Modal = class {
     this.usersElement = await attachComponent(delegate, this.el, this.component, ['ion-page'], data, inline);
     await deepReady(this.usersElement);
     writeTask(() => this.el.classList.add('show-modal'));
-    this.currentTransition = present(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, { presentingEl: this.presentingElement, currentBreakpoint: this.initialBreakpoint, backdropBreakpoint: this.backdropBreakpoint });
+    this.currentTransition = present(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, {
+      presentingEl: this.presentingElement,
+      currentBreakpoint: this.initialBreakpoint,
+      backdropBreakpoint: this.backdropBreakpoint,
+    });
     await this.currentTransition;
     if (this.isSheetModal) {
       this.initSheetGesture();
@@ -851,7 +872,6 @@ let Modal = class {
     else if (this.swipeToClose) {
       this.initSwipeToClose();
     }
-    /* tslint:disable-next-line */
     if (typeof window !== 'undefined') {
       this.keyboardOpenCallback = () => {
         if (this.gesture) {
@@ -884,7 +904,7 @@ let Modal = class {
     // should be in the DOM and referenced by now, except
     // for the presenting el
     const animationBuilder = this.leaveAnimation || config.get('modalLeave', iosLeaveAnimation);
-    const ani = this.animation = animationBuilder(this.el, { presentingEl: this.presentingElement });
+    const ani = (this.animation = animationBuilder(this.el, { presentingEl: this.presentingElement }));
     this.gesture = createSwipeToCloseGesture(this.el, ani, () => {
       /**
        * While the gesture animation is finishing
@@ -911,7 +931,11 @@ let Modal = class {
       return;
     }
     const animationBuilder = this.enterAnimation || config.get('modalEnter', iosEnterAnimation);
-    const ani = this.animation = animationBuilder(this.el, { presentingEl: this.presentingElement, currentBreakpoint: initialBreakpoint, backdropBreakpoint });
+    const ani = (this.animation = animationBuilder(this.el, {
+      presentingEl: this.presentingElement,
+      currentBreakpoint: initialBreakpoint,
+      backdropBreakpoint,
+    }));
     ani.progressStart(true, 1);
     const sortedBreakpoints = ((_a = this.breakpoints) === null || _a === void 0 ? void 0 : _a.sort((a, b) => a - b)) || [];
     this.gesture = createSheetGesture(this.el, this.backdropEl, wrapperEl, initialBreakpoint, backdropBreakpoint, ani, sortedBreakpoints, () => {
@@ -945,7 +969,6 @@ let Modal = class {
     if (this.gestureAnimationDismissing && role !== 'gesture') {
       return false;
     }
-    /* tslint:disable-next-line */
     if (typeof window !== 'undefined' && this.keyboardOpenCallback) {
       window.removeEventListener(KEYBOARD_DID_OPEN, this.keyboardOpenCallback);
     }
@@ -961,18 +984,23 @@ let Modal = class {
       await this.currentTransition;
     }
     const enteringAnimation = activeAnimations.get(this) || [];
-    this.currentTransition = dismiss(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, { presentingEl: this.presentingElement, currentBreakpoint: this.currentBreakpoint || this.initialBreakpoint, backdropBreakpoint: this.backdropBreakpoint });
+    this.currentTransition = dismiss(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, {
+      presentingEl: this.presentingElement,
+      currentBreakpoint: this.currentBreakpoint || this.initialBreakpoint,
+      backdropBreakpoint: this.backdropBreakpoint,
+    });
     const dismissed = await this.currentTransition;
     if (dismissed) {
       const { delegate } = this.getDelegate();
       await detachComponent(delegate, this.usersElement);
+      writeTask(() => this.el.classList.remove('show-modal'));
       if (this.animation) {
         this.animation.destroy();
       }
       if (this.gesture) {
         this.gesture.destroy();
       }
-      enteringAnimation.forEach(ani => ani.destroy());
+      enteringAnimation.forEach((ani) => ani.destroy());
     }
     this.currentTransition = undefined;
     this.animation = undefined;
@@ -998,7 +1026,7 @@ let Modal = class {
     const isCardModal = presentingElement !== undefined && mode === 'ios';
     return (h(Host, Object.assign({ "no-router": true, "aria-modal": "true", tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + this.overlayIndex}`,
-      }, class: Object.assign({ [mode]: true, ['modal-default']: !isCardModal && !isSheetModal, [`modal-card`]: isCardModal, [`modal-sheet`]: isSheetModal, 'overlay-hidden': true }, getClassMap(this.cssClass)), id: modalId, onIonBackdropTap: this.onBackdropTap, onIonDismiss: this.onDismiss, onIonModalDidPresent: this.onLifecycle, onIonModalWillPresent: this.onLifecycle, onIonModalWillDismiss: this.onLifecycle, onIonModalDidDismiss: this.onLifecycle }), h("ion-backdrop", { ref: el => this.backdropEl = el, visible: this.showBackdrop, tappable: this.backdropDismiss, part: "backdrop" }), mode === 'ios' && h("div", { class: "modal-shadow" }), h("div", { role: "dialog", class: "modal-wrapper ion-overlay-wrapper", part: "content", ref: el => this.wrapperEl = el }, showHandle && h("div", { class: "modal-handle", part: "handle" }), h("slot", null))));
+      }, class: Object.assign({ [mode]: true, ['modal-default']: !isCardModal && !isSheetModal, [`modal-card`]: isCardModal, [`modal-sheet`]: isSheetModal, 'overlay-hidden': true }, getClassMap(this.cssClass)), id: modalId, onIonBackdropTap: this.onBackdropTap, onIonDismiss: this.onDismiss, onIonModalDidPresent: this.onLifecycle, onIonModalWillPresent: this.onLifecycle, onIonModalWillDismiss: this.onLifecycle, onIonModalDidDismiss: this.onLifecycle }), h("ion-backdrop", { ref: (el) => (this.backdropEl = el), visible: this.showBackdrop, tappable: this.backdropDismiss, part: "backdrop" }), mode === 'ios' && h("div", { class: "modal-shadow" }), h("div", { role: "dialog", class: "modal-wrapper ion-overlay-wrapper", part: "content", ref: (el) => (this.wrapperEl = el) }, showHandle && h("div", { class: "modal-handle", part: "handle" }), h("slot", null))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {
@@ -1008,10 +1036,10 @@ let Modal = class {
   }; }
 };
 const LIFECYCLE_MAP = {
-  'ionModalDidPresent': 'ionViewDidEnter',
-  'ionModalWillPresent': 'ionViewWillEnter',
-  'ionModalWillDismiss': 'ionViewWillLeave',
-  'ionModalDidDismiss': 'ionViewDidLeave',
+  ionModalDidPresent: 'ionViewDidEnter',
+  ionModalWillPresent: 'ionViewWillEnter',
+  ionModalWillDismiss: 'ionViewWillLeave',
+  ionModalDidDismiss: 'ionViewDidLeave',
 };
 let modalIds = 0;
 Modal.style = {

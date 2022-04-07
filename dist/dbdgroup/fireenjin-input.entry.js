@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, j as Build, q as forceUpdate, h, m as getElement } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, j as Build, q as forceUpdate, h, m as getElement } from './index-e5ab994a.js';
 import { g as global } from './global-e1c7e609.js';
 import { a as commonjsGlobal$1 } from './_commonjsHelpers-93ec9c7a.js';
 
@@ -1655,7 +1655,7 @@ var registerWrapper = function registerWrapper(stripe, startTime) {
 
   stripe._registerWrapper({
     name: 'stripe-js',
-    version: "1.23.0",
+    version: "1.27.0",
     startTime: startTime
   });
 };
@@ -1718,7 +1718,7 @@ var initStripe = function initStripe(maybeStripe, args, startTime) {
   var stripe = maybeStripe.apply(undefined, args);
   registerWrapper(stripe, startTime);
   return stripe;
-};
+}; // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 
 // own script injection.
 

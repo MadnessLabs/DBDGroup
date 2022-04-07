@@ -1,14 +1,14 @@
-import { r as registerInstance, l as createEvent, q as forceUpdate, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as createButtonActiveGesture } from './button-active-ed303c07.js';
-import { B as BACKDROP, i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-884665fe.js';
-import { s as sanitizeDOMString } from './index-435af8e6.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import './haptic-fedcde92.js';
-import './index-c31991b6.js';
-import './hardware-back-button-b6ccf74a.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, q as forceUpdate, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as createButtonActiveGesture } from './button-active-8b9936c0.js';
+import { B as BACKDROP, i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-03fac0f0.js';
+import { s as sanitizeDOMString } from './index-be6112f8.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import './haptic-a9e94599.js';
+import './index-dd414b33.js';
+import './hardware-back-button-fa04d6e9.js';
+import './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -24,14 +24,12 @@ const iosEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.alert-wrapper'))
-    .keyframes([
+  wrapperAnimation.addElement(baseEl.querySelector('.alert-wrapper')).keyframes([
     { offset: 0, opacity: '0.01', transform: 'scale(1.1)' },
-    { offset: 1, opacity: '1', transform: 'scale(1)' }
+    { offset: 1, opacity: '1', transform: 'scale(1)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -50,14 +48,10 @@ const iosLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.alert-wrapper'))
-    .keyframes([
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(baseEl.querySelector('.alert-wrapper')).keyframes([
     { offset: 0, opacity: 0.99, transform: 'scale(1)' },
-    { offset: 1, opacity: 0, transform: 'scale(0.9)' }
+    { offset: 1, opacity: 0, transform: 'scale(0.9)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -80,14 +74,12 @@ const mdEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.alert-wrapper'))
-    .keyframes([
+  wrapperAnimation.addElement(baseEl.querySelector('.alert-wrapper')).keyframes([
     { offset: 0, opacity: '0.01', transform: 'scale(0.9)' },
-    { offset: 1, opacity: '1', transform: 'scale(1)' }
+    { offset: 1, opacity: '1', transform: 'scale(1)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -106,12 +98,8 @@ const mdLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.alert-wrapper'))
-    .fromTo('opacity', 0.99, 0);
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(baseEl.querySelector('.alert-wrapper')).fromTo('opacity', 0.99, 0);
   return baseAnimation
     .addElement(baseEl)
     .easing('ease-in-out')
@@ -165,46 +153,42 @@ let Alert = class {
     this.dispatchCancelHandler = (ev) => {
       const role = ev.detail.role;
       if (isCancel(role)) {
-        const cancelButton = this.processedButtons.find(b => b.role === 'cancel');
+        const cancelButton = this.processedButtons.find((b) => b.role === 'cancel');
         this.callButtonHandler(cancelButton);
       }
     };
   }
   onKeydown(ev) {
-    const inputTypes = new Set(this.processedInputs.map(i => i.type));
+    const inputTypes = new Set(this.processedInputs.map((i) => i.type));
     // The only inputs we want to navigate between using arrow keys are the radios
     // ignore the keydown event if it is not on a radio button
-    if (!inputTypes.has('radio')
-      || (ev.target && !this.el.contains(ev.target))
-      || ev.target.classList.contains('alert-button')) {
+    if (!inputTypes.has('radio') ||
+      (ev.target && !this.el.contains(ev.target)) ||
+      ev.target.classList.contains('alert-button')) {
       return;
     }
     // Get all radios inside of the radio group and then
     // filter out disabled radios since we need to skip those
     const query = this.el.querySelectorAll('.alert-radio');
-    const radios = Array.from(query).filter(radio => !radio.disabled);
+    const radios = Array.from(query).filter((radio) => !radio.disabled);
     // The focused radio is the one that shares the same id as
     // the event target
-    const index = radios.findIndex(radio => radio.id === ev.target.id);
+    const index = radios.findIndex((radio) => radio.id === ev.target.id);
     // We need to know what the next radio element should
     // be in order to change the focus
     let nextEl;
     // If hitting arrow down or arrow right, move to the next radio
     // If we're on the last radio, move to the first radio
     if (['ArrowDown', 'ArrowRight'].includes(ev.code)) {
-      nextEl = (index === radios.length - 1)
-        ? radios[0]
-        : radios[index + 1];
+      nextEl = index === radios.length - 1 ? radios[0] : radios[index + 1];
     }
     // If hitting arrow up or arrow left, move to the previous radio
     // If we're on the first radio, move to the last radio
     if (['ArrowUp', 'ArrowLeft'].includes(ev.code)) {
-      nextEl = (index === 0)
-        ? radios[radios.length - 1]
-        : radios[index - 1];
+      nextEl = index === 0 ? radios[radios.length - 1] : radios[index - 1];
     }
     if (nextEl && radios.includes(nextEl)) {
-      const nextProcessed = this.processedInputs.find(input => input.id === (nextEl === null || nextEl === void 0 ? void 0 : nextEl.id));
+      const nextProcessed = this.processedInputs.find((input) => input.id === (nextEl === null || nextEl === void 0 ? void 0 : nextEl.id));
       if (nextProcessed) {
         this.rbClick(nextProcessed);
         nextEl.focus();
@@ -213,10 +197,8 @@ let Alert = class {
   }
   buttonsChanged() {
     const buttons = this.buttons;
-    this.processedButtons = buttons.map(btn => {
-      return (typeof btn === 'string')
-        ? { text: btn, role: btn.toLowerCase() === 'cancel' ? 'cancel' : undefined }
-        : btn;
+    this.processedButtons = buttons.map((btn) => {
+      return typeof btn === 'string' ? { text: btn, role: btn.toLowerCase() === 'cancel' ? 'cancel' : undefined } : btn;
     });
   }
   inputsChanged() {
@@ -225,14 +207,14 @@ let Alert = class {
     // If an enabled checked input exists, set it to be the focusable input
     // otherwise we default to focus the first input
     // This will only be used when the input is type radio
-    const first = inputs.find(input => !input.disabled);
-    const checked = inputs.find(input => input.checked && !input.disabled);
+    const first = inputs.find((input) => !input.disabled);
+    const checked = inputs.find((input) => input.checked && !input.disabled);
     const focusable = checked || first;
     // An alert can be created with several different inputs. Radios,
     // checkboxes and inputs are all accepted, but they cannot be mixed.
-    const inputTypes = new Set(inputs.map(i => i.type));
+    const inputTypes = new Set(inputs.map((i) => i.type));
     if (inputTypes.has('checkbox') && inputTypes.has('radio')) {
-      console.warn(`Alert cannot mix input types: ${(Array.from(inputTypes.values()).join('/'))}. Please see alert docs for more info.`);
+      console.warn(`Alert cannot mix input types: ${Array.from(inputTypes.values()).join('/')}. Please see alert docs for more info.`);
     }
     this.inputType = inputTypes.values().next().value;
     this.processedInputs = inputs.map((i, index) => ({
@@ -249,7 +231,7 @@ let Alert = class {
       max: i.max,
       cssClass: i.cssClass || '',
       attributes: i.attributes || {},
-      tabindex: (i.type === 'radio' && i !== focusable) ? -1 : 0
+      tabindex: i.type === 'radio' && i !== focusable ? -1 : 0,
     }));
   }
   connectedCallback() {
@@ -335,7 +317,7 @@ let Alert = class {
     return Promise.resolve(false);
   }
   callButtonHandler(button, data) {
-    if (button && button.handler) {
+    if (button === null || button === void 0 ? void 0 : button.handler) {
       // a handler has been provided, execute it
       // pass the handler the values from the inputs
       const returnData = safeCall(button.handler, data);
@@ -357,27 +339,30 @@ let Alert = class {
     if (this.inputType === 'radio') {
       // this is an alert with radio buttons (single value select)
       // return the one value which is checked, otherwise undefined
-      const checkedInput = this.processedInputs.find(i => !!i.checked);
+      const checkedInput = this.processedInputs.find((i) => !!i.checked);
       return checkedInput ? checkedInput.value : undefined;
     }
     if (this.inputType === 'checkbox') {
       // this is an alert with checkboxes (multiple value select)
       // return an array of all the checked values
-      return this.processedInputs.filter(i => i.checked).map(i => i.value);
+      return this.processedInputs.filter((i) => i.checked).map((i) => i.value);
     }
     // this is an alert with text inputs
     // return an object of all the values with the input name as the key
     const values = {};
-    this.processedInputs.forEach(i => {
+    this.processedInputs.forEach((i) => {
       values[i.name] = i.value || '';
     });
     return values;
   }
   renderAlertInputs() {
     switch (this.inputType) {
-      case 'checkbox': return this.renderCheckbox();
-      case 'radio': return this.renderRadio();
-      default: return this.renderInput();
+      case 'checkbox':
+        return this.renderCheckbox();
+      case 'radio':
+        return this.renderRadio();
+      default:
+        return this.renderInput();
     }
   }
   renderCheckbox() {
@@ -386,24 +371,24 @@ let Alert = class {
     if (inputs.length === 0) {
       return null;
     }
-    return (h("div", { class: "alert-checkbox-group" }, inputs.map(i => (h("button", { type: "button", onClick: () => this.cbClick(i), "aria-checked": `${i.checked}`, id: i.id, disabled: i.disabled, tabIndex: i.tabindex, role: "checkbox", class: Object.assign(Object.assign({}, getClassMap(i.cssClass)), { 'alert-tappable': true, 'alert-checkbox': true, 'alert-checkbox-button': true, 'ion-focusable': true, 'alert-checkbox-button-disabled': i.disabled || false }) }, h("div", { class: "alert-button-inner" }, h("div", { class: "alert-checkbox-icon" }, h("div", { class: "alert-checkbox-inner" })), h("div", { class: "alert-checkbox-label" }, i.label)), mode === 'md' && h("ion-ripple-effect", null))))));
+    return (h("div", { class: "alert-checkbox-group" }, inputs.map((i) => (h("button", { type: "button", onClick: () => this.cbClick(i), "aria-checked": `${i.checked}`, id: i.id, disabled: i.disabled, tabIndex: i.tabindex, role: "checkbox", class: Object.assign(Object.assign({}, getClassMap(i.cssClass)), { 'alert-tappable': true, 'alert-checkbox': true, 'alert-checkbox-button': true, 'ion-focusable': true, 'alert-checkbox-button-disabled': i.disabled || false }) }, h("div", { class: "alert-button-inner" }, h("div", { class: "alert-checkbox-icon" }, h("div", { class: "alert-checkbox-inner" })), h("div", { class: "alert-checkbox-label" }, i.label)), mode === 'md' && h("ion-ripple-effect", null))))));
   }
   renderRadio() {
     const inputs = this.processedInputs;
     if (inputs.length === 0) {
       return null;
     }
-    return (h("div", { class: "alert-radio-group", role: "radiogroup", "aria-activedescendant": this.activeId }, inputs.map(i => (h("button", { type: "button", onClick: () => this.rbClick(i), "aria-checked": `${i.checked}`, disabled: i.disabled, id: i.id, tabIndex: i.tabindex, class: Object.assign(Object.assign({}, getClassMap(i.cssClass)), { 'alert-radio-button': true, 'alert-tappable': true, 'alert-radio': true, 'ion-focusable': true, 'alert-radio-button-disabled': i.disabled || false }), role: "radio" }, h("div", { class: "alert-button-inner" }, h("div", { class: "alert-radio-icon" }, h("div", { class: "alert-radio-inner" })), h("div", { class: "alert-radio-label" }, i.label)))))));
+    return (h("div", { class: "alert-radio-group", role: "radiogroup", "aria-activedescendant": this.activeId }, inputs.map((i) => (h("button", { type: "button", onClick: () => this.rbClick(i), "aria-checked": `${i.checked}`, disabled: i.disabled, id: i.id, tabIndex: i.tabindex, class: Object.assign(Object.assign({}, getClassMap(i.cssClass)), { 'alert-radio-button': true, 'alert-tappable': true, 'alert-radio': true, 'ion-focusable': true, 'alert-radio-button-disabled': i.disabled || false }), role: "radio" }, h("div", { class: "alert-button-inner" }, h("div", { class: "alert-radio-icon" }, h("div", { class: "alert-radio-inner" })), h("div", { class: "alert-radio-label" }, i.label)))))));
   }
   renderInput() {
     const inputs = this.processedInputs;
     if (inputs.length === 0) {
       return null;
     }
-    return (h("div", { class: "alert-input-group" }, inputs.map(i => {
+    return (h("div", { class: "alert-input-group" }, inputs.map((i) => {
       var _a, _b, _c, _d;
       if (i.type === 'textarea') {
-        return (h("div", { class: "alert-input-wrapper" }, h("textarea", Object.assign({ placeholder: i.placeholder, value: i.value, id: i.id, tabIndex: i.tabindex }, i.attributes, { disabled: (_b = (_a = i.attributes) === null || _a === void 0 ? void 0 : _a.disabled) !== null && _b !== void 0 ? _b : i.disabled, class: inputClass(i), onInput: e => {
+        return (h("div", { class: "alert-input-wrapper" }, h("textarea", Object.assign({ placeholder: i.placeholder, value: i.value, id: i.id, tabIndex: i.tabindex }, i.attributes, { disabled: (_b = (_a = i.attributes) === null || _a === void 0 ? void 0 : _a.disabled) !== null && _b !== void 0 ? _b : i.disabled, class: inputClass(i), onInput: (e) => {
             var _a;
             i.value = e.target.value;
             if ((_a = i.attributes) === null || _a === void 0 ? void 0 : _a.onInput) {
@@ -412,7 +397,7 @@ let Alert = class {
           } }))));
       }
       else {
-        return (h("div", { class: "alert-input-wrapper" }, h("input", Object.assign({ placeholder: i.placeholder, type: i.type, min: i.min, max: i.max, value: i.value, id: i.id, tabIndex: i.tabindex }, i.attributes, { disabled: (_d = (_c = i.attributes) === null || _c === void 0 ? void 0 : _c.disabled) !== null && _d !== void 0 ? _d : i.disabled, class: inputClass(i), onInput: e => {
+        return (h("div", { class: "alert-input-wrapper" }, h("input", Object.assign({ placeholder: i.placeholder, type: i.type, min: i.min, max: i.max, value: i.value, id: i.id, tabIndex: i.tabindex }, i.attributes, { disabled: (_d = (_c = i.attributes) === null || _c === void 0 ? void 0 : _c.disabled) !== null && _d !== void 0 ? _d : i.disabled, class: inputClass(i), onInput: (e) => {
             var _a;
             i.value = e.target.value;
             if ((_a = i.attributes) === null || _a === void 0 ? void 0 : _a.onInput) {
@@ -427,9 +412,9 @@ let Alert = class {
     const mode = getIonMode(this);
     const alertButtonGroupClass = {
       'alert-button-group': true,
-      'alert-button-group-vertical': buttons.length > 2
+      'alert-button-group-vertical': buttons.length > 2,
     };
-    return (h("div", { class: alertButtonGroupClass }, buttons.map(button => h("button", { type: "button", id: button.id, class: buttonClass(button), tabIndex: 0, onClick: () => this.buttonClick(button) }, h("span", { class: "alert-button-inner" }, button.text), mode === 'md' && h("ion-ripple-effect", null)))));
+    return (h("div", { class: alertButtonGroupClass }, buttons.map((button) => (h("button", { type: "button", id: button.id, class: buttonClass(button), tabIndex: 0, onClick: () => this.buttonClick(button) }, h("span", { class: "alert-button-inner" }, button.text), mode === 'md' && h("ion-ripple-effect", null))))));
   }
   render() {
     const { overlayIndex, header, subHeader, htmlAttributes } = this;
@@ -440,7 +425,7 @@ let Alert = class {
     const role = this.inputs.length > 0 || this.buttons.length > 0 ? 'alertdialog' : 'alert';
     return (h(Host, Object.assign({ role: role, "aria-modal": "true", tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + overlayIndex}`,
-      }, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'overlay-hidden': true, 'alert-translucent': this.translucent }), onIonAlertWillDismiss: this.dispatchCancelHandler, onIonBackdropTap: this.onBackdropTap }), h("ion-backdrop", { tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "alert-wrapper ion-overlay-wrapper", ref: el => this.wrapperEl = el }, h("div", { class: "alert-head" }, header && h("h2", { id: hdrId, class: "alert-title" }, header), subHeader && h("h2", { id: subHdrId, class: "alert-sub-title" }, subHeader)), h("div", { id: msgId, class: "alert-message", innerHTML: sanitizeDOMString(this.message) }), this.renderAlertInputs(), this.renderAlertButtons()), h("div", { tabindex: "0" })));
+      }, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'overlay-hidden': true, 'alert-translucent': this.translucent }), onIonAlertWillDismiss: this.dispatchCancelHandler, onIonBackdropTap: this.onBackdropTap }), h("ion-backdrop", { tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "alert-wrapper ion-overlay-wrapper", ref: (el) => (this.wrapperEl = el) }, h("div", { class: "alert-head" }, header && (h("h2", { id: hdrId, class: "alert-title" }, header)), subHeader && (h("h2", { id: subHdrId, class: "alert-sub-title" }, subHeader))), h("div", { id: msgId, class: "alert-message", innerHTML: sanitizeDOMString(this.message) }), this.renderAlertInputs(), this.renderAlertButtons()), h("div", { tabindex: "0" })));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

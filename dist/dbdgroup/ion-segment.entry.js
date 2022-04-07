@@ -1,8 +1,8 @@
-import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { c as config, g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { p as pointerCoord } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { c as config, g as getIonMode } from './ionic-global-fc3774f0.js';
+import { p as pointerCoord } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
-import { c as createColorClasses, h as hostContext } from './theme-c336c9d9.js';
+import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
 
 const segmentIosCss = ":host{--ripple-color:currentColor;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:flex;position:relative;align-items:stretch;justify-content:center;width:100%;background:var(--background);font-family:var(--ion-font-family, inherit);text-align:center;contain:paint;user-select:none}:host(.segment-scrollable){justify-content:start;width:auto;overflow-x:auto}:host(.segment-scrollable::-webkit-scrollbar){display:none}:host{--background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.065);border-radius:8px;overflow:hidden;z-index:0}:host(.ion-color){background:rgba(var(--ion-color-base-rgb), 0.065)}:host(.in-toolbar){margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;width:auto}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host(.in-toolbar){margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}:host(.in-toolbar:not(.ion-color)){background:var(--ion-toolbar-segment-background, var(--background))}:host(.in-toolbar-color:not(.ion-color)){background:rgba(var(--ion-color-contrast-rgb), 0.11)}";
 
@@ -57,8 +57,8 @@ let Segment = class {
       this.checked = current;
     };
     this.getSegmentButton = (selector) => {
-      const buttons = this.getButtons().filter(button => !button.disabled);
-      const currIndex = buttons.findIndex(button => button === document.activeElement);
+      const buttons = this.getButtons().filter((button) => !button.disabled);
+      const currIndex = buttons.findIndex((button) => button === document.activeElement);
       switch (selector) {
         case 'first':
           return buttons[0];
@@ -80,8 +80,7 @@ let Segment = class {
      * we need to emit style so the segment-buttons
      * can apply their color classes properly.
      */
-    if ((oldValue === undefined && value !== undefined) ||
-      (oldValue !== undefined && value === undefined)) {
+    if ((oldValue === undefined && value !== undefined) || (oldValue !== undefined && value === undefined)) {
       this.emitStyle();
     }
   }
@@ -120,15 +119,15 @@ let Segment = class {
   async componentDidLoad() {
     this.setCheckedClasses();
     this.ensureFocusable();
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.el,
       gestureName: 'segment',
       gesturePriority: 100,
       threshold: 0,
       passive: false,
-      onStart: ev => this.onStart(ev),
-      onMove: ev => this.onMove(ev),
-      onEnd: ev => this.onEnd(ev),
+      onStart: (ev) => this.onStart(ev),
+      onMove: (ev) => this.onMove(ev),
+      onEnd: (ev) => this.onEnd(ev),
     });
     this.gestureChanged();
     if (this.disabled) {
@@ -169,14 +168,14 @@ let Segment = class {
       return;
     }
     const buttons = this.getButtons();
-    const checked = buttons.find(button => button.value === this.value);
+    const checked = buttons.find((button) => button.value === this.value);
     const root = checked.shadowRoot || checked;
     const ripple = root.querySelector('ion-ripple-effect');
     if (!ripple) {
       return;
     }
     const { x, y } = pointerCoord(detail.event);
-    ripple.addRipple(x, y).then(remove => remove());
+    ripple.addRipple(x, y).then((remove) => remove());
   }
   /*
    * Activate both the segment and the buttons
@@ -184,7 +183,7 @@ let Segment = class {
    */
   setActivated(activated) {
     const buttons = this.getButtons();
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       if (activated) {
         button.classList.add('segment-button-activated');
       }
@@ -197,7 +196,7 @@ let Segment = class {
   activate(detail) {
     const clicked = detail.event.target;
     const buttons = this.getButtons();
-    const checked = buttons.find(button => button.value === this.value);
+    const checked = buttons.find((button) => button.value === this.value);
     // Make sure we are only checking for activation on a segment button
     // since disabled buttons will get the click on the segment
     if (clicked.tagName !== 'ION-SEGMENT-BUTTON') {
@@ -247,10 +246,10 @@ let Segment = class {
   }
   setCheckedClasses() {
     const buttons = this.getButtons();
-    const index = buttons.findIndex(button => button.value === this.value);
+    const index = buttons.findIndex((button) => button.value === this.value);
     const next = index + 1;
     // Keep track of the currently checked button
-    this.checked = buttons.find(button => button.value === this.value);
+    this.checked = buttons.find((button) => button.value === this.value);
     for (const button of buttons) {
       button.classList.remove('segment-button-after-checked');
     }
@@ -262,7 +261,7 @@ let Segment = class {
     const rtl = isRTL(this.el);
     const activated = this.activated;
     const buttons = this.getButtons();
-    const index = buttons.findIndex(button => button.value === this.value);
+    const index = buttons.findIndex((button) => button.value === this.value);
     const previous = buttons[index];
     let current;
     let nextIndex;
@@ -278,7 +277,7 @@ let Segment = class {
     // gesture event and the Y coordinate of the starting element, since the gesture
     // can move up and down off of the segment
     const currentX = detail.currentX;
-    const previousY = rect.top + (rect.height / 2);
+    const previousY = rect.top + rect.height / 2;
     /**
      * Segment can be used inside the shadow dom
      * so doing document.elementFromPoint would never
@@ -289,8 +288,8 @@ let Segment = class {
      */
     const root = this.el.getRootNode();
     const nextEl = root.elementFromPoint(currentX, previousY);
-    const decreaseIndex = rtl ? currentX > (left + width) : currentX < left;
-    const increaseIndex = rtl ? currentX < left : currentX > (left + width);
+    const decreaseIndex = rtl ? currentX > left + width : currentX < left;
+    const increaseIndex = rtl ? currentX < left : currentX > left + width;
     // If the indicator is currently activated then we have started the gesture
     // on top of the checked button so we need to slide the indicator
     // by checking the button next to it as we move
@@ -320,7 +319,6 @@ let Segment = class {
     if (!activated && isEnd) {
       current = nextEl;
     }
-    /* tslint:disable-next-line */
     if (current != null) {
       /**
        * If current element is ion-segment then that means
@@ -338,7 +336,7 @@ let Segment = class {
   }
   emitStyle() {
     this.ionStyle.emit({
-      'segment': true
+      segment: true,
     });
   }
   onKeyDown(ev) {
@@ -381,13 +379,12 @@ let Segment = class {
   }
   /* By default, focus is delegated to the selected `ion-segment-button`.
    * If there is no selected button, focus will instead pass to the first child button.
-  **/
+   **/
   ensureFocusable() {
     var _a;
     if (this.value !== undefined) {
       return;
     }
-    ;
     const buttons = this.getButtons();
     (_a = buttons[0]) === null || _a === void 0 ? void 0 : _a.setAttribute('tabindex', '0');
   }
@@ -399,7 +396,7 @@ let Segment = class {
         'in-toolbar-color': hostContext('ion-toolbar[color]', this.el),
         'segment-activated': this.activated,
         'segment-disabled': this.disabled,
-        'segment-scrollable': this.scrollable
+        'segment-scrollable': this.scrollable,
       }) }, h("slot", null)));
   }
   get el() { return getElement(this); }

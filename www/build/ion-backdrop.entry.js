@@ -1,6 +1,6 @@
-import { r as registerInstance, l as createEvent, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { GESTURE_CONTROLLER } from './index-c31991b6.js';
+import { r as registerInstance, l as createEvent, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { GESTURE_CONTROLLER } from './index-dd414b33.js';
 
 const backdropIosCss = ":host{left:0;right:0;top:0;bottom:0;display:block;position:absolute;transform:translateZ(0);contain:strict;cursor:pointer;opacity:0.01;touch-action:none;z-index:2}:host(.backdrop-hide){background:transparent}:host(.backdrop-no-tappable){cursor:auto}:host{background-color:var(--ion-backdrop-color, #000)}";
 
@@ -11,7 +11,7 @@ let Backdrop = class {
     registerInstance(this, hostRef);
     this.ionBackdropTap = createEvent(this, "ionBackdropTap", 7);
     this.blocker = GESTURE_CONTROLLER.createBlocker({
-      disableScroll: true
+      disableScroll: true,
     });
     /**
      * If `true`, the backdrop will be visible.

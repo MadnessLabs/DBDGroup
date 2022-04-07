@@ -1,6 +1,6 @@
-import { r as registerInstance, h } from './index-bac865b7.js';
-import './index.esm-a25bb2b3.js';
-import { F as Fh, i as ia } from './index.esm2017-e414a212.js';
+import { r as registerInstance, h } from './index-e5ab994a.js';
+import './index.esm-7f18c43a.js';
+import { Y as Yh, g as gc } from './index.esm2017-64852796.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
@@ -9,12 +9,16 @@ let AppTournament = class {
     registerInstance(this, hostRef);
   }
   async componentDidLoad() {
-    const query = await Fh(ia(this.db, `tournaments/${this.tournamentId}`));
+    const query = await Yh(gc(this.db, `tournaments/${this.tournamentId}`));
     this.tournament = query.data();
   }
   render() {
     var _a, _b, _c, _d;
-    return (h("ion-content", null, "The tournament is on ", this.tournamentId, h("ion-grid", null, h("ion-row", null, h("ion-col", null, h("ion-card", null, h("ion-list", { class: "ion-no-padding" }, h("ion-item-divider", { style: {
+    return (h("ion-content", null, "The tournament is on ", this.tournamentId, h("ion-grid", null, h("ion-row", { style: {
+        "justify-content": "center",
+      } }, h("ion-col", { size: "2" }, h("ion-accordion-group", null, h("ion-accordion", { value: "colors", "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
+        "text-align": "center",
+      }, slot: "header" }, h("ion-label", null, "Links")), h("ion-list", { slot: "content" }, h("ion-item", null, h("a", { href: "www.https://deadbydaylight.group/tournament" }, "Tournament sign-up")), h("ion-item", null, h("a", { href: "www.https://deadbydaylight.group/list" }, "Tournament List")), h("ion-item", null, h("a", { href: "www.https://deadbydaylight.group/profile" }, "Profile")), h("ion-item", null, h("a", { href: "www.https://deadbydaylight.group/admin" }, "Admin")), h("ion-item", null, h("a", { href: "www.https://deadbydaylight.group" }, "Home"))))))), h("ion-row", null, h("ion-col", null, h("ion-card", null, h("ion-list", { class: "ion-no-padding" }, h("ion-item-divider", { style: {
         "text-align": "center",
         "font-size": "30px",
       }, color: "success" }, "Survivor"), (_b = (_a = this.tournament) === null || _a === void 0 ? void 0 : _a.survivors) === null || _b === void 0 ? void 0 :

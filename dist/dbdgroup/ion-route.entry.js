@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent } from './index-e5ab994a.js';
 
 let Route = class {
   constructor(hostRef) {

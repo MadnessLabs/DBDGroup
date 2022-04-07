@@ -1,5 +1,5 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
 
 const accordionGroupIosCss = ":host{display:block}:host(.accordion-group-expand-inset){margin-left:16px;margin-right:16px;margin-top:16px;margin-bottom:16px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host(.accordion-group-expand-inset){margin-left:unset;margin-right:unset;-webkit-margin-start:16px;margin-inline-start:16px;-webkit-margin-end:16px;margin-inline-end:16px}}:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-expanding),:host(.accordion-group-expand-inset) ::slotted(ion-accordion.accordion-expanded){border-bottom:none}";
 
@@ -65,7 +65,7 @@ let AccordionGroup = class {
     if (!activeElement) {
       return;
     }
-    const accordionEl = (activeElement.tagName === 'ION-ACCORDION') ? activeElement : activeElement.closest('ion-accordion');
+    const accordionEl = activeElement.tagName === 'ION-ACCORDION' ? activeElement : activeElement.closest('ion-accordion');
     if (!accordionEl) {
       return;
     }
@@ -75,7 +75,7 @@ let AccordionGroup = class {
     }
     // If the active accordion is not in the current array of accordions, do not do anything
     const accordions = await this.getAccordions();
-    const startingIndex = accordions.findIndex(a => a === accordionEl);
+    const startingIndex = accordions.findIndex((a) => a === accordionEl);
     if (startingIndex === -1) {
       return;
     }
@@ -122,7 +122,7 @@ let AccordionGroup = class {
       if (multiple) {
         const groupValue = value || [];
         const processedValue = Array.isArray(groupValue) ? groupValue : [groupValue];
-        const valueExists = processedValue.find(v => v === accordionValue);
+        const valueExists = processedValue.find((v) => v === accordionValue);
         if (valueExists === undefined && accordionValue !== undefined) {
           this.value = [...processedValue, accordionValue];
         }
@@ -139,7 +139,7 @@ let AccordionGroup = class {
       if (multiple) {
         const groupValue = value || [];
         const processedValue = Array.isArray(groupValue) ? groupValue : [groupValue];
-        this.value = processedValue.filter(v => v !== accordionValue);
+        this.value = processedValue.filter((v) => v !== accordionValue);
       }
       else {
         this.value = undefined;
@@ -148,7 +148,6 @@ let AccordionGroup = class {
   }
   findNextAccordion(accordions, startingIndex) {
     const nextAccordion = accordions[startingIndex + 1];
-    // tslint:disable-next-line:strict-type-predicates
     if (nextAccordion === undefined) {
       return accordions[0];
     }
@@ -156,7 +155,6 @@ let AccordionGroup = class {
   }
   findPreviousAccordion(accordions, startingIndex) {
     const prevAccordion = accordions[startingIndex - 1];
-    // tslint:disable-next-line:strict-type-predicates
     if (prevAccordion === undefined) {
       return accordions[accordions.length - 1];
     }
@@ -175,7 +173,7 @@ let AccordionGroup = class {
         [mode]: true,
         'accordion-group-disabled': disabled,
         'accordion-group-readonly': readonly,
-        [`accordion-group-expand-${expand}`]: true
+        [`accordion-group-expand-${expand}`]: true,
       }, role: "presentation" }, h("slot", null)));
   }
   get el() { return getElement(this); }

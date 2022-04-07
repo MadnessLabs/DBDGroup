@@ -1,5 +1,5 @@
-import { r as registerInstance, o as readTask, i as writeTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
+import { r as registerInstance, o as readTask, i as writeTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
 
 const rippleEffectCss = ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:strict;pointer-events:none}:host(.unbounded){contain:layout size style}.ripple-effect{border-radius:50%;position:absolute;background-color:currentColor;color:inherit;contain:strict;opacity:0;animation:225ms rippleAnimation forwards, 75ms fadeInAnimation forwards;will-change:transform, opacity;pointer-events:none}.fade-out{transform:translate(var(--translate-end)) scale(var(--final-scale, 1));animation:150ms fadeOutAnimation forwards}@keyframes rippleAnimation{from{animation-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transform:scale(1)}to{transform:translate(var(--translate-end)) scale(var(--final-scale, 1))}}@keyframes fadeInAnimation{from{animation-timing-function:linear;opacity:0}to{opacity:0.16}}@keyframes fadeOutAnimation{from{animation-timing-function:linear;opacity:0.16}to{opacity:0}}";
 
@@ -24,7 +24,7 @@ let RippleEffect = class {
    * @param y The vertical coordinate of where the ripple should start.
    */
   async addRipple(x, y) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       readTask(() => {
         const rect = this.el.getBoundingClientRect();
         const width = rect.width;
@@ -71,7 +71,7 @@ let RippleEffect = class {
     const mode = getIonMode(this);
     return (h(Host, { role: "presentation", class: {
         [mode]: true,
-        'unbounded': this.unbounded
+        unbounded: this.unbounded,
       } }));
   }
   get el() { return getElement(this); }

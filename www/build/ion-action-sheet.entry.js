@@ -1,13 +1,13 @@
-import { r as registerInstance, l as createEvent, o as readTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as createButtonActiveGesture } from './button-active-ed303c07.js';
-import { B as BACKDROP, i as isCancel, a as present, p as prepareOverlay, d as dismiss, e as eventMethod, s as safeCall } from './overlays-884665fe.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import './haptic-fedcde92.js';
-import './index-c31991b6.js';
-import './hardware-back-button-b6ccf74a.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, o as readTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as createButtonActiveGesture } from './button-active-8b9936c0.js';
+import { B as BACKDROP, i as isCancel, a as present, p as prepareOverlay, d as dismiss, e as eventMethod, s as safeCall } from './overlays-03fac0f0.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import './haptic-a9e94599.js';
+import './index-dd414b33.js';
+import './hardware-back-button-fa04d6e9.js';
+import './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -23,7 +23,7 @@ const iosEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
   wrapperAnimation
@@ -46,9 +46,7 @@ const iosLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
   wrapperAnimation
     .addElement(baseEl.querySelector('.action-sheet-wrapper'))
     .fromTo('transform', 'translateY(0%)', 'translateY(100%)');
@@ -73,7 +71,7 @@ const mdEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
   wrapperAnimation
@@ -96,9 +94,7 @@ const mdLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
   wrapperAnimation
     .addElement(baseEl.querySelector('.action-sheet-wrapper'))
     .fromTo('transform', 'translateY(0%)', 'translateY(100%)');
@@ -149,7 +145,7 @@ let ActionSheet = class {
     this.dispatchCancelHandler = (ev) => {
       const role = ev.detail.role;
       if (isCancel(role)) {
-        const cancelButton = this.getButtons().find(b => b.role === 'cancel');
+        const cancelButton = this.getButtons().find((b) => b.role === 'cancel');
         this.callButtonHandler(cancelButton);
       }
     };
@@ -212,10 +208,8 @@ let ActionSheet = class {
     return true;
   }
   getButtons() {
-    return this.buttons.map(b => {
-      return (typeof b === 'string')
-        ? { text: b }
-        : b;
+    return this.buttons.map((b) => {
+      return typeof b === 'string' ? { text: b } : b;
     });
   }
   disconnectedCallback() {
@@ -247,17 +241,14 @@ let ActionSheet = class {
     const { htmlAttributes } = this;
     const mode = getIonMode(this);
     const allButtons = this.getButtons();
-    const cancelButton = allButtons.find(b => b.role === 'cancel');
-    const buttons = allButtons.filter(b => b.role !== 'cancel');
+    const cancelButton = allButtons.find((b) => b.role === 'cancel');
+    const buttons = allButtons.filter((b) => b.role !== 'cancel');
     return (h(Host, Object.assign({ role: "dialog", "aria-modal": "true", tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + this.overlayIndex}`,
-      }, class: Object.assign(Object.assign({ [mode]: true }, getClassMap(this.cssClass)), { 'overlay-hidden': true, 'action-sheet-translucent': this.translucent }), onIonActionSheetWillDismiss: this.dispatchCancelHandler, onIonBackdropTap: this.onBackdropTap }), h("ion-backdrop", { tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "action-sheet-wrapper ion-overlay-wrapper", role: "dialog", ref: el => this.wrapperEl = el }, h("div", { class: "action-sheet-container" }, h("div", { class: "action-sheet-group", ref: el => this.groupEl = el }, this.header !== undefined &&
-      h("div", { class: {
-          'action-sheet-title': true,
-          'action-sheet-has-sub-title': this.subHeader !== undefined
-        } }, this.header, this.subHeader && h("div", { class: "action-sheet-sub-title" }, this.subHeader)), buttons.map(b => h("button", { type: "button", id: b.id, class: buttonClass(b), onClick: () => this.buttonClick(b) }, h("span", { class: "action-sheet-button-inner" }, b.icon && h("ion-icon", { icon: b.icon, lazy: false, class: "action-sheet-icon" }), b.text), mode === 'md' && h("ion-ripple-effect", null)))), cancelButton &&
-      h("div", { class: "action-sheet-group action-sheet-group-cancel" }, h("button", { type: "button", class: buttonClass(cancelButton), onClick: () => this.buttonClick(cancelButton) }, h("span", { class: "action-sheet-button-inner" }, cancelButton.icon &&
-        h("ion-icon", { icon: cancelButton.icon, lazy: false, class: "action-sheet-icon" }), cancelButton.text), mode === 'md' && h("ion-ripple-effect", null))))), h("div", { tabindex: "0" })));
+      }, class: Object.assign(Object.assign({ [mode]: true }, getClassMap(this.cssClass)), { 'overlay-hidden': true, 'action-sheet-translucent': this.translucent }), onIonActionSheetWillDismiss: this.dispatchCancelHandler, onIonBackdropTap: this.onBackdropTap }), h("ion-backdrop", { tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "action-sheet-wrapper ion-overlay-wrapper", role: "dialog", ref: (el) => (this.wrapperEl = el) }, h("div", { class: "action-sheet-container" }, h("div", { class: "action-sheet-group", ref: (el) => (this.groupEl = el) }, this.header !== undefined && (h("div", { class: {
+        'action-sheet-title': true,
+        'action-sheet-has-sub-title': this.subHeader !== undefined,
+      } }, this.header, this.subHeader && h("div", { class: "action-sheet-sub-title" }, this.subHeader))), buttons.map((b) => (h("button", { type: "button", id: b.id, class: buttonClass(b), onClick: () => this.buttonClick(b) }, h("span", { class: "action-sheet-button-inner" }, b.icon && h("ion-icon", { icon: b.icon, lazy: false, class: "action-sheet-icon" }), b.text), mode === 'md' && h("ion-ripple-effect", null))))), cancelButton && (h("div", { class: "action-sheet-group action-sheet-group-cancel" }, h("button", { type: "button", class: buttonClass(cancelButton), onClick: () => this.buttonClick(cancelButton) }, h("span", { class: "action-sheet-button-inner" }, cancelButton.icon && h("ion-icon", { icon: cancelButton.icon, lazy: false, class: "action-sheet-icon" }), cancelButton.text), mode === 'md' && h("ion-ripple-effect", null)))))), h("div", { tabindex: "0" })));
   }
   get el() { return getElement(this); }
 };

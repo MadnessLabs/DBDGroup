@@ -1,7 +1,7 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as componentOnReady } from './helpers-b5b4d5eb.js';
-import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-fedcde92.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as componentOnReady } from './helpers-e7913fb8.js';
+import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-a9e94599.js';
 
 const reorderGroupCss = ".reorder-list-active>*{transition:transform 300ms;will-change:transform}.reorder-enabled{user-select:none}.reorder-enabled ion-reorder{display:block;cursor:grab;pointer-events:all;touch-action:none}.reorder-selected,.reorder-selected ion-reorder{cursor:grabbing}.reorder-selected{position:relative;transition:none !important;box-shadow:0 0 10px rgba(0, 0, 0, 0.4);opacity:0.8;z-index:100}.reorder-visible ion-reorder .reorder-icon{transform:translate3d(0,  0,  0)}";
 
@@ -30,19 +30,19 @@ let ReorderGroup = class {
   async connectedCallback() {
     const contentEl = this.el.closest('ion-content');
     if (contentEl) {
-      await new Promise(resolve => componentOnReady(contentEl, resolve));
+      await new Promise((resolve) => componentOnReady(contentEl, resolve));
       this.scrollEl = await contentEl.getScrollElement();
     }
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.el,
       gestureName: 'reorder',
       gesturePriority: 110,
       threshold: 0,
       direction: 'y',
       passive: false,
-      canStart: detail => this.canStart(detail),
-      onStart: ev => this.onStart(ev),
-      onMove: ev => this.onMove(ev),
+      canStart: (detail) => this.canStart(detail),
+      onStart: (ev) => this.onStart(ev),
+      onMove: (ev) => this.onMove(ev),
       onEnd: () => this.onEnd(),
     });
     this.disabledChanged();
@@ -88,7 +88,7 @@ let ReorderGroup = class {
   }
   onStart(ev) {
     ev.event.preventDefault();
-    const item = this.selectedItemEl = ev.data;
+    const item = (this.selectedItemEl = ev.data);
     const heights = this.cachedHeights;
     heights.length = 0;
     const el = this.el;
@@ -162,7 +162,7 @@ let ReorderGroup = class {
       this.ionItemReorder.emit({
         from: fromIndex,
         to: toIndex,
-        complete: this.completeSync.bind(this)
+        complete: this.completeSync.bind(this),
       });
     }
     hapticSelectionEnd();
@@ -175,9 +175,7 @@ let ReorderGroup = class {
       const toIndex = this.lastToIndex;
       const fromIndex = indexForItem(selectedItemEl);
       if (toIndex !== fromIndex && (listOrReorder === undefined || listOrReorder === true)) {
-        const ref = (fromIndex < toIndex)
-          ? children[toIndex + 1]
-          : children[toIndex];
+        const ref = fromIndex < toIndex ? children[toIndex + 1] : children[toIndex];
         this.el.insertBefore(selectedItemEl, ref);
       }
       if (Array.isArray(listOrReorder)) {

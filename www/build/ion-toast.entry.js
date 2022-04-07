@@ -1,11 +1,11 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-884665fe.js';
-import { s as sanitizeDOMString } from './index-435af8e6.js';
-import { g as getClassMap, c as createColorClasses } from './theme-c336c9d9.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import { g as getElementRoot } from './helpers-b5b4d5eb.js';
-import './hardware-back-button-b6ccf74a.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-03fac0f0.js';
+import { s as sanitizeDOMString } from './index-be6112f8.js';
+import { g as getClassMap, c as createColorClasses } from './theme-7ef00c83.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import { g as getElementRoot } from './helpers-e7913fb8.js';
+import './hardware-back-button-fa04d6e9.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -34,10 +34,7 @@ const iosEnterAnimation = (baseEl, position) => {
       wrapperAnimation.fromTo('transform', 'translateY(100%)', `translateY(${bottom})`);
       break;
   }
-  return baseAnimation
-    .easing('cubic-bezier(.155,1.105,.295,1.12)')
-    .duration(400)
-    .addAnimation(wrapperAnimation);
+  return baseAnimation.easing('cubic-bezier(.155,1.105,.295,1.12)').duration(400).addAnimation(wrapperAnimation);
 };
 
 /*!
@@ -65,10 +62,7 @@ const iosLeaveAnimation = (baseEl, position) => {
       wrapperAnimation.fromTo('transform', `translateY(${bottom})`, 'translateY(100%)');
       break;
   }
-  return baseAnimation
-    .easing('cubic-bezier(.36,.66,.04,1)')
-    .duration(300)
-    .addAnimation(wrapperAnimation);
+  return baseAnimation.easing('cubic-bezier(.36,.66,.04,1)').duration(300).addAnimation(wrapperAnimation);
 };
 
 /*!
@@ -100,10 +94,7 @@ const mdEnterAnimation = (baseEl, position) => {
       wrapperAnimation.fromTo('opacity', 0.01, 1);
       break;
   }
-  return baseAnimation
-    .easing('cubic-bezier(.36,.66,.04,1)')
-    .duration(400)
-    .addAnimation(wrapperAnimation);
+  return baseAnimation.easing('cubic-bezier(.36,.66,.04,1)').duration(400).addAnimation(wrapperAnimation);
 };
 
 /*!
@@ -117,13 +108,8 @@ const mdLeaveAnimation = (baseEl) => {
   const wrapperAnimation = createAnimation();
   const root = getElementRoot(baseEl);
   const wrapperEl = root.querySelector('.toast-wrapper');
-  wrapperAnimation
-    .addElement(wrapperEl)
-    .fromTo('opacity', 0.99, 0);
-  return baseAnimation
-    .easing('cubic-bezier(.36,.66,.04,1)')
-    .duration(300)
-    .addAnimation(wrapperAnimation);
+  wrapperAnimation.addElement(wrapperEl).fromTo('opacity', 0.99, 0);
+  return baseAnimation.easing('cubic-bezier(.36,.66,.04,1)').duration(300).addAnimation(wrapperAnimation);
 };
 
 const toastIosCss = ":host{--border-width:0;--border-style:none;--border-color:initial;--box-shadow:none;--min-width:auto;--width:auto;--min-height:auto;--height:auto;--max-height:auto;--white-space:normal;left:0;top:0;display:block;position:absolute;width:100%;height:100%;outline:none;color:var(--color);font-family:var(--ion-font-family, inherit);contain:strict;z-index:1001;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host(.overlay-hidden){display:none}:host(.ion-color){--button-color:inherit;color:var(--ion-color-contrast)}:host(.ion-color) .toast-button-cancel{color:inherit}:host(.ion-color) .toast-wrapper{background:var(--ion-color-base)}.toast-wrapper{border-radius:var(--border-radius);left:var(--start);right:var(--end);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);box-shadow:var(--box-shadow)}[dir=rtl] .toast-wrapper,:host-context([dir=rtl]) .toast-wrapper{left:unset;right:unset;left:var(--end);right:var(--start)}.toast-container{display:flex;align-items:center;pointer-events:auto;height:inherit;min-height:inherit;max-height:inherit;contain:content}.toast-content{display:flex;flex:1;flex-direction:column;justify-content:center}.toast-icon{margin-left:16px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.toast-icon{margin-left:unset;-webkit-margin-start:16px;margin-inline-start:16px}}.toast-message{flex:1;white-space:var(--white-space)}.toast-button-group{display:flex}.toast-button{border:0;outline:none;color:var(--button-color);z-index:0}.toast-icon,.toast-button-icon{font-size:1.4em}.toast-button-inner{display:flex;align-items:center}@media (any-hover: hover){.toast-button:hover{cursor:pointer}}:host{--background:var(--ion-color-step-50, #f2f2f2);--border-radius:14px;--button-color:var(--ion-color-primary, #3880ff);--color:var(--ion-color-step-850, #262626);--max-width:700px;--start:10px;--end:10px;font-size:14px}.toast-wrapper{margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:block;position:absolute;z-index:10}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.toast-wrapper{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}@supports (backdrop-filter: blur(0)){:host(.toast-translucent) .toast-wrapper{background:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);backdrop-filter:saturate(180%) blur(20px)}}.toast-wrapper.toast-top{transform:translate3d(0,  -100%,  0);top:0}.toast-wrapper.toast-middle{opacity:0.01}.toast-wrapper.toast-bottom{transform:translate3d(0,  100%,  0);bottom:0}.toast-content{padding-left:15px;padding-right:15px;padding-top:15px;padding-bottom:15px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.toast-content{padding-left:unset;padding-right:unset;-webkit-padding-start:15px;padding-inline-start:15px;-webkit-padding-end:15px;padding-inline-end:15px}}.toast-header{margin-bottom:2px;font-weight:500}.toast-button{padding-left:15px;padding-right:15px;padding-top:10px;padding-bottom:10px;height:44px;transition:background-color, opacity 100ms linear;border:0;background-color:transparent;font-family:var(--ion-font-family);font-size:17px;font-weight:500;overflow:hidden}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.toast-button{padding-left:unset;padding-right:unset;-webkit-padding-start:15px;padding-inline-start:15px;-webkit-padding-end:15px;padding-inline-end:15px}}.toast-button.ion-activated{opacity:0.4}@media (any-hover: hover){.toast-button:hover{opacity:0.6}}";
@@ -164,7 +150,7 @@ let Toast = class {
     this.dispatchCancelHandler = (ev) => {
       const role = ev.detail.role;
       if (isCancel(role)) {
-        const cancelButton = this.getButtons().find(b => b.role === 'cancel');
+        const cancelButton = this.getButtons().find((b) => b.role === 'cancel');
         this.callButtonHandler(cancelButton);
       }
     };
@@ -210,10 +196,8 @@ let Toast = class {
   }
   getButtons() {
     const buttons = this.buttons
-      ? this.buttons.map(b => {
-        return (typeof b === 'string')
-          ? { text: b }
-          : b;
+      ? this.buttons.map((b) => {
+        return typeof b === 'string' ? { text: b } : b;
       })
       : [];
     return buttons;
@@ -230,7 +214,7 @@ let Toast = class {
     return Promise.resolve();
   }
   async callButtonHandler(button) {
-    if (button && button.handler) {
+    if (button === null || button === void 0 ? void 0 : button.handler) {
       // a handler has been provided, execute it
       // pass the handler the values from the inputs
       try {
@@ -253,27 +237,23 @@ let Toast = class {
     const mode = getIonMode(this);
     const buttonGroupsClasses = {
       'toast-button-group': true,
-      [`toast-button-group-${side}`]: true
+      [`toast-button-group-${side}`]: true,
     };
-    return (h("div", { class: buttonGroupsClasses }, buttons.map(b => h("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: () => this.buttonClick(b), part: "button" }, h("div", { class: "toast-button-inner" }, b.icon &&
-      h("ion-icon", { icon: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-button-icon" }), b.text), mode === 'md' && h("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })))));
+    return (h("div", { class: buttonGroupsClasses }, buttons.map((b) => (h("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: () => this.buttonClick(b), part: "button" }, h("div", { class: "toast-button-inner" }, b.icon && (h("ion-icon", { icon: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-button-icon" })), b.text), mode === 'md' && (h("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })))))));
   }
   render() {
     const allButtons = this.getButtons();
-    const startButtons = allButtons.filter(b => b.side === 'start');
-    const endButtons = allButtons.filter(b => b.side !== 'start');
+    const startButtons = allButtons.filter((b) => b.side === 'start');
+    const endButtons = allButtons.filter((b) => b.side !== 'start');
     const mode = getIonMode(this);
     const wrapperClass = {
       'toast-wrapper': true,
-      [`toast-${this.position}`]: true
+      [`toast-${this.position}`]: true,
     };
     const role = allButtons.length > 0 ? 'dialog' : 'status';
-    return (h(Host, Object.assign({ role: role, tabindex: "-1" }, this.htmlAttributes, { style: {
+    return (h(Host, Object.assign({ "aria-live": "polite", "aria-atomic": "true", role: role, tabindex: "-1" }, this.htmlAttributes, { style: {
         zIndex: `${60000 + this.overlayIndex}`,
-      }, class: createColorClasses(this.color, Object.assign(Object.assign({ [mode]: true }, getClassMap(this.cssClass)), { 'overlay-hidden': true, 'toast-translucent': this.translucent })), onIonToastWillDismiss: this.dispatchCancelHandler }), h("div", { class: wrapperClass }, h("div", { class: "toast-container", part: "container" }, this.renderButtons(startButtons, 'start'), this.icon !== undefined &&
-      h("ion-icon", { class: "toast-icon", part: "icon", icon: this.icon, lazy: false, "aria-hidden": "true" }), h("div", { class: "toast-content" }, this.header !== undefined &&
-      h("div", { class: "toast-header", part: "header" }, this.header), this.message !== undefined &&
-      h("div", { class: "toast-message", part: "message", innerHTML: sanitizeDOMString(this.message) })), this.renderButtons(endButtons, 'end')))));
+      }, class: createColorClasses(this.color, Object.assign(Object.assign({ [mode]: true }, getClassMap(this.cssClass)), { 'overlay-hidden': true, 'toast-translucent': this.translucent })), onIonToastWillDismiss: this.dispatchCancelHandler }), h("div", { class: wrapperClass }, h("div", { class: "toast-container", part: "container" }, this.renderButtons(startButtons, 'start'), this.icon !== undefined && (h("ion-icon", { class: "toast-icon", part: "icon", icon: this.icon, lazy: false, "aria-hidden": "true" })), h("div", { class: "toast-content" }, this.header !== undefined && (h("div", { class: "toast-header", part: "header" }, this.header)), this.message !== undefined && (h("div", { class: "toast-message", part: "message", innerHTML: sanitizeDOMString(this.message) }))), this.renderButtons(endButtons, 'end')))));
   }
   get el() { return getElement(this); }
 };

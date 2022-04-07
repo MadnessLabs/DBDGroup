@@ -1,6 +1,6 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { h as isEndSide } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { h as isEndSide } from './helpers-e7913fb8.js';
 
 const itemSlidingCss = "ion-item-sliding{display:block;position:relative;width:100%;overflow:hidden;user-select:none}ion-item-sliding .item{user-select:none}.item-sliding-active-slide .item{position:relative;transition:transform 500ms cubic-bezier(0.36, 0.66, 0.04, 1);opacity:1;z-index:2;pointer-events:none;will-change:transform}.item-sliding-active-swipe-end .item-options-end .item-option-expandable{padding-left:100%;order:1;transition-duration:0.6s;transition-property:padding-left}[dir=rtl] .item-sliding-active-swipe-end .item-options-end .item-option-expandable,:host-context([dir=rtl]) .item-sliding-active-swipe-end .item-options-end .item-option-expandable{order:-1}.item-sliding-active-swipe-start .item-options-start .item-option-expandable{padding-right:100%;order:-1;transition-duration:0.6s;transition-property:padding-right}[dir=rtl] .item-sliding-active-swipe-start .item-options-start .item-option-expandable,:host-context([dir=rtl]) .item-sliding-active-swipe-start .item-options-start .item-option-expandable{order:1}";
 
@@ -35,15 +35,15 @@ let ItemSliding = class {
     this.item = this.el.querySelector('ion-item');
     this.closestContent = this.el.closest('ion-content');
     await this.updateOptions();
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.el,
       gestureName: 'item-swipe',
       gesturePriority: 100,
       threshold: 5,
-      canStart: ev => this.canStart(ev),
+      canStart: (ev) => this.canStart(ev),
       onStart: () => this.onStart(),
-      onMove: ev => this.onMove(ev),
-      onEnd: ev => this.onEnd(ev),
+      onMove: (ev) => this.onMove(ev),
+      onEnd: (ev) => this.onEnd(ev),
     });
     this.disabledChanged();
   }
@@ -92,7 +92,7 @@ let ItemSliding = class {
      * so we know which direction to move the options
      */
     if (side === undefined) {
-      side = (optionsToOpen === this.leftOptions) ? 'start' : 'end';
+      side = optionsToOpen === this.leftOptions ? 'start' : 'end';
     }
     // In RTL we want to switch the sides
     side = isEndSide(side) ? 'end' : 'start';
@@ -112,20 +112,20 @@ let ItemSliding = class {
     this.state = 4 /* Enabled */;
     requestAnimationFrame(() => {
       this.calculateOptsWidth();
-      const width = (side === 'end') ? this.optsWidthRightSide : -this.optsWidthLeftSide;
+      const width = side === 'end' ? this.optsWidthRightSide : -this.optsWidthLeftSide;
       openSlidingItem = this.el;
       this.setOpenAmount(width, false);
-      this.state = (side === 'end') ? 8 /* End */ : 16 /* Start */;
+      this.state = side === 'end' ? 8 /* End */ : 16 /* Start */;
     });
   }
   /**
-   * Close the sliding item. Items can also be closed from the [List](../list).
+   * Close the sliding item. Items can also be closed from the [List](./list).
    */
   async close() {
     this.setOpenAmount(0, true);
   }
   /**
-   * Close all of the sliding items in the list. Items can also be closed from the [List](../list).
+   * Close all of the sliding items in the list. Items can also be closed from the [List](./list).
    */
   async closeOpened() {
     if (openSlidingItem !== undefined) {
@@ -164,7 +164,7 @@ let ItemSliding = class {
        * util here since we need to wait for all of these items
        * to be ready before we set `this.sides` and `this.optsDirty`.
        */
-      const option = (item.componentOnReady !== undefined) ? await item.componentOnReady() : item;
+      const option = item.componentOnReady !== undefined ? await item.componentOnReady() : item;
       const side = isEndSide(option.side) ? 'end' : 'start';
       if (side === 'start') {
         this.leftOptions = option;
@@ -185,7 +185,7 @@ let ItemSliding = class {
      * back will still work.
      */
     const rtl = document.dir === 'rtl';
-    const atEdge = (rtl) ? (window.innerWidth - gesture.startX) < 15 : gesture.startX < 15;
+    const atEdge = rtl ? window.innerWidth - gesture.startX < 15 : gesture.startX < 15;
     if (atEdge) {
       return false;
     }
@@ -243,8 +243,10 @@ let ItemSliding = class {
       case 1 /* Start */:
         openAmount = Math.min(0, openAmount);
         break;
-      case 3 /* Both */: break;
-      case 0 /* None */: return;
+      case 3 /* Both */:
+        break;
+      case 0 /* None */:
+        return;
       default:
         console.warn('invalid ItemSideFlags value', this.sides);
         break;
@@ -264,12 +266,10 @@ let ItemSliding = class {
     // Restore ion-content scrollY to initial value when gesture ends
     this.restoreContentScrollY();
     const velocity = gesture.velocityX;
-    let restingPoint = (this.openAmount > 0)
-      ? this.optsWidthRightSide
-      : -this.optsWidthLeftSide;
+    let restingPoint = this.openAmount > 0 ? this.optsWidthRightSide : -this.optsWidthLeftSide;
     // Check if the drag didn't clear the buttons mid-point
     // and we aren't moving fast enough to swipe open
-    const isResetDirection = (this.openAmount > 0) === !(velocity < 0);
+    const isResetDirection = this.openAmount > 0 === !(velocity < 0);
     const isMovingFast = Math.abs(velocity) > 0.3;
     const isOnCloseZone = Math.abs(this.openAmount) < Math.abs(restingPoint / 2);
     if (swipeShouldReset(isResetDirection, isMovingFast, isOnCloseZone)) {
@@ -313,14 +313,16 @@ let ItemSliding = class {
       style.transition = '';
     }
     if (openAmount > 0) {
-      this.state = (openAmount >= (this.optsWidthRightSide + SWIPE_MARGIN))
-        ? 8 /* End */ | 32 /* SwipeEnd */
-        : 8 /* End */;
+      this.state =
+        openAmount >= this.optsWidthRightSide + SWIPE_MARGIN
+          ? 8 /* End */ | 32 /* SwipeEnd */
+          : 8 /* End */;
     }
     else if (openAmount < 0) {
-      this.state = (openAmount <= (-this.optsWidthLeftSide - SWIPE_MARGIN))
-        ? 16 /* Start */ | 64 /* SwipeStart */
-        : 16 /* Start */;
+      this.state =
+        openAmount <= -this.optsWidthLeftSide - SWIPE_MARGIN
+          ? 16 /* Start */ | 64 /* SwipeStart */
+          : 16 /* Start */;
     }
     else {
       /**
@@ -337,7 +339,7 @@ let ItemSliding = class {
         this.state = 2 /* Disabled */;
         this.tmr = undefined;
         if (this.gesture) {
-          this.gesture.enable(true);
+          this.gesture.enable(!this.disabled);
         }
       }, 600);
       openSlidingItem = undefined;
@@ -347,7 +349,7 @@ let ItemSliding = class {
     style.transform = `translate3d(${-openAmount}px,0,0)`;
     this.ionDrag.emit({
       amount: openAmount,
-      ratio: this.getSlidingRatioSync()
+      ratio: this.getSlidingRatioSync(),
     });
   }
   getSlidingRatioSync() {
@@ -365,11 +367,11 @@ let ItemSliding = class {
     const mode = getIonMode(this);
     return (h(Host, { class: {
         [mode]: true,
-        'item-sliding-active-slide': (this.state !== 2 /* Disabled */),
+        'item-sliding-active-slide': this.state !== 2 /* Disabled */,
         'item-sliding-active-options-end': (this.state & 8 /* End */) !== 0,
         'item-sliding-active-options-start': (this.state & 16 /* Start */) !== 0,
         'item-sliding-active-swipe-end': (this.state & 32 /* SwipeEnd */) !== 0,
-        'item-sliding-active-swipe-start': (this.state & 64 /* SwipeStart */) !== 0
+        'item-sliding-active-swipe-start': (this.state & 64 /* SwipeStart */) !== 0,
       } }));
   }
   get el() { return getElement(this); }

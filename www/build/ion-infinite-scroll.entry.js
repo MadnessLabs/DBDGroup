@@ -1,6 +1,6 @@
-import { r as registerInstance, l as createEvent, i as writeTask, o as readTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as componentOnReady } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, i as writeTask, o as readTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as componentOnReady } from './helpers-e7913fb8.js';
 
 const infiniteScrollCss = "ion-infinite-scroll{display:none;width:100%}.infinite-scroll-enabled{display:block}";
 
@@ -51,8 +51,8 @@ let InfiniteScroll = class {
       const scrollTop = scrollEl.scrollTop;
       const scrollHeight = scrollEl.scrollHeight;
       const height = scrollEl.offsetHeight;
-      const threshold = this.thrPc !== 0 ? (height * this.thrPc) : this.thrPx;
-      const distanceFromInfinite = (this.position === 'bottom')
+      const threshold = this.thrPc !== 0 ? height * this.thrPc : this.thrPx;
+      const distanceFromInfinite = this.position === 'bottom'
         ? scrollHeight - infiniteHeight - scrollTop - threshold - height
         : scrollTop - infiniteHeight - threshold;
       if (distanceFromInfinite < 0) {
@@ -73,7 +73,7 @@ let InfiniteScroll = class {
     const val = this.threshold;
     if (val.lastIndexOf('%') > -1) {
       this.thrPx = 0;
-      this.thrPc = (parseFloat(val) / 100);
+      this.thrPc = parseFloat(val) / 100;
     }
     else {
       this.thrPx = parseFloat(val);
@@ -94,7 +94,7 @@ let InfiniteScroll = class {
       console.error('<ion-infinite-scroll> must be used inside an <ion-content>');
       return;
     }
-    await new Promise(resolve => componentOnReady(contentEl, resolve));
+    await new Promise((resolve) => componentOnReady(contentEl, resolve));
     this.scrollEl = await contentEl.getScrollElement();
     this.thresholdChanged();
     this.disabledChanged();
@@ -169,10 +169,7 @@ let InfiniteScroll = class {
     }
   }
   canStart() {
-    return (!this.disabled &&
-      !this.isBusy &&
-      !!this.scrollEl &&
-      !this.isLoading);
+    return !this.disabled && !this.isBusy && !!this.scrollEl && !this.isLoading;
   }
   enableScrollEvents(shouldListen) {
     if (this.scrollEl) {
@@ -190,7 +187,7 @@ let InfiniteScroll = class {
     return (h(Host, { class: {
         [mode]: true,
         'infinite-scroll-loading': this.isLoading,
-        'infinite-scroll-enabled': !disabled
+        'infinite-scroll-enabled': !disabled,
       } }));
   }
   get el() { return getElement(this); }

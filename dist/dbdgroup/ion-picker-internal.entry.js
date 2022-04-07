@@ -1,5 +1,5 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getElementRoot } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getElementRoot } from './helpers-e7913fb8.js';
 
 const pickerInternalIosCss = ":host{display:flex;position:relative;align-items:center;justify-content:center;width:100%;height:200px;direction:ltr;z-index:0}:host .picker-before,:host .picker-after{position:absolute;width:100%;z-index:1;pointer-events:none}:host .picker-before{left:0;top:0;height:83px}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host .picker-after{left:0;top:116px;height:84px}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host .picker-highlight{border-radius:8px;left:0;right:0;top:50%;bottom:0;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;position:absolute;width:calc(100% - 16px);height:34px;transform:translateY(-50%);z-index:-1}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host .picker-highlight{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}:host input{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;margin:0;padding:0;border:0;outline:0;clip:rect(0 0 0 0);opacity:0;overflow:hidden;-webkit-appearance:none;-moz-appearance:none}:host ::slotted(ion-picker-column-internal:first-of-type){text-align:start}:host ::slotted(ion-picker-column-internal:last-of-type){text-align:end}:host .picker-before{background:linear-gradient(to bottom, var(--background, var(--ion-background-color, #fff)) 20%, rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.8) 100%)}:host .picker-after{background:linear-gradient(to top, var(--background, var(--ion-background-color, #fff)) 20%, rgba(var(--background-rgb, var(--ion-background-color-rgb, 255, 255, 255)), 0.8) 100%)}:host .picker-highlight{background:var(--ion-color-step-150, #eeeeef)}";
 
@@ -36,8 +36,7 @@ let PickerInternal = class {
      */
     this.onFocusOut = (ev) => {
       const { relatedTarget } = ev;
-      if (!relatedTarget ||
-        relatedTarget.tagName !== 'ION-PICKER-COLUMN-INTERNAL' && relatedTarget !== this.inputEl) {
+      if (!relatedTarget || (relatedTarget.tagName !== 'ION-PICKER-COLUMN-INTERNAL' && relatedTarget !== this.inputEl)) {
         this.exitInputMode();
       }
     };
@@ -156,7 +155,7 @@ let PickerInternal = class {
            * then we should skip multi column input.
            */
           const columns = el.querySelectorAll('ion-picker-column-internal.picker-column-numeric-input');
-          const columnEl = (columns.length === 1) ? ev.target : undefined;
+          const columnEl = columns.length === 1 ? ev.target : undefined;
           this.actionOnClick = () => {
             this.enterInputMode(columnEl);
           };
@@ -316,9 +315,8 @@ let PickerInternal = class {
      * or trailing zeros when looking at the item text.
      */
     this.searchColumn = (colEl, value, zeroBehavior = 'start') => {
-      let item;
       const behavior = zeroBehavior === 'start' ? /^0+/ : /0$/;
-      item = colEl.items.find(({ text }) => text.replace(behavior, '') === value);
+      const item = colEl.items.find(({ text }) => text.replace(behavior, '') === value);
       if (item) {
         colEl.value = item.value;
       }
@@ -328,7 +326,7 @@ let PickerInternal = class {
       if (!inputEl) {
         return;
       }
-      const numericPickers = Array.from(el.querySelectorAll('ion-picker-column-internal')).filter(col => col.numericInput);
+      const numericPickers = Array.from(el.querySelectorAll('ion-picker-column-internal')).filter((col) => col.numericInput);
       const firstColumn = numericPickers[0];
       const lastColumn = numericPickers[1];
       let value = inputEl.value;
@@ -345,7 +343,7 @@ let PickerInternal = class {
            * at that first.
            */
           const firstCharacter = inputEl.value.substring(0, 1);
-          value = (firstCharacter === '0' || firstCharacter === '1') ? inputEl.value : firstCharacter;
+          value = firstCharacter === '0' || firstCharacter === '1' ? inputEl.value : firstCharacter;
           this.searchColumn(firstColumn, value);
           /**
            * If only checked the first value,
@@ -365,14 +363,17 @@ let PickerInternal = class {
            * at that first.
            */
           const firstCharacterAgain = inputEl.value.substring(0, 1);
-          value = (firstCharacterAgain === '0' || firstCharacterAgain === '1') ? inputEl.value.substring(0, 2) : firstCharacterAgain;
+          value =
+            firstCharacterAgain === '0' || firstCharacterAgain === '1'
+              ? inputEl.value.substring(0, 2)
+              : firstCharacterAgain;
           this.searchColumn(firstColumn, value);
           /**
            * If only checked the first value,
            * we can check the second value
            * for a match in the minutes column
            */
-          minuteValue = (value.length === 1) ? inputEl.value.substring(1) : inputEl.value.substring(2);
+          minuteValue = value.length === 1 ? inputEl.value.substring(1) : inputEl.value.substring(2);
           this.searchColumn(lastColumn, minuteValue, 'end');
           break;
         case 4:
@@ -383,14 +384,19 @@ let PickerInternal = class {
            * at that first.
            */
           const firstCharacterAgainAgain = inputEl.value.substring(0, 1);
-          value = (firstCharacterAgainAgain === '0' || firstCharacterAgainAgain === '1') ? inputEl.value.substring(0, 2) : firstCharacterAgainAgain;
+          value =
+            firstCharacterAgainAgain === '0' || firstCharacterAgainAgain === '1'
+              ? inputEl.value.substring(0, 2)
+              : firstCharacterAgainAgain;
           this.searchColumn(firstColumn, value);
           /**
            * If only checked the first value,
            * we can check the second value
            * for a match in the minutes column
            */
-          const minuteValueAgain = (value.length === 1) ? inputEl.value.substring(1, inputEl.value.length) : inputEl.value.substring(2, inputEl.value.length);
+          const minuteValueAgain = value.length === 1
+            ? inputEl.value.substring(1, inputEl.value.length)
+            : inputEl.value.substring(2, inputEl.value.length);
           this.searchColumn(lastColumn, minuteValueAgain, 'end');
           break;
         default:
@@ -427,7 +433,7 @@ let PickerInternal = class {
       const { useInputMode, inputModeColumn } = this;
       this.ionInputModeChange.emit({
         useInputMode,
-        inputModeColumn
+        inputModeColumn,
       });
     };
   }
@@ -436,7 +442,7 @@ let PickerInternal = class {
     getElementRoot(this.el).addEventListener('focusout', this.onFocusOut);
   }
   render() {
-    return (h(Host, { onPointerDown: (ev) => this.onPointerDown(ev), onClick: () => this.onClick() }, h("input", { "aria-hidden": "true", tabindex: -1, inputmode: "numeric", type: "number", ref: el => this.inputEl = el, onInput: () => this.onInputChange(), onBlur: () => this.exitInputMode() }), h("div", { class: "picker-before" }), h("div", { class: "picker-after" }), h("div", { class: "picker-highlight", ref: el => this.highlightEl = el }), h("slot", null)));
+    return (h(Host, { onPointerDown: (ev) => this.onPointerDown(ev), onClick: () => this.onClick() }, h("input", { "aria-hidden": "true", tabindex: -1, inputmode: "numeric", type: "number", ref: (el) => (this.inputEl = el), onInput: () => this.onInputChange(), onBlur: () => this.exitInputMode() }), h("div", { class: "picker-before" }), h("div", { class: "picker-after" }), h("div", { class: "picker-highlight", ref: (el) => (this.highlightEl = el) }), h("slot", null)));
   }
   get el() { return getElement(this); }
 };

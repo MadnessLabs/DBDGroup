@@ -1,10 +1,11 @@
-import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { c as chevronDown, f as caretUpSharp, g as chevronForward, h as caretDownSharp, a as chevronBack } from './index-17243cda.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { startFocusVisible } from './focus-visible-40cda868.js';
-import { r as raf, g as getElementRoot, d as renderHiddenInput } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, i as writeTask, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { printIonWarning } from '@utils/logging';
+import { d as chevronDown, f as caretUpSharp, g as chevronForward, h as caretDownSharp, c as chevronBack } from './index-5e1d0749.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { startFocusVisible } from './focus-visible-4e9a0764.js';
+import { r as raf, g as getElementRoot, d as renderHiddenInput } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
-import { c as createColorClasses } from './theme-c336c9d9.js';
+import { c as createColorClasses } from './theme-7ef00c83.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -13,25 +14,27 @@ import { c as createColorClasses } from './theme-c336c9d9.js';
  * Returns true if the selected day is equal to the reference day
  */
 const isSameDay = (baseParts, compareParts) => {
-  return (baseParts.month === compareParts.month &&
-    baseParts.day === compareParts.day &&
-    baseParts.year === compareParts.year);
+  return (baseParts.month === compareParts.month && baseParts.day === compareParts.day && baseParts.year === compareParts.year);
 };
 /**
  * Returns true is the selected day is before the reference day.
  */
 const isBefore = (baseParts, compareParts) => {
   return (baseParts.year < compareParts.year ||
-    baseParts.year === compareParts.year && baseParts.month < compareParts.month ||
-    baseParts.year === compareParts.year && baseParts.month === compareParts.month && baseParts.day < compareParts.day);
+    (baseParts.year === compareParts.year && baseParts.month < compareParts.month) ||
+    (baseParts.year === compareParts.year &&
+      baseParts.month === compareParts.month &&
+      baseParts.day < compareParts.day));
 };
 /**
  * Returns true is the selected day is after the reference day.
  */
 const isAfter = (baseParts, compareParts) => {
   return (baseParts.year > compareParts.year ||
-    baseParts.year === compareParts.year && baseParts.month > compareParts.month ||
-    baseParts.year === compareParts.year && baseParts.month === compareParts.month && baseParts.day > compareParts.day);
+    (baseParts.year === compareParts.year && baseParts.month > compareParts.month) ||
+    (baseParts.year === compareParts.year &&
+      baseParts.month === compareParts.month &&
+      baseParts.day > compareParts.day));
 };
 
 /*!
@@ -44,7 +47,7 @@ const isAfter = (baseParts, compareParts) => {
  * otherwise.
  */
 const isLeapYear = (year) => {
-  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };
 const is24Hour = (locale, hourCycle) => {
   /**
@@ -72,7 +75,7 @@ const is24Hour = (locale, hourCycle) => {
    */
   const date = new Date('5/18/2021 00:00');
   const parts = formatted.formatToParts(date);
-  const hour = parts.find(p => p.type === 'hour');
+  const hour = parts.find((p) => p.type === 'hour');
   if (!hour) {
     throw new Error('Hour value not found from DateTimeFormat');
   }
@@ -85,7 +88,13 @@ const is24Hour = (locale, hourCycle) => {
  * i.e. January = month 1.
  */
 const getNumDaysInMonth = (month, year) => {
-  return (month === 4 || month === 6 || month === 9 || month === 11) ? 30 : (month === 2) ? isLeapYear(year) ? 29 : 28 : 31;
+  return month === 4 || month === 6 || month === 9 || month === 11
+    ? 30
+    : month === 2
+      ? isLeapYear(year)
+        ? 29
+        : 28
+      : 31;
 };
 /**
  * Certain locales display month then year while
@@ -140,7 +149,11 @@ const convertDataToISO = (data) => {
           }
           else {
             // YYYY-MM-DDTHH:mm:SS+/-HH:mm
-            rtn += (data.tzOffset > 0 ? '+' : '-') + twoDigit(Math.floor(Math.abs(data.tzOffset / 60))) + ':' + twoDigit(data.tzOffset % 60);
+            rtn +=
+              (data.tzOffset > 0 ? '+' : '-') +
+                twoDigit(Math.floor(Math.abs(data.tzOffset / 60))) +
+                ':' +
+                twoDigit(data.tzOffset % 60);
           }
         }
       }
@@ -225,7 +238,7 @@ const subtractDays = (refParts, numDays) => {
   const workingParts = {
     month,
     day,
-    year
+    year,
   };
   workingParts.day = day - numDays;
   /**
@@ -276,7 +289,7 @@ const addDays = (refParts, numDays) => {
   const workingParts = {
     month,
     day,
-    year
+    year,
   };
   const daysInMonth = getNumDaysInMonth(month, year);
   workingParts.day = day + numDays;
@@ -306,10 +319,10 @@ const getPreviousMonth = (refParts) => {
    * If current month is January, wrap backwards
    *  to December of the previous year.
    */
-  const month = (refParts.month === 1) ? 12 : refParts.month - 1;
-  const year = (refParts.month === 1) ? refParts.year - 1 : refParts.year;
+  const month = refParts.month === 1 ? 12 : refParts.month - 1;
+  const year = refParts.month === 1 ? refParts.year - 1 : refParts.year;
   const numDaysInMonth = getNumDaysInMonth(month, year);
-  const day = (numDaysInMonth < refParts.day) ? numDaysInMonth : refParts.day;
+  const day = numDaysInMonth < refParts.day ? numDaysInMonth : refParts.day;
   return { month, year, day };
 };
 /**
@@ -320,17 +333,17 @@ const getNextMonth = (refParts) => {
    * If current month is December, wrap forwards
    *  to January of the next year.
    */
-  const month = (refParts.month === 12) ? 1 : refParts.month + 1;
-  const year = (refParts.month === 12) ? refParts.year + 1 : refParts.year;
+  const month = refParts.month === 12 ? 1 : refParts.month + 1;
+  const year = refParts.month === 12 ? refParts.year + 1 : refParts.year;
   const numDaysInMonth = getNumDaysInMonth(month, year);
-  const day = (numDaysInMonth < refParts.day) ? numDaysInMonth : refParts.day;
+  const day = numDaysInMonth < refParts.day ? numDaysInMonth : refParts.day;
   return { month, year, day };
 };
 const changeYear = (refParts, yearDelta) => {
   const month = refParts.month;
   const year = refParts.year + yearDelta;
   const numDaysInMonth = getNumDaysInMonth(month, year);
-  const day = (numDaysInMonth < refParts.day) ? numDaysInMonth : refParts.day;
+  const day = numDaysInMonth < refParts.day ? numDaysInMonth : refParts.day;
   return { month, year, day };
 };
 /**
@@ -413,10 +426,13 @@ const getToday = () => {
    * there was a net change of zero hours from the
    * local date.
    */
-  date.setHours(date.getHours() - (tzOffset / 60));
+  date.setHours(date.getHours() - tzOffset / 60);
   return date.toISOString();
 };
-const minutes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59];
+const minutes = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+];
 const hour12 = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 const hour23 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 /**
@@ -483,10 +499,7 @@ const getDaysOfMonth = (month, year, firstDayOfWeek) => {
     days.push({ day: i, dayOfWeek: (offset + i) % 7 });
   }
   for (let i = 0; i <= offset; i++) {
-    days = [
-      { day: null, dayOfWeek: null },
-      ...days
-    ];
+    days = [{ day: null, dayOfWeek: null }, ...days];
   }
   return days;
 };
@@ -502,10 +515,10 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
   let isAMAllowed = true;
   let isPMAllowed = true;
   if (hourValues) {
-    processedHours = processedHours.filter(hour => hourValues.includes(hour));
+    processedHours = processedHours.filter((hour) => hourValues.includes(hour));
   }
   if (minuteValues) {
-    processedMinutes = processedMinutes.filter(minute => minuteValues.includes(minute));
+    processedMinutes = processedMinutes.filter((minute) => minuteValues.includes(minute));
   }
   if (minParts) {
     /**
@@ -520,7 +533,7 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
        * all hours/minutes in that case.
        */
       if (minParts.hour !== undefined) {
-        processedHours = processedHours.filter(hour => {
+        processedHours = processedHours.filter((hour) => {
           const convertedHour = refParts.ampm === 'pm' ? (hour + 12) % 24 : hour;
           return (use24Hour ? hour : convertedHour) >= minParts.hour;
         });
@@ -540,7 +553,7 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
             isPastMinHour = true;
           }
         }
-        processedMinutes = processedMinutes.filter(minute => {
+        processedMinutes = processedMinutes.filter((minute) => {
           if (isPastMinHour) {
             return true;
           }
@@ -571,7 +584,7 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
        * all hours/minutes in that case.
        */
       if (maxParts.hour !== undefined) {
-        processedHours = processedHours.filter(hour => {
+        processedHours = processedHours.filter((hour) => {
           const convertedHour = refParts.ampm === 'pm' ? (hour + 12) % 24 : hour;
           return (use24Hour ? hour : convertedHour) <= maxParts.hour;
         });
@@ -582,7 +595,7 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
         // For example if the max hour is 10:30 and the current hour is 10:00,
         // users should be able to select 00-30 minutes.
         // If the current hour is 09:00, users should be able to select 00-60 minutes.
-        processedMinutes = processedMinutes.filter(minute => minute <= maxParts.minute);
+        processedMinutes = processedMinutes.filter((minute) => minute <= maxParts.minute);
       }
       /**
        * If ref day is after minimum
@@ -599,7 +612,7 @@ const generateTime = (refParts, hourCycle = 'h12', minParts, maxParts, hourValue
     hours: processedHours,
     minutes: processedMinutes,
     am: isAMAllowed,
-    pm: isPMAllowed
+    pm: isPMAllowed,
   };
 };
 /**
@@ -610,7 +623,7 @@ const generateMonths = (refParts) => {
   return [
     getPreviousMonth(refParts),
     { month: refParts.month, year: refParts.year, day: refParts.day },
-    getNextMonth(refParts)
+    getNextMonth(refParts),
   ];
 };
 const getPickerMonths = (locale, refParts, minParts, maxParts, monthValues) => {
@@ -619,12 +632,12 @@ const getPickerMonths = (locale, refParts, minParts, maxParts, monthValues) => {
   if (monthValues !== undefined) {
     let processedMonths = monthValues;
     if ((maxParts === null || maxParts === void 0 ? void 0 : maxParts.month) !== undefined) {
-      processedMonths = processedMonths.filter(month => month <= maxParts.month);
+      processedMonths = processedMonths.filter((month) => month <= maxParts.month);
     }
     if ((minParts === null || minParts === void 0 ? void 0 : minParts.month) !== undefined) {
-      processedMonths = processedMonths.filter(month => month >= minParts.month);
+      processedMonths = processedMonths.filter((month) => month >= minParts.month);
     }
-    processedMonths.forEach(processedMonth => {
+    processedMonths.forEach((processedMonth) => {
       const date = new Date(`${processedMonth}/1/${year} GMT+0000`);
       const monthString = new Intl.DateTimeFormat(locale, { month: 'long', timeZone: 'UTC' }).format(date);
       months.push({ text: monthString, value: processedMonth });
@@ -669,17 +682,17 @@ const getCalendarYears = (refParts, minParts, maxParts, yearValues) => {
   if (yearValues !== undefined) {
     let processedYears = yearValues;
     if ((maxParts === null || maxParts === void 0 ? void 0 : maxParts.year) !== undefined) {
-      processedYears = processedYears.filter(year => year <= maxParts.year);
+      processedYears = processedYears.filter((year) => year <= maxParts.year);
     }
     if ((minParts === null || minParts === void 0 ? void 0 : minParts.year) !== undefined) {
-      processedYears = processedYears.filter(year => year >= minParts.year);
+      processedYears = processedYears.filter((year) => year >= minParts.year);
     }
     return processedYears;
   }
   else {
     const { year } = refParts;
-    const maxYear = ((maxParts === null || maxParts === void 0 ? void 0 : maxParts.year) || year);
-    const minYear = ((minParts === null || minParts === void 0 ? void 0 : minParts.year) || year - 100);
+    const maxYear = (maxParts === null || maxParts === void 0 ? void 0 : maxParts.year) || year;
+    const minYear = (minParts === null || minParts === void 0 ? void 0 : minParts.year) || year - 100;
     const years = [];
     for (let i = maxYear; i >= minYear; i--) {
       years.push(i);
@@ -746,12 +759,17 @@ const generateDayAriaLabel = (locale, today, refParts) => {
    * MM/DD/YYYY will return midnight in the user's timezone.
    */
   const date = new Date(`${refParts.month}/${refParts.day}/${refParts.year} GMT+0000`);
-  const labelString = new Intl.DateTimeFormat(locale, { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(date);
+  const labelString = new Intl.DateTimeFormat(locale, {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  }).format(date);
   /**
    * If date is today, prepend "Today" so screen readers indicate
    * that the date is today.
    */
-  return (today) ? `Today, ${labelString}` : labelString;
+  return today ? `Today, ${labelString}` : labelString;
 };
 /**
  * Gets the day of the week, month, and day
@@ -775,7 +793,10 @@ const getMonthAndYear = (locale, refParts) => {
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
-const ISO_8601_REGEXP = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
+const ISO_8601_REGEXP = 
+// eslint-disable-next-line no-useless-escape
+/^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
+// eslint-disable-next-line no-useless-escape
 const TIME_REGEXP = /^((\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/;
 /**
  * Use to convert a string of comma separated numbers or
@@ -794,9 +815,7 @@ const convertToArrayOfNumbers = (input) => {
   let values;
   if (Array.isArray(processedInput)) {
     // ensure each value is an actual number in the returned array
-    values = processedInput
-      .map((num) => parseInt(num, 10))
-      .filter(isFinite);
+    values = processedInput.map((num) => parseInt(num, 10)).filter(isFinite);
   }
   else {
     values = [processedInput];
@@ -813,7 +832,7 @@ const getPartsFromCalendarDay = (el) => {
     month: parseInt(el.getAttribute('data-month'), 10),
     day: parseInt(el.getAttribute('data-day'), 10),
     year: parseInt(el.getAttribute('data-year'), 10),
-    dayOfWeek: parseInt(el.getAttribute('data-day-of-week'), 10)
+    dayOfWeek: parseInt(el.getAttribute('data-day-of-week'), 10),
   };
 };
 /**
@@ -952,21 +971,21 @@ const getCalendarDayState = (locale, refParts, activeParts, todayParts, minParts
     isActive,
     isToday,
     ariaSelected: isActive ? 'true' : null,
-    ariaLabel: generateDayAriaLabel(locale, isToday, refParts)
+    ariaLabel: generateDayAriaLabel(locale, isToday, refParts),
   };
 };
 /**
  * Returns `true` if the month is disabled given the
  * current date value and min/max date constraints.
  */
-const isMonthDisabled = (refParts, { minParts, maxParts }) => {
+const isMonthDisabled = (refParts, { minParts, maxParts, }) => {
   // If the year is disabled then the month is disabled.
   if (isYearDisabled(refParts.year, minParts, maxParts)) {
     return true;
   }
   // If the date value is before the min date, then the month is disabled.
   // If the date value is after the max date, then the month is disabled.
-  if (minParts && isBefore(refParts, minParts) || maxParts && isAfter(refParts, maxParts)) {
+  if ((minParts && isBefore(refParts, minParts)) || (maxParts && isAfter(refParts, maxParts))) {
     return true;
   }
   return false;
@@ -980,7 +999,7 @@ const isPrevMonthDisabled = (refParts, minParts, maxParts) => {
   const prevMonth = getPreviousMonth(refParts);
   return isMonthDisabled(prevMonth, {
     minParts,
-    maxParts
+    maxParts,
   });
 };
 /**
@@ -990,7 +1009,7 @@ const isPrevMonthDisabled = (refParts, minParts, maxParts) => {
 const isNextMonthDisabled = (refParts, maxParts) => {
   const nextMonth = getNextMonth(refParts);
   return isMonthDisabled(nextMonth, {
-    maxParts
+    maxParts,
   });
 };
 
@@ -1008,6 +1027,8 @@ let Datetime = class {
     this.ionStyle = createEvent(this, "ionStyle", 7);
     this.inputId = `ion-dt-${datetimeIds++}`;
     this.overlayIsPresenting = false;
+    this.todayParts = parseDate(getToday());
+    this.prevPresentation = null;
     this.showMonthAndYear = false;
     this.activeParts = {
       month: 5,
@@ -1015,7 +1036,7 @@ let Datetime = class {
       year: 2021,
       hour: 13,
       minute: 52,
-      ampm: 'pm'
+      ampm: 'pm',
     };
     this.workingParts = {
       month: 5,
@@ -1023,9 +1044,8 @@ let Datetime = class {
       year: 2021,
       hour: 13,
       minute: 52,
-      ampm: 'pm'
+      ampm: 'pm',
     };
-    this.todayParts = parseDate(getToday());
     this.isPresented = false;
     this.isTimePopoverOpen = false;
     /**
@@ -1134,8 +1154,18 @@ let Datetime = class {
       }
       this.confirm();
     };
+    /**
+     * Stencil sometimes sets calendarBodyRef to null on rerender, even though
+     * the element is present. Query for it manually as a fallback.
+     *
+     * TODO(FW-901) Remove when issue is resolved: https://github.com/ionic-team/stencil/issues/3253
+     */
+    this.getCalendarBodyEl = () => {
+      var _a;
+      return this.calendarBodyRef || ((_a = this.el.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.calendar-body'));
+    };
     this.initializeKeyboardListeners = () => {
-      const { calendarBodyRef } = this;
+      const calendarBodyRef = this.getCalendarBodyEl();
       if (!calendarBodyRef) {
         return;
       }
@@ -1160,8 +1190,7 @@ let Datetime = class {
          * if not currently focused, we should not re-focus
          * the inner day.
          */
-        if (((_a = record.oldValue) === null || _a === void 0 ? void 0 : _a.includes('ion-focused')) ||
-          !calendarBodyRef.classList.contains('ion-focused')) {
+        if (((_a = record.oldValue) === null || _a === void 0 ? void 0 : _a.includes('ion-focused')) || !calendarBodyRef.classList.contains('ion-focused')) {
           return;
         }
         this.focusWorkingDay(currentMonth);
@@ -1175,7 +1204,7 @@ let Datetime = class {
        * We must use keydown not keyup as we want
        * to prevent scrolling when using the arrow keys.
        */
-      this.calendarBodyRef.addEventListener('keydown', (ev) => {
+      calendarBodyRef.addEventListener('keydown', (ev) => {
         const activeElement = root.activeElement;
         if (!activeElement || !activeElement.classList.contains('calendar-day')) {
           return;
@@ -1270,7 +1299,7 @@ let Datetime = class {
         day,
         year,
         hour,
-        minute
+        minute,
       };
     };
     this.processMaxParts = () => {
@@ -1284,11 +1313,11 @@ let Datetime = class {
         day,
         year,
         hour,
-        minute
+        minute,
       };
     };
     this.initializeCalendarIOListeners = () => {
-      const { calendarBodyRef } = this;
+      const calendarBodyRef = this.getCalendarBodyEl();
       if (!calendarBodyRef) {
         return;
       }
@@ -1319,14 +1348,14 @@ let Datetime = class {
        * scrollIntoView() will scroll entire page
        * if element is not in viewport. Use scrollLeft instead.
        */
+      let endIO;
+      let startIO;
       writeTask(() => {
         calendarBodyRef.scrollLeft = startMonth.clientWidth * (isRTL(this.el) ? -1 : 1);
-        let endIO;
-        let startIO;
         const ioCallback = (callbackType, entries) => {
-          const refIO = (callbackType === 'start') ? startIO : endIO;
-          const refMonth = (callbackType === 'start') ? startMonth : endMonth;
-          const refMonthFn = (callbackType === 'start') ? getPreviousMonth : getNextMonth;
+          const refIO = callbackType === 'start' ? startIO : endIO;
+          const refMonth = callbackType === 'start' ? startMonth : endMonth;
+          const refMonthFn = callbackType === 'start' ? getPreviousMonth : getNextMonth;
           /**
            * If the month is not fully in view, do not do anything
            */
@@ -1348,7 +1377,7 @@ let Datetime = class {
           const { month, year, day } = refMonthFn(this.workingParts);
           if (isMonthDisabled({ month, year, day: null }, {
             minParts: Object.assign(Object.assign({}, this.minParts), { day: null }),
-            maxParts: Object.assign(Object.assign({}, this.maxParts), { day: null })
+            maxParts: Object.assign(Object.assign({}, this.maxParts), { day: null }),
           })) {
             return;
           }
@@ -1412,18 +1441,13 @@ let Datetime = class {
              * and the correct month is in view,
              * we can resume the IO.
              */
-            // tslint:disable-next-line
             if (refIO === undefined) {
               return;
             }
             refIO.observe(refMonth);
           });
         };
-        const threshold = mode === 'ios' &&
-          // tslint:disable-next-line
-          typeof navigator !== 'undefined' &&
-          navigator.maxTouchPoints > 1 ?
-          [0.7, 1] : 1;
+        const threshold = mode === 'ios' && typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1 ? [0.7, 1] : 1;
         // Intersection observers cannot accurately detect the
         // intersection with a threshold of 1, when the observed
         // element width is a sub-pixel value (i.e. 334.05px).
@@ -1447,16 +1471,16 @@ let Datetime = class {
          * it applies to active gestures which is not
          * something WebKit does.
          */
-        endIO = new IntersectionObserver(ev => ioCallback('end', ev), {
+        endIO = new IntersectionObserver((ev) => ioCallback('end', ev), {
           threshold,
           root: calendarBodyRef,
-          rootMargin
+          rootMargin,
         });
         endIO.observe(endMonth);
-        startIO = new IntersectionObserver(ev => ioCallback('start', ev), {
+        startIO = new IntersectionObserver((ev) => ioCallback('start', ev), {
           threshold,
           root: calendarBodyRef,
-          rootMargin
+          rootMargin,
         });
         startIO.observe(startMonth);
         this.destroyCalendarIO = () => {
@@ -1470,7 +1494,7 @@ let Datetime = class {
      * listener. This is so that we can re-create the listeners
      * if the datetime has been hidden/presented by a modal or popover.
      */
-    this.destroyListeners = () => {
+    this.destroyInteractionListeners = () => {
       const { destroyCalendarIO, destroyKeyboardMO } = this;
       if (destroyCalendarIO !== undefined) {
         destroyCalendarIO();
@@ -1491,9 +1515,13 @@ let Datetime = class {
       if (overlay === null) {
         return;
       }
-      overlay.addEventListener('willPresent', () => {
+      const overlayListener = () => {
         this.overlayIsPresenting = true;
-      });
+      };
+      overlay.addEventListener('willPresent', overlayListener);
+      this.destroyOverlayListener = () => {
+        overlay.removeEventListener('willPresent', overlayListener);
+      };
     };
     this.processValue = (value) => {
       const valueToProcess = value || getToday();
@@ -1505,7 +1533,7 @@ let Datetime = class {
         hour,
         minute,
         tzOffset,
-        ampm: hour >= 12 ? 'pm' : 'am'
+        ampm: hour >= 12 ? 'pm' : 'am',
       };
       this.activeParts = {
         month,
@@ -1514,7 +1542,7 @@ let Datetime = class {
         hour,
         minute,
         tzOffset,
-        ampm: hour >= 12 ? 'pm' : 'am'
+        ampm: hour >= 12 ? 'pm' : 'am',
       };
     };
     this.onFocus = () => {
@@ -1527,7 +1555,7 @@ let Datetime = class {
       return this.value != null && this.value !== '';
     };
     this.nextMonth = () => {
-      const { calendarBodyRef } = this;
+      const calendarBodyRef = this.getCalendarBodyEl();
       if (!calendarBodyRef) {
         return;
       }
@@ -1539,11 +1567,11 @@ let Datetime = class {
       calendarBodyRef.scrollTo({
         top: 0,
         left: left * (isRTL(this.el) ? -1 : 1),
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     };
     this.prevMonth = () => {
-      const { calendarBodyRef } = this;
+      const calendarBodyRef = this.getCalendarBodyEl();
       if (!calendarBodyRef) {
         return;
       }
@@ -1554,7 +1582,7 @@ let Datetime = class {
       calendarBodyRef.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     };
     this.toggleMonthAndYearView = () => {
@@ -1600,16 +1628,22 @@ let Datetime = class {
        * This allows us to update the current value's date/time display without
        * refocusing or shifting the user's display (leaves the user in place).
        */
-      const { month, day, year, hour, minute } = parseDate(this.value);
-      this.activePartsClone = Object.assign(Object.assign({}, this.activeParts), { month,
-        day,
-        year,
-        hour,
-        minute });
+      const valueDateParts = parseDate(this.value);
+      if (valueDateParts) {
+        const { month, day, year, hour, minute } = valueDateParts;
+        this.activePartsClone = Object.assign(Object.assign({}, this.activeParts), { month,
+          day,
+          year,
+          hour,
+          minute });
+      }
+      else {
+        printIonWarning(`Unable to parse date string: ${this.value}. Please provide a valid ISO 8601 datetime string.`);
+      }
     }
     this.emitStyle();
     this.ionChange.emit({
-      value: this.value
+      value: this.value,
     });
   }
   /**
@@ -1627,9 +1661,9 @@ let Datetime = class {
      * the date that is currently selected, otherwise
      * there can be 1 hr difference when dealing w/ DST
      */
-    const date = new Date(convertDataToISO(this.workingParts));
-    this.workingParts.tzOffset = date.getTimezoneOffset() * -1;
-    this.value = convertDataToISO(this.workingParts);
+    const date = new Date(convertDataToISO(this.activeParts));
+    this.activeParts.tzOffset = date.getTimezoneOffset() * -1;
+    this.value = convertDataToISO(this.activeParts);
     if (closeOverlay) {
       this.closeParentOverlay();
     }
@@ -1663,6 +1697,11 @@ let Datetime = class {
       this.clearFocusVisible = undefined;
     }
   }
+  initializeListeners() {
+    this.initializeCalendarIOListeners();
+    this.initializeKeyboardListeners();
+    this.initializeOverlayListener();
+  }
   componentDidLoad() {
     /**
      * If a scrollable element is hidden using `display: none`,
@@ -1671,15 +1710,12 @@ let Datetime = class {
      * visible if used inside of a modal or a popover otherwise the scrollable
      * areas will not have the correct values snapped into place.
      */
-    let visibleIO;
     const visibleCallback = (entries) => {
       const ev = entries[0];
       if (!ev.isIntersecting) {
         return;
       }
-      this.initializeCalendarIOListeners();
-      this.initializeKeyboardListeners();
-      this.initializeOverlayListener();
+      this.initializeListeners();
       /**
        * TODO: Datetime needs a frame to ensure that it
        * can properly scroll contents into view. As a result
@@ -1692,7 +1728,7 @@ let Datetime = class {
         this.el.classList.add('datetime-ready');
       });
     };
-    visibleIO = new IntersectionObserver(visibleCallback, { threshold: 0.01 });
+    const visibleIO = new IntersectionObserver(visibleCallback, { threshold: 0.01 });
     /**
      * Use raf to avoid a race condition between the component loading and
      * its display animation starting (such as when shown in a modal). This
@@ -1707,18 +1743,17 @@ let Datetime = class {
      * the scroll areas have scroll widths/heights of 0px, so any snapping
      * we did originally has been lost.
      */
-    let hiddenIO;
     const hiddenCallback = (entries) => {
       const ev = entries[0];
       if (ev.isIntersecting) {
         return;
       }
-      this.destroyListeners();
+      this.destroyInteractionListeners();
       writeTask(() => {
         this.el.classList.remove('datetime-ready');
       });
     };
-    hiddenIO = new IntersectionObserver(hiddenCallback, { threshold: 0 });
+    const hiddenIO = new IntersectionObserver(hiddenCallback, { threshold: 0 });
     raf(() => hiddenIO === null || hiddenIO === void 0 ? void 0 : hiddenIO.observe(this.el));
     /**
      * Datetime uses Ionic components that emit
@@ -1733,6 +1768,26 @@ let Datetime = class {
     root.addEventListener('ionFocus', (ev) => ev.stopPropagation());
     root.addEventListener('ionBlur', (ev) => ev.stopPropagation());
   }
+  /**
+   * When the presentation is changed, all calendar content is recreated,
+   * so we need to re-init behavior with the new elements.
+   */
+  componentDidRender() {
+    const { presentation, prevPresentation } = this;
+    if (prevPresentation === null) {
+      this.prevPresentation = presentation;
+      return;
+    }
+    if (presentation === prevPresentation) {
+      return;
+    }
+    this.prevPresentation = presentation;
+    this.destroyInteractionListeners();
+    if (this.destroyOverlayListener !== undefined) {
+      this.destroyOverlayListener();
+    }
+    this.initializeListeners();
+  }
   componentWillLoad() {
     this.processMinParts();
     this.processMaxParts();
@@ -1746,8 +1801,8 @@ let Datetime = class {
   }
   emitStyle() {
     this.ionStyle.emit({
-      'interactive': true,
-      'datetime': true,
+      interactive: true,
+      datetime: true,
       'interactive-disabled': this.disabled,
     });
   }
@@ -1770,8 +1825,8 @@ let Datetime = class {
      */
     return (h("div", { class: "datetime-footer" }, h("div", { class: "datetime-buttons" }, h("div", { class: {
         ['datetime-action-buttons']: true,
-        ['has-clear-button']: this.showClearButton
-      } }, h("slot", { name: "buttons" }, h("ion-buttons", null, showDefaultButtons && h("ion-button", { id: "cancel-button", color: this.color, onClick: () => this.cancel(true) }, this.cancelText), h("div", null, showClearButton && h("ion-button", { id: "clear-button", color: this.color, onClick: () => clearButtonClick() }, this.clearText), showDefaultButtons && h("ion-button", { id: "confirm-button", color: this.color, onClick: () => this.confirm(true) }, this.doneText))))))));
+        ['has-clear-button']: this.showClearButton,
+      } }, h("slot", { name: "buttons" }, h("ion-buttons", null, showDefaultButtons && (h("ion-button", { id: "cancel-button", color: this.color, onClick: () => this.cancel(true) }, this.cancelText)), h("div", null, showClearButton && (h("ion-button", { id: "clear-button", color: this.color, onClick: () => clearButtonClick() }, this.clearText)), showDefaultButtons && (h("ion-button", { id: "confirm-button", color: this.color, onClick: () => this.confirm(true) }, this.doneText)))))))));
   }
   renderYearView() {
     const { presentation, workingParts, locale } = this;
@@ -1779,57 +1834,55 @@ let Datetime = class {
     const showMonth = presentation !== 'year';
     const showYear = presentation !== 'month';
     const months = getPickerMonths(locale, workingParts, this.minParts, this.maxParts, this.parsedMonthValues);
-    const years = calendarYears.map(year => {
+    const years = calendarYears.map((year) => {
       return {
         text: `${year}`,
-        value: year
+        value: year,
       };
     });
     const showMonthFirst = isMonthFirstLocale(locale);
     const columnOrder = showMonthFirst ? 'month-first' : 'year-first';
     return (h("div", { class: "datetime-year" }, h("div", { class: {
         'datetime-year-body': true,
-        [`order-${columnOrder}`]: true
-      } }, h("ion-picker-internal", null, showMonth &&
-      h("ion-picker-column-internal", { class: "month-column", color: this.color, items: months, value: workingParts.month, onIonChange: (ev) => {
-          // Due to a Safari 14 issue we need to destroy
-          // the intersection observer before we update state
-          // and trigger a re-render.
-          if (this.destroyCalendarIO) {
-            this.destroyCalendarIO();
-          }
-          this.setWorkingParts(Object.assign(Object.assign({}, this.workingParts), { month: ev.detail.value }));
-          if (presentation === 'month' || presentation === 'month-year') {
-            this.setActiveParts(Object.assign(Object.assign({}, this.activeParts), { month: ev.detail.value }));
-          }
-          // We can re-attach the intersection observer after
-          // the working parts have been updated.
-          this.initializeCalendarIOListeners();
-          ev.stopPropagation();
-        } }), showYear &&
-      h("ion-picker-column-internal", { class: "year-column", color: this.color, items: years, value: workingParts.year, onIonChange: (ev) => {
-          // Due to a Safari 14 issue we need to destroy
-          // the intersection observer before we update state
-          // and trigger a re-render.
-          if (this.destroyCalendarIO) {
-            this.destroyCalendarIO();
-          }
-          this.setWorkingParts(Object.assign(Object.assign({}, this.workingParts), { year: ev.detail.value }));
-          if (presentation === 'year' || presentation === 'month-year') {
-            this.setActiveParts(Object.assign(Object.assign({}, this.activeParts), { year: ev.detail.value }));
-          }
-          // We can re-attach the intersection observer after
-          // the working parts have been updated.
-          this.initializeCalendarIOListeners();
-          ev.stopPropagation();
-        } })))));
+        [`order-${columnOrder}`]: true,
+      } }, h("ion-picker-internal", null, showMonth && (h("ion-picker-column-internal", { class: "month-column", color: this.color, items: months, value: workingParts.month, onIonChange: (ev) => {
+        // Due to a Safari 14 issue we need to destroy
+        // the intersection observer before we update state
+        // and trigger a re-render.
+        if (this.destroyCalendarIO) {
+          this.destroyCalendarIO();
+        }
+        this.setWorkingParts(Object.assign(Object.assign({}, this.workingParts), { month: ev.detail.value }));
+        if (presentation === 'month' || presentation === 'month-year') {
+          this.setActiveParts(Object.assign(Object.assign({}, this.activeParts), { month: ev.detail.value }));
+        }
+        // We can re-attach the intersection observer after
+        // the working parts have been updated.
+        this.initializeCalendarIOListeners();
+        ev.stopPropagation();
+      } })), showYear && (h("ion-picker-column-internal", { class: "year-column", color: this.color, items: years, value: workingParts.year, onIonChange: (ev) => {
+        // Due to a Safari 14 issue we need to destroy
+        // the intersection observer before we update state
+        // and trigger a re-render.
+        if (this.destroyCalendarIO) {
+          this.destroyCalendarIO();
+        }
+        this.setWorkingParts(Object.assign(Object.assign({}, this.workingParts), { year: ev.detail.value }));
+        if (presentation === 'year' || presentation === 'month-year') {
+          this.setActiveParts(Object.assign(Object.assign({}, this.activeParts), { year: ev.detail.value }));
+        }
+        // We can re-attach the intersection observer after
+        // the working parts have been updated.
+        this.initializeCalendarIOListeners();
+        ev.stopPropagation();
+      } }))))));
   }
   renderCalendarHeader(mode) {
     const expandedIcon = mode === 'ios' ? chevronDown : caretUpSharp;
     const collapsedIcon = mode === 'ios' ? chevronForward : caretDownSharp;
     const prevMonthDisabled = isPrevMonthDisabled(this.workingParts, this.minParts, this.maxParts);
     const nextMonthDisabled = isNextMonthDisabled(this.workingParts, this.maxParts);
-    return (h("div", { class: "calendar-header" }, h("div", { class: "calendar-action-buttons" }, h("div", { class: "calendar-month-year" }, h("ion-item", { button: true, detail: false, lines: "none", onClick: () => this.toggleMonthAndYearView() }, h("ion-label", null, getMonthAndYear(this.locale, this.workingParts), " ", h("ion-icon", { icon: this.showMonthAndYear ? expandedIcon : collapsedIcon, lazy: false })))), h("div", { class: "calendar-next-prev" }, h("ion-buttons", null, h("ion-button", { disabled: prevMonthDisabled, onClick: () => this.prevMonth() }, h("ion-icon", { slot: "icon-only", icon: chevronBack, lazy: false, flipRtl: true })), h("ion-button", { disabled: nextMonthDisabled, onClick: () => this.nextMonth() }, h("ion-icon", { slot: "icon-only", icon: chevronForward, lazy: false, flipRtl: true }))))), h("div", { class: "calendar-days-of-week" }, getDaysOfWeek(this.locale, mode, this.firstDayOfWeek % 7).map(d => {
+    return (h("div", { class: "calendar-header" }, h("div", { class: "calendar-action-buttons" }, h("div", { class: "calendar-month-year" }, h("ion-item", { button: true, detail: false, lines: "none", onClick: () => this.toggleMonthAndYearView() }, h("ion-label", null, getMonthAndYear(this.locale, this.workingParts), ' ', h("ion-icon", { icon: this.showMonthAndYear ? expandedIcon : collapsedIcon, lazy: false })))), h("div", { class: "calendar-next-prev" }, h("ion-buttons", null, h("ion-button", { disabled: prevMonthDisabled, onClick: () => this.prevMonth() }, h("ion-icon", { slot: "icon-only", icon: chevronBack, lazy: false, flipRtl: true })), h("ion-button", { disabled: nextMonthDisabled, onClick: () => this.nextMonth() }, h("ion-icon", { slot: "icon-only", icon: chevronForward, lazy: false, flipRtl: true }))))), h("div", { class: "calendar-days-of-week" }, getDaysOfWeek(this.locale, mode, this.firstDayOfWeek % 7).map((d) => {
       return h("div", { class: "day-of-week" }, d);
     }))));
   }
@@ -1840,13 +1893,13 @@ let Datetime = class {
     const swipeDisabled = isMonthDisabled({
       month,
       year,
-      day: null
+      day: null,
     }, {
       // The day is not used when checking if a month is disabled.
       // Users should be able to access the min or max month, even if the
       // min/max date is out of bounds (e.g. min is set to Feb 15, Feb should not be disabled).
       minParts: Object.assign(Object.assign({}, this.minParts), { day: null }),
-      maxParts: Object.assign(Object.assign({}, this.maxParts), { day: null })
+      maxParts: Object.assign(Object.assign({}, this.maxParts), { day: null }),
     });
     // The working month should never have swipe disabled.
     // Otherwise the CSS scroll snap will not work and the user
@@ -1855,7 +1908,7 @@ let Datetime = class {
     return (h("div", { class: {
         'calendar-month': true,
         // Prevents scroll snap swipe gestures for months outside of the min/max bounds
-        'calendar-month-disabled': !isWorkingMonth && swipeDisabled
+        'calendar-month-disabled': !isWorkingMonth && swipeDisabled,
       } }, h("div", { class: "calendar-month-grid" }, getDaysOfMonth(month, year, this.firstDayOfWeek % 7).map((dateObject, index) => {
       const { day, dayOfWeek } = dateObject;
       const referenceParts = { month, day, year };
@@ -1864,7 +1917,7 @@ let Datetime = class {
           'calendar-day-padding': day === null,
           'calendar-day': true,
           'calendar-day-active': isActive,
-          'calendar-day-today': isToday
+          'calendar-day-today': isToday,
         }, "aria-selected": ariaSelected, "aria-label": ariaLabel, onClick: () => {
           if (day === null) {
             return;
@@ -1879,7 +1932,7 @@ let Datetime = class {
     }))));
   }
   renderCalendarBody() {
-    return (h("div", { class: "calendar-body ion-focusable", ref: el => this.calendarBodyRef = el, tabindex: "0" }, generateMonths(this.workingParts).map(({ month, year }) => {
+    return (h("div", { class: "calendar-body ion-focusable", ref: (el) => (this.calendarBodyRef = el), tabindex: "0" }, generateMonths(this.workingParts).map(({ month, year }) => {
       return this.renderMonth(month, year);
     })));
   }
@@ -1891,7 +1944,7 @@ let Datetime = class {
     if (!hasSlottedTimeLabel && !this.showDefaultTimeLabel) {
       return;
     }
-    return (h("slot", { name: "time-label" }, "Time"));
+    return h("slot", { name: "time-label" }, "Time");
   }
   renderTimePicker(hoursItems, minutesItems, ampmItems, use24Hour) {
     const { color, activePartsClone, workingParts } = this;
@@ -1903,33 +1956,33 @@ let Datetime = class {
         this.setWorkingParts(Object.assign(Object.assign({}, workingParts), { minute: ev.detail.value }));
         this.setActiveParts(Object.assign(Object.assign({}, activePartsClone), { minute: ev.detail.value }));
         ev.stopPropagation();
-      } }), !use24Hour && h("ion-picker-column-internal", { color: color, value: activePartsClone.ampm, items: ampmItems, onIonChange: (ev) => {
+      } }), !use24Hour && (h("ion-picker-column-internal", { color: color, value: activePartsClone.ampm, items: ampmItems, onIonChange: (ev) => {
         const hour = calculateHourFromAMPM(workingParts, ev.detail.value);
         this.setWorkingParts(Object.assign(Object.assign({}, workingParts), { ampm: ev.detail.value, hour }));
         this.setActiveParts(Object.assign(Object.assign({}, activePartsClone), { ampm: ev.detail.value, hour }));
         ev.stopPropagation();
-      } })));
+      } }))));
   }
   renderTimeOverlay(hoursItems, minutesItems, ampmItems, use24Hour) {
     return [
       h("div", { class: "time-header" }, this.renderTimeLabel()),
       h("button", { class: {
           'time-body': true,
-          'time-body-active': this.isTimePopoverOpen
+          'time-body-active': this.isTimePopoverOpen,
         }, "aria-expanded": "false", "aria-haspopup": "true", onClick: async (ev) => {
           const { popoverRef } = this;
           if (popoverRef) {
             this.isTimePopoverOpen = true;
             popoverRef.present(new CustomEvent('ionShadowTarget', {
               detail: {
-                ionShadowTarget: ev.target
-              }
+                ionShadowTarget: ev.target,
+              },
             }));
             await popoverRef.onWillDismiss();
             this.isTimePopoverOpen = false;
           }
         } }, getFormattedTime(this.activePartsClone, use24Hour)),
-      h("ion-popover", { alignment: "center", translucent: true, overlayIndex: 1, arrow: false, onWillPresent: ev => {
+      h("ion-popover", { alignment: "center", translucent: true, overlayIndex: 1, arrow: false, onWillPresent: (ev) => {
           /**
            * Intersection Observers do not consistently fire between Blink and Webkit
            * when toggling the visibility of the popover and trying to scroll the picker
@@ -1940,13 +1993,13 @@ let Datetime = class {
            */
           const cols = ev.target.querySelectorAll('ion-picker-column-internal');
           // TODO (FW-615): Potentially remove this when intersection observers are fixed in picker column
-          cols.forEach(col => col.scrollActiveItemIntoView());
+          cols.forEach((col) => col.scrollActiveItemIntoView());
         }, style: {
-          '--offset-y': '-10px'
+          '--offset-y': '-10px',
         },
         // Allow native browser keyboard events to support up/down/home/end key
         // navigation within the time picker.
-        keyboardEvents: true, ref: el => this.popoverRef = el }, this.renderTimePicker(hoursItems, minutesItems, ampmItems, use24Hour))
+        keyboardEvents: true, ref: (el) => (this.popoverRef = el) }, this.renderTimePicker(hoursItems, minutesItems, ampmItems, use24Hour)),
     ];
   }
   /**
@@ -1961,32 +2014,34 @@ let Datetime = class {
     const timeOnlyPresentation = presentation === 'time';
     const use24Hour = is24Hour(this.locale, this.hourCycle);
     const { hours, minutes, am, pm } = generateTime(this.workingParts, use24Hour ? 'h23' : 'h12', this.minParts, this.maxParts, this.parsedHourValues, this.parsedMinuteValues);
-    const hoursItems = hours.map(hour => {
+    const hoursItems = hours.map((hour) => {
       return {
         text: getFormattedHour(hour, use24Hour),
-        value: getInternalHourValue(hour, use24Hour, workingParts.ampm)
+        value: getInternalHourValue(hour, use24Hour, workingParts.ampm),
       };
     });
-    const minutesItems = minutes.map(minute => {
+    const minutesItems = minutes.map((minute) => {
       return {
         text: addTimePadding(minute),
-        value: minute
+        value: minute,
       };
     });
     const ampmItems = [];
     if (am) {
       ampmItems.push({
         text: 'AM',
-        value: 'am'
+        value: 'am',
       });
     }
     if (pm) {
       ampmItems.push({
         text: 'PM',
-        value: 'pm'
+        value: 'pm',
       });
     }
-    return (h("div", { class: "datetime-time" }, timeOnlyPresentation ? this.renderTimePicker(hoursItems, minutesItems, ampmItems, use24Hour) : this.renderTimeOverlay(hoursItems, minutesItems, ampmItems, use24Hour)));
+    return (h("div", { class: "datetime-time" }, timeOnlyPresentation
+      ? this.renderTimePicker(hoursItems, minutesItems, ampmItems, use24Hour)
+      : this.renderTimeOverlay(hoursItems, minutesItems, ampmItems, use24Hour)));
   }
   renderCalendarViewHeader(mode) {
     const hasSlottedTitle = this.el.querySelector('[slot="title"]') !== null;
@@ -2004,7 +2059,7 @@ let Datetime = class {
           this.renderCalendar(mode),
           this.renderYearView(),
           this.renderTime(),
-          this.renderFooter()
+          this.renderFooter(),
         ];
       case 'time-date':
         return [
@@ -2012,26 +2067,20 @@ let Datetime = class {
           this.renderTime(),
           this.renderCalendar(mode),
           this.renderYearView(),
-          this.renderFooter()
+          this.renderFooter(),
         ];
       case 'time':
-        return [
-          this.renderTime(),
-          this.renderFooter()
-        ];
+        return [this.renderTime(), this.renderFooter()];
       case 'month':
       case 'month-year':
       case 'year':
-        return [
-          this.renderYearView(),
-          this.renderFooter()
-        ];
+        return [this.renderYearView(), this.renderFooter()];
       default:
         return [
           this.renderCalendarViewHeader(mode),
           this.renderCalendar(mode),
           this.renderYearView(),
-          this.renderFooter()
+          this.renderFooter(),
         ];
     }
   }
@@ -2048,7 +2097,7 @@ let Datetime = class {
         ['datetime-disabled']: disabled,
         'show-month-and-year': shouldShowMonthAndYear,
         [`datetime-presentation-${presentation}`]: true,
-        [`datetime-size-${size}`]: true
+        [`datetime-size-${size}`]: true,
       })) }, this.renderDatetime(mode)));
   }
   get el() { return getElement(this); }

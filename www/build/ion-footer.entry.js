@@ -1,6 +1,6 @@
-import { o as readTask, i as writeTask, r as registerInstance, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { e as clamp, c as componentOnReady } from './helpers-b5b4d5eb.js';
+import { o as readTask, i as writeTask, r as registerInstance, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { e as clamp, c as componentOnReady } from './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -27,7 +27,7 @@ const handleFooterFade = (scrollEl, baseEl) => {
      */
     const fadeStart = maxScroll - fadeDuration;
     const distanceToStart = scrollTop - fadeStart;
-    const scale = clamp(0, 1 - (distanceToStart / fadeDuration), 1);
+    const scale = clamp(0, 1 - distanceToStart / fadeDuration, 1);
     writeTask(() => {
       baseEl.style.setProperty('--opacity-scale', scale.toString());
     });
@@ -60,7 +60,7 @@ let Footer = class {
       this.destroyCollapsibleFooter();
       if (hasFade) {
         const pageEl = this.el.closest('ion-app,ion-page,.ion-page,page-inner');
-        const contentEl = (pageEl) ? pageEl.querySelector('ion-content') : null;
+        const contentEl = pageEl ? pageEl.querySelector('ion-content') : null;
         this.setupFadeFooter(contentEl);
       }
     };
@@ -69,12 +69,14 @@ let Footer = class {
         console.error('ion-footer requires a content to collapse. Make sure there is an ion-content.');
         return;
       }
-      await new Promise(resolve => componentOnReady(contentEl, resolve));
-      const scrollEl = this.scrollEl = await contentEl.getScrollElement();
+      await new Promise((resolve) => componentOnReady(contentEl, resolve));
+      const scrollEl = (this.scrollEl = await contentEl.getScrollElement());
       /**
        * Handle fading of toolbars on scroll
        */
-      this.contentScrollCallback = () => { handleFooterFade(scrollEl, this.el); };
+      this.contentScrollCallback = () => {
+        handleFooterFade(scrollEl, this.el);
+      };
       scrollEl.addEventListener('scroll', this.contentScrollCallback);
       handleFooterFade(scrollEl, this.el);
     };
@@ -101,8 +103,7 @@ let Footer = class {
         [`footer-translucent`]: translucent,
         [`footer-translucent-${mode}`]: translucent,
         [`footer-collapse-${collapse}`]: collapse !== undefined,
-      } }, mode === 'ios' && translucent &&
-      h("div", { class: "footer-background" }), h("slot", null)));
+      } }, mode === 'ios' && translucent && h("div", { class: "footer-background" }), h("slot", null)));
   }
   get el() { return getElement(this); }
 };

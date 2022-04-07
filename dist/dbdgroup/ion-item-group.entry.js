@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
+import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
 
 const itemGroupIosCss = "ion-item-group{display:block}";
 
@@ -15,7 +15,7 @@ let ItemGroup = class {
         [mode]: true,
         // Used internally for styling
         [`item-group-${mode}`]: true,
-        'item': true
+        item: true,
       } }));
   }
 };

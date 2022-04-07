@@ -1,6 +1,6 @@
-import { r as registerInstance, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as createColorClasses } from './theme-c336c9d9.js';
+import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as createColorClasses } from './theme-7ef00c83.js';
 
 const textCss = ":host(.ion-color){color:var(--ion-color-base)}";
 

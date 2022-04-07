@@ -1,9 +1,9 @@
-import { r as registerInstance, l as createEvent, j as Build, h, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode, c as config } from './ionic-global-48c6f4a1.js';
-import { g as getTimeGivenProgression } from './cubic-bezier-a7ad9c8e.js';
-import { j as assert, s as shallowEqualStringMap } from './helpers-b5b4d5eb.js';
-import { l as lifecycle, L as LIFECYCLE_WILL_UNLOAD, a as LIFECYCLE_WILL_LEAVE, b as LIFECYCLE_DID_LEAVE, t as transition, s as setPageHidden } from './index-3f3f61b5.js';
-import { a as attachComponent } from './framework-delegate-d5ceb96c.js';
+import { r as registerInstance, l as createEvent, j as Build, h, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { j as assert, s as shallowEqualStringMap } from './helpers-e7913fb8.js';
+import { l as lifecycle, L as LIFECYCLE_WILL_UNLOAD, a as LIFECYCLE_WILL_LEAVE, b as LIFECYCLE_DID_LEAVE, t as transition, s as setPageHidden } from './index-03e2d32b.js';
+import { a as attachComponent } from './framework-delegate-49dc7795.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -61,7 +61,8 @@ const convertToView = (page, params) => {
   return new ViewController(page, params);
 };
 const convertToViews = (pages) => {
-  return pages.map(page => {
+  return pages
+    .map((page) => {
     if (page instanceof ViewController) {
       return page;
     }
@@ -73,10 +74,11 @@ const convertToViews = (pages) => {
        * `NavComponentWithProps`. Previously `pages` was
        * of type `any[]` so TypeScript did not catch this.
        */
-      return convertToView(page.component, (page.componentProps === null) ? undefined : page.componentProps);
+      return convertToView(page.component, page.componentProps === null ? undefined : page.componentProps);
     }
     return convertToView(page, undefined);
-  }).filter(v => v !== null);
+  })
+    .filter((v) => v !== null);
 };
 
 const navCss = ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}";
@@ -124,7 +126,7 @@ let Nav = class {
   }
   async componentDidLoad() {
     this.rootChanged();
-    this.gesture = (await import('./swipe-back-70eaf596.js')).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
+    this.gesture = (await import('./swipe-back-981879da.js')).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
     this.swipeGestureChanged();
   }
   disconnectedCallback() {
@@ -181,7 +183,7 @@ let Nav = class {
     return this.queueTrns({
       insertStart: insertIndex,
       insertViews: insertComponents,
-      opts
+      opts,
     }, done);
   }
   /**
@@ -205,7 +207,7 @@ let Nav = class {
     const ti = {
       removeStart: -1,
       removeCount: -1,
-      opts
+      opts,
     };
     if (typeof indexOrViewCtrl === 'object' && indexOrViewCtrl.component) {
       ti.removeView = indexOrViewCtrl;
@@ -237,7 +239,7 @@ let Nav = class {
     return this.queueTrns({
       removeStart: startIndex,
       removeCount,
-      opts
+      opts,
     }, done);
   }
   /**
@@ -272,7 +274,7 @@ let Nav = class {
       insertViews: views,
       removeStart: 0,
       removeCount: -1,
-      opts
+      opts,
     }, done);
   }
   /**
@@ -291,34 +293,34 @@ let Nav = class {
     if (matches(active, id, params)) {
       return Promise.resolve({
         changed: false,
-        element: active.element
+        element: active.element,
       });
     }
     let resolve;
-    const promise = new Promise(r => (resolve = r));
+    const promise = new Promise((r) => (resolve = r));
     let finish;
     const commonOpts = {
       updateURL: false,
-      viewIsReady: enteringEl => {
+      viewIsReady: (enteringEl) => {
         let mark;
-        const p = new Promise(r => (mark = r));
+        const p = new Promise((r) => (mark = r));
         resolve({
           changed: true,
           element: enteringEl,
           markVisible: async () => {
             mark();
             await finish;
-          }
+          },
         });
         return p;
-      }
+      },
     };
     if (direction === 'root') {
       finish = this.setRoot(id, params, commonOpts);
     }
     else {
       // Look for a view matching the target in the view stack.
-      const viewController = this.views.find(v => matches(v, id, params));
+      const viewController = this.views.find((v) => matches(v, id, params));
       if (viewController) {
         finish = this.popTo(viewController, Object.assign(Object.assign({}, commonOpts), { direction: 'back', animationBuilder: animation }));
       }
@@ -342,7 +344,7 @@ let Nav = class {
       return {
         id: active.element.tagName,
         params: active.params,
-        element: active.element
+        element: active.element,
       };
     }
     return undefined;
@@ -534,7 +536,7 @@ let Nav = class {
         // resolve immediately because there's no animation that's happening
         result = {
           hasCompleted: true,
-          requiresTransition: false
+          requiresTransition: false,
         };
       }
       this.success(result, ti);
@@ -568,8 +570,7 @@ let Nav = class {
       if (ti.removeCount < 0) {
         ti.removeCount = viewsLength - ti.removeStart;
       }
-      ti.leavingRequiresTransition =
-        ti.removeCount > 0 && ti.removeStart + ti.removeCount === viewsLength;
+      ti.leavingRequiresTransition = ti.removeCount > 0 && ti.removeStart + ti.removeCount === viewsLength;
     }
     if (ti.insertViews) {
       // allow -1 to be passed in to auto push it on the end
@@ -701,9 +702,7 @@ let Nav = class {
     // we should animate (duration > 0) if the pushed page is not the first one (startup)
     // or if it is a portal (modal, actionsheet, etc.)
     const opts = ti.opts;
-    const progressCallback = opts.progressAnimation
-      ? (ani) => this.sbAni = ani
-      : undefined;
+    const progressCallback = opts.progressAnimation ? (ani) => (this.sbAni = ani) : undefined;
     const mode = getIonMode(this);
     const enteringEl = enteringView.element;
     const leavingEl = leavingView && leavingView.element;
@@ -722,7 +721,7 @@ let Nav = class {
       requiresTransition: true,
       enteringView,
       leavingView,
-      direction: opts.direction
+      direction: opts.direction,
     };
   }
   /**
@@ -829,7 +828,7 @@ let Nav = class {
         this.animationEnabled = true;
       }, { oneTimeCallback: true });
       // Account for rounding errors in JS
-      let newStepValue = (shouldComplete) ? -0.001 : 0.001;
+      let newStepValue = shouldComplete ? -0.001 : 0.001;
       /**
        * Animation will be reversed here, so need to
        * reverse the easing curve as well
@@ -849,7 +848,7 @@ let Nav = class {
     }
   }
   render() {
-    return (h("slot", null));
+    return h("slot", null);
   }
   get el() { return getElement(this); }
   static get watchers() { return {

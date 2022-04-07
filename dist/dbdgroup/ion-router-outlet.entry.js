@@ -1,9 +1,9 @@
-import { r as registerInstance, l as createEvent, h, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode, c as config } from './ionic-global-48c6f4a1.js';
-import { g as getTimeGivenProgression } from './cubic-bezier-a7ad9c8e.js';
-import { a as attachComponent, d as detachComponent } from './framework-delegate-d5ceb96c.js';
-import { s as shallowEqualStringMap } from './helpers-b5b4d5eb.js';
-import { t as transition } from './index-3f3f61b5.js';
+import { r as registerInstance, l as createEvent, h, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
+import { s as shallowEqualStringMap } from './helpers-e7913fb8.js';
+import { t as transition } from './index-03e2d32b.js';
 
 const routeOutletCss = ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}";
 
@@ -35,7 +35,7 @@ let RouterOutlet = class {
         this.swipeHandler.onStart();
       }
     };
-    this.gesture = (await import('./swipe-back-70eaf596.js')).createSwipeBackGesture(this.el, () => !this.gestureOrAnimationInProgress && !!this.swipeHandler && this.swipeHandler.canStart(), () => onStart(), step => this.ani && this.ani.progressStep(step), (shouldComplete, step, dur) => {
+    this.gesture = (await import('./swipe-back-981879da.js')).createSwipeBackGesture(this.el, () => !this.gestureOrAnimationInProgress && !!this.swipeHandler && this.swipeHandler.canStart(), () => onStart(), (step) => { var _a; return (_a = this.ani) === null || _a === void 0 ? void 0 : _a.progressStep(step); }, (shouldComplete, step, dur) => {
       if (this.ani) {
         this.ani.onFinish(() => {
           this.gestureOrAnimationInProgress = false;
@@ -44,7 +44,7 @@ let RouterOutlet = class {
           }
         }, { oneTimeCallback: true });
         // Account for rounding errors in JS
-        let newStepValue = (shouldComplete) ? -0.001 : 0.001;
+        let newStepValue = shouldComplete ? -0.001 : 0.001;
         /**
          * Animation will be reversed here, so need to
          * reverse the easing curve as well
@@ -95,21 +95,23 @@ let RouterOutlet = class {
     const changed = await this.setRoot(id, params, {
       duration: direction === 'root' ? 0 : undefined,
       direction: direction === 'back' ? 'back' : 'forward',
-      animationBuilder: animation
+      animationBuilder: animation,
     });
     return {
       changed,
-      element: this.activeEl
+      element: this.activeEl,
     };
   }
   /** @internal */
   async getRouteId() {
     const active = this.activeEl;
-    return active ? {
-      id: active.tagName,
-      element: active,
-      params: this.activeParams,
-    } : undefined;
+    return active
+      ? {
+        id: active.tagName,
+        element: active,
+        params: this.activeParams,
+      }
+      : undefined;
   }
   async setRoot(component, params, opts) {
     if (this.activeComponent === component && shallowEqualStringMap(params, this.activeParams)) {
@@ -138,8 +140,8 @@ let RouterOutlet = class {
     await transition(Object.assign(Object.assign({ mode,
       animated,
       enteringEl,
-      leavingEl, baseEl: el, progressCallback: (opts.progressAnimation
-        ? ani => {
+      leavingEl, baseEl: el, progressCallback: opts.progressAnimation
+        ? (ani) => {
           /**
            * Because this progress callback is called asynchronously
            * it is possible for the gesture to start and end before
@@ -167,7 +169,7 @@ let RouterOutlet = class {
             this.ani = ani;
           }
         }
-        : undefined) }, opts), { animationBuilder }));
+        : undefined }, opts), { animationBuilder }));
     // emit nav changed event
     this.ionNavDidChange.emit();
     return true;
@@ -175,14 +177,14 @@ let RouterOutlet = class {
   async lock() {
     const p = this.waitPromise;
     let resolve;
-    this.waitPromise = new Promise(r => resolve = r);
+    this.waitPromise = new Promise((r) => (resolve = r));
     if (p !== undefined) {
       await p;
     }
     return resolve;
   }
   render() {
-    return (h("slot", null));
+    return h("slot", null);
   }
   get el() { return getElement(this); }
   static get watchers() { return {

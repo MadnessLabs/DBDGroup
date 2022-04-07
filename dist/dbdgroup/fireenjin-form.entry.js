@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, j as Build, h, m as getElement } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, j as Build, h, m as getElement } from './index-e5ab994a.js';
 
 const formCss = "fireenjin-form{display:block}fireenjin-form .form-controls{opacity:1;pointer-events:all;transition:all ease-out 0.4s}fireenjin-form .form-controls ion-col:last-of-type{display:flex;flex-direction:row;justify-content:flex-end}fireenjin-form .is-hidden{opacity:0;pointer-events:none;height:0px}";
 
@@ -43,10 +43,6 @@ let Form = class {
      */
     this.hideControls = false;
     /**
-     * The data to exclude from the form submit event
-     */
-    this.excludeData = [];
-    /**
      * Should the form disable the loader on submit
      */
     this.disableLoader = false;
@@ -75,42 +71,42 @@ let Form = class {
      */
     this.method = "post";
   }
-  onInput(event) {
+  handleKeyDown(ev) {
+    if (ev.key === "Enter" && this.disableEnterButton) {
+      ev.preventDefault();
+    }
+  }
+  async onInput(event) {
+    var _a;
     if (event &&
       event.target &&
       event.target.name &&
-      !event.target.name.startsWith("ion-") &&
-      (this.excludeData ? this.excludeData : []).filter((excludedName) => excludedName === event.target.name).length === 0) {
-      this.setByPath(this.formData, event.target.name, event.target.value);
+      !event.target.name.startsWith("ion-")) {
+      this.setByPath(this.formData, event.target.name, ((_a = this.filterData) === null || _a === void 0 ? void 0 : _a.length)
+        ? await this.setFilteredValue(event.target.name, event.target.value)
+        : event.target.value);
       if (this.componentIsLoaded && !this.hasChanged) {
         this.hasChanged = true;
-      }
-    }
-  }
-  onSelect(event) {
-    if (event &&
-      event.target &&
-      event.target.name &&
-      (this.excludeData ? this.excludeData : []).filter((excludedName) => excludedName === event.target.name).length === 0) {
-      this.formData[event.target.name] = event.target.value;
-      if (this.componentIsLoaded && !this.hasChanged) {
-        this.hasChanged = true;
-      }
-    }
-  }
-  async onKeyDown(event) {
-    if (event.key === "Enter" && (await this.checkFormValidity())) {
-      if (this.submitButtonEl && !this.disableEnterButton) {
-        this.submitButtonEl.click();
       }
     }
   }
   async onSuccess(event) {
-    var _a, _b, _c;
-    if ((this.fetch || this.fetchDataMap) &&
-      ((_b = (_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.event) === null || _b === void 0 ? void 0 : _b.type) === "fireenjinFetch") {
-      this.formData = await this.mapFormData(this.fetchDataMap, ((_c = event.detail) === null || _c === void 0 ? void 0 : _c.data) ? event.detail.data : {});
-      await this.setFormData(this.formData);
+    var _a, _b, _c, _d, _e;
+    if (this.fetch &&
+      [this.endpoint, this.fetch].includes((_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.endpoint) &&
+      ((_c = (_b = event === null || event === void 0 ? void 0 : event.detail) === null || _b === void 0 ? void 0 : _b.event) === null || _c === void 0 ? void 0 : _c.type) === "fireenjinFetch") {
+      await this.setFormData(this.fetchKey
+        ? this.fetchKey.split(".").reduce((o, i) => o[i], event.detail.data)
+        : (_d = event === null || event === void 0 ? void 0 : event.detail) === null || _d === void 0 ? void 0 : _d.data);
+    }
+    if ([this.endpoint, this.fetch].includes((_e = event === null || event === void 0 ? void 0 : event.detail) === null || _e === void 0 ? void 0 : _e.endpoint)) {
+      this.loading = false;
+    }
+  }
+  async onError(event) {
+    var _a;
+    if (this.endpoint === ((_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.endpoint)) {
+      this.loading = false;
     }
   }
   /**
@@ -120,6 +116,7 @@ let Form = class {
   async submit(event, options = {
     manual: false,
   }) {
+    var _a;
     if (event)
       event.preventDefault();
     await this.checkFormValidity();
@@ -127,11 +124,12 @@ let Form = class {
     const data = this.beforeSubmit && typeof this.beforeSubmit === "function"
       ? await this.beforeSubmit(this.formData, options)
       : this.formData;
+    console.log(this.filterData);
     this.fireenjinSubmit.emit({
       event,
       id: this.documentId,
       endpoint: this.endpoint,
-      data,
+      data: ((_a = this.filterData) === null || _a === void 0 ? void 0 : _a.length) ? await this.filterFormData(data) : data,
       name: this.name,
     });
     this.hasChanged = false;
@@ -202,7 +200,22 @@ let Form = class {
       const dataKey = ((_b = (_a = field.dataset) === null || _a === void 0 ? void 0 : _a.fill) === null || _b === void 0 ? void 0 : _b.length) > 0 ? field.dataset.fill : field.name;
       field.value = this.getByPath(data, dataKey);
     });
-    this.formData = data;
+    this.formData = await this.mapFormData(this.fetchDataMap, data || {});
+  }
+  async setFilteredValue(key, value) {
+    var _a, _b;
+    let newValue = value;
+    for (const filter of typeof this.filterData === "string"
+      ? this.filterData.split(",")
+      : this.filterData) {
+      if (typeof filter !== "function")
+        continue;
+      const filterName = (_b = (_a = Object.getOwnPropertyDescriptors(filter)) === null || _a === void 0 ? void 0 : _a.name) === null || _b === void 0 ? void 0 : _b.value;
+      if (!filterName || filterName !== key)
+        continue;
+      newValue = await filter(value);
+    }
+    return newValue;
   }
   async mapFormData(dataMap, data) {
     let newData = data ? data : {};
@@ -218,6 +231,31 @@ let Form = class {
       }
     }
     return newData;
+  }
+  async filterFormData(data) {
+    var _a, _b;
+    let filteredData = {};
+    for (const filter of typeof this.filterData === "string"
+      ? this.filterData.split(",")
+      : this.filterData) {
+      if (typeof filter === "string") {
+        filteredData[filter] = data[filter];
+      }
+      else if (typeof filter === "function") {
+        const key = (_b = (_a = Object.getOwnPropertyDescriptors(filter)) === null || _a === void 0 ? void 0 : _a.name) === null || _b === void 0 ? void 0 : _b.value;
+        filteredData[key] = await filter(data[key]);
+      }
+    }
+    return filteredData;
+  }
+  pick(sourceObject, keys) {
+    const newObject = {};
+    for (const key of keys) {
+      if (!(sourceObject === null || sourceObject === void 0 ? void 0 : sourceObject[key]))
+        continue;
+      newObject[key] = sourceObject[key];
+    }
+    return newObject;
   }
   getByPath(o, s) {
     s = s.replace(/\[(\w+)\]/g, ".$1"); // convert indexes to properties
@@ -252,6 +290,8 @@ let Form = class {
       this.componentIsLoaded = true;
     }, 2000);
     if (this.fetch) {
+      if (!this.disableLoader)
+        this.loading = true;
       this.fireenjinFetch.emit({
         endpoint: typeof this.fetch === "string" ? this.fetch : this.endpoint,
         name: this.name || null,

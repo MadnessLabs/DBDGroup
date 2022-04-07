@@ -1,85 +1,52 @@
-import { r as registerInstance, l as createEvent, j as Build, h } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, j as Build, h } from './index-e5ab994a.js';
 
-const radiosCss = "fireenjin-radios .invalid .input-wrapper{border-bottom-color:var(--ion-color-danger) !important}fireenjin-radios .invalid ion-label{color:var(--ion-color-danger) !important}fireenjin-radios ion-label{color:var(--ion-color-medium-shade);font-size:12px;font-weight:bold;text-transform:uppercase;font-family:arial;display:block;background:transparent;text-align:left;padding:0 0 8px 0;font-family:var(--ion-font-family)}fireenjin-radios ion-item{border-bottom:none !important;box-shadow:none !important}fireenjin-radios ion-input{display:block;height:0;width:0;opacity:0;pointer-events:none}fireenjin-radios ion-item ion-label{color:var(--ion-color-medium-shade) !important}fireenjin-radios ion-item input{color:var(--ion-color-dark);border:none;box-shadow:none !important;font-family:var(--ion-font-family);outline:none !important}fireenjin-radios ion-item.item-input-has-focus ion-label{color:var(--ion-color-primary)}fireenjin-radios ul{display:block;width:100%;list-style:none;padding:15px 0 5px 0;margin:0;text-align:left;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}fireenjin-radios ul li{display:inline-block;margin-right:15px;font-size:14px;line-height:30px;text-align:left;color:var(--ion-text-color);position:relative;height:30px;text-indent:30px}fireenjin-radios ul li ion-icon{position:absolute;left:0px;top:0;color:var(--ion-color-primary);height:28px;width:28px}fireenjin-radios ul li ion-icon svg path{fill:var(--ion-color-primary)}fireenjin-radios ul li .empty-circle{position:absolute;top:2px;left:0px;height:23px;width:23px;border-radius:100%;border:2px solid var(--ion-color-medium-tint)}fireenjin-radios ul li:hover{cursor:pointer;color:var(--ion-color-primary)}fireenjin-radios ul li:hover .empty-circle{border-color:var(--ion-color-primary)}";
+const radiosCss = "";
 
 let Radios = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    this.ionChange = createEvent(this, "ionChange", 7);
+    this.fireenjinFetch = createEvent(this, "fireenjinFetch", 7);
+    this.disabled = false;
+    this.allowEmptySelection = false;
     this.lines = "none";
-    this.selected = 0;
+    this.limit = 15;
+    this.radioSlot = "start";
+    this.results = [];
   }
-  onSelectedChange() {
-    if (Build.isBrowser) {
-      setTimeout(() => {
-        this.setSelectedIndex();
-      }, 50);
-    }
+  onSuccess(event) {
+    var _a, _b, _c;
+    if (((_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.name) !== "radios" ||
+      event.detail.endpoint !== this.endpoint)
+      return;
+    this.results = ((_c = (_b = event === null || event === void 0 ? void 0 : event.detail) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.results)
+      ? event.detail.data.results
+      : [];
+    setTimeout(() => {
+      this.value = this.value;
+    }, 200);
   }
-  onValueChange() {
-    if (Build.isBrowser) {
-      setTimeout(() => {
-        this.setSelectedValue();
-      }, 50);
-    }
-  }
-  async getOptionIndex(str) {
-    if (!this.options || !this.options.length)
-      return false;
-    let selectedIndex = 0;
-    let i = 0;
-    for (const option of this.options) {
-      if (option.value === str) {
-        selectedIndex = i;
-        break;
-      }
-      i = i + 1;
-    }
-    this.selected = this.selectedIndex;
-    return selectedIndex;
-  }
-  setSelectedValue() {
-    let index = 0;
-    for (const option of this.options) {
-      if (option.value === this.value) {
-        this.selected = index;
-      }
-      index = index + 1;
-    }
-    this.ionChange.emit({
-      value: this.value,
-      name: this.name,
-    });
-  }
-  setSelectedIndex() {
-    this.selectedIndex = this.selected;
-    this.value = this.options[this.selected].value;
-    this.ionChange.emit({
-      value: this.value,
-      name: this.name,
+  fetchData() {
+    if (!this.endpoint)
+      return;
+    this.fireenjinFetch.emit({
+      name: "radios",
+      endpoint: this.endpoint,
+      dataPropsMap: this.dataPropsMap
+        ? this.dataPropsMap
+        : this.resultsKey
+          ? { [this.resultsKey]: "results" }
+          : null,
+      params: Object.assign({ data: Object.assign(Object.assign(Object.assign({}, (this.query ? { query: this.query } : {})), (this.orderBy ? { orderBy: this.orderBy } : {})), { limit: this.limit ? this.limit : 15 }) }, (this.params ? this.params : {})),
     });
   }
   componentWillLoad() {
-    if (Build.isBrowser) {
-      this.setSelectedIndex();
-    }
-  }
-  selectOption(index, option) {
-    this.value = typeof option.value !== "undefined" ? option.value : null;
-    this.selectedIndex = index;
-    if (!this.value) {
-      setTimeout(() => {
-        this.setSelectedValue();
-      }, 50);
-    }
+    if (!Build.isBrowser)
+      return;
+    this.fetchData();
   }
   render() {
-    return (h("ion-item", { lines: this.lines }, h("ion-label", { position: this.labelPosition }, this.label), h("ul", null, this.options.map((radio, index) => (h("li", { onClick: () => this.selectOption(index, radio) }, radio.name, index === this.selectedIndex ? (h("ion-icon", { name: "checkmark-circle" })) : (h("div", { class: "empty-circle" }))))))));
+    return (h("ion-list", null, h("ion-radio-group", { name: this.name, value: this.value, allowEmptySelection: this.allowEmptySelection }, h("ion-list-header", { position: this.labelPosition }, this.label), (this.options ? this.options : []).map((option) => this.optionEl ? (this.optionEl(option)) : (h("ion-item", { lines: this.lines }, h("ion-label", null, (option === null || option === void 0 ? void 0 : option.label) || (option === null || option === void 0 ? void 0 : option.value)), h("ion-radio", { mode: this.mode, color: (option === null || option === void 0 ? void 0 : option.color) || this.color, disabled: this.disabled || option.disabled, slot: (option === null || option === void 0 ? void 0 : option.slot) || this.radioSlot, value: (option === null || option === void 0 ? void 0 : option.value) || null })))), (this.results ? this.results : []).map((result) => this.optionEl ? (this.optionEl(result)) : (h("ion-item", { lines: this.lines }, h("ion-label", null, (result === null || result === void 0 ? void 0 : result.label) || (result === null || result === void 0 ? void 0 : result.name) || (result === null || result === void 0 ? void 0 : result.value) || (result === null || result === void 0 ? void 0 : result.id)), h("ion-radio", { mode: this.mode, color: (result === null || result === void 0 ? void 0 : result.color) || this.color, disabled: this.disabled || (result === null || result === void 0 ? void 0 : result.disabled), slot: (result === null || result === void 0 ? void 0 : result.slot) || this.radioSlot, value: (result === null || result === void 0 ? void 0 : result.value) || (result === null || result === void 0 ? void 0 : result.id) || null })))))));
   }
-  static get watchers() { return {
-    "selected": ["onSelectedChange"],
-    "value": ["onValueChange"]
-  }; }
 };
 Radios.style = radiosCss;
 

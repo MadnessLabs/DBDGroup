@@ -1,5 +1,5 @@
-import { r as registerInstance, o as readTask, i as writeTask, q as forceUpdate, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { c as componentOnReady } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, o as readTask, i as writeTask, q as forceUpdate, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { c as componentOnReady } from './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -26,7 +26,7 @@ const updateVDom = (dom, heightIndex, cells, range) => {
   const end = range.offset + range.length;
   for (let i = range.offset; i < end; i++) {
     const cell = cells[i];
-    const node = dom.find(n => n.d && n.cell === cell);
+    const node = dom.find((n) => n.d && n.cell === cell);
     if (node) {
       const top = heightIndex[i];
       if (top !== node.top) {
@@ -40,9 +40,9 @@ const updateVDom = (dom, heightIndex, cells, range) => {
     }
   }
   // needs to append
-  const pool = dom.filter(n => n.d);
+  const pool = dom.filter((n) => n.d);
   for (const cell of toMutate) {
-    const node = pool.find(n => n.d && n.cell.type === cell.type);
+    const node = pool.find((n) => n.d && n.cell.type === cell.type);
     const index = cell.i;
     if (node) {
       node.d = false;
@@ -61,14 +61,14 @@ const updateVDom = (dom, heightIndex, cells, range) => {
     }
   }
   dom
-    .filter(n => n.d && n.top !== -9999)
-    .forEach(n => {
+    .filter((n) => n.d && n.top !== -9999)
+    .forEach((n) => {
     n.change = NODE_CHANGE_POSITION;
     n.top = -9999;
   });
 };
 const doRender = (el, nodeRender, dom, updateCellHeight) => {
-  const children = Array.from(el.children).filter(n => n.tagName !== 'TEMPLATE');
+  const children = Array.from(el.children).filter((n) => n.tagName !== 'TEMPLATE');
   const childrenNu = children.length;
   let child;
   for (let i = 0; i < dom.length; i++) {
@@ -122,15 +122,18 @@ const createNode = (el, type) => {
 };
 const getTemplate = (el, type) => {
   switch (type) {
-    case CELL_TYPE_ITEM: return el.querySelector('template:not([name])');
-    case CELL_TYPE_HEADER: return el.querySelector('template[name=header]');
-    case CELL_TYPE_FOOTER: return el.querySelector('template[name=footer]');
+    case CELL_TYPE_ITEM:
+      return el.querySelector('template:not([name])');
+    case CELL_TYPE_HEADER:
+      return el.querySelector('template[name=header]');
+    case CELL_TYPE_FOOTER:
+      return el.querySelector('template[name=footer]');
   }
 };
 const getViewport = (scrollTop, vierportHeight, margin) => {
   return {
     top: Math.max(scrollTop - margin, 0),
-    bottom: scrollTop + vierportHeight + margin
+    bottom: scrollTop + vierportHeight + margin,
   };
 };
 const getRange = (heightIndex, viewport, buffer) => {
@@ -156,9 +159,7 @@ const getRange = (heightIndex, viewport, buffer) => {
 };
 const getShouldUpdate = (dirtyIndex, currentRange, range) => {
   const end = range.offset + range.length;
-  return (dirtyIndex <= end ||
-    currentRange.offset !== range.offset ||
-    currentRange.length !== range.length);
+  return dirtyIndex <= end || currentRange.offset !== range.offset || currentRange.length !== range.length;
 };
 const findCellIndex = (cells, index) => {
   const max = cells.length > 0 ? cells[cells.length - 1].index : 0;
@@ -169,7 +170,7 @@ const findCellIndex = (cells, index) => {
     return cells.length;
   }
   else {
-    return cells.findIndex(c => c.index === index);
+    return cells.findIndex((c) => c.index === index);
   }
 };
 const inplaceUpdate = (dst, src, offset) => {
@@ -251,7 +252,7 @@ const resizeBuffer = (buf, len) => {
   }
 };
 const positionForIndex = (index, cells, heightIndex) => {
-  const cell = cells.find(c => c.type === CELL_TYPE_ITEM && c.index === index);
+  const cell = cells.find((c) => c.type === CELL_TYPE_ITEM && c.index === index);
   if (cell) {
     return heightIndex[cell.i];
   }
@@ -355,9 +356,7 @@ let VirtualScroll = class {
     if (!this.items) {
       return;
     }
-    const length = (len === -1)
-      ? this.items.length - offset
-      : len;
+    const length = len === -1 ? this.items.length - offset : len;
     const cellIndex = findCellIndex(this.cells, offset);
     const cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, cellIndex, offset, length);
     this.cells = inplaceUpdate(this.cells, cells, cellIndex);
@@ -469,8 +468,7 @@ let VirtualScroll = class {
     this.timerUpdate = setTimeout(() => this.updateVirtualScroll(), 100);
   }
   updateState() {
-    const shouldEnable = !!(this.scrollEl &&
-      this.cells);
+    const shouldEnable = !!(this.scrollEl && this.cells);
     if (shouldEnable !== this.isEnabled) {
       this.enableScrollEvents(shouldEnable);
       if (shouldEnable) {
@@ -515,15 +513,18 @@ let VirtualScroll = class {
   renderVirtualNode(node) {
     const { type, value, index } = node.cell;
     switch (type) {
-      case CELL_TYPE_ITEM: return this.renderItem(value, index);
-      case CELL_TYPE_HEADER: return this.renderHeader(value, index);
-      case CELL_TYPE_FOOTER: return this.renderFooter(value, index);
+      case CELL_TYPE_ITEM:
+        return this.renderItem(value, index);
+      case CELL_TYPE_HEADER:
+        return this.renderHeader(value, index);
+      case CELL_TYPE_FOOTER:
+        return this.renderFooter(value, index);
     }
   }
   render() {
     return (h(Host, { style: {
-        height: `${this.totalHeight}px`
-      } }, this.renderItem && (h(VirtualProxy, { dom: this.virtualDom }, this.virtualDom.map(node => this.renderVirtualNode(node))))));
+        height: `${this.totalHeight}px`,
+      } }, this.renderItem && (h(VirtualProxy, { dom: this.virtualDom }, this.virtualDom.map((node) => this.renderVirtualNode(node))))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

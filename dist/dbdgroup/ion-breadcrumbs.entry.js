@@ -1,6 +1,6 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { c as createColorClasses, h as hostContext } from './theme-c336c9d9.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
 
 const breadcrumbsIosCss = ":host{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:flex;flex-wrap:wrap;align-items:center}:host(.in-toolbar-color),:host(.in-toolbar-color) .breadcrumbs-collapsed-indicator ion-icon{color:var(--ion-color-contrast)}:host(.in-toolbar-color) .breadcrumbs-collapsed-indicator{background:rgba(var(--ion-color-contrast-rgb), 0.11)}:host(.in-toolbar){padding-left:20px;padding-right:20px;padding-top:0;padding-bottom:0;justify-content:center}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host(.in-toolbar){padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:20px;padding-inline-end:20px}}";
 
@@ -28,7 +28,7 @@ let Breadcrumbs = class {
       const breadcrumbs = this.getBreadcrumbs();
       // Only reset the active breadcrumb if we were the ones to change it
       // otherwise use the one set on the component
-      const activeBreadcrumb = breadcrumbs.find(breadcrumb => breadcrumb.active);
+      const activeBreadcrumb = breadcrumbs.find((breadcrumb) => breadcrumb.active);
       if (activeBreadcrumb && this.activeChanged) {
         activeBreadcrumb.active = false;
       }
@@ -43,9 +43,7 @@ let Breadcrumbs = class {
       // If the number of breadcrumbs exceeds the maximum number of items
       // that should show and the items before / after collapse do not
       // exceed the maximum items then we need to collapse the breadcrumbs
-      const shouldCollapse = maxItems !== undefined
-        && breadcrumbs.length > maxItems
-        && itemsBeforeCollapse + itemsAfterCollapse <= maxItems;
+      const shouldCollapse = maxItems !== undefined && breadcrumbs.length > maxItems && itemsBeforeCollapse + itemsAfterCollapse <= maxItems;
       if (shouldCollapse) {
         // Show the collapsed indicator in the first breadcrumb that collapses
         breadcrumbs.forEach((breadcrumb, index) => {
@@ -65,7 +63,7 @@ let Breadcrumbs = class {
       const { itemsAfterCollapse, itemsBeforeCollapse, maxItems } = this;
       const breadcrumbs = this.getBreadcrumbs();
       // Check if an active breadcrumb exists already
-      const active = breadcrumbs.find(breadcrumb => breadcrumb.active);
+      const active = breadcrumbs.find((breadcrumb) => breadcrumb.active);
       // Set the separator on all but the last breadcrumb
       for (const breadcrumb of breadcrumbs) {
         // The only time the last breadcrumb changes is when
@@ -78,9 +76,7 @@ let Breadcrumbs = class {
         // If the breadcrumb has defined whether or not to show the
         // separator then use that value, otherwise check if it's the
         // last breadcrumb
-        const separator = breadcrumb.separator !== undefined
-          ? breadcrumb.separator
-          : (last ? undefined : true);
+        const separator = breadcrumb.separator !== undefined ? breadcrumb.separator : last ? undefined : true;
         breadcrumb.separator = separator;
         // If there is not an active breadcrumb already
         // set the last one to active
@@ -96,7 +92,7 @@ let Breadcrumbs = class {
   }
   onCollapsedClick(ev) {
     const breadcrumbs = this.getBreadcrumbs();
-    const collapsedBreadcrumbs = breadcrumbs.filter(breadcrumb => breadcrumb.collapsed);
+    const collapsedBreadcrumbs = breadcrumbs.filter((breadcrumb) => breadcrumb.collapsed);
     this.ionCollapsedClick.emit(Object.assign(Object.assign({}, ev.detail), { collapsedBreadcrumbs }));
   }
   maxItemsChanged() {

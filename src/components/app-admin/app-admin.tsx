@@ -39,6 +39,49 @@ export class AppAdmin {
     return (
       <ion-content>
         <ion-grid>
+          <ion-row
+            style={{
+              "justify-content": "center",
+            }}
+          >
+            <ion-col size="2">
+              <ion-accordion-group>
+                <ion-accordion value="colors" toggle-icon="arrow-down-circle">
+                  <ion-item
+                    style={{
+                      "text-align": "center",
+                    }}
+                    slot="header"
+                  >
+                    <ion-label>Links</ion-label>
+                  </ion-item>
+                  <ion-list slot="content">
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/tournament">
+                        Tournament sign-up
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/list">
+                        Tournament List
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/profile">
+                        Profile
+                      </a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group/admin">Admin</a>
+                    </ion-item>
+                    <ion-item>
+                      <a href="www.https://deadbydaylight.group">Home</a>
+                    </ion-item>
+                  </ion-list>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ion-col>
+          </ion-row>
           <ion-row>
             <ion-col>
               <ion-card>
@@ -66,13 +109,14 @@ export class AppAdmin {
           <ion-row>
             <ion-col size="4">
               <div>
-                <img src="/assets/Dwight.png"
-                 style={{
-                    "margin-left":"100px",
-                    "margin-top":"80px"
-                }}
-                height={600}
-                width={300}
+                <img
+                  src="/assets/Dwight.png"
+                  style={{
+                    "margin-left": "100px",
+                    "margin-top": "80px",
+                  }}
+                  height={600}
+                  width={300}
                 ></img>
               </div>
             </ion-col>
@@ -175,10 +219,7 @@ export class AppAdmin {
             </ion-col>
             <ion-col size="4">
               <div>
-                <img src="/assets/Huntress.png"
-                height={700}
-                width={500}
-                ></img>
+                <img src="/assets/Huntress.png" height={700} width={500}></img>
               </div>
             </ion-col>
           </ion-row>

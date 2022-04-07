@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, j as Build, h, n as Host, m as getElement } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, j as Build, h, n as Host, m as getElement } from './index-e5ab994a.js';
 import { L as Loader } from './index-0470df38.js';
 import { c as cordova, O as Observable, I as IonicNativePlugin } from './index-8f4ab8fe.js';
 import './process-es6-6fcfb3fc.js';

@@ -1,10 +1,10 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { B as BACKDROP, i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-884665fe.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import './hardware-back-button-b6ccf74a.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { B as BACKDROP, i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-03fac0f0.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import './hardware-back-button-fa04d6e9.js';
+import './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -20,7 +20,7 @@ const iosEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
   wrapperAnimation
@@ -102,7 +102,7 @@ let Picker = class {
     this.dispatchCancelHandler = (ev) => {
       const role = ev.detail.role;
       if (isCancel(role)) {
-        const cancelButton = this.buttons.find(b => b.role === 'cancel');
+        const cancelButton = this.buttons.find((b) => b.role === 'cancel');
         this.callButtonHandler(cancelButton);
       }
     };
@@ -152,7 +152,7 @@ let Picker = class {
    * @param name The name of the column.
    */
   getColumn(name) {
-    return Promise.resolve(this.columns.find(column => column.name === name));
+    return Promise.resolve(this.columns.find((column) => column.name === name));
   }
   async buttonClick(button) {
     const role = button.role;
@@ -180,13 +180,11 @@ let Picker = class {
   getSelected() {
     const selected = {};
     this.columns.forEach((col, index) => {
-      const selectedColumn = col.selectedIndex !== undefined
-        ? col.options[col.selectedIndex]
-        : undefined;
+      const selectedColumn = col.selectedIndex !== undefined ? col.options[col.selectedIndex] : undefined;
       selected[col.name] = {
         text: selectedColumn ? selectedColumn.text : undefined,
         value: selectedColumn ? selectedColumn.value : undefined,
-        columnIndex: index
+        columnIndex: index,
       };
     });
     return selected;
@@ -195,17 +193,17 @@ let Picker = class {
     const { htmlAttributes } = this;
     const mode = getIonMode(this);
     return (h(Host, Object.assign({ "aria-modal": "true", tabindex: "-1" }, htmlAttributes, { style: {
-        zIndex: `${20000 + this.overlayIndex}`
+        zIndex: `${20000 + this.overlayIndex}`,
       }, class: Object.assign({ [mode]: true,
         // Used internally for styling
-        [`picker-${mode}`]: true, 'overlay-hidden': true }, getClassMap(this.cssClass)), onIonBackdropTap: this.onBackdropTap, onIonPickerWillDismiss: this.dispatchCancelHandler }), h("ion-backdrop", { visible: this.showBackdrop, tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "picker-wrapper ion-overlay-wrapper", role: "dialog" }, h("div", { class: "picker-toolbar" }, this.buttons.map(b => (h("div", { class: buttonWrapperClass(b) }, h("button", { type: "button", onClick: () => this.buttonClick(b), class: buttonClass(b) }, b.text))))), h("div", { class: "picker-columns" }, h("div", { class: "picker-above-highlight" }), this.presented && this.columns.map(c => h("ion-picker-column", { col: c })), h("div", { class: "picker-below-highlight" }))), h("div", { tabindex: "0" })));
+        [`picker-${mode}`]: true, 'overlay-hidden': true }, getClassMap(this.cssClass)), onIonBackdropTap: this.onBackdropTap, onIonPickerWillDismiss: this.dispatchCancelHandler }), h("ion-backdrop", { visible: this.showBackdrop, tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "picker-wrapper ion-overlay-wrapper", role: "dialog" }, h("div", { class: "picker-toolbar" }, this.buttons.map((b) => (h("div", { class: buttonWrapperClass(b) }, h("button", { type: "button", onClick: () => this.buttonClick(b), class: buttonClass(b) }, b.text))))), h("div", { class: "picker-columns" }, h("div", { class: "picker-above-highlight" }), this.presented && this.columns.map((c) => h("ion-picker-column", { col: c })), h("div", { class: "picker-below-highlight" }))), h("div", { tabindex: "0" })));
   }
   get el() { return getElement(this); }
 };
 const buttonWrapperClass = (button) => {
   return {
     [`picker-toolbar-${button.role}`]: button.role !== undefined,
-    'picker-toolbar-button': true
+    'picker-toolbar-button': true,
   };
 };
 const buttonClass = (button) => {

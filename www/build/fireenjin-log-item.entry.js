@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-bac865b7.js';
+import { r as registerInstance, h } from './index-e5ab994a.js';
 
 function toInteger(dirtyNumber) {
   if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {

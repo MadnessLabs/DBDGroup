@@ -1,9 +1,9 @@
-import { r as registerInstance, h, n as Host } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { s as safeCall } from './overlays-884665fe.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import './hardware-back-button-b6ccf74a.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { s as safeCall } from './overlays-03fac0f0.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import './hardware-back-button-fa04d6e9.js';
+import './helpers-e7913fb8.js';
 
 const selectPopoverIosCss = ".sc-ion-select-popover-ios-h ion-list.sc-ion-select-popover-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}ion-list-header.sc-ion-select-popover-ios,ion-label.sc-ion-select-popover-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}";
 
@@ -23,7 +23,7 @@ let SelectPopover = class {
   }
   findOptionFromEvent(ev) {
     const { options } = this;
-    return options.find(o => o.value === ev.target.value);
+    return options.find((o) => o.value === ev.target.value);
   }
   /**
    * When an option is selected we need to get the value(s)
@@ -33,7 +33,7 @@ let SelectPopover = class {
   callOptionHandler(ev) {
     const option = this.findOptionFromEvent(ev);
     const values = this.getValues(ev);
-    if (option && option.handler) {
+    if (option === null || option === void 0 ? void 0 : option.handler) {
       safeCall(option.handler, values);
     }
   }
@@ -59,7 +59,7 @@ let SelectPopover = class {
     if (multiple) {
       // this is a popover with checkboxes (multiple value select)
       // return an array of all the checked values
-      return options.filter(o => o.checked).map(o => o.value);
+      return options.filter((o) => o.checked).map((o) => o.value);
     }
     // this is a popover with radio buttons (single value select)
     // return the value that was clicked, otherwise undefined
@@ -69,22 +69,23 @@ let SelectPopover = class {
   renderOptions(options) {
     const { multiple } = this;
     switch (multiple) {
-      case true: return this.renderCheckboxOptions(options);
-      default: return this.renderRadioOptions(options);
+      case true:
+        return this.renderCheckboxOptions(options);
+      default:
+        return this.renderRadioOptions(options);
     }
   }
   renderCheckboxOptions(options) {
-    return (options.map(option => h("ion-item", { class: getClassMap(option.cssClass) }, h("ion-checkbox", { slot: "start", value: option.value, disabled: option.disabled, checked: option.checked }), h("ion-label", null, option.text))));
+    return options.map((option) => (h("ion-item", { class: getClassMap(option.cssClass) }, h("ion-checkbox", { slot: "start", value: option.value, disabled: option.disabled, checked: option.checked }), h("ion-label", null, option.text))));
   }
   renderRadioOptions(options) {
-    const checked = options.filter(o => o.checked).map(o => o.value)[0];
-    return (h("ion-radio-group", { value: checked }, options.map(option => h("ion-item", { class: getClassMap(option.cssClass) }, h("ion-label", null, option.text), h("ion-radio", { value: option.value, disabled: option.disabled, onClick: ev => this.rbClick(ev) })))));
+    const checked = options.filter((o) => o.checked).map((o) => o.value)[0];
+    return (h("ion-radio-group", { value: checked }, options.map((option) => (h("ion-item", { class: getClassMap(option.cssClass) }, h("ion-label", null, option.text), h("ion-radio", { value: option.value, disabled: option.disabled, onClick: (ev) => this.rbClick(ev) }))))));
   }
   render() {
     const { header, message, options, subHeader } = this;
     const hasSubHeaderOrMessage = subHeader !== undefined || message !== undefined;
-    return (h(Host, { class: getIonMode(this) }, h("ion-list", null, header !== undefined && h("ion-list-header", null, header), hasSubHeaderOrMessage &&
-      h("ion-item", null, h("ion-label", { class: "ion-text-wrap" }, subHeader !== undefined && h("h3", null, subHeader), message !== undefined && h("p", null, message))), this.renderOptions(options))));
+    return (h(Host, { class: getIonMode(this) }, h("ion-list", null, header !== undefined && h("ion-list-header", null, header), hasSubHeaderOrMessage && (h("ion-item", null, h("ion-label", { class: "ion-text-wrap" }, subHeader !== undefined && h("h3", null, subHeader), message !== undefined && h("p", null, message)))), this.renderOptions(options))));
   }
 };
 SelectPopover.style = {

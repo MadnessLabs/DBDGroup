@@ -1,12 +1,12 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode, a as isPlatform } from './ionic-global-48c6f4a1.js';
-import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-d5ceb96c.js';
-import { g as getElementRoot, r as raf, b as addEventListener } from './helpers-b5b4d5eb.js';
-import { B as BACKDROP, p as prepareOverlay, a as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-884665fe.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { d as deepReady } from './index-3f3f61b5.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import './hardware-back-button-b6ccf74a.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode, a as isPlatform } from './ionic-global-fc3774f0.js';
+import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
+import { g as getElementRoot, r as raf, b as addEventListener } from './helpers-e7913fb8.js';
+import { B as BACKDROP, p as prepareOverlay, a as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-03fac0f0.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { d as deepReady } from './index-03e2d32b.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import './hardware-back-button-fa04d6e9.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -38,7 +38,7 @@ const getPopoverDimensions = (size, contentEl, triggerEl) => {
   }
   return {
     contentWidth,
-    contentHeight
+    contentHeight,
   };
 };
 const configureDismissInteraction = (triggerEl, triggerAction, popoverEl, parentPopoverEl) => {
@@ -71,8 +71,8 @@ const configureDismissInteraction = (triggerEl, triggerAction, popoverEl, parent
               return;
             }
             popoverEl.dismiss(undefined, undefined, false);
-          }
-        }
+          },
+        },
       ];
       break;
     case 'context-menu':
@@ -99,8 +99,8 @@ const configureDismissInteraction = (triggerEl, triggerAction, popoverEl, parent
               return;
             }
             popoverEl.dismiss(undefined, undefined, false);
-          }
-        }
+          },
+        },
       ];
       break;
   }
@@ -142,7 +142,7 @@ const configureTriggerInteraction = (triggerEl, triggerAction, popoverEl) => {
                 hoverTimeout = undefined;
               });
             }, 100);
-          }
+          },
         },
         {
           eventName: 'mouseleave',
@@ -162,7 +162,7 @@ const configureTriggerInteraction = (triggerEl, triggerAction, popoverEl) => {
             if (target.closest('ion-popover') !== popoverEl) {
               popoverEl.dismiss(undefined, undefined, false);
             }
-          }
+          },
         },
         {
           /**
@@ -170,12 +170,12 @@ const configureTriggerInteraction = (triggerEl, triggerAction, popoverEl) => {
            * from dismissing when dismiss-on-select="true".
            */
           eventName: 'click',
-          callback: (ev) => ev.stopPropagation()
+          callback: (ev) => ev.stopPropagation(),
         },
         {
           eventName: 'ionPopoverActivateTrigger',
-          callback: (ev) => popoverEl.presentFromTrigger(ev, true)
-        }
+          callback: (ev) => popoverEl.presentFromTrigger(ev, true),
+        },
       ];
       break;
     case 'context-menu':
@@ -189,16 +189,16 @@ const configureTriggerInteraction = (triggerEl, triggerAction, popoverEl) => {
              */
             ev.preventDefault();
             popoverEl.presentFromTrigger(ev);
-          }
+          },
         },
         {
           eventName: 'click',
-          callback: (ev) => ev.stopPropagation()
+          callback: (ev) => ev.stopPropagation(),
         },
         {
           eventName: 'ionPopoverActivateTrigger',
-          callback: (ev) => popoverEl.presentFromTrigger(ev, true)
-        }
+          callback: (ev) => popoverEl.presentFromTrigger(ev, true),
+        },
       ];
       break;
     case 'click':
@@ -213,12 +213,12 @@ const configureTriggerInteraction = (triggerEl, triggerAction, popoverEl) => {
            * the first popover to dismiss.
            */
           eventName: 'click',
-          callback: (ev) => popoverEl.presentFromTrigger(ev)
+          callback: (ev) => popoverEl.presentFromTrigger(ev),
         },
         {
           eventName: 'ionPopoverActivateTrigger',
-          callback: (ev) => popoverEl.presentFromTrigger(ev, true)
-        }
+          callback: (ev) => popoverEl.presentFromTrigger(ev, true),
+        },
       ];
       break;
   }
@@ -236,7 +236,7 @@ const getIndexOfItem = (items, item) => {
   if (!item || item.tagName !== 'ION-ITEM') {
     return -1;
   }
-  return items.findIndex(el => el === item);
+  return items.findIndex((el) => el === item);
 };
 /**
  * Given an array of elements and a currently focused ion-item
@@ -284,7 +284,7 @@ const configureKeyboardInteraction = (popoverEl) => {
        * i.e. only select ion-item elements that are part of this popover
        */
       items = Array.from(popoverEl.querySelectorAll('ion-item:not(ion-popover ion-popover *):not([disabled])'));
-      /* tslint:disable-next-line */
+      /* eslint-disable-next-line */
     }
     catch (_a) { }
     switch (ev.key) {
@@ -308,7 +308,6 @@ const configureKeyboardInteraction = (popoverEl) => {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const nextItem = getNextItem(items, activeElement);
-        // tslint:disable-next-line:strict-type-predicates
         if (nextItem !== undefined) {
           focusItem(nextItem);
         }
@@ -320,7 +319,6 @@ const configureKeyboardInteraction = (popoverEl) => {
         // Disable movement/scroll with keyboard
         ev.preventDefault();
         const prevItem = getPrevItem(items, activeElement);
-        // tslint:disable-next-line:strict-type-predicates
         if (prevItem !== undefined) {
           focusItem(prevItem);
         }
@@ -331,7 +329,6 @@ const configureKeyboardInteraction = (popoverEl) => {
       case 'Home':
         ev.preventDefault();
         const firstItem = items[0];
-        // tslint:disable-next-line:strict-type-predicates
         if (firstItem !== undefined) {
           focusItem(firstItem);
         }
@@ -342,7 +339,6 @@ const configureKeyboardInteraction = (popoverEl) => {
       case 'End':
         ev.preventDefault();
         const lastItem = items[items.length - 1];
-        // tslint:disable-next-line:strict-type-predicates
         if (lastItem !== undefined) {
           focusItem(lastItem);
         }
@@ -378,7 +374,7 @@ const getPopoverPosition = (isRTL, contentWidth, contentHeight, arrowWidth, arro
     top: 0,
     left: 0,
     width: 0,
-    height: 0
+    height: 0,
   };
   /**
    * Calculate position relative to the
@@ -395,7 +391,7 @@ const getPopoverPosition = (isRTL, contentWidth, contentHeight, arrowWidth, arro
         top: mouseEv.clientY,
         left: mouseEv.clientX,
         width: 1,
-        height: 1
+        height: 1,
       };
       break;
     /**
@@ -417,7 +413,9 @@ const getPopoverPosition = (isRTL, contentWidth, contentHeight, arrowWidth, arro
        * to the indicator rather than `ion-breadcrumb`
        * as a whole.
        */
-      const actualTriggerEl = (triggerEl || ((_a = customEv === null || customEv === void 0 ? void 0 : customEv.detail) === null || _a === void 0 ? void 0 : _a.ionShadowTarget) || (customEv === null || customEv === void 0 ? void 0 : customEv.target));
+      const actualTriggerEl = (triggerEl ||
+        ((_a = customEv === null || customEv === void 0 ? void 0 : customEv.detail) === null || _a === void 0 ? void 0 : _a.ionShadowTarget) ||
+        (customEv === null || customEv === void 0 ? void 0 : customEv.target));
       if (!actualTriggerEl) {
         return defaultPosition;
       }
@@ -426,7 +424,7 @@ const getPopoverPosition = (isRTL, contentWidth, contentHeight, arrowWidth, arro
         top: triggerBoundingBox.top,
         left: triggerBoundingBox.left,
         width: triggerBoundingBox.width,
-        height: triggerBoundingBox.height
+        height: triggerBoundingBox.height,
       };
       break;
   }
@@ -466,9 +464,9 @@ const calculatePopoverOrigin = (side, align, isRTL) => {
     case 'right':
       return { originX: 'left', originY: getOriginYAlignment(align) };
     case 'start':
-      return { originX: (isRTL) ? 'left' : 'right', originY: getOriginYAlignment(align) };
+      return { originX: isRTL ? 'left' : 'right', originY: getOriginYAlignment(align) };
     case 'end':
-      return { originX: (isRTL) ? 'right' : 'left', originY: getOriginYAlignment(align) };
+      return { originX: isRTL ? 'right' : 'left', originY: getOriginYAlignment(align) };
   }
 };
 const getOriginXAlignment = (align) => {
@@ -501,26 +499,29 @@ const calculateArrowPosition = (side, arrowWidth, arrowHeight, top, left, conten
    * been rotated using a `transform`, so to move the arrow up or down
    * by its dimension, you need to use `arrowWidth`.
    */
-  const leftPosition = { arrowTop: top + (contentHeight / 2) - (arrowWidth / 2), arrowLeft: left + contentWidth - (arrowWidth / 2) };
+  const leftPosition = {
+    arrowTop: top + contentHeight / 2 - arrowWidth / 2,
+    arrowLeft: left + contentWidth - arrowWidth / 2,
+  };
   /**
    * Move the arrow to the left by arrowWidth and then
    * again by half of its width because we have rotated
    * the arrow using a transform.
    */
-  const rightPosition = { arrowTop: top + (contentHeight / 2) - (arrowWidth / 2), arrowLeft: left - (arrowWidth * 1.5) };
+  const rightPosition = { arrowTop: top + contentHeight / 2 - arrowWidth / 2, arrowLeft: left - arrowWidth * 1.5 };
   switch (side) {
     case 'top':
-      return { arrowTop: top + contentHeight, arrowLeft: left + (contentWidth / 2) - (arrowWidth / 2) };
+      return { arrowTop: top + contentHeight, arrowLeft: left + contentWidth / 2 - arrowWidth / 2 };
     case 'bottom':
-      return { arrowTop: top - arrowHeight, arrowLeft: left + (contentWidth / 2) - (arrowWidth / 2) };
+      return { arrowTop: top - arrowHeight, arrowLeft: left + contentWidth / 2 - arrowWidth / 2 };
     case 'left':
       return leftPosition;
     case 'right':
       return rightPosition;
     case 'start':
-      return (isRTL) ? rightPosition : leftPosition;
+      return isRTL ? rightPosition : leftPosition;
     case 'end':
-      return (isRTL) ? leftPosition : rightPosition;
+      return isRTL ? leftPosition : rightPosition;
     default:
       return { arrowTop: 0, arrowLeft: 0 };
   }
@@ -534,31 +535,31 @@ const calculateArrowPosition = (side, arrowWidth, arrowHeight, top, left, conten
 const calculatePopoverSide = (side, triggerBoundingBox, contentWidth, contentHeight, arrowWidth, arrowHeight, isRTL) => {
   const sideLeft = {
     top: triggerBoundingBox.top,
-    left: triggerBoundingBox.left - contentWidth - arrowWidth
+    left: triggerBoundingBox.left - contentWidth - arrowWidth,
   };
   const sideRight = {
     top: triggerBoundingBox.top,
-    left: triggerBoundingBox.left + triggerBoundingBox.width + arrowWidth
+    left: triggerBoundingBox.left + triggerBoundingBox.width + arrowWidth,
   };
   switch (side) {
     case 'top':
       return {
         top: triggerBoundingBox.top - contentHeight - arrowHeight,
-        left: triggerBoundingBox.left
+        left: triggerBoundingBox.left,
       };
     case 'right':
       return sideRight;
     case 'bottom':
       return {
         top: triggerBoundingBox.top + triggerBoundingBox.height + arrowHeight,
-        left: triggerBoundingBox.left
+        left: triggerBoundingBox.left,
       };
     case 'left':
       return sideLeft;
     case 'start':
-      return (isRTL) ? sideRight : sideLeft;
+      return isRTL ? sideRight : sideLeft;
     case 'end':
-      return (isRTL) ? sideLeft : sideRight;
+      return isRTL ? sideLeft : sideRight;
   }
 };
 /**
@@ -595,14 +596,14 @@ const calculatePopoverEndAlign = (side, triggerBoundingBox, contentWidth, conten
     case 'right':
       return {
         top: -(contentHeight - triggerBoundingBox.height),
-        left: 0
+        left: 0,
       };
     case 'top':
     case 'bottom':
     default:
       return {
         top: 0,
-        left: -(contentWidth - triggerBoundingBox.width)
+        left: -(contentWidth - triggerBoundingBox.width),
       };
   }
 };
@@ -622,15 +623,15 @@ const calculatePopoverCenterAlign = (side, triggerBoundingBox, contentWidth, con
     case 'left':
     case 'right':
       return {
-        top: -((contentHeight / 2) - (triggerBoundingBox.height / 2)),
-        left: 0
+        top: -(contentHeight / 2 - triggerBoundingBox.height / 2),
+        left: 0,
       };
     case 'top':
     case 'bottom':
     default:
       return {
         top: 0,
-        left: -((contentWidth / 2) - (triggerBoundingBox.width / 2))
+        left: -(contentWidth / 2 - triggerBoundingBox.width / 2),
       };
   }
 };
@@ -649,7 +650,9 @@ const calculateWindowAdjustment = (side, coordTop, coordLeft, bodyPadding, bodyW
   let originY = contentOriginY;
   let checkSafeAreaLeft = false;
   let checkSafeAreaRight = false;
-  const triggerTop = triggerCoordinates ? triggerCoordinates.top + triggerCoordinates.height : bodyHeight / 2 - contentHeight / 2;
+  const triggerTop = triggerCoordinates
+    ? triggerCoordinates.top + triggerCoordinates.height
+    : bodyHeight / 2 - contentHeight / 2;
   const triggerHeight = triggerCoordinates ? triggerCoordinates.height : 0;
   let addPopoverBottomClass = false;
   /**
@@ -677,8 +680,7 @@ const calculateWindowAdjustment = (side, coordTop, coordLeft, bodyPadding, bodyW
    * the trigger, then we should not adjust top
    * margins.
    */
-  if (triggerTop + triggerHeight + contentHeight > bodyHeight &&
-    (side === 'top' || side === 'bottom')) {
+  if (triggerTop + triggerHeight + contentHeight > bodyHeight && (side === 'top' || side === 'bottom')) {
     if (triggerTop - contentHeight > 0) {
       top = triggerTop - contentHeight - triggerHeight - (arrowHeight - 1);
       arrowTop = top + contentHeight;
@@ -693,7 +695,18 @@ const calculateWindowAdjustment = (side, coordTop, coordLeft, bodyPadding, bodyW
       bottom = bodyPadding;
     }
   }
-  return { top, left, bottom, originX, originY, checkSafeAreaLeft, checkSafeAreaRight, arrowTop, arrowLeft, addPopoverBottomClass };
+  return {
+    top,
+    left,
+    bottom,
+    originX,
+    originY,
+    checkSafeAreaLeft,
+    checkSafeAreaRight,
+    arrowTop,
+    arrowLeft,
+    addPopoverBottomClass,
+  };
 };
 const shouldShowArrow = (side, didAdjustBounds = false, ev, trigger) => {
   /**
@@ -745,12 +758,12 @@ const iosEnterAnimation = (baseEl, opts) => {
     top: bodyHeight / 2 - contentHeight / 2,
     left: bodyWidth / 2 - contentWidth / 2,
     originX: isRTL ? 'right' : 'left',
-    originY: 'top'
+    originY: 'top',
   };
   const results = getPopoverPosition(isRTL, contentWidth, contentHeight, arrowWidth, arrowHeight, reference, side, align, defaultPosition, trigger, ev);
   const padding = size === 'cover' ? 0 : POPOVER_IOS_BODY_PADDING;
   const margin = size === 'cover' ? 0 : 25;
-  const { originX, originY, top, left, bottom, checkSafeAreaLeft, checkSafeAreaRight, arrowTop, arrowLeft, addPopoverBottomClass } = calculateWindowAdjustment(side, results.top, results.left, padding, bodyWidth, bodyHeight, contentWidth, contentHeight, margin, results.originX, results.originY, results.referenceCoordinates, results.arrowTop, results.arrowLeft, arrowHeight);
+  const { originX, originY, top, left, bottom, checkSafeAreaLeft, checkSafeAreaRight, arrowTop, arrowLeft, addPopoverBottomClass, } = calculateWindowAdjustment(side, results.top, results.left, padding, bodyWidth, bodyHeight, contentWidth, contentHeight, margin, results.originX, results.originY, results.referenceCoordinates, results.arrowTop, results.arrowLeft, arrowHeight);
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
@@ -758,12 +771,10 @@ const iosEnterAnimation = (baseEl, opts) => {
     .addElement(root.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(root.querySelector('.popover-wrapper'))
-    .fromTo('opacity', 0.01, 1);
+  wrapperAnimation.addElement(root.querySelector('.popover-wrapper')).fromTo('opacity', 0.01, 1);
   return baseAnimation
     .easing('ease')
     .duration(100)
@@ -817,12 +828,8 @@ const iosLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(root.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(root.querySelector('.popover-wrapper'))
-    .fromTo('opacity', 0.99, 0);
+  backdropAnimation.addElement(root.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(root.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
   return baseAnimation
     .easing('ease')
     .afterAddWrite(() => {
@@ -864,7 +871,7 @@ const mdEnterAnimation = (baseEl, opts) => {
     top: bodyHeight / 2 - contentHeight / 2,
     left: bodyWidth / 2 - contentWidth / 2,
     originX: isRTL ? 'right' : 'left',
-    originY: 'top'
+    originY: 'top',
   };
   const results = getPopoverPosition(isRTL, contentWidth, contentHeight, 0, 0, reference, side, align, defaultPosition, trigger, ev);
   const padding = size === 'cover' ? 0 : POPOVER_MD_BODY_PADDING;
@@ -878,19 +885,16 @@ const mdEnterAnimation = (baseEl, opts) => {
     .addElement(root.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(root.querySelector('.popover-wrapper'))
-    .duration(150)
-    .fromTo('opacity', 0.01, 1);
+  wrapperAnimation.addElement(root.querySelector('.popover-wrapper')).duration(150).fromTo('opacity', 0.01, 1);
   contentAnimation
     .addElement(contentEl)
     .beforeStyles({
-    'top': `calc(${top}px + var(--offset-y, 0px))`,
-    'left': `calc(${left}px + var(--offset-x, 0px))`,
-    'transform-origin': `${originY} ${originX}`
+    top: `calc(${top}px + var(--offset-y, 0px))`,
+    left: `calc(${left}px + var(--offset-x, 0px))`,
+    'transform-origin': `${originY} ${originX}`,
   })
     .beforeAddWrite(() => {
     if (bottom !== undefined) {
@@ -898,9 +902,7 @@ const mdEnterAnimation = (baseEl, opts) => {
     }
   })
     .fromTo('transform', 'scale(0.8)', 'scale(1)');
-  viewportAnimation
-    .addElement(root.querySelector('.popover-viewport'))
-    .fromTo('opacity', 0.01, 1);
+  viewportAnimation.addElement(root.querySelector('.popover-viewport')).fromTo('opacity', 0.01, 1);
   return baseAnimation
     .easing('cubic-bezier(0.36,0.66,0.04,1)')
     .duration(300)
@@ -927,12 +929,8 @@ const mdLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(root.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(root.querySelector('.popover-wrapper'))
-    .fromTo('opacity', 0.99, 0);
+  backdropAnimation.addElement(root.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(root.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
   return baseAnimation
     .easing('ease')
     .afterAddWrite(() => {
@@ -947,9 +945,9 @@ const mdLeaveAnimation = (baseEl) => {
     .addAnimation([backdropAnimation, wrapperAnimation]);
 };
 
-const popoverIosCss = ":host{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;--offset-x:0px;--offset-y:0px;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}:host(.overlay-hidden){display:none}.popover-wrapper{opacity:0;z-index:10}.popover-content{display:flex;position:absolute;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px;display:flex;flex-direction:column;overflow:hidden}:host(.popover-nested.popover-side-left){--offset-x:5px}:host(.popover-nested.popover-side-right){--offset-x:-5px}:host(.popover-nested.popover-side-start){--offset-x:5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-start),:host-context([dir=rtl]).popover-nested.popover-side-start{--offset-x:-5px}:host(.popover-nested.popover-side-end){--offset-x:-5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-end),:host-context([dir=rtl]).popover-nested.popover-side-end{--offset-x:5px}:host{--width:200px;--max-height:90%;--box-shadow:none;--backdrop-opacity:var(--ion-backdrop-opacity, 0.08)}:host(.popover-desktop){--box-shadow:0px 4px 16px 0px rgba(0, 0, 0, 0.12)}.popover-content{border-radius:10px}:host(.popover-desktop) .popover-content{border:0.5px solid var(--ion-color-step-100, #e6e6e6)}.popover-arrow{display:block;position:absolute;width:20px;height:10px;overflow:hidden}.popover-arrow::after{left:3px;top:3px;border-radius:3px;position:absolute;width:14px;height:14px;transform:rotate(45deg);background:var(--background);content:\"\";z-index:10}[dir=rtl] .popover-arrow::after,:host-context([dir=rtl]) .popover-arrow::after{left:unset;right:unset;right:3px}:host(.popover-bottom) .popover-arrow{top:auto;bottom:-10px}:host(.popover-bottom) .popover-arrow::after{top:-6px}:host(.popover-side-left) .popover-arrow{transform:rotate(90deg)}:host(.popover-side-right) .popover-arrow{transform:rotate(-90deg)}:host(.popover-side-top) .popover-arrow{transform:rotate(180deg)}:host(.popover-side-start) .popover-arrow{transform:rotate(90deg)}:host-context([dir=rtl]):host(.popover-side-start) .popover-arrow,:host-context([dir=rtl]).popover-side-start .popover-arrow{transform:rotate(-90deg)}:host(.popover-side-end) .popover-arrow{transform:rotate(-90deg)}:host-context([dir=rtl]):host(.popover-side-end) .popover-arrow,:host-context([dir=rtl]).popover-side-end .popover-arrow{transform:rotate(90deg)}@supports (backdrop-filter: blur(0)){:host(.popover-translucent) .popover-content,:host(.popover-translucent) .popover-arrow::after{background:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);backdrop-filter:saturate(180%) blur(20px)}}";
+const popoverIosCss = ":host{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;--offset-x:0px;--offset-y:0px;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}:host(.popover-nested){pointer-events:none}:host(.popover-nested) .popover-wrapper{pointer-events:auto}:host(.overlay-hidden){display:none}.popover-wrapper{opacity:0;z-index:10}.popover-content{display:flex;position:absolute;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px;display:flex;flex-direction:column;overflow:hidden}:host(.popover-nested.popover-side-left){--offset-x:5px}:host(.popover-nested.popover-side-right){--offset-x:-5px}:host(.popover-nested.popover-side-start){--offset-x:5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-start),:host-context([dir=rtl]).popover-nested.popover-side-start{--offset-x:-5px}:host(.popover-nested.popover-side-end){--offset-x:-5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-end),:host-context([dir=rtl]).popover-nested.popover-side-end{--offset-x:5px}:host{--width:200px;--max-height:90%;--box-shadow:none;--backdrop-opacity:var(--ion-backdrop-opacity, 0.08)}:host(.popover-desktop){--box-shadow:0px 4px 16px 0px rgba(0, 0, 0, 0.12)}.popover-content{border-radius:10px}:host(.popover-desktop) .popover-content{border:0.5px solid var(--ion-color-step-100, #e6e6e6)}.popover-arrow{display:block;position:absolute;width:20px;height:10px;overflow:hidden}.popover-arrow::after{left:3px;top:3px;border-radius:3px;position:absolute;width:14px;height:14px;transform:rotate(45deg);background:var(--background);content:\"\";z-index:10}[dir=rtl] .popover-arrow::after,:host-context([dir=rtl]) .popover-arrow::after{left:unset;right:unset;right:3px}:host(.popover-bottom) .popover-arrow{top:auto;bottom:-10px}:host(.popover-bottom) .popover-arrow::after{top:-6px}:host(.popover-side-left) .popover-arrow{transform:rotate(90deg)}:host(.popover-side-right) .popover-arrow{transform:rotate(-90deg)}:host(.popover-side-top) .popover-arrow{transform:rotate(180deg)}:host(.popover-side-start) .popover-arrow{transform:rotate(90deg)}:host-context([dir=rtl]):host(.popover-side-start) .popover-arrow,:host-context([dir=rtl]).popover-side-start .popover-arrow{transform:rotate(-90deg)}:host(.popover-side-end) .popover-arrow{transform:rotate(-90deg)}:host-context([dir=rtl]):host(.popover-side-end) .popover-arrow,:host-context([dir=rtl]).popover-side-end .popover-arrow{transform:rotate(90deg)}@supports (backdrop-filter: blur(0)){:host(.popover-translucent) .popover-content,:host(.popover-translucent) .popover-arrow::after{background:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);backdrop-filter:saturate(180%) blur(20px)}}";
 
-const popoverMdCss = ":host{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;--offset-x:0px;--offset-y:0px;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}:host(.overlay-hidden){display:none}.popover-wrapper{opacity:0;z-index:10}.popover-content{display:flex;position:absolute;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px;display:flex;flex-direction:column;overflow:hidden}:host(.popover-nested.popover-side-left){--offset-x:5px}:host(.popover-nested.popover-side-right){--offset-x:-5px}:host(.popover-nested.popover-side-start){--offset-x:5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-start),:host-context([dir=rtl]).popover-nested.popover-side-start{--offset-x:-5px}:host(.popover-nested.popover-side-end){--offset-x:-5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-end),:host-context([dir=rtl]).popover-nested.popover-side-end{--offset-x:5px}:host{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}.popover-content{border-radius:4px;transform-origin:left top}[dir=rtl] .popover-content,:host-context([dir=rtl]) .popover-content{transform-origin:right top}.popover-viewport{transition-delay:100ms}";
+const popoverMdCss = ":host{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;--offset-x:0px;--offset-y:0px;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}:host(.popover-nested){pointer-events:none}:host(.popover-nested) .popover-wrapper{pointer-events:auto}:host(.overlay-hidden){display:none}.popover-wrapper{opacity:0;z-index:10}.popover-content{display:flex;position:absolute;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px;display:flex;flex-direction:column;overflow:hidden}:host(.popover-nested.popover-side-left){--offset-x:5px}:host(.popover-nested.popover-side-right){--offset-x:-5px}:host(.popover-nested.popover-side-start){--offset-x:5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-start),:host-context([dir=rtl]).popover-nested.popover-side-start{--offset-x:-5px}:host(.popover-nested.popover-side-end){--offset-x:-5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-end),:host-context([dir=rtl]).popover-nested.popover-side-end{--offset-x:5px}:host{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}.popover-content{border-radius:4px;transform-origin:left top}[dir=rtl] .popover-content,:host-context([dir=rtl]) .popover-content{transform-origin:right top}.popover-viewport{transition-delay:100ms}";
 
 let Popover = class {
   constructor(hostRef) {
@@ -1032,9 +1030,8 @@ let Popover = class {
      */
     this.side = 'bottom';
     /**
-     * If `true`, the popover will display an arrow
-     * that points at the `reference` when running in `ios` mode
-     * on mobile. Does not apply in `md` mode or on desktop.
+     * If `true`, the popover will display an arrow that points at the
+     * `reference` when running in `ios` mode. Does not apply in `md` mode.
      */
     this.arrow = true;
     /**
@@ -1072,7 +1069,7 @@ let Popover = class {
         const event = new CustomEvent(name, {
           bubbles: false,
           cancelable: false,
-          detail: modalEvent.detail
+          detail: modalEvent.detail,
         });
         el.dispatchEvent(event);
       }
@@ -1082,7 +1079,7 @@ let Popover = class {
       if (destroyTriggerInteraction) {
         destroyTriggerInteraction();
       }
-      const triggerEl = this.triggerEl = (trigger !== undefined) ? document.getElementById(trigger) : null;
+      const triggerEl = (this.triggerEl = trigger !== undefined ? document.getElementById(trigger) : null);
       if (!triggerEl) {
         return;
       }
@@ -1125,7 +1122,7 @@ let Popover = class {
      * If user has custom ID set then we should
      * not assign the default incrementing ID.
      */
-    this.popoverId = (this.el.hasAttribute('id')) ? this.el.getAttribute('id') : `ion-popover-${this.popoverIndex}`;
+    this.popoverId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : `ion-popover-${this.popoverIndex}`;
     this.parentPopover = this.el.closest(`ion-popover:not(#${this.popoverId})`);
     if (this.alignment === undefined) {
       this.alignment = getIonMode(this) === 'ios' ? 'center' : 'start';
@@ -1174,7 +1171,7 @@ let Popover = class {
     if (this.workingDelegate && !force) {
       return {
         delegate: this.workingDelegate,
-        inline: this.inline
+        inline: this.inline,
       };
     }
     /**
@@ -1187,8 +1184,8 @@ let Popover = class {
      * correct place.
      */
     const parentEl = this.el.parentNode;
-    const inline = this.inline = parentEl !== null && !this.hasController;
-    const delegate = this.workingDelegate = (inline) ? this.delegate || this.coreDelegate : this.delegate;
+    const inline = (this.inline = parentEl !== null && !this.hasController);
+    const delegate = (this.workingDelegate = inline ? this.delegate || this.coreDelegate : this.delegate);
     return { inline, delegate };
   }
   /**
@@ -1226,7 +1223,7 @@ let Popover = class {
       trigger: this.triggerEl,
       reference: this.reference,
       side: this.side,
-      align: this.alignment
+      align: this.alignment,
     });
     await this.currentTransition;
     this.currentTransition = undefined;
@@ -1308,7 +1305,7 @@ let Popover = class {
     const mode = getIonMode(this);
     const { onLifecycle, popoverId, parentPopover, dismissOnSelect, side, arrow, htmlAttributes } = this;
     const desktop = isPlatform('desktop');
-    const enableArrow = arrow && !parentPopover && !desktop;
+    const enableArrow = arrow && !parentPopover;
     return (h(Host, Object.assign({ "aria-modal": "true", "no-router": true, tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + this.overlayIndex}`,
       }, id: popoverId, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'popover-translucent': this.translucent, 'overlay-hidden': true, 'popover-desktop': desktop, [`popover-side-${side}`]: true, 'popover-nested': !!parentPopover }), onIonPopoverDidPresent: onLifecycle, onIonPopoverWillPresent: onLifecycle, onIonPopoverWillDismiss: onLifecycle, onIonPopoverDidDismiss: onLifecycle, onIonDismiss: this.onDismiss, onIonBackdropTap: this.onBackdropTap }), !parentPopover && h("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop, part: "backdrop" }), h("div", { class: "popover-wrapper ion-overlay-wrapper", onClick: dismissOnSelect ? () => this.dismiss() : undefined }, enableArrow && h("div", { class: "popover-arrow", part: "arrow" }), h("div", { class: "popover-content", part: "content" }, h("slot", null)))));
@@ -1321,10 +1318,10 @@ let Popover = class {
   }; }
 };
 const LIFECYCLE_MAP = {
-  'ionPopoverDidPresent': 'ionViewDidEnter',
-  'ionPopoverWillPresent': 'ionViewWillEnter',
-  'ionPopoverWillDismiss': 'ionViewWillLeave',
-  'ionPopoverDidDismiss': 'ionViewDidLeave',
+  ionPopoverDidPresent: 'ionViewDidEnter',
+  ionPopoverWillPresent: 'ionViewWillEnter',
+  ionPopoverWillDismiss: 'ionViewWillLeave',
+  ionPopoverDidDismiss: 'ionViewDidLeave',
 };
 let popoverIds = 0;
 Popover.style = {

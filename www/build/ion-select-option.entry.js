@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
+import { r as registerInstance, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
 
 const selectOptionCss = ":host{display:none}";
 
@@ -13,7 +13,7 @@ let SelectOption = class {
     this.disabled = false;
   }
   render() {
-    return (h(Host, { role: "option", id: this.inputId, class: getIonMode(this) }));
+    return h(Host, { role: "option", id: this.inputId, class: getIonMode(this) });
   }
   get el() { return getElement(this); }
 };

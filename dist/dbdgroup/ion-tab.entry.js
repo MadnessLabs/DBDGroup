@@ -1,6 +1,6 @@
-import { r as registerInstance, j as Build, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { a as attachComponent } from './framework-delegate-d5ceb96c.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, j as Build, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { a as attachComponent } from './framework-delegate-49dc7795.js';
+import './helpers-e7913fb8.js';
 
 const tabCss = ":host(.tab-hidden){display:none !important}";
 
@@ -50,7 +50,7 @@ let Tab = class {
     const { tab, active, component } = this;
     return (h(Host, { role: "tabpanel", "aria-hidden": !active ? 'true' : null, "aria-labelledby": `tab-button-${tab}`, class: {
         'ion-page': component === undefined,
-        'tab-hidden': !active
+        'tab-hidden': !active,
       } }, h("slot", null)));
   }
   get el() { return getElement(this); }

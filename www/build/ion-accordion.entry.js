@@ -1,7 +1,7 @@
-import { r as registerInstance, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { c as chevronDown } from './index-17243cda.js';
-import { c as config, g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { g as getElementRoot, r as raf, t as transitionEndAsync, b as addEventListener, a as removeEventListener } from './helpers-b5b4d5eb.js';
+import { r as registerInstance, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { d as chevronDown } from './index-5e1d0749.js';
+import { c as config, g as getIonMode } from './ionic-global-fc3774f0.js';
+import { g as getElementRoot, r as raf, t as transitionEndAsync, b as addEventListener, a as removeEventListener } from './helpers-e7913fb8.js';
 
 const accordionIosCss = ":host{display:block;position:relative;width:100%;background-color:var(--ion-background-color, #ffffff);overflow:hidden;z-index:0}:host(.accordion-expanding) ::slotted(ion-item[slot=header]),:host(.accordion-expanded) ::slotted(ion-item[slot=header]){--border-width:0px}:host(.accordion-animated){transition:all 300ms cubic-bezier(0.25, 0.8, 0.5, 1)}:host(.accordion-animated) #content{transition:max-height 300ms cubic-bezier(0.25, 0.8, 0.5, 1)}#content{overflow:hidden;will-change:max-height}:host(.accordion-collapsing) #content{max-height:0 !important}:host(.accordion-collapsed) #content{display:none}:host(.accordion-expanding) #content{max-height:0}:host(.accordion-disabled) #header,:host(.accordion-readonly) #header,:host(.accordion-disabled) #content,:host(.accordion-readonly) #content{pointer-events:none}:host(.accordion-disabled) #header,:host(.accordion-disabled) #content{opacity:0.4}@media (prefers-reduced-motion: reduce){:host,#content{transition:none !important}}:host(.accordion-next) ::slotted(ion-item[slot=header]){--border-width:0.55px 0px 0.55px 0px}";
 
@@ -76,7 +76,8 @@ let Accordion = class {
         return;
       }
       // This is not defined in unit tests
-      const ionItem = slot.assignedElements && slot.assignedElements().find(el => el.tagName === 'ION-ITEM');
+      const ionItem = slot.assignedElements &&
+        slot.assignedElements().find((el) => el.tagName === 'ION-ITEM');
       return ionItem;
     };
     this.setAria = (expanded = false) => {
@@ -212,7 +213,7 @@ let Accordion = class {
         return;
       }
       const value = accordionGroup.value;
-      const shouldExpand = (Array.isArray(value)) ? value.includes(accordionValue) : value === accordionValue;
+      const shouldExpand = Array.isArray(value) ? value.includes(accordionValue) : value === accordionValue;
       if (shouldExpand) {
         this.expandAccordion(initialUpdate);
         this.isNext = this.isPrevious = false;
@@ -227,14 +228,14 @@ let Accordion = class {
          * next or previous accordion is selected.
          */
         const nextAccordion = this.getNextSibling();
-        const nextAccordionValue = nextAccordion && nextAccordion.value;
+        const nextAccordionValue = nextAccordion === null || nextAccordion === void 0 ? void 0 : nextAccordion.value;
         if (nextAccordionValue !== undefined) {
-          this.isPrevious = (Array.isArray(value)) ? value.includes(nextAccordionValue) : value === nextAccordionValue;
+          this.isPrevious = Array.isArray(value) ? value.includes(nextAccordionValue) : value === nextAccordionValue;
         }
         const previousAccordion = this.getPreviousSibling();
-        const previousAccordionValue = previousAccordion && previousAccordion.value;
+        const previousAccordionValue = previousAccordion === null || previousAccordion === void 0 ? void 0 : previousAccordion.value;
         if (previousAccordionValue !== undefined) {
-          this.isNext = (Array.isArray(value)) ? value.includes(previousAccordionValue) : value === previousAccordionValue;
+          this.isNext = Array.isArray(value) ? value.includes(previousAccordionValue) : value === previousAccordionValue;
         }
       }
     };
@@ -260,7 +261,8 @@ let Accordion = class {
     };
   }
   connectedCallback() {
-    const accordionGroupEl = this.accordionGroupEl = this.el && this.el.closest('ion-accordion-group');
+    var _a;
+    const accordionGroupEl = (this.accordionGroupEl = (_a = this.el) === null || _a === void 0 ? void 0 : _a.closest('ion-accordion-group'));
     if (accordionGroupEl) {
       this.updateState(true);
       addEventListener(accordionGroupEl, 'ionChange', this.updateListener);
@@ -321,8 +323,8 @@ let Accordion = class {
         'accordion-previous': this.isPrevious,
         'accordion-disabled': disabled,
         'accordion-readonly': readonly,
-        'accordion-animated': config.getBoolean('animated', true)
-      } }, h("div", { onClick: () => this.toggleExpanded(), id: "header", part: headerPart, "aria-controls": "content", ref: headerEl => this.headerEl = headerEl }, h("slot", { name: "header" })), h("div", { id: "content", part: contentPart, role: "region", "aria-labelledby": "header", ref: contentEl => this.contentEl = contentEl }, h("div", { id: "content-wrapper", ref: contentElWrapper => this.contentElWrapper = contentElWrapper }, h("slot", { name: "content" })))));
+        'accordion-animated': config.getBoolean('animated', true),
+      } }, h("div", { onClick: () => this.toggleExpanded(), id: "header", part: headerPart, "aria-controls": "content", ref: (headerEl) => (this.headerEl = headerEl) }, h("slot", { name: "header" })), h("div", { id: "content", part: contentPart, role: "region", "aria-labelledby": "header", ref: (contentEl) => (this.contentEl = contentEl) }, h("div", { id: "content-wrapper", ref: (contentElWrapper) => (this.contentElWrapper = contentElWrapper) }, h("slot", { name: "content" })))));
   }
   static get delegatesFocus() { return true; }
   get el() { return getElement(this); }

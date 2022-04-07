@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
 
 const tabsCss = ":host{left:0;right:0;top:0;bottom:0;display:flex;position:absolute;flex-direction:column;width:100%;height:100%;contain:layout size style;z-index:0}.tabs-inner{position:relative;flex:1;contain:layout size style}";
 
@@ -87,7 +87,8 @@ let Tabs = class {
   }
   /** @internal */
   async getRouteId() {
-    const tabId = this.selectedTab && this.selectedTab.tab;
+    var _a;
+    const tabId = (_a = this.selectedTab) === null || _a === void 0 ? void 0 : _a.tab;
     return tabId !== undefined ? { id: tabId, element: this.selectedTab } : undefined;
   }
   setActive(selectedTab) {
@@ -138,9 +139,7 @@ let Tabs = class {
   get el() { return getElement(this); }
 };
 const getTab = (tabs, tab) => {
-  const tabEl = (typeof tab === 'string')
-    ? tabs.find(t => t.tab === tab)
-    : tab;
+  const tabEl = typeof tab === 'string' ? tabs.find((t) => t.tab === tab) : tab;
   if (!tabEl) {
     console.error(`tab with id: "${tabEl}" does not exist`);
   }

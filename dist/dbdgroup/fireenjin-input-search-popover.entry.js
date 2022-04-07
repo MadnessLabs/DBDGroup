@@ -1,4 +1,4 @@
-import { r as registerInstance } from './index-bac865b7.js';
+import { r as registerInstance } from './index-e5ab994a.js';
 
 let InputSearchPopover = class {
   constructor(hostRef) {

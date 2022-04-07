@@ -1,7 +1,7 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode } from './ionic-global-48c6f4a1.js';
-import { e as clamp } from './helpers-b5b4d5eb.js';
-import { b as hapticSelectionChanged, c as hapticSelectionEnd, a as hapticSelectionStart } from './haptic-fedcde92.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { e as clamp } from './helpers-e7913fb8.js';
+import { b as hapticSelectionChanged, c as hapticSelectionEnd, a as hapticSelectionStart } from './haptic-a9e94599.js';
 
 const pickerColumnIosCss = ".picker-col{display:flex;position:relative;flex:1;justify-content:center;height:100%;box-sizing:content-box;contain:content}.picker-opts{position:relative;flex:1;max-width:100%}.picker-opt{left:0;top:0;display:block;position:absolute;width:100%;border:0;text-align:center;text-overflow:ellipsis;white-space:nowrap;contain:strict;overflow:hidden;will-change:transform}[dir=rtl] .picker-opt,:host-context([dir=rtl]) .picker-opt{left:unset;right:unset;right:0}.picker-opt.picker-opt-disabled{pointer-events:none}.picker-opt-disabled{opacity:0}.picker-opts-left{justify-content:flex-start}.picker-opts-right{justify-content:flex-end}.picker-opt:active,.picker-opt:focus{outline:none}.picker-prefix{position:relative;flex:1;text-align:end;white-space:nowrap}.picker-suffix{position:relative;flex:1;text-align:start;white-space:nowrap}.picker-col{padding-left:4px;padding-right:4px;padding-top:0;padding-bottom:0;transform-style:preserve-3d}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.picker-col{padding-left:unset;padding-right:unset;-webkit-padding-start:4px;padding-inline-start:4px;-webkit-padding-end:4px;padding-inline-end:4px}}.picker-prefix,.picker-suffix,.picker-opts{top:77px;transform-style:preserve-3d;color:inherit;font-size:20px;line-height:42px;pointer-events:none}.picker-opt{padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;transform-origin:center center;height:46px;transform-style:preserve-3d;transition-timing-function:ease-out;background:transparent;color:inherit;font-size:20px;line-height:42px;backface-visibility:hidden;pointer-events:auto}[dir=rtl] .picker-opt,:host-context([dir=rtl]) .picker-opt{transform-origin:calc(100% - center) center}";
 
@@ -31,15 +31,15 @@ let PickerColumnCmp = class {
     }
     this.rotateFactor = pickerRotateFactor;
     this.scaleFactor = pickerScaleFactor;
-    this.gesture = (await import('./index-c31991b6.js')).createGesture({
+    this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.el,
       gestureName: 'picker-swipe',
       gesturePriority: 100,
       threshold: 0,
       passive: false,
-      onStart: ev => this.onStart(ev),
-      onMove: ev => this.onMove(ev),
-      onEnd: ev => this.onEnd(ev),
+      onStart: (ev) => this.onStart(ev),
+      onMove: (ev) => this.onMove(ev),
+      onEnd: (ev) => this.onEnd(ev),
     });
     this.gesture.enable();
     this.tmrId = setTimeout(() => {
@@ -52,7 +52,7 @@ let PickerColumnCmp = class {
     if (colEl) {
       // DOM READ
       // We perfom a DOM read over a rendered item, this needs to happen after the first render
-      this.optHeight = (colEl.firstElementChild ? colEl.firstElementChild.clientHeight : 0);
+      this.optHeight = colEl.firstElementChild ? colEl.firstElementChild.clientHeight : 0;
     }
     this.refresh();
   }
@@ -70,7 +70,7 @@ let PickerColumnCmp = class {
   setSelected(selectedIndex, duration) {
     // if there is a selected index, then figure out it's y position
     // if there isn't a selected index, then just use the top y position
-    const y = (selectedIndex > -1) ? -(selectedIndex * this.optHeight) : 0;
+    const y = selectedIndex > -1 ? -(selectedIndex * this.optHeight) : 0;
     this.velocity = 0;
     // set what y position we're at
     cancelAnimationFrame(this.rafId);
@@ -85,14 +85,14 @@ let PickerColumnCmp = class {
     let translateY = 0;
     let translateZ = 0;
     const { col, rotateFactor } = this;
-    const selectedIndex = col.selectedIndex = this.indexForY(-y);
-    const durationStr = (duration === 0) ? '' : duration + 'ms';
+    const selectedIndex = (col.selectedIndex = this.indexForY(-y));
+    const durationStr = duration === 0 ? '' : duration + 'ms';
     const scaleStr = `scale(${this.scaleFactor})`;
     const children = this.optsEl.children;
     for (let i = 0; i < children.length; i++) {
       const button = children[i];
       const opt = col.options[i];
-      const optOffset = (i * this.optHeight) + y;
+      const optOffset = i * this.optHeight + y;
       let transform = '';
       if (rotateFactor !== 0) {
         const rotateX = optOffset * rotateFactor;
@@ -126,8 +126,8 @@ let PickerColumnCmp = class {
       // Update transform
       if (transform !== opt.transform) {
         opt.transform = transform;
-        button.style.transform = transform;
       }
+      button.style.transform = transform;
       // Update selected item
       if (selected !== opt.selected) {
         opt.selected = selected;
@@ -154,9 +154,7 @@ let PickerColumnCmp = class {
       // still decelerating
       this.velocity *= DECELERATION_FRICTION;
       // do not let it go slower than a velocity of 1
-      this.velocity = (this.velocity > 0)
-        ? Math.max(this.velocity, 1)
-        : Math.min(this.velocity, -1);
+      this.velocity = this.velocity > 0 ? Math.max(this.velocity, 1) : Math.min(this.velocity, -1);
       let y = this.y + this.velocity;
       if (y > this.minY) {
         // whoops, it's trying to scroll up farther than the options we have!
@@ -169,7 +167,7 @@ let PickerColumnCmp = class {
         this.velocity = 0;
       }
       this.update(y, 0, true);
-      const notLockedIn = (Math.round(y) % this.optHeight !== 0) || (Math.abs(this.velocity) > 1);
+      const notLockedIn = Math.round(y) % this.optHeight !== 0 || Math.abs(this.velocity) > 1;
       if (notLockedIn) {
         // isn't locked in yet, keep decelerating until it is
         this.rafId = requestAnimationFrame(() => this.decelerate());
@@ -184,7 +182,7 @@ let PickerColumnCmp = class {
       // needs to still get locked into a position so options line up
       const currentPos = Math.abs(this.y % this.optHeight);
       // create a velocity in the direction it needs to scroll
-      this.velocity = (currentPos > (this.optHeight / 2) ? 1 : -1);
+      this.velocity = currentPos > this.optHeight / 2 ? 1 : -1;
       this.decelerate();
     }
   }
@@ -204,7 +202,7 @@ let PickerColumnCmp = class {
     // reset everything
     cancelAnimationFrame(this.rafId);
     const options = this.col.options;
-    let minY = (options.length - 1);
+    let minY = options.length - 1;
     let maxY = 0;
     for (let i = 0; i < options.length; i++) {
       if (!options[i].disabled) {
@@ -253,7 +251,7 @@ let PickerColumnCmp = class {
     this.velocity = clamp(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
     if (this.velocity === 0 && detail.deltaY === 0) {
       const opt = detail.event.target.closest('.picker-opt');
-      if (opt && opt.hasAttribute('opt-index')) {
+      if (opt === null || opt === void 0 ? void 0 : opt.hasAttribute('opt-index')) {
         this.setSelected(parseInt(opt.getAttribute('opt-index'), 10), TRANSITION_DURATION);
       }
     }
@@ -294,7 +292,7 @@ let PickerColumnCmp = class {
     }
     const selectedIndex = clamp(min, this.col.selectedIndex || 0, max);
     if (this.col.prevSelected !== selectedIndex || forceRefresh) {
-      const y = (selectedIndex * this.optHeight) * -1;
+      const y = selectedIndex * this.optHeight * -1;
       this.velocity = 0;
       this.update(y, TRANSITION_DURATION, true);
     }
@@ -307,10 +305,10 @@ let PickerColumnCmp = class {
         [mode]: true,
         'picker-col': true,
         'picker-opts-left': this.col.align === 'left',
-        'picker-opts-right': this.col.align === 'right'
+        'picker-opts-right': this.col.align === 'right',
       }, style: {
-        'max-width': this.col.columnWidth
-      } }, col.prefix && (h("div", { class: "picker-prefix", style: { width: col.prefixWidth } }, col.prefix)), h("div", { class: "picker-opts", style: { maxWidth: col.optionsWidth }, ref: el => this.optsEl = el }, col.options.map((o, index) => h(Button, { type: "button", class: { 'picker-opt': true, 'picker-opt-disabled': !!o.disabled }, "opt-index": index }, o.text))), col.suffix && (h("div", { class: "picker-suffix", style: { width: col.suffixWidth } }, col.suffix))));
+        'max-width': this.col.columnWidth,
+      } }, col.prefix && (h("div", { class: "picker-prefix", style: { width: col.prefixWidth } }, col.prefix)), h("div", { class: "picker-opts", style: { maxWidth: col.optionsWidth }, ref: (el) => (this.optsEl = el) }, col.options.map((o, index) => (h(Button, { type: "button", class: { 'picker-opt': true, 'picker-opt-disabled': !!o.disabled }, "opt-index": index }, o.text)))), col.suffix && (h("div", { class: "picker-suffix", style: { width: col.suffixWidth } }, col.suffix))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

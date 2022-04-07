@@ -1,11 +1,11 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-bac865b7.js';
-import { g as getIonMode, c as config } from './ionic-global-48c6f4a1.js';
-import { B as BACKDROP, p as prepareOverlay, a as present, d as dismiss, e as eventMethod } from './overlays-884665fe.js';
-import { s as sanitizeDOMString } from './index-435af8e6.js';
-import { g as getClassMap } from './theme-c336c9d9.js';
-import { c as createAnimation } from './animation-ff813219.js';
-import './hardware-back-button-b6ccf74a.js';
-import './helpers-b5b4d5eb.js';
+import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { B as BACKDROP, p as prepareOverlay, a as present, d as dismiss, e as eventMethod } from './overlays-03fac0f0.js';
+import { s as sanitizeDOMString } from './index-be6112f8.js';
+import { g as getClassMap } from './theme-7ef00c83.js';
+import { c as createAnimation } from './animation-e960c982.js';
+import './hardware-back-button-fa04d6e9.js';
+import './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -21,14 +21,12 @@ const iosEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.loading-wrapper'))
-    .keyframes([
+  wrapperAnimation.addElement(baseEl.querySelector('.loading-wrapper')).keyframes([
     { offset: 0, opacity: 0.01, transform: 'scale(1.1)' },
-    { offset: 1, opacity: 1, transform: 'scale(1)' }
+    { offset: 1, opacity: 1, transform: 'scale(1)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -47,14 +45,10 @@ const iosLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.loading-wrapper'))
-    .keyframes([
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(baseEl.querySelector('.loading-wrapper')).keyframes([
     { offset: 0, opacity: 0.99, transform: 'scale(1)' },
-    { offset: 1, opacity: 0, transform: 'scale(0.9)' }
+    { offset: 1, opacity: 0, transform: 'scale(0.9)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -77,14 +71,12 @@ const mdEnterAnimation = (baseEl) => {
     .addElement(baseEl.querySelector('ion-backdrop'))
     .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
     .beforeStyles({
-    'pointer-events': 'none'
+    'pointer-events': 'none',
   })
     .afterClearStyles(['pointer-events']);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.loading-wrapper'))
-    .keyframes([
+  wrapperAnimation.addElement(baseEl.querySelector('.loading-wrapper')).keyframes([
     { offset: 0, opacity: 0.01, transform: 'scale(1.1)' },
-    { offset: 1, opacity: 1, transform: 'scale(1)' }
+    { offset: 1, opacity: 1, transform: 'scale(1)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -103,14 +95,10 @@ const mdLeaveAnimation = (baseEl) => {
   const baseAnimation = createAnimation();
   const backdropAnimation = createAnimation();
   const wrapperAnimation = createAnimation();
-  backdropAnimation
-    .addElement(baseEl.querySelector('ion-backdrop'))
-    .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-  wrapperAnimation
-    .addElement(baseEl.querySelector('.loading-wrapper'))
-    .keyframes([
+  backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
+  wrapperAnimation.addElement(baseEl.querySelector('.loading-wrapper')).keyframes([
     { offset: 0, opacity: 0.99, transform: 'scale(1)' },
-    { offset: 1, opacity: 0, transform: 'scale(0.9)' }
+    { offset: 1, opacity: 0, transform: 'scale(0.9)' },
   ]);
   return baseAnimation
     .addElement(baseEl)
@@ -210,7 +198,7 @@ let Loading = class {
     const { message, spinner, htmlAttributes } = this;
     const mode = getIonMode(this);
     return (h(Host, Object.assign({ tabindex: "-1" }, htmlAttributes, { style: {
-        zIndex: `${40000 + this.overlayIndex}`
+        zIndex: `${40000 + this.overlayIndex}`,
       }, onIonBackdropTap: this.onBackdropTap, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'overlay-hidden': true, 'loading-translucent': this.translucent }) }), h("ion-backdrop", { visible: this.showBackdrop, tappable: this.backdropDismiss }), h("div", { tabindex: "0" }), h("div", { class: "loading-wrapper ion-overlay-wrapper", role: "dialog" }, spinner && (h("div", { class: "loading-spinner" }, h("ion-spinner", { name: spinner, "aria-hidden": "true" }))), message && h("div", { class: "loading-content", innerHTML: sanitizeDOMString(message) })), h("div", { tabindex: "0" })));
   }
   get el() { return getElement(this); }
