@@ -91,8 +91,8 @@ export class AppRoot implements ComponentInterface {
           componentProps={this.componentProps}
         />
         <ion-route
-          url="/signup"
-          component="app-signup"
+          url="/list"
+          component="app-list"
           componentProps={this.componentProps}
         />
         <ion-route

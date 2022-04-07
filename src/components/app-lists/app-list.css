@@ -1,0 +1,32 @@
+ion-content {
+  --background: none;
+  background: url("/assets/");
+  background-position: center top;
+  background-repeat: repeat;
+  background-size: contain;
+  background-color: rgb(66, 66, 66);
+  opacity: 1;
+}
+
+.choices {
+  text-align: center;
+  font-size: x-large;
+}
+
+ion-row {
+  justify-content: center;
+  padding: 30px;
+}
+
+ion-col {
+  border-style: ridge;
+  border-color: #7a7a79;
+}
+
+#bLogo {
+  position: absolute;
+  height: 240px;
+  width: 280px;
+  max-width: 100%;
+  opacity: .7;
+}

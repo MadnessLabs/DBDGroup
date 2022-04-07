@@ -39,12 +39,25 @@ export class AppHome {
     return (
       <ion-content>
         <ion-grid>
-          <ion-row style={{
-            "justify-content":"center"
-          }}>
-            <ion-col size-sm="10" size-md="4" style={{
-              "text-align":"center"
-            }}>
+          <ion-header>
+            <ion-toolbar>
+              <ion-list>
+                
+              </ion-list>
+            </ion-toolbar>
+          </ion-header>
+          <ion-row
+            style={{
+              "justify-content": "center",
+            }}
+          >
+            <ion-col
+              size-sm="10"
+              size-md="4"
+              style={{
+                "text-align": "center",
+              }}
+            >
               <ion-card
                 style={{
                   opacity: ".6",
@@ -90,7 +103,7 @@ export class AppHome {
                   </ion-item>
                 </ion-list>
               </fireenjin-form>
-                <img id="bLogo" src="/assets/dbdlogoblack.png"></img>
+              <img id="bLogo" src="/assets/dbdlogoblack.png"></img>
             </ion-col>
           </ion-row>
         </ion-grid>

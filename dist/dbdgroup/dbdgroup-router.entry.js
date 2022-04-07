@@ -30999,7 +30999,7 @@ let AppRoot = class {
     });
   }
   render() {
-    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/signup", component: "app-signup", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament/:tournamentId", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile/:userId", component: "app-profile", componentProps: this.componentProps })));
+    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/list", component: "app-list", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament/:tournamentId", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile/:userId", component: "app-profile", componentProps: this.componentProps })));
   }
 };
 

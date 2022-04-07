@@ -17,17 +17,19 @@ export namespace Components {
         "auth": Auth;
         "db": Firestore;
     }
+    interface AppList {
+    }
     interface AppProfile {
         "auth": AuthService;
         "userId": string;
-    }
-    interface AppSignup {
     }
     interface AppTournament {
         "db": Firestore;
         "tournamentId": string;
     }
     interface DbdgroupRouter {
+    }
+    interface TempTemp {
     }
 }
 declare global {
@@ -43,17 +45,17 @@ declare global {
         prototype: HTMLAppHomeElement;
         new (): HTMLAppHomeElement;
     };
+    interface HTMLAppListElement extends Components.AppList, HTMLStencilElement {
+    }
+    var HTMLAppListElement: {
+        prototype: HTMLAppListElement;
+        new (): HTMLAppListElement;
+    };
     interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
     }
     var HTMLAppProfileElement: {
         prototype: HTMLAppProfileElement;
         new (): HTMLAppProfileElement;
-    };
-    interface HTMLAppSignupElement extends Components.AppSignup, HTMLStencilElement {
-    }
-    var HTMLAppSignupElement: {
-        prototype: HTMLAppSignupElement;
-        new (): HTMLAppSignupElement;
     };
     interface HTMLAppTournamentElement extends Components.AppTournament, HTMLStencilElement {
     }
@@ -67,13 +69,20 @@ declare global {
         prototype: HTMLDbdgroupRouterElement;
         new (): HTMLDbdgroupRouterElement;
     };
+    interface HTMLTempTempElement extends Components.TempTemp, HTMLStencilElement {
+    }
+    var HTMLTempTempElement: {
+        prototype: HTMLTempTempElement;
+        new (): HTMLTempTempElement;
+    };
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
         "app-home": HTMLAppHomeElement;
+        "app-list": HTMLAppListElement;
         "app-profile": HTMLAppProfileElement;
-        "app-signup": HTMLAppSignupElement;
         "app-tournament": HTMLAppTournamentElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
+        "temp-temp": HTMLTempTempElement;
     }
 }
 declare namespace LocalJSX {
@@ -85,11 +94,11 @@ declare namespace LocalJSX {
         "auth"?: Auth;
         "db"?: Firestore;
     }
+    interface AppList {
+    }
     interface AppProfile {
         "auth"?: AuthService;
         "userId"?: string;
-    }
-    interface AppSignup {
     }
     interface AppTournament {
         "db"?: Firestore;
@@ -97,13 +106,16 @@ declare namespace LocalJSX {
     }
     interface DbdgroupRouter {
     }
+    interface TempTemp {
+    }
     interface IntrinsicElements {
         "app-admin": AppAdmin;
         "app-home": AppHome;
+        "app-list": AppList;
         "app-profile": AppProfile;
-        "app-signup": AppSignup;
         "app-tournament": AppTournament;
         "dbdgroup-router": DbdgroupRouter;
+        "temp-temp": TempTemp;
     }
 }
 export { LocalJSX as JSX };
@@ -112,10 +124,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
+            "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
-            "app-signup": LocalJSX.AppSignup & JSXBase.HTMLAttributes<HTMLAppSignupElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
+            "temp-temp": LocalJSX.TempTemp & JSXBase.HTMLAttributes<HTMLTempTempElement>;
         }
     }
 }

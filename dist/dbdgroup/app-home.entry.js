@@ -28,10 +28,10 @@ let AppHome = class {
   }
   render() {
     var _a, _b;
-    return (h("ion-content", null, h("ion-grid", null, h("ion-row", { style: {
-        "justify-content": "center"
+    return (h("ion-content", null, h("ion-grid", null, h("ion-header", null, h("ion-toolbar", null, h("ion-list", null))), h("ion-row", { style: {
+        "justify-content": "center",
       } }, h("ion-col", { "size-sm": "10", "size-md": "4", style: {
-        "text-align": "center"
+        "text-align": "center",
       } }, h("ion-card", { style: {
         opacity: ".6",
         "border-style": "ridge",
