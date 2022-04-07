@@ -30,13 +30,13 @@ let AppList = class {
   render() {
     return (h("ion-content", null, h("ion-grid", null, h("ion-row", { style: {
         "justify-content": "center",
-        "padding": "0px"
-      } }, h("ion-col", { size: "8", "size-sm": "4" }, h("ion-accordion-group", null, h("ion-accordion", { value: "colors", "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
+        padding: "0px",
+      } }, h("ion-col", { size: "8", "size-sm": "2" }, h("ion-accordion-group", null, h("ion-accordion", { value: "colors", "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
         "text-align": "center",
       }, slot: "header" }, h("ion-label", null, "Links")), h("ion-list", { slot: "content" }, h("ion-item", null, h("a", { href: "https://deadbydaylight.group/tournament" }, "Tournament sign-up")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/list" }, "Tournament List")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/profile" }, "Profile")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/admin" }, "Admin")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group" }, "Home"))))))), h("ion-row", { style: {
         "justify-content": "center",
-        "padding": "0px"
-      } }, h("ion-col", { "size-sm": "10", "size-md": "4", style: {
+        padding: "0px",
+      } }, h("ion-col", { size: "12", "size-sm": "4", style: {
         "text-align": "center",
         "border-color": "transparent",
       } }, h("ion-card", { style: {

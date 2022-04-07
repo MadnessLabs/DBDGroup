@@ -44,7 +44,7 @@ export class AppAdmin {
               "justify-content": "center",
             }}
           >
-            <ion-col size="8" size-sm="4">
+            <ion-col size="8" size-sm="2">
               <ion-accordion-group>
                 <ion-accordion value="colors" toggle-icon="arrow-down-circle">
                   <ion-item
@@ -107,19 +107,6 @@ export class AppAdmin {
         </ion-grid>
         <ion-grid>
           <ion-row>
-            <ion-col size="4">
-              <div>
-                <img
-                  src="/assets/Dwight.png"
-                  style={{
-                    "margin-left": "100px",
-                    "margin-top": "80px",
-                  }}
-                  height={600}
-                  width={300}
-                ></img>
-              </div>
-            </ion-col>
             <ion-col>
               <fireenjin-form
                 style={{
@@ -216,11 +203,6 @@ export class AppAdmin {
                   </ion-item>
                 </ion-list>
               </fireenjin-form>
-            </ion-col>
-            <ion-col size="4">
-              <div>
-                <img src="/assets/Huntress.png" height={700} width={500}></img>
-              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
