@@ -21,9 +21,10 @@ export class AppList {
           <ion-row
             style={{
               "justify-content": "center",
+              "padding":"0px"
             }}
           >
-            <ion-col size="2">
+            <ion-col size="8" size-sm="4">
               <ion-accordion-group>
                 <ion-accordion value="colors" toggle-icon="arrow-down-circle">
                   <ion-item
@@ -64,6 +65,7 @@ export class AppList {
           <ion-row
             style={{
               "justify-content": "center",
+              "padding":"0px"
             }}
           >
             <ion-col
@@ -96,10 +98,10 @@ export class AppList {
             <ion-col size="12" size-sm="8"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="8"></ion-col>
+            <ion-col size="12" size-sm="8"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="8"></ion-col>
+            <ion-col size="12" size-sm="8"></ion-col>
           </ion-row>
           <ion-row>
             <img id="bLogo" src="/assets/dbdlogoblack.png"></img>

@@ -44,7 +44,7 @@ export class AppHome {
               "justify-content": "center",
             }}
           >
-            <ion-col size="2">
+            <ion-col size="8" size-sm="2">
               <ion-accordion-group>
                 <ion-accordion value="colors" toggle-icon="arrow-down-circle">
                   <ion-item
@@ -92,8 +92,8 @@ export class AppHome {
             }}
           >
             <ion-col
-              size-sm="10"
-              size-md="4"
+              size="10"
+              size-sm="4"
               style={{
                 "text-align": "center",
               }}
