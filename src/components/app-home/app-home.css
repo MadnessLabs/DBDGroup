@@ -3,8 +3,8 @@ ion-content {
   background: url("/assets/dbdtreeBkgd.png");
   background-position: center;
   width: 100%;
-  background-repeat: repeat;
-  background-size: fill;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: rgb(66, 66, 66);
 }
 

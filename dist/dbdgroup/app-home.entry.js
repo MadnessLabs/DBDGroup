@@ -4,7 +4,7 @@ import { i as il, g as gc, Y as Yh } from './index.esm2017-64852796.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
-const appHomeCss = "ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:repeat;background-size:fill;background-color:rgb(66, 66, 66)}fireenjin-form{max-width:650px;background-color:#3d0105;text-align:center;margin:0 auto;font-family:sans-serif;opacity:0.6;border-style:ridge;border-color:#7a7a79}#bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}";
+const appHomeCss = "ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:no-repeat;background-size:cover;background-color:rgb(66, 66, 66)}fireenjin-form{max-width:650px;background-color:#3d0105;text-align:center;margin:0 auto;font-family:sans-serif;opacity:0.6;border-style:ridge;border-color:#7a7a79}#bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}";
 
 let AppHome = class {
   constructor(hostRef) {
