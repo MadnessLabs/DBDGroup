@@ -29,7 +29,7 @@ export class AppTournament {
           >
             <ion-col size="8" size-md="2">
               <ion-accordion-group>
-                <ion-accordion value="colors" toggle-icon="arrow-down-circle">
+                <ion-accordion toggle-icon="arrow-down-circle">
                   <ion-item
                     style={{
                       "text-align": "center",

@@ -28,15 +28,13 @@ let AppHome = class {
   }
   render() {
     var _a, _b;
-    return (h("ion-content", null, h("ion-accordion-group", null, h("ion-accordion", { value: "colors", "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
+    return (h("ion-content", null, h("ion-accordion-group", null, h("ion-accordion", { "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
         "text-align": "center",
       }, slot: "header" }, h("ion-label", null, "Links")), h("ion-list", { slot: "content" }, h("ion-item", null, h("a", { href: "https://deadbydaylight.group/tournament" }, "Tournament sign-up")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/list" }, "Tournament List")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/profile" }, "Profile")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/admin" }, "Admin")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group" }, "Home"))))), h("ion-card", { style: { maxWidth: "400px", margin: "30px auto" } }, h("h1", { style: {
         "font-family": "sans-serif",
-        color: "white",
       } }, h("b", null, "DEAD BY DAYLIGHT GROUP SIGN-UP")), h("fireenjin-form", null, h("ion-list", null, h("ion-item", null, h("ion-label", { style: {
         "font-size": "20px",
         "font-family": "sans-serif",
-        color: "white",
       }, position: "floating" }, h("b", null, "Name")), h("ion-input", { name: "name", value: (_a = this.formData) === null || _a === void 0 ? void 0 : _a.name })), h("ion-item", null, h("ion-label", { style: {
         "font-size": "20px",
         "font-family": "sans-serif",

@@ -39,7 +39,7 @@ export class AppHome {
     return (
       <ion-content>
         <ion-accordion-group>
-          <ion-accordion value="colors" toggle-icon="arrow-down-circle">
+          <ion-accordion toggle-icon="arrow-down-circle">
             <ion-item
               style={{
                 "text-align": "center",
@@ -73,7 +73,6 @@ export class AppHome {
           <h1
             style={{
               "font-family": "sans-serif",
-              color: "white",
             }}
           >
             <b>DEAD BY DAYLIGHT GROUP SIGN-UP</b>
@@ -85,8 +84,7 @@ export class AppHome {
                 <ion-label
                   style={{
                     "font-size": "20px",
-                    "font-family": "sans-serif",
-                    color: "white",
+                    "font-family": "sans-serif", 
                   }}
                   position="floating"
                 >
