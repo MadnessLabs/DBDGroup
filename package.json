@@ -15,6 +15,7 @@
     "build": "stencil build",
     "deploy": "firebase deploy",
     "deploy:hosting": "firebase deploy --only hosting",
+    "g": "fireenjin generate",
     "start": "stencil build --dev --watch --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +30,7 @@
   },
   "homepage": "https://deadbydaylight.group",
   "devDependencies": {
+    "@fireenjin/cli": "^1.0.19",
     "@stencil/core": "^2.13.0",
     "firebase-tools": "^10.6.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
