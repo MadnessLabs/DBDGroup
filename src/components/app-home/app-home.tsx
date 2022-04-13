@@ -30,15 +30,15 @@ export class AppHome {
   }
 
   async componentDidLoad() {
+    this.dbdModalOpen.emit({
+      component: "modal-login",
+      componentProps: {}
+    });
     if (!this.auth?.currentUser?.uid) return;
     const query = await getDoc(
       doc(this.db, `users/${this.auth.currentUser.uid}`)
     );
     this.formData = query.data();
-    this.dbdModalOpen.emit({
-      component: "modal-login",
-      componentProps: {}
-    });
   }
 
   render() {

@@ -22,14 +22,14 @@ let AppHome = class {
   }
   async componentDidLoad() {
     var _a, _b;
-    if (!((_b = (_a = this.auth) === null || _a === void 0 ? void 0 : _a.currentUser) === null || _b === void 0 ? void 0 : _b.uid))
-      return;
-    const query = await Yh(gc(this.db, `users/${this.auth.currentUser.uid}`));
-    this.formData = query.data();
     this.dbdModalOpen.emit({
       component: "modal-login",
       componentProps: {}
     });
+    if (!((_b = (_a = this.auth) === null || _a === void 0 ? void 0 : _a.currentUser) === null || _b === void 0 ? void 0 : _b.uid))
+      return;
+    const query = await Yh(gc(this.db, `users/${this.auth.currentUser.uid}`));
+    this.formData = query.data();
   }
   render() {
     var _a, _b;
