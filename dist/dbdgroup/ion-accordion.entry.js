@@ -1,6 +1,6 @@
-import { r as registerInstance, h, n as Host, m as getElement } from './index-73e0b707.js';
+import { r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { d as chevronDown } from './index-5e1d0749.js';
-import { c as config, g as getIonMode } from './ionic-global-ed3e9db3.js';
+import { c as config, g as getIonMode } from './ionic-global-140a6091.js';
 import { g as getElementRoot, r as raf, t as transitionEndAsync, b as addEventListener, a as removeEventListener } from './helpers-e7913fb8.js';
 
 const accordionIosCss = ":host{display:block;position:relative;width:100%;background-color:var(--ion-background-color, #ffffff);overflow:hidden;z-index:0}:host(.accordion-expanding) ::slotted(ion-item[slot=header]),:host(.accordion-expanded) ::slotted(ion-item[slot=header]){--border-width:0px}:host(.accordion-animated){transition:all 300ms cubic-bezier(0.25, 0.8, 0.5, 1)}:host(.accordion-animated) #content{transition:max-height 300ms cubic-bezier(0.25, 0.8, 0.5, 1)}#content{overflow:hidden;will-change:max-height}:host(.accordion-collapsing) #content{max-height:0 !important}:host(.accordion-collapsed) #content{display:none}:host(.accordion-expanding) #content{max-height:0}:host(.accordion-disabled) #header,:host(.accordion-readonly) #header,:host(.accordion-disabled) #content,:host(.accordion-readonly) #content{pointer-events:none}:host(.accordion-disabled) #header,:host(.accordion-disabled) #content{opacity:0.4}@media (prefers-reduced-motion: reduce){:host,#content{transition:none !important}}:host(.accordion-next) ::slotted(ion-item[slot=header]){--border-width:0.55px 0px 0.55px 0px}";

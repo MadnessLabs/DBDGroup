@@ -1,5 +1,5 @@
-import { r as registerInstance, k as Build, h, n as Host, m as getElement } from './index-73e0b707.js';
-import { a as isPlatform, c as config, g as getIonMode } from './ionic-global-ed3e9db3.js';
+import { r as registerInstance, k as Build, h, m as Host, n as getElement } from './index-0fc14935.js';
+import { a as isPlatform, c as config, g as getIonMode } from './ionic-global-140a6091.js';
 
 const appCss = "html.plt-mobile ion-app{user-select:none}html.plt-mobile ion-app [contenteditable]{user-select:text}ion-app.force-statusbar-padding{--ion-safe-area-top:20px}";
 
@@ -15,7 +15,7 @@ let App = class {
           import('./tap-click-cba123ab.js').then((module) => module.startTapClick(config));
         }
         if (config.getBoolean('statusTap', isHybrid)) {
-          import('./status-tap-eaf00d22.js').then((module) => module.startStatusTap());
+          import('./status-tap-596e9237.js').then((module) => module.startStatusTap());
         }
         if (config.getBoolean('inputShims', needInputShims())) {
           import('./input-shims-9bbd199c.js').then((module) => module.startInputShims(config));

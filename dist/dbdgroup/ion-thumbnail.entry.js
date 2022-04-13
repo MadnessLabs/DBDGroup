@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host } from './index-73e0b707.js';
-import { g as getIonMode } from './ionic-global-ed3e9db3.js';
+import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
+import { g as getIonMode } from './ionic-global-140a6091.js';
 
 const thumbnailCss = ":host{--size:48px;--border-radius:0;border-radius:var(--border-radius);display:block;width:var(--size);height:var(--size)}::slotted(ion-img),::slotted(img){border-radius:var(--border-radius);width:100%;height:100%;object-fit:cover;overflow:hidden}";
 

@@ -52,6 +52,17 @@ export class AppHome {
             </ion-card>
           )}
         />
+        <ion-card>
+          <img src="./assets/icon/icon.png" />
+          <ion-card-header>
+            <ion-card-subtitle>Testing Tourney</ion-card-subtitle>
+            <ion-card-title>Tournament</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Enter HERE
+            <ion-button href="/tournament/test">ENTER NOW</ion-button>
+          </ion-card-content>
+        </ion-card>
       </ion-content>
     );
   }

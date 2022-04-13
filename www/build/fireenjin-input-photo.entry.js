@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h, m as getElement } from './index-73e0b707.js';
+import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-0fc14935.js';
 
 async function resizeImage(base64image, width = 1080, height = 1080) {
   return new Promise((resolve, reject) => {

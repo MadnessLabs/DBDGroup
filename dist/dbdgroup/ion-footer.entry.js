@@ -1,5 +1,5 @@
-import { o as readTask, j as writeTask, r as registerInstance, h, n as Host, m as getElement } from './index-73e0b707.js';
-import { g as getIonMode } from './ionic-global-ed3e9db3.js';
+import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
+import { g as getIonMode } from './ionic-global-140a6091.js';
 import { e as clamp, c as componentOnReady } from './helpers-e7913fb8.js';
 
 /*!

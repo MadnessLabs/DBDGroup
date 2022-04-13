@@ -1,10 +1,10 @@
-import { r as registerInstance, h, n as Host, m as getElement } from './index-73e0b707.js';
+import { r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { m as menuOutline, j as menuSharp } from './index-5e1d0749.js';
-import { g as getIonMode, c as config } from './ionic-global-ed3e9db3.js';
+import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
 import { i as inheritAttributes } from './helpers-e7913fb8.js';
-import { m as menuController } from './index-6a706f41.js';
+import { m as menuController } from './index-4833c137.js';
 import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
-import { u as updateVisibility } from './menu-toggle-util-c5451509.js';
+import { u as updateVisibility } from './menu-toggle-util-d9b9d7be.js';
 import './hardware-back-button-fa04d6e9.js';
 import './animation-e960c982.js';
 

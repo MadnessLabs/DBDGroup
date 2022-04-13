@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h } from './index-73e0b707.js';
+import { r as registerInstance, i as createEvent, k as Build, h } from './index-0fc14935.js';
 
 const tabsCss = "fireenjin-tabs .tabs-bar{display:block;background-color:var(--ion-color-light-tint);text-align:center;font-family:var(--ion-font-family);font-weight:bold;color:var(--ion-color-dark);text-transform:capitalize;font-size:18px;padding:0}fireenjin-tabs .tabs-bar ion-col{padding:15px 0}fireenjin-tabs .tabs-bar ion-col:hover{cursor:pointer;color:var(--ion-color-primary)}fireenjin-tabs .tabs-bar ion-col.selected{background-color:var(--ion-color-primary-contrast);color:var(--ion-color-primary)}";
 

@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host } from './index-73e0b707.js';
-import { g as getIonMode } from './ionic-global-ed3e9db3.js';
+import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
+import { g as getIonMode } from './ionic-global-140a6091.js';
 
 const avatarIosCss = ":host{border-radius:var(--border-radius);display:block}::slotted(ion-img),::slotted(img){border-radius:var(--border-radius);width:100%;height:100%;object-fit:cover;overflow:hidden}:host{--border-radius:50%;width:48px;height:48px}";
 

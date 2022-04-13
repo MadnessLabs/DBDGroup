@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h } from './index-73e0b707.js';
+import { r as registerInstance, i as createEvent, k as Build, h } from './index-0fc14935.js';
 import { c as createCommonjsModule, a as commonjsGlobal, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
 
 var clipboard = createCommonjsModule(function (module, exports) {

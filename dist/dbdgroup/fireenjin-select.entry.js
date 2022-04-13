@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h, n as Host } from './index-73e0b707.js';
+import { r as registerInstance, i as createEvent, k as Build, h, m as Host } from './index-0fc14935.js';
 
 const selectCss = "fireenjin-select ion-icon{margin-right:5px;color:var(--ion-text-color);opacity:0.33}fireenjin-select select{border:none;width:auto;padding:10px;min-width:30%;cursor:pointer;text-align:justify}";
 

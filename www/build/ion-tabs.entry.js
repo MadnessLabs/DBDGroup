@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, h, n as Host, m as getElement } from './index-73e0b707.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
 
 const tabsCss = ":host{left:0;right:0;top:0;bottom:0;display:flex;position:absolute;flex-direction:column;width:100%;height:100%;contain:layout size style;z-index:0}.tabs-inner{position:relative;flex:1;contain:layout size style}";
 
