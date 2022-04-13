@@ -11,7 +11,10 @@ export declare class AppRoot implements ComponentInterface {
     db: DatabaseService;
     fireenjin: FireEnjin;
   };
+  modal: HTMLIonModalElement;
   onUpdate(): Promise<void>;
+  presentModal(event: CustomEvent): Promise<void>;
+  closeModal(): Promise<void>;
   componentWillLoad(): Promise<void>;
   render(): any;
 }

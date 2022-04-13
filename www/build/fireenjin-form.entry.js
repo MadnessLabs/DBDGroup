@@ -1,4 +1,4 @@
-import { r as registerInstance, l as createEvent, j as Build, h, m as getElement } from './index-e5ab994a.js';
+import { r as registerInstance, i as createEvent, k as Build, h, m as getElement } from './index-73e0b707.js';
 
 const formCss = "fireenjin-form{display:block}fireenjin-form .form-controls{opacity:1;pointer-events:all;transition:all ease-out 0.4s}fireenjin-form .form-controls ion-col:last-of-type{display:flex;flex-direction:row;justify-content:flex-end}fireenjin-form .is-hidden{opacity:0;pointer-events:none;height:0px}";
 

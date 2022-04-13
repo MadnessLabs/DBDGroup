@@ -27,7 +27,11 @@ export namespace Components {
         "db": Firestore;
         "tournamentId": string;
     }
+    interface AppTournamentList {
+    }
     interface DbdgroupRouter {
+    }
+    interface ModalLogin {
     }
     interface TempTemp {
     }
@@ -63,11 +67,23 @@ declare global {
         prototype: HTMLAppTournamentElement;
         new (): HTMLAppTournamentElement;
     };
+    interface HTMLAppTournamentListElement extends Components.AppTournamentList, HTMLStencilElement {
+    }
+    var HTMLAppTournamentListElement: {
+        prototype: HTMLAppTournamentListElement;
+        new (): HTMLAppTournamentListElement;
+    };
     interface HTMLDbdgroupRouterElement extends Components.DbdgroupRouter, HTMLStencilElement {
     }
     var HTMLDbdgroupRouterElement: {
         prototype: HTMLDbdgroupRouterElement;
         new (): HTMLDbdgroupRouterElement;
+    };
+    interface HTMLModalLoginElement extends Components.ModalLogin, HTMLStencilElement {
+    }
+    var HTMLModalLoginElement: {
+        prototype: HTMLModalLoginElement;
+        new (): HTMLModalLoginElement;
     };
     interface HTMLTempTempElement extends Components.TempTemp, HTMLStencilElement {
     }
@@ -81,7 +97,9 @@ declare global {
         "app-list": HTMLAppListElement;
         "app-profile": HTMLAppProfileElement;
         "app-tournament": HTMLAppTournamentElement;
+        "app-tournament-list": HTMLAppTournamentListElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
+        "modal-login": HTMLModalLoginElement;
         "temp-temp": HTMLTempTempElement;
     }
 }
@@ -93,6 +111,7 @@ declare namespace LocalJSX {
     interface AppHome {
         "auth"?: Auth;
         "db"?: Firestore;
+        "onDbdModalOpen"?: (event: CustomEvent<{component: string; componentProps?: any; cssClass?: string;}>) => void;
     }
     interface AppList {
     }
@@ -104,7 +123,11 @@ declare namespace LocalJSX {
         "db"?: Firestore;
         "tournamentId"?: string;
     }
+    interface AppTournamentList {
+    }
     interface DbdgroupRouter {
+    }
+    interface ModalLogin {
     }
     interface TempTemp {
     }
@@ -114,7 +137,9 @@ declare namespace LocalJSX {
         "app-list": AppList;
         "app-profile": AppProfile;
         "app-tournament": AppTournament;
+        "app-tournament-list": AppTournamentList;
         "dbdgroup-router": DbdgroupRouter;
+        "modal-login": ModalLogin;
         "temp-temp": TempTemp;
     }
 }
@@ -127,7 +152,9 @@ declare module "@stencil/core" {
             "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
+            "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
+            "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
             "temp-temp": LocalJSX.TempTemp & JSXBase.HTMLAttributes<HTMLTempTempElement>;
         }
     }

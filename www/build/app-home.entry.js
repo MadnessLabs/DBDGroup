@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-e5ab994a.js';
+import { r as registerInstance, i as createEvent, h } from './index-73e0b707.js';
 import './index.esm-7f18c43a.js';
 import { i as il, g as gc, Y as Yh } from './index.esm2017-64852796.js';
 import './process-es6-6fcfb3fc.js';
@@ -9,6 +9,7 @@ const appHomeCss = "app-home ion-content{--background:none;background:url(\"/ass
 let AppHome = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
+    this.dbdModalOpen = createEvent(this, "dbdModalOpen", 7);
     this.formData = {};
   }
   onSubmit() {
@@ -25,6 +26,10 @@ let AppHome = class {
       return;
     const query = await Yh(gc(this.db, `users/${this.auth.currentUser.uid}`));
     this.formData = query.data();
+    this.dbdModalOpen.emit({
+      component: "modal-login",
+      componentProps: {}
+    });
   }
   render() {
     var _a, _b;

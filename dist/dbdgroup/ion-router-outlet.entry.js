@@ -1,9 +1,9 @@
-import { r as registerInstance, l as createEvent, h, m as getElement } from './index-e5ab994a.js';
-import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { r as registerInstance, i as createEvent, h, m as getElement } from './index-73e0b707.js';
+import { g as getIonMode, c as config } from './ionic-global-ed3e9db3.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { s as shallowEqualStringMap } from './helpers-e7913fb8.js';
-import { t as transition } from './index-03e2d32b.js';
+import { t as transition } from './index-0b35d863.js';
 
 const routeOutletCss = ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}";
 

@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-e5ab994a.js';
+import { r as registerInstance, h } from './index-73e0b707.js';
 
 const avatarCss = "fireenjin-avatar{position:relative}fireenjin-avatar .avatar-image{display:block;border-radius:4px;border:1px solid var(--ion-color-light-shade);background-color:var(--ion-color-light);background-size:cover;background-position:center;font-weight:bolder;text-align:center;color:var(--ion-color-medium);text-decoration:none;margin:auto !important}";
 

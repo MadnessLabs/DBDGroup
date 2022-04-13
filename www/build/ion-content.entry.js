@@ -1,5 +1,5 @@
-import { r as registerInstance, l as createEvent, o as readTask, q as forceUpdate, h, n as Host, m as getElement } from './index-e5ab994a.js';
-import { g as getIonMode, a as isPlatform } from './ionic-global-fc3774f0.js';
+import { r as registerInstance, i as createEvent, o as readTask, q as forceUpdate, h, n as Host, m as getElement } from './index-73e0b707.js';
+import { g as getIonMode, a as isPlatform } from './ionic-global-ed3e9db3.js';
 import { c as componentOnReady } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
 import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';

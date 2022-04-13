@@ -1,4 +1,4 @@
-import { r as registerInstance, h, n as Host, m as getElement } from './index-e5ab994a.js';
+import { r as registerInstance, h, n as Host, m as getElement } from './index-73e0b707.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

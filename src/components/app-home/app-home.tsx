@@ -1,4 +1,4 @@
-import { Component, h, Listen, Prop, State } from "@stencil/core";
+import { Component, Event, EventEmitter, h, Listen, Prop, State } from "@stencil/core";
 import { Auth } from "firebase/auth";
 import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 
@@ -7,6 +7,8 @@ import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
   styleUrl: "app-home.css",
 })
 export class AppHome {
+  @Event() dbdModalOpen: EventEmitter<{component: string; componentProps?: any; cssClass?: string;}>;
+
   @State() formData: {
     name?: string;
     email?: string;
@@ -33,6 +35,10 @@ export class AppHome {
       doc(this.db, `users/${this.auth.currentUser.uid}`)
     );
     this.formData = query.data();
+    this.dbdModalOpen.emit({
+      component: "modal-login",
+      componentProps: {}
+    });
   }
 
   render() {

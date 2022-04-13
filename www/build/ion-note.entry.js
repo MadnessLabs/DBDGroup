@@ -1,5 +1,5 @@
-import { r as registerInstance, h, n as Host } from './index-e5ab994a.js';
-import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { r as registerInstance, h, n as Host } from './index-73e0b707.js';
+import { g as getIonMode } from './ionic-global-ed3e9db3.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
 
 const noteIosCss = ":host{color:var(--color);font-family:var(--ion-font-family, inherit);box-sizing:border-box}:host(.ion-color){color:var(--ion-color-base)}:host{--color:var(--ion-color-step-350, #a6a6a6)}";

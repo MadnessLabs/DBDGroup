@@ -1,7 +1,7 @@
 import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
 import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
-
+import { modalController } from '@ionic/core';
 
 @Component({
   tag: "dbdgroup-router",
@@ -52,6 +52,7 @@ export class AppRoot implements ComponentInterface {
     db: this.db,
     fireenjin: this.fireenjin,
   };
+  modal: HTMLIonModalElement;
 
   @Listen("swUpdate", { target: "window" })
   async onUpdate() {
@@ -67,6 +68,21 @@ export class AppRoot implements ComponentInterface {
     if (confirm("There is an update, would you like to reload now?")) {
       window.location.reload();
     }
+  }
+
+  @Listen("dbdModalOpen", { target: "document" })
+  async presentModal(event: CustomEvent) {
+    this.modal = await modalController.create({
+      component: event?.detail?.component,
+      componentProps: event?.detail?.componentProps,
+      cssClass: event?.detail?.cssClass,
+    });
+    await this.modal.present();
+  }
+
+  @Listen("dbdModalClose", { target: "document" })
+  async closeModal() {
+    this.modal.dismiss();
   }
 
   async componentWillLoad() {

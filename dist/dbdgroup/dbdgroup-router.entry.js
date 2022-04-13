@@ -1,9 +1,23 @@
-import { r as registerInstance, j as Build, h } from './index-e5ab994a.js';
+import { r as registerInstance, k as Build, h } from './index-73e0b707.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
 import { E as ErrorFactory, L as Logger, a as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, b as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, f as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, r as registerVersion, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Pc, T as lc, U as Sc, i as il, V as ul, W as ol, X as wc, Z as el, g as gc, Y as Yh, $ as rl, a0 as al, a1 as Dh, a2 as xh, a3 as kh, a4 as vh } from './index.esm2017-64852796.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
-import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-93ec9c7a.js';
+import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
+import './index-8657dcc6.js';
+import { m as modalController } from './overlays-6496d072.js';
 import './global-e1c7e609.js';
+import './utils-1f2d3792.js';
+import './animation-e960c982.js';
+import './helpers-e7913fb8.js';
+import './ios.transition-c539647e.js';
+import './index-0b35d863.js';
+import './md.transition-836f10e2.js';
+import './cubic-bezier-4c0db14f.js';
+import './index-dd414b33.js';
+import './ionic-global-ed3e9db3.js';
+import './index-be6112f8.js';
+import './index-6a706f41.js';
+import './hardware-back-button-fa04d6e9.js';
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -34049,6 +34063,18 @@ let AppRoot = class {
     if (confirm("There is an update, would you like to reload now?")) {
       window.location.reload();
     }
+  }
+  async presentModal(event) {
+    var _a, _b, _c;
+    this.modal = await modalController.create({
+      component: (_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.component,
+      componentProps: (_b = event === null || event === void 0 ? void 0 : event.detail) === null || _b === void 0 ? void 0 : _b.componentProps,
+      cssClass: (_c = event === null || event === void 0 ? void 0 : event.detail) === null || _c === void 0 ? void 0 : _c.cssClass,
+    });
+    await this.modal.present();
+  }
+  async closeModal() {
+    this.modal.dismiss();
   }
   async componentWillLoad() {
     this.auth.onAuthChanged(async (session) => {

@@ -1,5 +1,5 @@
-import { r as registerInstance, l as createEvent, h, n as Host, m as getElement } from './index-e5ab994a.js';
-import { g as getIonMode } from './ionic-global-fc3774f0.js';
+import { r as registerInstance, i as createEvent, h, n as Host, m as getElement } from './index-73e0b707.js';
+import { g as getIonMode } from './ionic-global-ed3e9db3.js';
 import { l as getAriaLabel, d as renderHiddenInput } from './helpers-e7913fb8.js';
 import { d as hapticSelection } from './haptic-a9e94599.js';
 import { i as isRTL } from './index-9b5bcea1.js';

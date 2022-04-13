@@ -1,4 +1,4 @@
-import { g as getIonMode, c as config } from './ionic-global-fc3774f0.js';
+import { g as getIonMode, c as config } from './ionic-global-ed3e9db3.js';
 import { OVERLAY_BACK_BUTTON_PRIORITY } from './hardware-back-button-fa04d6e9.js';
 import { c as componentOnReady, f as focusElement, g as getElementRoot, a as removeEventListener, b as addEventListener } from './helpers-e7913fb8.js';
 
@@ -485,4 +485,4 @@ const safeCall = (handler, arg) => {
 };
 const BACKDROP = 'backdrop';
 
-export { BACKDROP as B, present as a, activeAnimations as b, popoverController as c, dismiss as d, eventMethod as e, actionSheetController as f, getOverlay as g, alertController as h, isCancel as i, focusFirstDescendant as j, prepareOverlay as p, safeCall as s, toastController as t };
+export { BACKDROP as B, present as a, activeAnimations as b, popoverController as c, dismiss as d, eventMethod as e, actionSheetController as f, getOverlay as g, alertController as h, isCancel as i, focusFirstDescendant as j, modalController as m, prepareOverlay as p, safeCall as s, toastController as t };
