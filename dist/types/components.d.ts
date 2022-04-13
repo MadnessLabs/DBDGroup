@@ -111,7 +111,11 @@ declare namespace LocalJSX {
     interface AppHome {
         "auth"?: Auth;
         "db"?: Firestore;
-        "onDbdModalOpen"?: (event: CustomEvent<{component: string; componentProps?: any; cssClass?: string;}>) => void;
+        "onDbdModalOpen"?: (event: CustomEvent<{
+    component: string;
+    componentProps?: any;
+    cssClass?: string;
+  }>) => void;
     }
     interface AppList {
     }

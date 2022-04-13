@@ -1,4 +1,12 @@
-import { Component, Event, EventEmitter, h, Listen, Prop, State } from "@stencil/core";
+import {
+  Component,
+  Event,
+  EventEmitter,
+  h,
+  Listen,
+  Prop,
+  State,
+} from "@stencil/core";
 import { Auth } from "firebase/auth";
 import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
 
@@ -7,7 +15,11 @@ import { doc, Firestore, getDoc, setDoc } from "firebase/firestore";
   styleUrl: "app-home.css",
 })
 export class AppHome {
-  @Event() dbdModalOpen: EventEmitter<{component: string; componentProps?: any; cssClass?: string;}>;
+  @Event() dbdModalOpen: EventEmitter<{
+    component: string;
+    componentProps?: any;
+    cssClass?: string;
+  }>;
 
   @State() formData: {
     name?: string;
@@ -37,7 +49,7 @@ export class AppHome {
     this.formData = query.data();
     this.dbdModalOpen.emit({
       component: "modal-login",
-      componentProps: {}
+      componentProps: {},
     });
   }
 
@@ -90,7 +102,7 @@ export class AppHome {
                 <ion-label
                   style={{
                     "font-size": "20px",
-                    "font-family": "sans-serif", 
+                    "font-family": "sans-serif",
                   }}
                   position="floating"
                 >

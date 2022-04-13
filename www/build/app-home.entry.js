@@ -28,7 +28,7 @@ let AppHome = class {
     this.formData = query.data();
     this.dbdModalOpen.emit({
       component: "modal-login",
-      componentProps: {}
+      componentProps: {},
     });
   }
   render() {
