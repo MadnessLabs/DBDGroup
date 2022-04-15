@@ -13,6 +13,8 @@ export namespace Components {
         "auth": Auth;
         "db": Firestore;
     }
+    interface AppDetail {
+    }
     interface AppHome {
         "auth": Auth;
         "db": Firestore;
@@ -42,6 +44,12 @@ declare global {
     var HTMLAppAdminElement: {
         prototype: HTMLAppAdminElement;
         new (): HTMLAppAdminElement;
+    };
+    interface HTMLAppDetailElement extends Components.AppDetail, HTMLStencilElement {
+    }
+    var HTMLAppDetailElement: {
+        prototype: HTMLAppDetailElement;
+        new (): HTMLAppDetailElement;
     };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
@@ -93,6 +101,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
+        "app-detail": HTMLAppDetailElement;
         "app-home": HTMLAppHomeElement;
         "app-list": HTMLAppListElement;
         "app-profile": HTMLAppProfileElement;
@@ -107,6 +116,8 @@ declare namespace LocalJSX {
     interface AppAdmin {
         "auth"?: Auth;
         "db"?: Firestore;
+    }
+    interface AppDetail {
     }
     interface AppHome {
         "auth"?: Auth;
@@ -137,6 +148,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "app-admin": AppAdmin;
+        "app-detail": AppDetail;
         "app-home": AppHome;
         "app-list": AppList;
         "app-profile": AppProfile;
@@ -152,6 +164,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
+            "app-detail": LocalJSX.AppDetail & JSXBase.HTMLAttributes<HTMLAppDetailElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
