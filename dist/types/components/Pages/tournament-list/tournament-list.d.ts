@@ -1,4 +1,4 @@
-import { ComponentInterface } from "../../stencil-public-runtime";
+import { ComponentInterface } from "../../../stencil-public-runtime";
 export declare class PageTournamentList implements ComponentInterface {
   filterBarEl: any;
   paginationEl: any;

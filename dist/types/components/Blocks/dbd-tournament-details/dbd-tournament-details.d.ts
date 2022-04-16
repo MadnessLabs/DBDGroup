@@ -1,4 +1,4 @@
-export declare class AppDetail {
+export declare class DbdTournamentDetails {
   component: string;
   componentProps?: any;
   cssClass?: string;

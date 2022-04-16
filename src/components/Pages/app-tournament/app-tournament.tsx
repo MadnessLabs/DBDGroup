@@ -31,6 +31,7 @@ export class AppTournament {
           </ion-toolbar>
         </ion-header>
         <ion-content>
+          <dbd-tournament-details/>
           The tournament is on {this.tournamentId}
           <ion-card>
             <ion-list class="ion-no-padding">

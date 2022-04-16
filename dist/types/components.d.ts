@@ -13,8 +13,6 @@ export namespace Components {
         "auth": Auth;
         "db": Firestore;
     }
-    interface AppDetail {
-    }
     interface AppHome {
         "auth": Auth;
         "db": Firestore;
@@ -31,11 +29,11 @@ export namespace Components {
     }
     interface AppTournamentList {
     }
+    interface DbdTournamentDetails {
+    }
     interface DbdgroupRouter {
     }
     interface ModalLogin {
-    }
-    interface TempTemp {
     }
 }
 declare global {
@@ -44,12 +42,6 @@ declare global {
     var HTMLAppAdminElement: {
         prototype: HTMLAppAdminElement;
         new (): HTMLAppAdminElement;
-    };
-    interface HTMLAppDetailElement extends Components.AppDetail, HTMLStencilElement {
-    }
-    var HTMLAppDetailElement: {
-        prototype: HTMLAppDetailElement;
-        new (): HTMLAppDetailElement;
     };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
@@ -81,6 +73,12 @@ declare global {
         prototype: HTMLAppTournamentListElement;
         new (): HTMLAppTournamentListElement;
     };
+    interface HTMLDbdTournamentDetailsElement extends Components.DbdTournamentDetails, HTMLStencilElement {
+    }
+    var HTMLDbdTournamentDetailsElement: {
+        prototype: HTMLDbdTournamentDetailsElement;
+        new (): HTMLDbdTournamentDetailsElement;
+    };
     interface HTMLDbdgroupRouterElement extends Components.DbdgroupRouter, HTMLStencilElement {
     }
     var HTMLDbdgroupRouterElement: {
@@ -93,31 +91,22 @@ declare global {
         prototype: HTMLModalLoginElement;
         new (): HTMLModalLoginElement;
     };
-    interface HTMLTempTempElement extends Components.TempTemp, HTMLStencilElement {
-    }
-    var HTMLTempTempElement: {
-        prototype: HTMLTempTempElement;
-        new (): HTMLTempTempElement;
-    };
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
-        "app-detail": HTMLAppDetailElement;
         "app-home": HTMLAppHomeElement;
         "app-list": HTMLAppListElement;
         "app-profile": HTMLAppProfileElement;
         "app-tournament": HTMLAppTournamentElement;
         "app-tournament-list": HTMLAppTournamentListElement;
+        "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
-        "temp-temp": HTMLTempTempElement;
     }
 }
 declare namespace LocalJSX {
     interface AppAdmin {
         "auth"?: Auth;
         "db"?: Firestore;
-    }
-    interface AppDetail {
     }
     interface AppHome {
         "auth"?: Auth;
@@ -140,23 +129,22 @@ declare namespace LocalJSX {
     }
     interface AppTournamentList {
     }
+    interface DbdTournamentDetails {
+    }
     interface DbdgroupRouter {
     }
     interface ModalLogin {
     }
-    interface TempTemp {
-    }
     interface IntrinsicElements {
         "app-admin": AppAdmin;
-        "app-detail": AppDetail;
         "app-home": AppHome;
         "app-list": AppList;
         "app-profile": AppProfile;
         "app-tournament": AppTournament;
         "app-tournament-list": AppTournamentList;
+        "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
-        "temp-temp": TempTemp;
     }
 }
 export { LocalJSX as JSX };
@@ -164,15 +152,14 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
-            "app-detail": LocalJSX.AppDetail & JSXBase.HTMLAttributes<HTMLAppDetailElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
+            "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
-            "temp-temp": LocalJSX.TempTemp & JSXBase.HTMLAttributes<HTMLTempTempElement>;
         }
     }
 }
