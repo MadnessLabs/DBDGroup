@@ -5,7 +5,7 @@ app-home ion-content {
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgb(66, 66, 66);
+  background-color: var(--ion-background-color);
   position: relative;
 }
 
