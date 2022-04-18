@@ -31,10 +31,15 @@ export class AppTournament {
           </ion-toolbar>
         </ion-header>
         <ion-content>
-          <dbd-tournament-details/>
-          The tournament is on {this.tournamentId}
-          <ion-card>
-            <ion-list class="ion-no-padding">
+          <dbd-tournament-details />
+          <ion-row
+            style={{
+              "justify-content": "center",
+            }}
+          >
+            <ion-col size="12" size-md="9">
+              <ion-card>
+                {/* <ion-list class="ion-no-padding">
               <ion-item-divider
                 style={{
                   "text-align": "center",
@@ -62,92 +67,88 @@ export class AppTournament {
               {this.tournament?.killers?.map((killer) => (
                 <ion-item>KP: {killer.killerpoints}</ion-item>
               ))}
-            </ion-list>
-            <h1
-              style={{
-                "text-align": "center",
-              }}
-            >
-              Dead by Daylight Tournament Signup
-            </h1>
-            <fireenjin-form
-              style={{
-                "max-width": "700px",
-                "background-color": "var(--ion-item-background",
-                "text-align": "center",
-                margin: "0 auto",
-              }}
-            >
-              <ion-list>
-                <ion-item>
-                  <ion-label
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    position="stacked"
-                  >
-                    Tournament Name
+            </ion-list> */}
+
+                <fireenjin-form
+                  style={{
+                    "max-width": "750px",
+                    "text-align": "center",
+                    margin: "0 auto",
+                  }}
+                >
+                  <ion-label>
+                    <h1
+                      style={{
+                        "text-align": "center",
+                      }}
+                    >
+                      Dead by Daylight Tournament Signup
+                    </h1>
                   </ion-label>
-                  <ion-input name="id" />
-                </ion-item>
-                <ion-item>
-                  <ion-label
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    position="stacked"
-                  >
-                    E-mail
-                  </ion-label>
-                  <ion-input />
-                </ion-item>
-                <ion-item>
-                  <ion-label
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    position="stacked"
-                  >
-                    Discord username
-                  </ion-label>
-                  <ion-input />
-                </ion-item>
-                <ion-item>
-                  <ion-label
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    position="stacked"
-                  >
-                    Steam code
-                  </ion-label>
-                  <ion-input name="number" />
-                </ion-item>
-                <ion-item>
-                  <ion-label
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    position="stacked"
-                  >
-                    Entering as?
-                  </ion-label>
-                  <ion-select
-                    style={{
-                      "font-size": "20px",
-                    }}
-                    okText="Okay"
-                    cancelText="Dismiss"
-                  >
-                    <ion-select-option value="killer">killer</ion-select-option>
-                    <ion-select-option value="survivor">
-                      survivor
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </ion-list>
-            </fireenjin-form>
-          </ion-card>
+                  <ion-list>
+                    <ion-item>
+                      <ion-label
+                        style={{
+                          "font-size": "20px",
+                        }}
+                        position="stacked"
+                      >
+                        E-mail
+                      </ion-label>
+                      <ion-input />
+                    </ion-item>
+                    <ion-item>
+                      <ion-label
+                        style={{
+                          "font-size": "20px",
+                        }}
+                        position="stacked"
+                      >
+                        Discord username
+                      </ion-label>
+                      <ion-input />
+                    </ion-item>
+                    <ion-item>
+                      <ion-label
+                        style={{
+                          "font-size": "20px",
+                        }}
+                        position="stacked"
+                      >
+                        Steam code
+                      </ion-label>
+                      <ion-input name="number" />
+                    </ion-item>
+                    <ion-item>
+                      <ion-label
+                        style={{
+                          "font-size": "20px",
+                        }}
+                        position="stacked"
+                      >
+                        Entering as?
+                      </ion-label>
+                      <ion-select
+                        style={{
+                          "font-size": "20px",
+                        }}
+                        okText="Okay"
+                        cancelText="Dismiss"
+                        placeholder="Select one"
+                      >
+                        <ion-select-option value="killer">
+                          Killer
+                        </ion-select-option>
+                        <ion-select-option value="survivor">
+                          Survivor
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                </fireenjin-form>
+              </ion-card>
+            </ion-col>
+          </ion-row>
         </ion-content>
       </Host>
     );

@@ -1,6 +1,6 @@
 import { r as registerInstance, i as createEvent, h } from './index-0fc14935.js';
 
-const appHomeCss = "app-home ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:no-repeat;background-size:cover;background-color:rgb(66, 66, 66);position:relative}app-home #bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}app-home ion-card{max-width:600px;margin:30px auto;display:block}";
+const appHomeCss = "app-home ion-content{--background:none;background:url(\"/assets/dbdtreeBkgd.png\");background-position:center;width:100%;background-repeat:no-repeat;background-size:cover;background-color:var(--ion-background-color);position:relative}app-home #bLogo{position:fixed;height:240px;width:280px;max-width:100%;margin-left:-120px;opacity:.7}app-home ion-card{max-width:600px;margin:30px auto;display:block}";
 
 let AppHome = class {
   constructor(hostRef) {

@@ -87,7 +87,7 @@
   --ion-color-light-tint: #2a2a2a;
 
 
-  --ion-background-color: #666666;
+  --ion-background-color: linear-gradient(#150000, #666666);
   --ion-background-color-rgb: 18, 18, 18;
   
   --ion-text-color: #FFFFFF;
@@ -119,6 +119,10 @@ ion-list, ion-item {
   --background: transparent !important;
 }
 
+ion-toolbar {
+  --background: var(--ion-color-step-50);
+}
+
 ion-card {
   --background: var(--ion-color-step-50);
 }
@@ -126,6 +130,7 @@ ion-card {
 fireenjin-form .form-controls {
   background-color: var(--ion-color-tertiary-shade);
 }
+
 
 ion-content:before {
   content: "";
