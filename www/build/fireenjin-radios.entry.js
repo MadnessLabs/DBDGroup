@@ -9,6 +9,7 @@ let Radios = class {
     this.disabled = false;
     this.allowEmptySelection = false;
     this.lines = "none";
+    this.labelPosition = "stacked";
     this.limit = 15;
     this.radioSlot = "start";
     this.results = [];

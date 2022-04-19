@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-0fc14935.js';
-import './index.esm-7f18c43a.js';
-import { i as il, g as gc } from './index.esm2017-64852796.js';
+import './index.esm-6f00acbe.js';
+import { a as al, T as Tc } from './index.esm2017-5b1fb817.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
@@ -22,7 +22,7 @@ let AppAdmin = class {
     const timestamp = new Date();
     const id = ((_a = this.formData) === null || _a === void 0 ? void 0 : _a.id) ||
       `${timestamp.getFullYear()}-${timestamp.getMonth() + 1}`;
-    il(gc(this.db, `tournaments/${id}`), { ...this.formData, id }, {
+    al(Tc(this.db, `tournaments/${id}`), { ...this.formData, id }, {
       merge: true,
     });
   }

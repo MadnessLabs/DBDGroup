@@ -1,6 +1,8 @@
 import { r as registerInstance, i as createEvent, j as writeTask, o as readTask, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { g as getIonMode } from './ionic-global-140a6091.js';
-import { c as componentOnReady } from './helpers-e7913fb8.js';
+import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
+import './helpers-e7913fb8.js';
+import './index-41de208d.js';
 
 const infiniteScrollCss = "ion-infinite-scroll{display:none;width:100%}.infinite-scroll-enabled{display:block}";
 
@@ -89,13 +91,12 @@ let InfiniteScroll = class {
     this.enableScrollEvents(!disabled);
   }
   async connectedCallback() {
-    const contentEl = this.el.closest('ion-content');
+    const contentEl = findClosestIonContent(this.el);
     if (!contentEl) {
-      console.error('<ion-infinite-scroll> must be used inside an <ion-content>');
+      printIonContentErrorMsg(this.el);
       return;
     }
-    await new Promise((resolve) => componentOnReady(contentEl, resolve));
-    this.scrollEl = await contentEl.getScrollElement();
+    this.scrollEl = await getScrollElement(contentEl);
     this.thresholdChanged();
     this.disabledChanged();
     if (this.position === 'top') {

@@ -1,17 +1,17 @@
 import { r as registerInstance, h } from './index-0fc14935.js';
-import './index-62d18b6a.js';
+import './index-18855d06.js';
 import { t as toastController } from './overlays-649ff82c.js';
 import './utils-c2726041.js';
-import './animation-e960c982.js';
+import './animation-f4dcdfa9.js';
 import './helpers-e7913fb8.js';
-import './ios.transition-26e4fa83.js';
-import './index-31774ee3.js';
-import './md.transition-62a411f7.js';
+import './ios.transition-c755022e.js';
+import './index-18a3e846.js';
+import './md.transition-73af2711.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
 import './ionic-global-140a6091.js';
 import './index-be6112f8.js';
-import './index-4833c137.js';
+import './index-78189bad.js';
 import './hardware-back-button-fa04d6e9.js';
 
 const appListCss = "ion-content{--background:none;background:url(\"/assets/\");background-position:center top;background-repeat:repeat;background-size:contain;background-color:rgb(66, 66, 66);opacity:1}.choices{text-align:center;font-size:x-large}ion-row{justify-content:center;padding:30px}ion-col{border-style:ridge;border-color:#7a7a79}#bLogo{position:absolute;height:240px;width:280px;max-width:100%;opacity:.7}";

@@ -1,9 +1,11 @@
 import { j as writeTask, r as registerInstance, i as createEvent, o as readTask, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { a as isPlatform, g as getIonMode } from './ionic-global-140a6091.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
+import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
 import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { h as hapticImpact } from './haptic-a9e94599.js';
-import { c as createAnimation } from './animation-e960c982.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
+import './index-41de208d.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -506,18 +508,27 @@ let Refresher = class {
     this.checkNativeRefresher();
   }
   async connectedCallback() {
+    var _a;
     if (this.el.getAttribute('slot') !== 'fixed') {
       console.error('Make sure you use: <ion-refresher slot="fixed">');
       return;
     }
-    const contentEl = this.el.closest('ion-content');
+    const contentEl = findClosestIonContent(this.el);
     if (!contentEl) {
-      console.error('<ion-refresher> must be used inside an <ion-content>');
+      printIonContentErrorMsg(this.el);
       return;
     }
-    await new Promise((resolve) => componentOnReady(contentEl, resolve));
-    this.scrollEl = await contentEl.getScrollElement();
-    this.backgroundContentEl = getElementRoot(contentEl).querySelector('#background-content');
+    this.scrollEl = await getScrollElement(contentEl);
+    /**
+     * Query the host `ion-content` directly (if it is available), to use its
+     * inner #background-content has the target. Otherwise fallback to the
+     * custom scroll target host.
+     *
+     * This makes it so that implementers do not need to re-create the background content
+     * element and styles.
+     */
+    const backgroundContentHost = (_a = this.el.closest('ion-content')) !== null && _a !== void 0 ? _a : contentEl;
+    this.backgroundContentEl = getElementRoot(backgroundContentHost).querySelector('#background-content');
     if (await shouldUseNativeRefresher(this.el, getIonMode(this))) {
       this.setupNativeRefresher(contentEl);
     }

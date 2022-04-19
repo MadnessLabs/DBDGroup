@@ -1,6 +1,6 @@
 import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
-import './index.esm-7f18c43a.js';
-import { Y as Yh, g as gc } from './index.esm2017-64852796.js';
+import './index.esm-6f00acbe.js';
+import { e as el, T as Tc } from './index.esm2017-5b1fb817.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
@@ -9,7 +9,7 @@ let AppTournament = class {
     registerInstance(this, hostRef);
   }
   async componentDidLoad() {
-    const query = await Yh(gc(this.db, `tournaments/${this.tournamentId}`));
+    const query = await el(Tc(this.db, `tournaments/${this.tournamentId}`));
     this.tournament = query.data();
   }
   render() {

@@ -48,6 +48,7 @@ let Select = class {
     registerInstance(this, hostRef);
     this.ionChange = createEvent(this, "ionChange", 7);
     this.ionCancel = createEvent(this, "ionCancel", 7);
+    this.ionDismiss = createEvent(this, "ionDismiss", 7);
     this.ionFocus = createEvent(this, "ionFocus", 7);
     this.ionBlur = createEvent(this, "ionBlur", 7);
     this.ionStyle = createEvent(this, "ionStyle", 7);
@@ -141,6 +142,7 @@ let Select = class {
     overlay.onDidDismiss().then(() => {
       this.overlay = undefined;
       this.isExpanded = false;
+      this.ionDismiss.emit();
       this.setFocus();
     });
     await overlay.present();

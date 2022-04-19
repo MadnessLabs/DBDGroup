@@ -1,6 +1,8 @@
 import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { g as getIonMode } from './ionic-global-140a6091.js';
-import { e as clamp, c as componentOnReady } from './helpers-e7913fb8.js';
+import { f as findIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
+import { e as clamp } from './helpers-e7913fb8.js';
+import './index-41de208d.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -60,17 +62,16 @@ let Footer = class {
       this.destroyCollapsibleFooter();
       if (hasFade) {
         const pageEl = this.el.closest('ion-app,ion-page,.ion-page,page-inner');
-        const contentEl = pageEl ? pageEl.querySelector('ion-content') : null;
+        const contentEl = pageEl ? findIonContent(pageEl) : null;
+        if (!contentEl) {
+          printIonContentErrorMsg(this.el);
+          return;
+        }
         this.setupFadeFooter(contentEl);
       }
     };
     this.setupFadeFooter = async (contentEl) => {
-      if (!contentEl) {
-        console.error('ion-footer requires a content to collapse. Make sure there is an ion-content.');
-        return;
-      }
-      await new Promise((resolve) => componentOnReady(contentEl, resolve));
-      const scrollEl = (this.scrollEl = await contentEl.getScrollElement());
+      const scrollEl = (this.scrollEl = await getScrollElement(contentEl));
       /**
        * Handle fading of toolbars on scroll
        */

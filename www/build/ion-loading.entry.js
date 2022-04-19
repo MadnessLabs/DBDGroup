@@ -3,7 +3,7 @@ import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
 import { B as BACKDROP, p as prepareOverlay, a as present, d as dismiss, e as eventMethod } from './overlays-649ff82c.js';
 import { s as sanitizeDOMString } from './index-be6112f8.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { c as createAnimation } from './animation-e960c982.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './hardware-back-button-fa04d6e9.js';
 import './helpers-e7913fb8.js';
 

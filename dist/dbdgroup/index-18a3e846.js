@@ -13,8 +13,8 @@ const LIFECYCLE_WILL_UNLOAD = 'ionViewWillUnload';
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
-const iosTransitionAnimation = () => import('./ios.transition-26e4fa83.js');
-const mdTransitionAnimation = () => import('./md.transition-62a411f7.js');
+const iosTransitionAnimation = () => import('./ios.transition-c755022e.js');
+const mdTransitionAnimation = () => import('./md.transition-73af2711.js');
 const transition = (opts) => {
   return new Promise((resolve, reject) => {
     writeTask(() => {

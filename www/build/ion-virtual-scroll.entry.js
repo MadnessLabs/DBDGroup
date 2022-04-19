@@ -348,7 +348,7 @@ let VirtualScroll = class {
    * This method marks a subset of items as dirty, so they can be re-rendered. Items should be marked as
    * dirty any time the content or their style changes.
    *
-   * The subset of items to be updated can are specifing by an offset and a length.
+   * The subset of items to be updated can are specifying by an offset and a length.
    */
   async checkRange(offset, len = -1) {
     // TODO: kind of hacky how we do in-place updated of the cells

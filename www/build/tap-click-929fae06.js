@@ -13,7 +13,8 @@ const startTapClick = (config) => {
   const useRippleEffect = config.getBoolean('animated', true) && config.getBoolean('rippleEffect', true);
   const clearDefers = new WeakMap();
   const isScrolling = () => {
-    return (scrollingEl === null || scrollingEl === void 0 ? void 0 : scrollingEl.parentElement) !== null;
+    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
+    return scrollingEl !== undefined && scrollingEl.parentElement !== null;
   };
   // Touch Events
   const onTouchStart = (ev) => {
@@ -146,7 +147,7 @@ const getActivatableTarget = (ev) => {
     const path = ev.composedPath();
     for (let i = 0; i < path.length - 2; i++) {
       const el = path[i];
-      if (el === null || el === void 0 ? void 0 : el.classList.contains('ion-activatable')) {
+      if (!(el instanceof ShadowRoot) && el.classList.contains('ion-activatable')) {
         return el;
       }
     }

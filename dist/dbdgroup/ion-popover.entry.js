@@ -4,8 +4,8 @@ import { C as CoreDelegate, a as attachComponent, d as detachComponent } from '.
 import { g as getElementRoot, r as raf, b as addEventListener } from './helpers-e7913fb8.js';
 import { B as BACKDROP, p as prepareOverlay, a as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-649ff82c.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-31774ee3.js';
-import { c as createAnimation } from './animation-e960c982.js';
+import { d as deepReady } from './index-18a3e846.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './hardware-back-button-fa04d6e9.js';
 
 /*!
@@ -271,8 +271,17 @@ const focusItem = (item) => {
 const isTriggerElement = (el) => el.hasAttribute('data-ion-popover-trigger');
 const configureKeyboardInteraction = (popoverEl) => {
   const callback = async (ev) => {
+    var _a;
     const activeElement = document.activeElement;
     let items = [];
+    const targetTagName = (_a = ev.target) === null || _a === void 0 ? void 0 : _a.tagName;
+    /**
+     * Only handle custom keyboard interactions for the host popover element
+     * and children ion-item elements.
+     */
+    if (targetTagName !== 'ION-POPOVER' && targetTagName !== 'ION-ITEM') {
+      return;
+    }
     /**
      * Complex selectors with :not() are :not supported
      * in older versions of Chromium so we need to do a
@@ -286,7 +295,7 @@ const configureKeyboardInteraction = (popoverEl) => {
       items = Array.from(popoverEl.querySelectorAll('ion-item:not(ion-popover ion-popover *):not([disabled])'));
       /* eslint-disable-next-line */
     }
-    catch (_a) { }
+    catch (_b) { }
     switch (ev.key) {
       /**
        * If we are in a child popover
@@ -1054,11 +1063,6 @@ let Popover = class {
      * behavior in a popover using a list of items.
      */
     this.keyboardEvents = false;
-    this.onDismiss = (ev) => {
-      ev.stopPropagation();
-      ev.preventDefault();
-      this.dismiss();
-    };
     this.onBackdropTap = () => {
       this.dismiss(undefined, BACKDROP);
     };
@@ -1308,7 +1312,7 @@ let Popover = class {
     const enableArrow = arrow && !parentPopover;
     return (h(Host, Object.assign({ "aria-modal": "true", "no-router": true, tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + this.overlayIndex}`,
-      }, id: popoverId, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'popover-translucent': this.translucent, 'overlay-hidden': true, 'popover-desktop': desktop, [`popover-side-${side}`]: true, 'popover-nested': !!parentPopover }), onIonPopoverDidPresent: onLifecycle, onIonPopoverWillPresent: onLifecycle, onIonPopoverWillDismiss: onLifecycle, onIonPopoverDidDismiss: onLifecycle, onIonDismiss: this.onDismiss, onIonBackdropTap: this.onBackdropTap }), !parentPopover && h("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop, part: "backdrop" }), h("div", { class: "popover-wrapper ion-overlay-wrapper", onClick: dismissOnSelect ? () => this.dismiss() : undefined }, enableArrow && h("div", { class: "popover-arrow", part: "arrow" }), h("div", { class: "popover-content", part: "content" }, h("slot", null)))));
+      }, id: popoverId, class: Object.assign(Object.assign({}, getClassMap(this.cssClass)), { [mode]: true, 'popover-translucent': this.translucent, 'overlay-hidden': true, 'popover-desktop': desktop, [`popover-side-${side}`]: true, 'popover-nested': !!parentPopover }), onIonPopoverDidPresent: onLifecycle, onIonPopoverWillPresent: onLifecycle, onIonPopoverWillDismiss: onLifecycle, onIonPopoverDidDismiss: onLifecycle, onIonBackdropTap: this.onBackdropTap }), !parentPopover && h("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop, part: "backdrop" }), h("div", { class: "popover-wrapper ion-overlay-wrapper", onClick: dismissOnSelect ? () => this.dismiss() : undefined }, enableArrow && h("div", { class: "popover-arrow", part: "arrow" }), h("div", { class: "popover-content", part: "content" }, h("slot", null)))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

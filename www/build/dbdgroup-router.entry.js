@@ -1,22 +1,22 @@
 import { r as registerInstance, k as Build, h } from './index-0fc14935.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
-import { E as ErrorFactory, L as Logger, a as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, b as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, f as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, r as registerVersion, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Pc, T as lc, U as Sc, i as il, V as ul, W as ol, X as wc, Z as el, g as gc, Y as Yh, $ as rl, a0 as al, a1 as Dh, a2 as xh, a3 as kh, a4 as vh } from './index.esm2017-64852796.js';
+import { E as ErrorFactory, L as Logger, b as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, i as isBrowserExtension, c as isMobileCordova, f as isReactNative, q as querystring, F as FirebaseError, g as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, r as registerVersion, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Dc, U as wc, V as Nc, a as al, W as ll, X as hl, Y as pc, Z as rl, T as Tc, e as el, $ as cl, a0 as fl, a1 as kh, a2 as Oh, a3 as $h, a4 as xh } from './index.esm2017-5b1fb817.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
-import './index-62d18b6a.js';
+import './index-18855d06.js';
 import { m as modalController } from './overlays-649ff82c.js';
 import './global-e1c7e609.js';
 import './utils-c2726041.js';
-import './animation-e960c982.js';
+import './animation-f4dcdfa9.js';
 import './helpers-e7913fb8.js';
-import './ios.transition-26e4fa83.js';
-import './index-31774ee3.js';
-import './md.transition-62a411f7.js';
+import './ios.transition-c755022e.js';
+import './index-18a3e846.js';
+import './md.transition-73af2711.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
 import './ionic-global-140a6091.js';
 import './index-be6112f8.js';
-import './index-4833c137.js';
+import './index-78189bad.js';
 import './hardware-back-button-fa04d6e9.js';
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
@@ -9549,7 +9549,7 @@ class PhoneMultiFactorGenerator {
 PhoneMultiFactorGenerator.FACTOR_ID = 'phone';
 
 var name$3 = "@firebase/auth";
-var version$3 = "0.19.11";
+var version$3 = "0.19.12";
 
 /**
  * @license
@@ -9740,7 +9740,7 @@ function getAuth(app = getApp()) {
 registerAuth("Browser" /* BROWSER */);
 
 const name$2 = "@firebase/database";
-const version$2 = "0.12.7";
+const version$2 = "0.12.8";
 
 /**
  * @license
@@ -21639,7 +21639,7 @@ const parseRepoInfo = function (dataURL, nodeAdmin) {
     }
     const webSocketOnly = parsedUrl.scheme === 'ws' || parsedUrl.scheme === 'wss';
     return {
-        repoInfo: new RepoInfo(parsedUrl.host, parsedUrl.secure, namespace, nodeAdmin, webSocketOnly, 
+        repoInfo: new RepoInfo(parsedUrl.host, parsedUrl.secure, namespace, webSocketOnly, nodeAdmin, 
         /*persistenceKey=*/ '', 
         /*includeNamespaceInQueryParams=*/ namespace !== parsedUrl.subdomain),
         path: new Path(parsedUrl.pathString)
@@ -23271,7 +23271,7 @@ function repoManagerDatabaseFromApp(app, authProvider, appCheckProvider, url, no
     let repoInfo = parsedUrl.repoInfo;
     let isEmulator;
     let dbEmulatorHost = undefined;
-    if (typeof browser$1 !== 'undefined') {
+    if (typeof browser$1 !== 'undefined' && browser$1.env) {
         dbEmulatorHost = browser$1.env[FIREBASE_DATABASE_EMULATOR_HOST_VAR];
     }
     if (dbEmulatorHost) {
@@ -24801,7 +24801,7 @@ async function call(functionsInstance, name, data, options) {
 }
 
 const name$1 = "@firebase/functions";
-const version$1 = "0.7.10";
+const version$1 = "0.7.11";
 
 /**
  * @license
@@ -24914,14 +24914,14 @@ class DatabaseService {
                 console.log(e);
             }
         }
-        this.service = Pc(this.app);
+        this.service = Dc(this.app);
         this.functions = getFunctions(this.app);
         if (options?.emulate) {
-            lc(this.service, "localhost", 8080);
+            wc(this.service, "localhost", 8080);
             connectFunctionsEmulator(this.functions, "localhost", 5001);
         }
         try {
-            Sc(this.service);
+            Nc(this.service);
         }
         catch (error) {
             console.log(error.message);
@@ -24933,13 +24933,13 @@ class DatabaseService {
     async add(collectionName, data, id) {
         const collection = await this.collection(collectionName);
         if (id) {
-            await il(this.document(collectionName, id), data);
+            await al(this.document(collectionName, id), data);
         }
-        return id ? this.document(collectionName, id) : ul(collection, data);
+        return id ? this.document(collectionName, id) : ll(collection, data);
     }
     async delete(path, id) {
         const doc = this.document(path, id);
-        await ol(doc);
+        await hl(doc);
         return { id: doc.id };
     }
     async find(collectionName, id) {
@@ -24947,20 +24947,20 @@ class DatabaseService {
         return doc.data();
     }
     collection(path) {
-        return wc(this.service, path);
+        return pc(this.service, path);
     }
     getCollection(path) {
-        return el(this.collection(path));
+        return rl(this.collection(path));
     }
     document(path, id) {
-        return id ? gc(this.collection(path), id) : gc(this.service, path);
+        return id ? Tc(this.collection(path), id) : Tc(this.service, path);
     }
     getDocument(path, id) {
-        return Yh(this.document(path, id));
+        return el(this.document(path, id));
     }
     async update(collectionName, id, data) {
         const document = this.document(collectionName, id);
-        await rl(document, data, { merge: true });
+        await cl(document, data, { merge: true });
         const newDocument = await this.getDocument(collectionName, id);
         return newDocument.data();
     }
@@ -24972,7 +24972,7 @@ class DatabaseService {
     }
     subscribe(query, callback, name) {
         const watcherName = name ? name : new Date().toISOString();
-        this.watchers[watcherName] = al(this.rawQuery(query?.collectionName, query?.where, query?.orderBy, query?.limit), async (snapshot) => {
+        this.watchers[watcherName] = fl(this.rawQuery(query?.collectionName, query?.where, query?.orderBy, query?.limit), async (snapshot) => {
             if (callback && typeof callback === "function") {
                 callback({ docs: snapshot?.docs || [] });
             }
@@ -24992,7 +24992,7 @@ class DatabaseService {
     }
     watchDocument(collectionName, id, callback) {
         const watcherName = `${collectionName}:${id}`;
-        this.watchers[watcherName] = al(this.document(collectionName, id), async (doc) => {
+        this.watchers[watcherName] = fl(this.document(collectionName, id), async (doc) => {
             if (callback && typeof callback === "function") {
                 callback({ data: doc.data() });
             }
@@ -25015,16 +25015,16 @@ class DatabaseService {
         for (const w of where || []) {
             if (!w?.conditional || !w?.key)
                 continue;
-            params.push(Dh(w.key, w.conditional, w.value));
+            params.push(kh(w.key, w.conditional, w.value));
         }
         if (orderBy)
-            params.push(xh(orderBy));
+            params.push(Oh(orderBy));
         if (limit)
-            params.push(kh(limit));
-        return vh(this.collection(collectionName), ...params);
+            params.push($h(limit));
+        return xh(this.collection(collectionName), ...params);
     }
     async query(collectionName, where, orderBy, limit) {
-        return el(this.rawQuery(collectionName, where, orderBy, limit));
+        return rl(this.rawQuery(collectionName, where, orderBy, limit));
     }
     async list(collectionName, where, orderBy, limit) {
         const query = await this.query(collectionName, where, orderBy, limit);
@@ -33983,7 +33983,7 @@ if (window && !window.FireEnjin) {
 }
 
 var name = "firebase";
-var version = "9.6.10";
+var version = "9.6.11";
 
 /**
  * @license

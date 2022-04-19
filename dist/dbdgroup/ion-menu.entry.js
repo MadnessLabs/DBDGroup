@@ -3,10 +3,10 @@ import { c as config, g as getIonMode } from './ionic-global-140a6091.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { GESTURE_CONTROLLER } from './index-dd414b33.js';
 import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-e7913fb8.js';
-import { m as menuController } from './index-4833c137.js';
+import { m as menuController } from './index-78189bad.js';
 import { g as getOverlay } from './overlays-649ff82c.js';
 import './hardware-back-button-fa04d6e9.js';
-import './animation-e960c982.js';
+import './animation-f4dcdfa9.js';
 
 const menuIosCss = ":host{--width:304px;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--background:var(--ion-background-color, #fff);left:0;right:0;top:0;bottom:0;display:none;position:absolute;contain:strict}:host(.show-menu){display:block}.menu-inner{left:0;right:auto;top:0;bottom:0;transform:translate3d(-9999px,  0,  0);display:flex;position:absolute;flex-direction:column;justify-content:space-between;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);contain:strict}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{left:unset;right:unset;left:auto;right:0}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{transform:translate3d(calc(-1 * -9999px),  0,  0)}:host(.menu-side-start) .menu-inner{--ion-safe-area-right:0px;right:auto;left:0}:host(.menu-side-end) .menu-inner{--ion-safe-area-left:0px;right:0;left:auto;}ion-backdrop{display:none;opacity:0.01;z-index:-1}@media (max-width: 340px){.menu-inner{--width:264px}}:host(.menu-type-reveal){z-index:0}:host(.menu-type-reveal.show-menu) .menu-inner{transform:translate3d(0,  0,  0)}:host(.menu-type-overlay){z-index:1000}:host(.menu-type-overlay) .show-backdrop{display:block;cursor:pointer}:host(.menu-pane-visible){width:var(--width);min-width:var(--min-width);max-width:var(--max-width)}:host(.menu-pane-visible) .menu-inner{left:0;right:0;width:auto;transform:none !important;box-shadow:none !important}:host(.menu-pane-visible) ion-backdrop{display:hidden !important;}:host(.menu-type-push){z-index:1000}:host(.menu-type-push) .show-backdrop{display:block}";
 
@@ -443,6 +443,7 @@ let Menu = class {
     }
   }
   afterAnimation(isOpen) {
+    var _a;
     assert(this.isAnimating, '_before() should be called while animating');
     // keep opening/closing the menu disabled for a touch more yet
     // only add listeners/css if it's enabled and isOpen
@@ -469,11 +470,16 @@ let Menu = class {
       }
       // emit open event
       this.ionDidOpen.emit();
-      // focus menu content for screen readers
-      if (this.menuInnerEl) {
-        this.focusFirstDescendant();
+      /**
+       * Move focus to the menu to prepare focus trapping, as long as
+       * it isn't already focused. Use the host element instead of the
+       * first descendant to avoid the scroll position jumping around.
+       */
+      const focusedMenu = (_a = document.activeElement) === null || _a === void 0 ? void 0 : _a.closest('ion-menu');
+      if (focusedMenu !== this.el) {
+        this.el.focus();
       }
-      // setup focus trapping
+      // start focus trapping
       document.addEventListener('focus', this.handleFocus, true);
     }
     else {

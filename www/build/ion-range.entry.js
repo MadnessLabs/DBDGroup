@@ -15,6 +15,8 @@ let Range = class {
     this.ionStyle = createEvent(this, "ionStyle", 7);
     this.ionFocus = createEvent(this, "ionFocus", 7);
     this.ionBlur = createEvent(this, "ionBlur", 7);
+    this.ionKnobMoveStart = createEvent(this, "ionKnobMoveStart", 7);
+    this.ionKnobMoveEnd = createEvent(this, "ionKnobMoveEnd", 7);
     this.didLoad = false;
     this.noUpdate = false;
     this.hasFocus = false;
@@ -106,6 +108,7 @@ let Range = class {
       }
     };
     this.handleKeyboard = (knob, isIncrease) => {
+      const { ensureValueInBounds } = this;
       let step = this.step;
       step = step > 0 ? step : 1;
       step = step / (this.max - this.min);
@@ -118,7 +121,9 @@ let Range = class {
       else {
         this.ratioB = clamp(0, this.ratioB + step, 1);
       }
+      this.ionKnobMoveStart.emit({ value: ensureValueInBounds(this.value) });
       this.updateValue();
+      this.ionKnobMoveEnd.emit({ value: ensureValueInBounds(this.value) });
     };
     this.onBlur = () => {
       if (this.hasFocus) {
@@ -229,6 +234,7 @@ let Range = class {
     this.setFocus(this.pressedKnob);
     // update the active knob's position
     this.update(currentX);
+    this.ionKnobMoveStart.emit({ value: this.ensureValueInBounds(this.value) });
   }
   onMove(detail) {
     this.update(detail.currentX);
@@ -236,6 +242,7 @@ let Range = class {
   onEnd(detail) {
     this.update(detail.currentX);
     this.pressedKnob = undefined;
+    this.ionKnobMoveEnd.emit({ value: this.ensureValueInBounds(this.value) });
   }
   update(currentX) {
     // figure out where the pointer is currently at

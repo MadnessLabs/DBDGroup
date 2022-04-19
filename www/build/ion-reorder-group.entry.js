@@ -1,7 +1,9 @@
 import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
 import { g as getIonMode } from './ionic-global-140a6091.js';
-import { c as componentOnReady } from './helpers-e7913fb8.js';
+import { a as findClosestIonContent, g as getScrollElement } from './index-b3ce5ef6.js';
 import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-a9e94599.js';
+import './helpers-e7913fb8.js';
+import './index-41de208d.js';
 
 const reorderGroupCss = ".reorder-list-active>*{transition:transform 300ms;will-change:transform}.reorder-enabled{user-select:none}.reorder-enabled ion-reorder{display:block;cursor:grab;pointer-events:all;touch-action:none}.reorder-selected,.reorder-selected ion-reorder{cursor:grabbing}.reorder-selected{position:relative;transition:none !important;box-shadow:0 0 10px rgba(0, 0, 0, 0.4);opacity:0.8;z-index:100}.reorder-visible ion-reorder .reorder-icon{transform:translate3d(0,  0,  0)}";
 
@@ -28,10 +30,9 @@ let ReorderGroup = class {
     }
   }
   async connectedCallback() {
-    const contentEl = this.el.closest('ion-content');
+    const contentEl = findClosestIonContent(this.el);
     if (contentEl) {
-      await new Promise((resolve) => componentOnReady(contentEl, resolve));
-      this.scrollEl = await contentEl.getScrollElement();
+      this.scrollEl = await getScrollElement(contentEl);
     }
     this.gesture = (await import('./index-dd414b33.js')).createGesture({
       el: this.el,

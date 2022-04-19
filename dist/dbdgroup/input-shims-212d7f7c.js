@@ -1,4 +1,6 @@
+import { b as scrollByPoint, g as getScrollElement, a as findClosestIonContent } from './index-b3ce5ef6.js';
 import { b as addEventListener, a as removeEventListener, p as pointerCoord, r as raf, c as componentOnReady } from './helpers-e7913fb8.js';
+import './index-41de208d.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -231,7 +233,7 @@ const jsSetFocus = async (componentEl, inputEl, contentEl, footerEl, keyboardHei
       window.removeEventListener('ionKeyboardDidShow', scrollContent);
       // scroll the input into place
       if (contentEl) {
-        await contentEl.scrollByPoint(0, scrollData.scrollAmount, scrollData.scrollDuration);
+        await scrollByPoint(contentEl, 0, scrollData.scrollAmount, scrollData.scrollDuration);
       }
       // the scroll view is in the correct position now
       // give the native text input focus
@@ -244,7 +246,7 @@ const jsSetFocus = async (componentEl, inputEl, contentEl, footerEl, keyboardHei
       window.addEventListener('ionKeyboardDidShow', scrollContent);
     };
     if (contentEl) {
-      const scrollEl = await contentEl.getScrollElement();
+      const scrollEl = await getScrollElement(contentEl);
       /**
        * scrollData will only consider the amount we need
        * to scroll in order to properly bring the input
@@ -325,7 +327,7 @@ const setScrollPadding = (input, keyboardHeight) => {
   if (((_b = (_a = input.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.tagName) === 'ION-SEARCHBAR') {
     return;
   }
-  const el = input.closest('ion-content');
+  const el = findClosestIonContent(input);
   if (el === null) {
     return;
   }
@@ -364,7 +366,7 @@ const startInputShims = (config) => {
     await new Promise((resolve) => componentOnReady(componentEl, resolve));
     const inputRoot = componentEl.shadowRoot || componentEl;
     const inputEl = inputRoot.querySelector('input') || inputRoot.querySelector('textarea');
-    const scrollEl = componentEl.closest('ion-content');
+    const scrollEl = findClosestIonContent(componentEl);
     const footerEl = !scrollEl ? componentEl.closest('ion-footer') : null;
     if (!inputEl) {
       return;

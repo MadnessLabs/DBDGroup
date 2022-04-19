@@ -1,9 +1,9 @@
 import { r as registerInstance, i as createEvent, j as writeTask, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { printIonWarning } from '@utils/logging';
 import { d as chevronDown, f as caretUpSharp, g as chevronForward, h as caretDownSharp, c as chevronBack } from './index-5e1d0749.js';
 import { g as getIonMode } from './ionic-global-140a6091.js';
 import { startFocusVisible } from './focus-visible-4e9a0764.js';
 import { r as raf, g as getElementRoot, d as renderHiddenInput } from './helpers-e7913fb8.js';
+import { p as printIonWarning, a as printIonError } from './index-41de208d.js';
 import { i as isRTL } from './index-9b5bcea1.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
 
@@ -408,25 +408,48 @@ const calculateHourFromAMPM = (currentParts, newAMPM) => {
 /**
  * Returns the current date as
  * an ISO string in the user's
- * timezone.
+ * time zone.
  */
 const getToday = () => {
   /**
-   * Grab the current date object
-   * as well as the timezone offset
+   * ion-datetime intentionally does not
+   * parse time zones/do automatic time zone
+   * conversion when accepting user input.
+   * However when we get today's date string,
+   * we want it formatted relative to the user's
+   * time zone.
+   *
+   * When calling toISOString(), the browser
+   * will convert the date to UTC time by either adding
+   * or subtracting the time zone offset.
+   * To work around this, we need to either add
+   * or subtract the time zone offset to the Date
+   * object prior to calling toISOString().
+   * This allows us to get an ISO string
+   * that is in the user's time zone.
+   *
+   * Example:
+   * Time zone offset is 240
+   * Meaning: The browser needs to add 240 minutes
+   * to the Date object to get UTC time.
+   * What Ionic does: We subtract 240 minutes
+   * from the Date object. The browser then adds
+   * 240 minutes in toISOString(). The result
+   * is a time that is in the user's time zone
+   * and not UTC.
+   *
+   * Note: Some timezones include minute adjustments
+   * such as 30 or 45 minutes. This is why we use setMinutes
+   * instead of setHours.
+   * Example: India Standard Time
+   * Timezone offset: -330 = -5.5 hours.
+   *
+   * List of timezones with 30 and 45 minute timezones:
+   * https://www.timeanddate.com/time/time-zones-interesting.html
    */
   const date = new Date();
   const tzOffset = date.getTimezoneOffset();
-  /**
-   * When converting to ISO string, everything is
-   * set to UTC. Since we want to show these dates
-   * relative to the user's timezone, we need to
-   * subtract the timezone offset from the date
-   * so that when `toISOString()` adds it back
-   * there was a net change of zero hours from the
-   * local date.
-   */
-  date.setHours(date.getHours() - tzOffset / 60);
+  date.setMinutes(date.getMinutes() - tzOffset);
   return date.toISOString();
 };
 const minutes = [
@@ -1911,9 +1934,24 @@ let Datetime = class {
         'calendar-month-disabled': !isWorkingMonth && swipeDisabled,
       } }, h("div", { class: "calendar-month-grid" }, getDaysOfMonth(month, year, this.firstDayOfWeek % 7).map((dateObject, index) => {
       const { day, dayOfWeek } = dateObject;
+      const { isDateEnabled } = this;
       const referenceParts = { month, day, year };
       const { isActive, isToday, ariaLabel, ariaSelected, disabled } = getCalendarDayState(this.locale, referenceParts, this.activePartsClone, this.todayParts, this.minParts, this.maxParts, this.parsedDayValues);
-      return (h("button", { tabindex: "-1", "data-day": day, "data-month": month, "data-year": year, "data-index": index, "data-day-of-week": dayOfWeek, disabled: isCalMonthDisabled || disabled, class: {
+      let isCalDayDisabled = isCalMonthDisabled || disabled;
+      if (!isCalDayDisabled && isDateEnabled !== undefined) {
+        try {
+          /**
+           * The `isDateEnabled` implementation is try-catch wrapped
+           * to prevent exceptions in the user's function from
+           * interrupting the calendar rendering.
+           */
+          isCalDayDisabled = !isDateEnabled(convertDataToISO(referenceParts));
+        }
+        catch (e) {
+          printIonError('Exception thrown from provided `isDateEnabled` function. Please check your function and try again.', e);
+        }
+      }
+      return (h("button", { tabindex: "-1", "data-day": day, "data-month": month, "data-year": year, "data-index": index, "data-day-of-week": dayOfWeek, disabled: isCalDayDisabled, class: {
           'calendar-day-padding': day === null,
           'calendar-day': true,
           'calendar-day-active': isActive,

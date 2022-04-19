@@ -2,7 +2,7 @@ import { r as registerInstance, i as createEvent, h, m as Host, n as getElement 
 import { g as getIonMode } from './ionic-global-140a6091.js';
 import { B as BACKDROP, i as isCancel, p as prepareOverlay, a as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-649ff82c.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { c as createAnimation } from './animation-e960c982.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './hardware-back-button-fa04d6e9.js';
 import './helpers-e7913fb8.js';
 

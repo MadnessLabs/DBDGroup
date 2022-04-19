@@ -3,13 +3,133 @@ import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
 import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { e as clamp, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { KEYBOARD_DID_OPEN } from './keyboard-7e8329b3.js';
+import { p as printIonWarning } from './index-41de208d.js';
 import { B as BACKDROP, p as prepareOverlay, a as present, b as activeAnimations, d as dismiss, e as eventMethod } from './overlays-649ff82c.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-31774ee3.js';
-import { c as createAnimation } from './animation-e960c982.js';
+import { d as deepReady } from './index-18a3e846.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { createGesture } from './index-dd414b33.js';
 import './hardware-back-button-fa04d6e9.js';
+
+/*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */
+const handleCanDismiss = async (el, animation) => {
+  /**
+   * If canDismiss is not a function
+   * then we can return early. If canDismiss is `true`,
+   * then canDismissBlocksGesture is `false` as canDismiss
+   * will never interrupt the gesture. As a result,
+   * this code block is never reached. If canDismiss is `false`,
+   * then we never dismiss.
+   */
+  if (typeof el.canDismiss !== 'function') {
+    return;
+  }
+  /**
+   * Run the canDismiss callback.
+   * If the function returns `true`,
+   * then we can proceed with dismiss.
+   */
+  const shouldDismiss = await el.canDismiss();
+  if (!shouldDismiss) {
+    return;
+  }
+  /**
+   * If canDismiss resolved after the snap
+   * back animation finished, we can
+   * dismiss immediately.
+   *
+   * If canDismiss resolved before the snap
+   * back animation finished, we need to
+   * wait until the snap back animation is
+   * done before dismissing.
+   */
+  if (animation.isRunning()) {
+    animation.onFinish(() => {
+      el.dismiss(undefined, 'handler');
+    }, { oneTimeCallback: true });
+  }
+  else {
+    el.dismiss(undefined, 'handler');
+  }
+};
+/**
+ * This function lets us simulate a realistic spring-like animation
+ * when swiping down on the modal.
+ * There are two forces that we need to use to compute the spring physics:
+ *
+ * 1. Stiffness, k: This is a measure of resistance applied a spring.
+ * 2. Dampening, c: This value has the effect of reducing or preventing oscillation.
+ *
+ * Using these two values, we can calculate the Spring Force and the Dampening Force
+ * to compute the total force applied to a spring.
+ *
+ * Spring Force: This force pulls a spring back into its equilibrium position.
+ * Hooke's Law tells us that that spring force (FS) = kX.
+ * k is the stiffness of a spring, and X is the displacement of the spring from its
+ * equilibrium position. In this case, it is the amount by which the free end
+ * of a spring was displaced (stretched/pushed) from its "relaxed" position.
+ *
+ * Dampening Force: This force slows down motion. Without it, a spring would oscillate forever.
+ * The dampening force, FD, can be found via this formula: FD = -cv
+ * where c the dampening value and v is velocity.
+ *
+ * Therefore, the resulting force that is exerted on the block is:
+ * F = FS + FD = -kX - cv
+ *
+ * Newton's 2nd Law tells us that F = ma:
+ * ma = -kX - cv.
+ *
+ * For Ionic's purposes, we can assume that m = 1:
+ * a = -kX - cv
+ *
+ * Imagine a block attached to the end of a spring. At equilibrium
+ * the block is at position x = 1.
+ * Pressing on the block moves it to position x = 0;
+ * So, to calculate the displacement, we need to take the
+ * current position and subtract the previous position from it.
+ * X = x - x0 = 0 - 1 = -1.
+ *
+ * For Ionic's purposes, we are only pushing on the spring modal
+ * so we have a max position of 1.
+ * As a result, we can expand displacement to this formula:
+ * X = x - 1
+ *
+ * a = -k(x - 1) - cv
+ *
+ * We can represent the motion of something as a function of time: f(t) = x.
+ * The derivative of position gives us the velocity: f'(t)
+ * The derivative of the velocity gives us the acceleration: f''(t)
+ *
+ * We can substitute the formula above with these values:
+ *
+ * f"(t) = -k * (f(t) - 1) - c * f'(t)
+ *
+ * This is called a differential equation.
+ *
+ * We know that at t = 0, we are at x = 0 because the modal does not move: f(0) = 0
+ * This means our velocity is also zero: f'(0) = 0.
+ *
+ * We can cheat a bit and plug the formula into Wolfram Alpha.
+ * However, we need to pick stiffness and dampening values:
+ * k = 0.57
+ * c = 15
+ *
+ * I picked these as they are fairly close to native iOS's spring effect
+ * with the modal.
+ *
+ * What we plug in is this: f(0) = 0; f'(0) = 0; f''(t) = -0.57(f(t) - 1) - 15f'(t)
+ *
+ * The result is a formula that lets us calculate the acceleration
+ * for a given time t.
+ * Note: This is the approximate form of the solution. Wolfram Alpha will
+ * give you a complex differential equation too.
+ */
+const calculateSpringStep = (t) => {
+  return 0.00255275 * 2.71828 ** (-14.9619 * t) - 1.00255 * 2.71828 ** (-0.0380968 * t) + 1;
+};
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -21,6 +141,8 @@ const SwipeToCloseDefaults = {
 const createSwipeToCloseGesture = (el, animation, onDismiss) => {
   const height = el.offsetHeight;
   let isOpen = false;
+  let canDismissBlocksGesture = false;
+  const canDismissMaxStep = 0.2;
   const canStart = (detail) => {
     const target = detail.event.target;
     if (target === null || !target.closest) {
@@ -36,29 +158,71 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
     return false;
   };
   const onStart = () => {
+    /**
+     * If canDismiss is anything other than `true`
+     * then users should be able to swipe down
+     * until a threshold is hit. At that point,
+     * the card modal should not proceed any further.
+     * TODO (FW-937)
+     * Remove undefined check
+     */
+    canDismissBlocksGesture = el.canDismiss !== undefined && el.canDismiss !== true;
     animation.progressStart(true, isOpen ? 1 : 0);
   };
   const onMove = (detail) => {
-    const step = clamp(0.0001, detail.deltaY / height, 0.9999);
-    animation.progressStep(step);
+    const step = detail.deltaY / height;
+    /**
+     * Check if user is swiping down and
+     * if we have a canDismiss value that
+     * should block the gesture from
+     * proceeding,
+     */
+    const isAttempingDismissWithCanDismiss = step >= 0 && canDismissBlocksGesture;
+    /**
+     * If we are blocking the gesture from dismissing,
+     * set the max step value so that the sheet cannot be
+     * completely hidden.
+     */
+    const maxStep = isAttempingDismissWithCanDismiss ? canDismissMaxStep : 0.9999;
+    /**
+     * If we are blocking the gesture from
+     * dismissing, calculate the spring modifier value
+     * this will be added to the starting breakpoint
+     * value to give the gesture a spring-like feeling.
+     * Note that the starting breakpoint is always 0,
+     * so we omit adding 0 to the result.
+     */
+    const processedStep = isAttempingDismissWithCanDismiss ? calculateSpringStep(step / maxStep) : step;
+    const clampedStep = clamp(0.0001, processedStep, maxStep);
+    animation.progressStep(clampedStep);
   };
   const onEnd = (detail) => {
     const velocity = detail.velocityY;
-    const step = clamp(0.0001, detail.deltaY / height, 0.9999);
+    const step = detail.deltaY / height;
+    const isAttempingDismissWithCanDismiss = step >= 0 && canDismissBlocksGesture;
+    const maxStep = isAttempingDismissWithCanDismiss ? canDismissMaxStep : 0.9999;
+    const processedStep = isAttempingDismissWithCanDismiss ? calculateSpringStep(step / maxStep) : step;
+    const clampedStep = clamp(0.0001, processedStep, maxStep);
     const threshold = (detail.deltaY + velocity * 1000) / height;
-    const shouldComplete = threshold >= 0.5;
+    /**
+     * If canDismiss blocks
+     * the swipe gesture, then the
+     * animation can never complete until
+     * canDismiss is checked.
+     */
+    const shouldComplete = !isAttempingDismissWithCanDismiss && threshold >= 0.5;
     let newStepValue = shouldComplete ? -0.001 : 0.001;
     if (!shouldComplete) {
       animation.easing('cubic-bezier(1, 0, 0.68, 0.28)');
-      newStepValue += getTimeGivenProgression([0, 0], [1, 0], [0.68, 0.28], [1, 1], step)[0];
+      newStepValue += getTimeGivenProgression([0, 0], [1, 0], [0.68, 0.28], [1, 1], clampedStep)[0];
     }
     else {
       animation.easing('cubic-bezier(0.32, 0.72, 0, 1)');
-      newStepValue += getTimeGivenProgression([0, 0], [0.32, 0.72], [0, 1], [1, 1], step)[0];
+      newStepValue += getTimeGivenProgression([0, 0], [0.32, 0.72], [0, 1], [1, 1], clampedStep)[0];
     }
     const duration = shouldComplete
       ? computeDuration(step * height, velocity)
-      : computeDuration((1 - step) * height, velocity);
+      : computeDuration((1 - clampedStep) * height, velocity);
     isOpen = shouldComplete;
     gesture.enable(false);
     animation
@@ -68,7 +232,22 @@ const createSwipeToCloseGesture = (el, animation, onDismiss) => {
       }
     })
       .progressEnd(shouldComplete ? 1 : 0, newStepValue, duration);
-    if (shouldComplete) {
+    /**
+     * If the canDismiss value blocked the gesture
+     * from proceeding, then we should ignore whatever
+     * shouldComplete is. Whether or not the modal
+     * animation should complete is now determined by
+     * canDismiss.
+     *
+     * If the user swiped >25% of the way
+     * to the max step, then we should
+     * check canDismiss. 25% was chosen
+     * to avoid accidental swipes.
+     */
+    if (isAttempingDismissWithCanDismiss && clampedStep > maxStep / 4) {
+      handleCanDismiss(el, animation);
+    }
+    else if (shouldComplete) {
       onDismiss();
     }
   };
@@ -436,7 +615,7 @@ const mdLeaveAnimation = (baseEl, opts) => {
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
-const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, backdropBreakpoint, animation, breakpoints = [], onDismiss, onBreakpointChange) => {
+const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, backdropBreakpoint, animation, breakpoints = [], getCurrentBreakpoint, onDismiss, onBreakpointChange) => {
   // Defaults for the sheet swipe animation
   const defaultBackdrop = [
     { offset: 0, opacity: 'var(--backdrop-opacity)' },
@@ -458,9 +637,12 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
   const height = wrapperEl.clientHeight;
   let currentBreakpoint = initialBreakpoint;
   let offset = 0;
+  let canDismissBlocksGesture = false;
+  const canDismissMaxStep = 0.95;
   const wrapperAnimation = animation.childAnimations.find((ani) => ani.id === 'wrapperAnimation');
   const backdropAnimation = animation.childAnimations.find((ani) => ani.id === 'backdropAnimation');
   const maxBreakpoint = breakpoints[breakpoints.length - 1];
+  const minBreakpoint = breakpoints[0];
   const enableBackdrop = () => {
     baseEl.style.setProperty('pointer-events', 'auto');
     backdropEl.style.setProperty('pointer-events', 'auto');
@@ -521,12 +703,26 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
      * allow for scrolling on the content.
      */
     const content = detail.event.target.closest('ion-content');
+    currentBreakpoint = getCurrentBreakpoint();
     if (currentBreakpoint === 1 && content) {
       return false;
     }
     return true;
   };
   const onStart = () => {
+    /**
+     * If canDismiss is anything other than `true`
+     * then users should be able to swipe down
+     * until a threshold is hit. At that point,
+     * the card modal should not proceed any further.
+     *
+     * canDismiss is never fired via gesture if there is
+     * no 0 breakpoint. However, it can be fired if the user
+     * presses Esc or the hardware back button.
+     * TODO (FW-937)
+     * Remove undefined check
+     */
+    canDismissBlocksGesture = baseEl.canDismiss !== undefined && baseEl.canDismiss !== true && minBreakpoint === 0;
     /**
      * If swiping on the content
      * we should disable scrolling otherwise
@@ -551,7 +747,34 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
      * relative to where the user dragged.
      */
     const initialStep = 1 - currentBreakpoint;
-    offset = clamp(0.0001, initialStep + detail.deltaY / height, 0.9999);
+    const secondToLastBreakpoint = breakpoints.length > 1 ? 1 - breakpoints[1] : undefined;
+    const step = initialStep + detail.deltaY / height;
+    const isAttemptingDismissWithCanDismiss = secondToLastBreakpoint !== undefined && step >= secondToLastBreakpoint && canDismissBlocksGesture;
+    /**
+     * If we are blocking the gesture from dismissing,
+     * set the max step value so that the sheet cannot be
+     * completely hidden.
+     */
+    const maxStep = isAttemptingDismissWithCanDismiss ? canDismissMaxStep : 0.9999;
+    /**
+     * If we are blocking the gesture from
+     * dismissing, calculate the spring modifier value
+     * this will be added to the starting breakpoint
+     * value to give the gesture a spring-like feeling.
+     * Note that when isAttemptingDismissWithCanDismiss is true,
+     * the modifier is always added to the breakpoint that
+     * appears right after the 0 breakpoint.
+     *
+     * Note that this modifier is essentially the progression
+     * between secondToLastBreakpoint and maxStep which is
+     * why we subtract secondToLastBreakpoint. This lets us get
+     * the result as a value from 0 to 1.
+     */
+    const processedStep = isAttemptingDismissWithCanDismiss && secondToLastBreakpoint !== undefined
+      ? secondToLastBreakpoint +
+        calculateSpringStep((step - secondToLastBreakpoint) / (maxStep - secondToLastBreakpoint))
+      : step;
+    offset = clamp(0.0001, processedStep, maxStep);
     animation.progressStep(offset);
   };
   const onEnd = (detail) => {
@@ -565,7 +788,23 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
     const closest = breakpoints.reduce((a, b) => {
       return Math.abs(b - diff) < Math.abs(a - diff) ? b : a;
     });
-    const shouldRemainOpen = closest !== 0;
+    moveSheetToBreakpoint({
+      breakpoint: closest,
+      breakpointOffset: offset,
+      canDismiss: canDismissBlocksGesture,
+    });
+  };
+  const moveSheetToBreakpoint = (options) => {
+    const { breakpoint, canDismiss, breakpointOffset } = options;
+    /**
+     * canDismiss should only prevent snapping
+     * when users are trying to dismiss. If canDismiss
+     * is present but the user is trying to swipe upwards,
+     * we should allow that to happen,
+     */
+    const shouldPreventDismiss = canDismiss && breakpoint === 0;
+    const snapToBreakpoint = shouldPreventDismiss ? currentBreakpoint : breakpoint;
+    const shouldRemainOpen = snapToBreakpoint !== 0;
     currentBreakpoint = 0;
     /**
      * Update the animation so that it plays from
@@ -573,17 +812,17 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
      */
     if (wrapperAnimation && backdropAnimation) {
       wrapperAnimation.keyframes([
-        { offset: 0, transform: `translateY(${offset * 100}%)` },
-        { offset: 1, transform: `translateY(${(1 - closest) * 100}%)` },
+        { offset: 0, transform: `translateY(${breakpointOffset * 100}%)` },
+        { offset: 1, transform: `translateY(${(1 - snapToBreakpoint) * 100}%)` },
       ]);
       backdropAnimation.keyframes([
         {
           offset: 0,
-          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(1 - offset, backdropBreakpoint)})`,
+          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(1 - breakpointOffset, backdropBreakpoint)})`,
         },
         {
           offset: 1,
-          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(closest, backdropBreakpoint)})`,
+          opacity: `calc(var(--backdrop-opacity) * ${getBackdropValueForSheet(snapToBreakpoint, backdropBreakpoint)})`,
         },
       ]);
       animation.progressStep(0);
@@ -607,8 +846,8 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
           raf(() => {
             wrapperAnimation.keyframes([...SheetDefaults.WRAPPER_KEYFRAMES]);
             backdropAnimation.keyframes([...SheetDefaults.BACKDROP_KEYFRAMES]);
-            animation.progressStart(true, 1 - closest);
-            currentBreakpoint = closest;
+            animation.progressStart(true, 1 - snapToBreakpoint);
+            currentBreakpoint = snapToBreakpoint;
             onBreakpointChange(currentBreakpoint);
             /**
              * If the sheet is fully expanded, we can safely
@@ -642,7 +881,10 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
        */
     }, { oneTimeCallback: true })
       .progressEnd(1, 0, 500);
-    if (!shouldRemainOpen) {
+    if (shouldPreventDismiss) {
+      handleCanDismiss(baseEl, animation);
+    }
+    else if (!shouldRemainOpen) {
       onDismiss();
     }
   };
@@ -657,7 +899,10 @@ const createSheetGesture = (baseEl, backdropEl, wrapperEl, initialBreakpoint, ba
     onMove,
     onEnd,
   });
-  return gesture;
+  return {
+    gesture,
+    moveSheetToBreakpoint,
+  };
 };
 
 const modalIosCss = ":host{--width:100%;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--overflow:hidden;--border-radius:0;--border-width:0;--border-style:none;--border-color:transparent;--background:var(--ion-background-color, #fff);--box-shadow:none;--backdrop-opacity:0;left:0;right:0;top:0;bottom:0;display:flex;position:absolute;align-items:center;justify-content:center;outline:none;contain:strict}.modal-wrapper,ion-backdrop{pointer-events:auto}:host(.overlay-hidden){display:none}.modal-wrapper,.modal-shadow{border-radius:var(--border-radius);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);box-shadow:var(--box-shadow);overflow:var(--overflow);z-index:10}.modal-shadow{position:absolute;background:transparent}@media only screen and (min-width: 768px) and (min-height: 600px){:host{--width:600px;--height:500px;--ion-safe-area-top:0px;--ion-safe-area-bottom:0px;--ion-safe-area-right:0px;--ion-safe-area-left:0px}}@media only screen and (min-width: 768px) and (min-height: 768px){:host{--width:600px;--height:600px}}.modal-handle{left:0px;right:0px;top:5px;border-radius:8px;margin-left:auto;margin-right:auto;position:absolute;width:36px;height:5px;transform:translateZ(0);background:var(--ion-color-step-350, #c0c0be);z-index:11}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.modal-handle{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}:host(.modal-sheet){--height:calc(100% - (var(--ion-safe-area-top) + 10px))}:host(.modal-sheet) .modal-wrapper,:host(.modal-sheet) .modal-shadow{position:absolute;bottom:0}:host{--backdrop-opacity:var(--ion-backdrop-opacity, 0.4)}:host(.modal-card),:host(.modal-sheet){--border-radius:10px}@media only screen and (min-width: 768px) and (min-height: 600px){:host{--border-radius:10px}}.modal-wrapper{transform:translate3d(0,  100%,  0)}@media screen and (max-width: 767px){@supports (width: max(0px, 1px)){:host(.modal-card){--height:calc(100% - max(30px, var(--ion-safe-area-top)) - 10px)}}@supports not (width: max(0px, 1px)){:host(.modal-card){--height:calc(100% - 40px)}}:host(.modal-card) .modal-wrapper{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius);border-bottom-right-radius:0;border-bottom-left-radius:0}:host-context([dir=rtl]):host(.modal-card) .modal-wrapper,:host-context([dir=rtl]).modal-card .modal-wrapper{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius);border-bottom-right-radius:0;border-bottom-left-radius:0}:host(.modal-card){--backdrop-opacity:0;--width:100%;align-items:flex-end}:host(.modal-card) .modal-shadow{display:none}:host(.modal-card) ion-backdrop{pointer-events:none}}@media screen and (min-width: 768px){:host(.modal-card){--width:calc(100% - 120px);--height:calc(100% - (120px + var(--ion-safe-area-top) + var(--ion-safe-area-bottom)));--max-width:720px;--max-height:1000px;--backdrop-opacity:0;--box-shadow:0px 0px 30px 10px rgba(0, 0, 0, 0.1);transition:all 0.5s ease-in-out}:host(.modal-card) .modal-wrapper{box-shadow:none}:host(.modal-card) .modal-shadow{box-shadow:var(--box-shadow)}}:host(.modal-sheet) .modal-wrapper{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius);border-bottom-right-radius:0;border-bottom-left-radius:0}:host-context([dir=rtl]):host(.modal-sheet) .modal-wrapper,:host-context([dir=rtl]).modal-sheet .modal-wrapper{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius);border-bottom-right-radius:0;border-bottom-left-radius:0}";
@@ -671,6 +916,7 @@ let Modal = class {
     this.willPresent = createEvent(this, "ionModalWillPresent", 7);
     this.willDismiss = createEvent(this, "ionModalWillDismiss", 7);
     this.didDismiss = createEvent(this, "ionModalDidDismiss", 7);
+    this.ionBreakpointDidChange = createEvent(this, "ionBreakpointDidChange", 7);
     this.didPresentShorthand = createEvent(this, "didPresent", 7);
     this.willPresentShorthand = createEvent(this, "willPresent", 7);
     this.willDismissShorthand = createEvent(this, "willDismiss", 7);
@@ -712,6 +958,7 @@ let Modal = class {
     this.animated = true;
     /**
      * If `true`, the modal can be swiped to dismiss. Only applies in iOS mode.
+     * @deprecated - To prevent modals from dismissing, use canDismiss instead.
      */
     this.swipeToClose = false;
     /**
@@ -745,11 +992,6 @@ let Modal = class {
     this.onBackdropTap = () => {
       this.dismiss(undefined, BACKDROP);
     };
-    this.onDismiss = (ev) => {
-      ev.stopPropagation();
-      ev.preventDefault();
-      this.dismiss();
-    };
     this.onLifecycle = (modalEvent) => {
       const el = this.usersElement;
       const name = LIFECYCLE_MAP[modalEvent.type];
@@ -782,19 +1024,30 @@ let Modal = class {
       this.initSwipeToClose();
     }
   }
+  breakpointsChanged(breakpoints) {
+    if (breakpoints !== undefined) {
+      this.sortedBreakpoints = breakpoints.sort((a, b) => a - b);
+    }
+  }
   connectedCallback() {
     prepareOverlay(this.el);
   }
   componentWillLoad() {
-    const { breakpoints, initialBreakpoint } = this;
+    const { breakpoints, initialBreakpoint, swipeToClose } = this;
     /**
      * If user has custom ID set then we should
      * not assign the default incrementing ID.
      */
     this.modalId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : `ion-modal-${this.modalIndex}`;
-    this.isSheetModal = breakpoints !== undefined && initialBreakpoint !== undefined;
+    const isSheetModal = (this.isSheetModal = breakpoints !== undefined && initialBreakpoint !== undefined);
+    if (isSheetModal) {
+      this.currentBreakpoint = this.initialBreakpoint;
+    }
     if (breakpoints !== undefined && initialBreakpoint !== undefined && !breakpoints.includes(initialBreakpoint)) {
-      console.warn('[Ionic Warning]: Your breakpoints array must include the initialBreakpoint value.');
+      printIonWarning('Your breakpoints array must include the initialBreakpoint value.');
+    }
+    if (swipeToClose) {
+      printIonWarning('swipeToClose has been deprecated in favor of canDismiss.\n\nIf you want a card modal to be swipeable, set canDismiss to `true`. In the next major release of Ionic, swipeToClose will be removed, and all card modals will be swipeable by default.');
     }
   }
   componentDidLoad() {
@@ -805,6 +1058,7 @@ let Modal = class {
     if (this.isOpen === true) {
       raf(() => this.present());
     }
+    this.breakpointsChanged(this.breakpoints);
     this.configureTriggerInteraction();
   }
   /**
@@ -838,6 +1092,25 @@ let Modal = class {
     return { inline, delegate };
   }
   /**
+   * Determines whether or not the
+   * modal is allowed to dismiss based
+   * on the state of the canDismiss prop.
+   */
+  async checkCanDismiss() {
+    const { canDismiss } = this;
+    /**
+     * TODO (FW-937) - Remove the following check in
+     * the next major release of Ionic.
+     */
+    if (canDismiss === undefined) {
+      return true;
+    }
+    if (typeof canDismiss === 'function') {
+      return canDismiss();
+    }
+    return canDismiss;
+  }
+  /**
    * Present the modal overlay after it has been created.
    */
   async present() {
@@ -868,10 +1141,20 @@ let Modal = class {
     await this.currentTransition;
     if (this.isSheetModal) {
       this.initSheetGesture();
+      /**
+       * TODO (FW-937) - In the next major release of Ionic, all card modals
+       * will be swipeable by default. canDismiss will be used to determine if the
+       * modal can be dismissed. This check should change to check the presence of
+       * presentingElement instead.
+       *
+       * If we did not do this check, then not using swipeToClose would mean you could
+       * not run canDismiss on swipe as there would be no swipe gesture created.
+       */
     }
-    else if (this.swipeToClose) {
+    else if (this.swipeToClose || (this.canDismiss !== undefined && this.presentingElement !== undefined)) {
       this.initSwipeToClose();
     }
+    /* tslint:disable-next-line */
     if (typeof window !== 'undefined') {
       this.keyboardOpenCallback = () => {
         if (this.gesture) {
@@ -925,7 +1208,6 @@ let Modal = class {
     this.gesture.enable(true);
   }
   initSheetGesture() {
-    var _a;
     const { wrapperEl, initialBreakpoint, backdropBreakpoint } = this;
     if (!wrapperEl || initialBreakpoint === undefined) {
       return;
@@ -937,27 +1219,34 @@ let Modal = class {
       backdropBreakpoint,
     }));
     ani.progressStart(true, 1);
-    const sortedBreakpoints = ((_a = this.breakpoints) === null || _a === void 0 ? void 0 : _a.sort((a, b) => a - b)) || [];
-    this.gesture = createSheetGesture(this.el, this.backdropEl, wrapperEl, initialBreakpoint, backdropBreakpoint, ani, sortedBreakpoints, () => {
-      /**
-       * While the gesture animation is finishing
-       * it is possible for a user to tap the backdrop.
-       * This would result in the dismiss animation
-       * being played again. Typically this is avoided
-       * by setting `presented = false` on the overlay
-       * component; however, we cannot do that here as
-       * that would prevent the element from being
-       * removed from the DOM.
-       */
-      this.gestureAnimationDismissing = true;
-      this.animation.onFinish(async () => {
-        await this.dismiss(undefined, 'gesture');
-        this.gestureAnimationDismissing = false;
-      });
-    }, (breakpoint) => {
-      this.currentBreakpoint = breakpoint;
+    const { gesture, moveSheetToBreakpoint } = createSheetGesture(this.el, this.backdropEl, wrapperEl, initialBreakpoint, backdropBreakpoint, ani, this.sortedBreakpoints, () => { var _a; return (_a = this.currentBreakpoint) !== null && _a !== void 0 ? _a : 0; }, () => this.sheetOnDismiss(), (breakpoint) => {
+      if (this.currentBreakpoint !== breakpoint) {
+        this.currentBreakpoint = breakpoint;
+        this.ionBreakpointDidChange.emit({ breakpoint });
+      }
     });
+    this.gesture = gesture;
+    this.moveSheetToBreakpoint = moveSheetToBreakpoint;
     this.gesture.enable(true);
+  }
+  sheetOnDismiss() {
+    /**
+     * While the gesture animation is finishing
+     * it is possible for a user to tap the backdrop.
+     * This would result in the dismiss animation
+     * being played again. Typically this is avoided
+     * by setting `presented = false` on the overlay
+     * component; however, we cannot do that here as
+     * that would prevent the element from being
+     * removed from the DOM.
+     */
+    this.gestureAnimationDismissing = true;
+    this.animation.onFinish(async () => {
+      this.currentBreakpoint = 0;
+      this.ionBreakpointDidChange.emit({ breakpoint: this.currentBreakpoint });
+      await this.dismiss(undefined, 'gesture');
+      this.gestureAnimationDismissing = false;
+    });
   }
   /**
    * Dismiss the modal overlay after it has been presented.
@@ -969,6 +1258,15 @@ let Modal = class {
     if (this.gestureAnimationDismissing && role !== 'gesture') {
       return false;
     }
+    /**
+     * If a canDismiss handler is responsible
+     * for calling the dismiss method, we should
+     * not run the canDismiss check again.
+     */
+    if (role !== 'handler' && !(await this.checkCanDismiss())) {
+      return false;
+    }
+    /* tslint:disable-next-line */
     if (typeof window !== 'undefined' && this.keyboardOpenCallback) {
       window.removeEventListener(KEYBOARD_DID_OPEN, this.keyboardOpenCallback);
     }
@@ -1018,6 +1316,37 @@ let Modal = class {
   onWillDismiss() {
     return eventMethod(this.el, 'ionModalWillDismiss');
   }
+  /**
+   * Move a sheet style modal to a specific breakpoint. The breakpoint value must
+   * be a value defined in your `breakpoints` array.
+   */
+  async setCurrentBreakpoint(breakpoint) {
+    if (!this.isSheetModal) {
+      printIonWarning('setCurrentBreakpoint is only supported on sheet modals.');
+      return;
+    }
+    if (!this.breakpoints.includes(breakpoint)) {
+      printIonWarning(`Attempted to set invalid breakpoint value ${breakpoint}. Please double check that the breakpoint value is part of your defined breakpoints.`);
+      return;
+    }
+    const { currentBreakpoint, moveSheetToBreakpoint, canDismiss, breakpoints } = this;
+    if (currentBreakpoint === breakpoint) {
+      return;
+    }
+    if (moveSheetToBreakpoint) {
+      moveSheetToBreakpoint({
+        breakpoint,
+        breakpointOffset: 1 - currentBreakpoint,
+        canDismiss: canDismiss !== undefined && canDismiss !== true && breakpoints[0] === 0,
+      });
+    }
+  }
+  /**
+   * Returns the current breakpoint of a sheet style modal
+   */
+  async getCurrentBreakpoint() {
+    return this.currentBreakpoint;
+  }
   render() {
     const { handle, isSheetModal, presentingElement, htmlAttributes } = this;
     const showHandle = handle !== false && isSheetModal;
@@ -1026,7 +1355,7 @@ let Modal = class {
     const isCardModal = presentingElement !== undefined && mode === 'ios';
     return (h(Host, Object.assign({ "no-router": true, "aria-modal": "true", tabindex: "-1" }, htmlAttributes, { style: {
         zIndex: `${20000 + this.overlayIndex}`,
-      }, class: Object.assign({ [mode]: true, ['modal-default']: !isCardModal && !isSheetModal, [`modal-card`]: isCardModal, [`modal-sheet`]: isSheetModal, 'overlay-hidden': true }, getClassMap(this.cssClass)), id: modalId, onIonBackdropTap: this.onBackdropTap, onIonDismiss: this.onDismiss, onIonModalDidPresent: this.onLifecycle, onIonModalWillPresent: this.onLifecycle, onIonModalWillDismiss: this.onLifecycle, onIonModalDidDismiss: this.onLifecycle }), h("ion-backdrop", { ref: (el) => (this.backdropEl = el), visible: this.showBackdrop, tappable: this.backdropDismiss, part: "backdrop" }), mode === 'ios' && h("div", { class: "modal-shadow" }), h("div", { role: "dialog", class: "modal-wrapper ion-overlay-wrapper", part: "content", ref: (el) => (this.wrapperEl = el) }, showHandle && h("div", { class: "modal-handle", part: "handle" }), h("slot", null))));
+      }, class: Object.assign({ [mode]: true, ['modal-default']: !isCardModal && !isSheetModal, [`modal-card`]: isCardModal, [`modal-sheet`]: isSheetModal, 'overlay-hidden': true }, getClassMap(this.cssClass)), id: modalId, onIonBackdropTap: this.onBackdropTap, onIonModalDidPresent: this.onLifecycle, onIonModalWillPresent: this.onLifecycle, onIonModalWillDismiss: this.onLifecycle, onIonModalDidDismiss: this.onLifecycle }), h("ion-backdrop", { ref: (el) => (this.backdropEl = el), visible: this.showBackdrop, tappable: this.backdropDismiss, part: "backdrop" }), mode === 'ios' && h("div", { class: "modal-shadow" }), h("div", { role: "dialog", class: "modal-wrapper ion-overlay-wrapper", part: "content", ref: (el) => (this.wrapperEl = el) }, showHandle && h("div", { class: "modal-handle", part: "handle" }), h("slot", null))));
   }
   get el() { return getElement(this); }
   static get watchers() { return {

@@ -1,5 +1,5 @@
-import { c as createAnimation } from './animation-e960c982.js';
-import { g as getIonPageElement } from './index-31774ee3.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
+import { g as getIonPageElement } from './index-18a3e846.js';
 import './helpers-e7913fb8.js';
 import './index-0fc14935.js';
 
