@@ -13,7 +13,23 @@ let AppTournament = class {
     this.tournament = query.data();
   }
   render() {
-    return (h(Host, null, h("ion-header", null, h("ion-toolbar", null, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Tournament Page"))), h("ion-content", null, h("dbd-tournament-details", null), h("ion-row", { style: {
+    return (h(Host, null, h("ion-header", null, h("ion-toolbar", null, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Tournament Page"))), h("ion-content", null, h("ion-row", { style: {
+        "justify-content": "center",
+        padding: "0px",
+      } }, h("ion-col", { size: "12", "size-md": "4", style: {
+        "text-align": "center",
+        "border-color": "transparent",
+      } }, h("ion-card", { style: {
+        opacity: ".6",
+      } }, h("h1", { style: {
+        "font-family": "sans-serif",
+        color: "white",
+      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-card", null, h("ion-row", { style: {
+        "justify-content": "center",
+      } }, h("ion-col", { size: "4", "size-md": "" }, h("ion-item", null, h("ion-thumbnail", { slot: "start", style: {
+        height: "90px",
+        width: "110px",
+      } }, h("img", { src: "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" })))), h("ion-col", { size: "7", "size-md": "" }, h("ion-card-title", null, " Tournament Title "), h("ion-card-content", null, " Date and Time "), h("ion-card-content", null, " TLDR Tourney Rules ")), h("ion-col", { size: "1", "size-md": "" }, h("a", { href: "http://localhost:3333/tournament" }, h("ion-icon", { name: "chevron-forward-outline" }))))), h("dbd-tournament-details", null), h("ion-row", { style: {
         "justify-content": "center",
       } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { style: {
         "max-width": "750px",

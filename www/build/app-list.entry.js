@@ -41,12 +41,10 @@ let AppList = class {
         "border-color": "transparent",
       } }, h("ion-card", { style: {
         opacity: ".6",
-        "border-style": "ridge",
-        "border-color": "#7a7a79",
       } }, h("h1", { style: {
         "font-family": "sans-serif",
         color: "white",
-      } }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS"))))), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" })), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" })), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" })), h("ion-row", null, h("img", { id: "bLogo", src: "/assets/dbdlogoblack.png" })))));
+      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" }, h("ion-card", null, h("ion-card-header", null, h("ion-row", null, h("ion-col", null, h("ion-card-title", null, " Tournament Title ")), h("ion-row", null, h("ion-row", null, h("ion-card-content", null, " Date and Time "))), h("ion-card-content", null, " TLDR Tourney Rules "), h("ion-item", null, h("a", { href: "http://localhost:3333/tournament" }, h("ion-icon", { name: "chevron-forward-outline" })))))))))));
   }
 };
 AppList.style = appListCss;

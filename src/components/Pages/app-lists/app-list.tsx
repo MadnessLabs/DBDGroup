@@ -77,8 +77,6 @@ export class AppList {
               <ion-card
                 style={{
                   opacity: ".6",
-                  "border-style": "ridge",
-                  "border-color": "#7a7a79",
                 }}
               >
                 <h1
@@ -87,22 +85,38 @@ export class AppList {
                     color: "white",
                   }}
                 >
-                  <b>DEAD BY DAYLIGHT TOURNAMENTS</b>
+                  <div class="ion-text-center">
+                    <b>DEAD BY DAYLIGHT TOURNAMENTS</b>
+                  </div>
                 </h1>
               </ion-card>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="12" size-md="8"></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-md="8"></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" size-md="8"></ion-col>
-          </ion-row>
-          <ion-row>
-            <img id="bLogo" src="/assets/dbdlogoblack.png"></img>
+            <ion-col size="12" size-md="8">
+              <ion-card>
+                <ion-card-header>
+                  <ion-row>
+                    <ion-col>
+                      <ion-card-title> Tournament Title </ion-card-title>
+                    </ion-col>
+                    <ion-row>
+                      <ion-row>
+                        <ion-card-content> Date and Time </ion-card-content>
+                      </ion-row>
+                    </ion-row>
+                    <ion-card-content> TLDR Tourney Rules </ion-card-content>
+                    <ion-item>
+                      
+                      
+                      <a href="http://localhost:3333/tournament"><ion-icon name="chevron-forward-outline"></ion-icon>
+                      </a>
+                    
+                    </ion-item>
+                  </ion-row>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-content>

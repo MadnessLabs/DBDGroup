@@ -31,7 +31,70 @@ export class AppTournament {
           </ion-toolbar>
         </ion-header>
         <ion-content>
-          <dbd-tournament-details />
+          <ion-row
+            style={{
+              "justify-content": "center",
+              padding: "0px",
+            }}
+          >
+            <ion-col
+              size="12"
+              size-md="4"
+              style={{
+                "text-align": "center",
+                "border-color": "transparent",
+              }}
+            >
+              <ion-card
+                style={{
+                  opacity: ".6",
+                }}
+              >
+                <h1
+                  style={{
+                    "font-family": "sans-serif",
+                    color: "white",
+                  }}
+                >
+                  <div class="ion-text-center">
+                    <b>DEAD BY DAYLIGHT TOURNAMENTS</b>
+                  </div>
+                </h1>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-card>
+            <ion-row
+              style={{
+                "justify-content": "center",
+              }}
+            >
+              <ion-col size="4" size-md="">
+                <ion-item>
+                  <ion-thumbnail
+                    slot="start"
+                    style={{
+                      height: "90px",
+                      width: "110px",
+                    }}
+                  >
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                  </ion-thumbnail>
+                </ion-item>
+              </ion-col>
+              <ion-col size="7" size-md="">
+                <ion-card-title> Tournament Title </ion-card-title>
+                <ion-card-content> Date and Time </ion-card-content>
+                <ion-card-content> TLDR Tourney Rules </ion-card-content>
+                </ion-col>
+                <ion-col size="1" size-md="">
+                <a href="http://localhost:3333/tournament">
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </a>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+          <dbd-tournament-details/>
           <ion-row
             style={{
               "justify-content": "center",
