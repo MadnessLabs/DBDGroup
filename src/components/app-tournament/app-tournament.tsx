@@ -182,9 +182,9 @@ export class AppTournament {
                   okText="Okay"
                   cancelText="Dismiss"
                 >
-                  <ion-select-option value="killer">killer</ion-select-option>
+                  <ion-select-option value="killer">Killer</ion-select-option>
                   <ion-select-option value="survivor">
-                    survivor
+                    Survivor
                   </ion-select-option>
                 </ion-select>
               </ion-item>
@@ -201,21 +201,6 @@ export class AppTournament {
                   <ion-select-option value="noob">Noob</ion-select-option>
                   <ion-select-option value="casual">Casual</ion-select-option>
                   <ion-select-option value="pro">Pro</ion-select-option>/
-                </ion-select>
-              </ion-item>
-              <ion-item>
-                <ion-label
-                  style={{
-                    "font-size": "20px",
-                  }}
-                  position="stacked"
-                >
-                  Available
-                </ion-label>
-                <ion-select okText="Okay" cancelText="Dismiss">
-                  <ion-select-option>Saturday</ion-select-option>
-                  <ion-select-option>Sunday</ion-select-option>
-                  <ion-select-option>Both</ion-select-option>/
                 </ion-select>
               </ion-item>
             </ion-list>

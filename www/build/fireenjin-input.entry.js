@@ -1,6 +1,6 @@
 import { r as registerInstance, l as createEvent, j as Build, q as forceUpdate, h, m as getElement } from './index-e5ab994a.js';
 import { g as global } from './global-e1c7e609.js';
-import { a as commonjsGlobal$1 } from './_commonjsHelpers-93ec9c7a.js';
+import { a as commonjsGlobal$1 } from './_commonjsHelpers-6cb8dacb.js';
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 

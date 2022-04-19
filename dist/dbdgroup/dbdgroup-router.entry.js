@@ -2,7 +2,7 @@ import { r as registerInstance, j as Build, h } from './index-e5ab994a.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
 import { E as ErrorFactory, L as Logger, a as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, b as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, f as getModularInstance, h as base64Decode, j as getUA, k as isIE, l as createSubscribe, m as querystringDecode, n as extractQuerystring, o as isEmpty, p as _registerComponent, C as Component, r as registerVersion, s as getApp, t as stringify, u as jsonEval, v as contains, w as stringToByteArray, x as Sha1, y as base64, z as assert, A as isNodeSdk, B as deepCopy, D as base64Encode, G as stringLength, H as Deferred, I as safeGet, J as isAdmin, K as isValidFormat, M as assertionError, N as map, O as errorPrefix, P as createMockUserToken, Q as initializeApp, R as Pc, T as lc, U as Sc, i as il, V as ul, W as ol, X as wc, Z as el, g as gc, Y as Yh, $ as rl, a0 as al, a1 as Dh, a2 as xh, a3 as kh, a4 as vh } from './index.esm2017-64852796.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
-import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-93ec9c7a.js';
+import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
 import './global-e1c7e609.js';
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
@@ -34065,7 +34065,7 @@ let AppRoot = class {
     });
   }
   render() {
-    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/list", component: "app-list", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile", component: "app-profile", componentProps: this.componentProps })));
+    return (h("ion-router", { useHash: false }, h("ion-route", { url: "/", component: "app-home", componentProps: this.componentProps }), h("ion-route", { url: "/list", component: "app-list", componentProps: this.componentProps }), h("ion-route", { url: "/admin", component: "app-admin", componentProps: this.componentProps }), h("ion-route", { url: "/tournament", component: "app-tournament", componentProps: this.componentProps }), h("ion-route", { url: "/profile", component: "app-profile", componentProps: this.componentProps }), h("ion-route", { url: "/tournament/tournament-title", component: "tournament-title", componentProps: this.componentProps })));
   }
 };
 

@@ -75,7 +75,7 @@ export class AppHome {
               "font-family": "sans-serif",
             }}
           >
-            <b>DEAD BY DAYLIGHT GROUP SIGN-UP</b>
+            <div class="ion-text-center"><b>DEAD BY DAYLIGHT GROUP</b></div>
           </h1>
 
           <fireenjin-form>
@@ -88,7 +88,7 @@ export class AppHome {
                   }}
                   position="floating"
                 >
-                  <b>Name</b>
+                  <div class="ion-text-center"><b>Name</b></div>
                 </ion-label>
                 <ion-input name="name" value={this.formData?.name} />
               </ion-item>
@@ -100,7 +100,7 @@ export class AppHome {
                   }}
                   position="floating"
                 >
-                  <b>E-mail</b>
+                  <div class="ion-text-center"><b>E-mail</b></div>
                 </ion-label>
                 <ion-input name="email" value={this.formData?.email} />
               </ion-item>

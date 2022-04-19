@@ -45,11 +45,9 @@ let AppTournament = class {
         "font-size": "20px",
       }, position: "stacked" }, "Entering as?"), h("ion-select", { style: {
         "font-size": "20px",
-      }, okText: "Okay", cancelText: "Dismiss" }, h("ion-select-option", { value: "killer" }, "killer"), h("ion-select-option", { value: "survivor" }, "survivor"))), h("ion-item", null, h("ion-label", { style: {
+      }, okText: "Okay", cancelText: "Dismiss" }, h("ion-select-option", { value: "killer" }, "Killer"), h("ion-select-option", { value: "survivor" }, "Survivor"))), h("ion-item", null, h("ion-label", { style: {
         "font-size": "20px",
-      }, position: "stacked" }, "Skill Level"), h("ion-select", { name: "skill", okText: "Okay", cancelText: "Dismiss" }, h("ion-select-option", { value: "noob" }, "Noob"), h("ion-select-option", { value: "casual" }, "Casual"), h("ion-select-option", { value: "pro" }, "Pro"), "/")), h("ion-item", null, h("ion-label", { style: {
-        "font-size": "20px",
-      }, position: "stacked" }, "Available"), h("ion-select", { okText: "Okay", cancelText: "Dismiss" }, h("ion-select-option", null, "Saturday"), h("ion-select-option", null, "Sunday"), h("ion-select-option", null, "Both"), "/")))))));
+      }, position: "stacked" }, "Skill Level"), h("ion-select", { name: "skill", okText: "Okay", cancelText: "Dismiss" }, h("ion-select-option", { value: "noob" }, "Noob"), h("ion-select-option", { value: "casual" }, "Casual"), h("ion-select-option", { value: "pro" }, "Pro"), "/")))))));
   }
 };
 
