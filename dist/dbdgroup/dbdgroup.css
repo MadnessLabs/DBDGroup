@@ -1389,7 +1389,11 @@ ion-item {
 }
 
 ion-card {
-  --background: var(--ion-color-step-50);
+  --background: rgba(20,20,20,0.4);
+}
+
+ion-content {
+  --background: no-repeat center url("/assets/dbdtreeBkgd.png");
 }
 
 ion-content:before {
@@ -1406,5 +1410,5 @@ ion-content:before {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  opacity: 0.8;
+  opacity: 1;
 }

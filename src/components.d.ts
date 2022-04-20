@@ -29,6 +29,13 @@ export namespace Components {
     }
     interface AppTournamentList {
     }
+    interface DbdTournamentCard {
+        "dateTime": string;
+        "href": string;
+        "image": string;
+        "name": string;
+        "rules": string[];
+    }
     interface DbdTournamentDetails {
     }
     interface DbdgroupRouter {
@@ -73,6 +80,12 @@ declare global {
         prototype: HTMLAppTournamentListElement;
         new (): HTMLAppTournamentListElement;
     };
+    interface HTMLDbdTournamentCardElement extends Components.DbdTournamentCard, HTMLStencilElement {
+    }
+    var HTMLDbdTournamentCardElement: {
+        prototype: HTMLDbdTournamentCardElement;
+        new (): HTMLDbdTournamentCardElement;
+    };
     interface HTMLDbdTournamentDetailsElement extends Components.DbdTournamentDetails, HTMLStencilElement {
     }
     var HTMLDbdTournamentDetailsElement: {
@@ -98,6 +111,7 @@ declare global {
         "app-profile": HTMLAppProfileElement;
         "app-tournament": HTMLAppTournamentElement;
         "app-tournament-list": HTMLAppTournamentListElement;
+        "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
@@ -129,6 +143,13 @@ declare namespace LocalJSX {
     }
     interface AppTournamentList {
     }
+    interface DbdTournamentCard {
+        "dateTime"?: string;
+        "href"?: string;
+        "image"?: string;
+        "name"?: string;
+        "rules"?: string[];
+    }
     interface DbdTournamentDetails {
     }
     interface DbdgroupRouter {
@@ -142,6 +163,7 @@ declare namespace LocalJSX {
         "app-profile": AppProfile;
         "app-tournament": AppTournament;
         "app-tournament-list": AppTournamentList;
+        "dbd-tournament-card": DbdTournamentCard;
         "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
@@ -157,6 +179,7 @@ declare module "@stencil/core" {
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
+            "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;

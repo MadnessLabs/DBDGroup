@@ -26,6 +26,16 @@ export class AppHome {
   render() {
     return (
       <ion-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <dbd-tournament-card image="https://madnesslabs.net/img/logo.png" />
+            </ion-col>
+            <ion-col>
+              <dbd-tournament-card />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-card>
           <img src="./assets/icon/icon.png" />
           <ion-card-header>
