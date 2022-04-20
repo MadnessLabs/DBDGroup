@@ -19,9 +19,7 @@ let AppTournament = class {
       } }, h("ion-col", { size: "12", "size-md": "4", style: {
         "text-align": "center",
         "border-color": "transparent",
-      } }, h("ion-card", { style: {
-        opacity: ".6",
-      } }, h("h1", { style: {
+      } }, h("ion-card", null, h("h1", { style: {
         "font-family": "sans-serif",
         color: "white",
       } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-card", null, h("ion-row", { style: {

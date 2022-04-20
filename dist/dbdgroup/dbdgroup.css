@@ -1373,6 +1373,15 @@ sub {
   --ion-color-step-950: #f3f3f3;
 }
 
+@font-face {
+  font-family: "28 Days Later";
+  src: url('./assets/fonts/28 Days Later.ttf');
+}
+
+h1 {
+  font-family: "28 Days Later", Arial, Helvetica, sans-serif !important;
+}
+
 ion-list,
 ion-item {
   background: transparent !important;

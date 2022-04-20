@@ -45,11 +45,7 @@ export class AppTournament {
                 "border-color": "transparent",
               }}
             >
-              <ion-card
-                style={{
-                  opacity: ".6",
-                }}
-              >
+              <ion-card>
                 <h1
                   style={{
                     "font-family": "sans-serif",
@@ -86,15 +82,15 @@ export class AppTournament {
                 <ion-card-title> Tournament Title </ion-card-title>
                 <ion-card-content> Date and Time </ion-card-content>
                 <ion-card-content> TLDR Tourney Rules </ion-card-content>
-                </ion-col>
-                <ion-col size="1" size-md="">
+              </ion-col>
+              <ion-col size="1" size-md="">
                 <a href="http://localhost:3333/tournament">
                   <ion-icon name="chevron-forward-outline"></ion-icon>
                 </a>
               </ion-col>
             </ion-row>
           </ion-card>
-          <dbd-tournament-details/>
+          <dbd-tournament-details />
           <ion-row
             style={{
               "justify-content": "center",
