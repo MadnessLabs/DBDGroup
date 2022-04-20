@@ -30,26 +30,26 @@
   https://ionicframework.com/docs/theming/color-generator
 */
 :root {
-  --ion-color-primary: #5a0505;
-  --ion-color-primary-rgb: 90, 5, 5;
+  --ion-color-primary: #fe2739;
+  --ion-color-primary-rgb: 254, 39, 57;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #4f0404;
-  --ion-color-primary-tint: #6b1e1e;
+  --ion-color-primary-shade: #e02232;
+  --ion-color-primary-tint: #fe3d4d;
 
-  --ion-color-secondary: #5b0102;
-  --ion-color-secondary-rgb: 91, 1, 2;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #500102;
-  --ion-color-secondary-tint: #6b1a1b;
+  --ion-color-secondary: #f6505e;
+  --ion-color-secondary-rgb: 246, 80, 94;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #d84653;
+  --ion-color-secondary-tint: #f7626e;
 
-  --ion-color-tertiary: #310101;
-  --ion-color-tertiary-rgb: 49, 1, 1;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #2b0101;
-  --ion-color-tertiary-tint: #461a1a;
+  --ion-color-tertiary: #e98c94;
+  --ion-color-tertiary-rgb: 233, 140, 148;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #cd7b82;
+  --ion-color-tertiary-tint: #eb989f;
 
   --ion-color-success: #2e63a1;
   --ion-color-success-rgb: 46, 99, 161;
@@ -88,13 +88,15 @@
 
 
   --ion-background-color: linear-gradient(#150000, #666666);
-  --ion-background-color-rgb: 18, 18, 18;
-  
+  --ion-background-color-rgb: 18,
+  18,
+  18;
+
   --ion-text-color: #FFFFFF;
   --ion-text-color-rgb: 255, 255, 255;
-  
+
   --ion-color-step-50: #1e1e1e;
-  --ion-color-step-100: #2a2a2a;
+  --ion-color-step-100: #080808;
   --ion-color-step-150: #363636;
   --ion-color-step-200: #414141;
   --ion-color-step-250: #4d4d4d;
@@ -114,30 +116,22 @@
   --ion-color-step-950: #f3f3f3;
 }
 
-ion-list, ion-item {
+ion-list,
+ion-item {
   background: transparent !important;
   --background: transparent !important;
-}
-
-ion-toolbar {
-  --background: var(--ion-color-step-50);
 }
 
 ion-card {
   --background: var(--ion-color-step-50);
 }
 
-fireenjin-form .form-controls {
-  background-color: var(--ion-color-tertiary-shade);
-}
-
-
 ion-content:before {
   content: "";
   display: block;
   position: absolute;
   width: 30%;
-  min-width: 20       0px;
+  min-width: 20 0px;
   top: 0;
   left: 50%;
   transform: translate(-50%);
