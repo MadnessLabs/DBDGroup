@@ -1,16 +1,11 @@
 import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
-import './index.esm-6f00acbe.js';
-import { e as el, T as Tc } from './index.esm2017-5b1fb817.js';
-import './process-es6-6fcfb3fc.js';
-import './global-e1c7e609.js';
 
 let AppTournament = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }
   async componentDidLoad() {
-    const query = await el(Tc(this.db, `tournaments/${this.tournamentId}`));
-    this.tournament = query.data();
+    this.tournament = (await this.db.find("tournaments", this.tournamentId));
   }
   render() {
     return (h(Host, null, h("ion-header", null, h("ion-toolbar", { color: "light" }, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Tournament Page"))), h("ion-content", null, h("ion-row", { style: {

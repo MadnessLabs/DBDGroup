@@ -7,15 +7,15 @@
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
-import { AuthService } from "@fireenjin/sdk";
+import { AuthService, DatabaseService } from "@fireenjin/sdk";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
         "db": Firestore;
     }
     interface AppHome {
-        "auth": Auth;
-        "db": Firestore;
+        "auth": AuthService;
+        "db": DatabaseService;
     }
     interface AppList {
     }
@@ -24,7 +24,7 @@ export namespace Components {
         "userId": string;
     }
     interface AppTournament {
-        "db": Firestore;
+        "db": DatabaseService;
         "tournamentId": string;
     }
     interface AppTournamentList {
@@ -123,8 +123,8 @@ declare namespace LocalJSX {
         "db"?: Firestore;
     }
     interface AppHome {
-        "auth"?: Auth;
-        "db"?: Firestore;
+        "auth"?: AuthService;
+        "db"?: DatabaseService;
         "onDbdModalOpen"?: (event: CustomEvent<{
     component: string;
     componentProps?: any;
@@ -138,7 +138,7 @@ declare namespace LocalJSX {
         "userId"?: string;
     }
     interface AppTournament {
-        "db"?: Firestore;
+        "db"?: DatabaseService;
         "tournamentId"?: string;
     }
     interface AppTournamentList {

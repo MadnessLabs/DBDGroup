@@ -1,6 +1,5 @@
-import { Component, Event, EventEmitter, h, Prop } from "@stencil/core";
-import { Auth } from "firebase/auth";
-import { Firestore } from "firebase/firestore";
+import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { Component, Event, EventEmitter, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "app-home",
@@ -13,14 +12,13 @@ export class AppHome {
     cssClass?: string;
   }>;
 
-  @Prop() db: Firestore;
-  @Prop() auth: Auth;
+  @Prop() db: DatabaseService;
+  @Prop() auth: AuthService;
+
+  @State() tournaments: any[];
 
   async componentDidLoad() {
-    // this.dbdModalOpen.emit({
-    //   component: "modal-login",
-    //   componentProps: {},
-    // });
+    this.tournaments = await this.db.list("tournaments", []);
   }
 
   render() {
@@ -28,12 +26,14 @@ export class AppHome {
       <ion-content>
         <ion-grid>
           <ion-row>
-            <ion-col>
-              <dbd-tournament-card image="https://madnesslabs.net/img/logo.png" />
-            </ion-col>
-            <ion-col>
-              <dbd-tournament-card />
-            </ion-col>
+            {(this.tournaments || []).map((tournament) => (
+              <ion-col>
+                <dbd-tournament-card
+                  href={`/tournament/${tournament?.id}`}
+                  image={tournament.image}
+                />
+              </ion-col>
+            ))}
           </ion-row>
         </ion-grid>
         <ion-card>

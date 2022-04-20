@@ -1,6 +1,5 @@
 import { r as registerInstance, h } from './index-0fc14935.js';
-import './index.esm-6f00acbe.js';
-import { a as al, T as Tc } from './index.esm2017-5b1fb817.js';
+import { a as al, T as Tc } from './index.esm2017-2ab2ab81.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 

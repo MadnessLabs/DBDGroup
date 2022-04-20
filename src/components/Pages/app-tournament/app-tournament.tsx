@@ -1,20 +1,20 @@
+import { DatabaseService } from "@fireenjin/sdk";
 import { Component, h, Host, Prop, State } from "@stencil/core";
-import { getDoc, doc, Firestore } from "firebase/firestore";
 
 @Component({
   tag: "app-tournament",
 })
 export class AppTournament {
-  @Prop() db: Firestore;
+  @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
 
   @State() tournament: Tournament;
 
   async componentDidLoad() {
-    const query = await getDoc(
-      doc(this.db, `tournaments/${this.tournamentId}`)
-    );
-    this.tournament = query.data() as Tournament;
+    this.tournament = (await this.db.find(
+      "tournaments",
+      this.tournamentId
+    )) as Tournament;
   }
 
   render() {

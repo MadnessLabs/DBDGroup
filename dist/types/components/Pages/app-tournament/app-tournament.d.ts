@@ -1,6 +1,6 @@
-import { Firestore } from "firebase/firestore";
+import { DatabaseService } from "@fireenjin/sdk";
 export declare class AppTournament {
-  db: Firestore;
+  db: DatabaseService;
   tournamentId: string;
   tournament: Tournament;
   componentDidLoad(): Promise<void>;
