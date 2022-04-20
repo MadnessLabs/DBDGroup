@@ -139,6 +139,17 @@ ion-content {
   --background: no-repeat center url("/assets/dbdtreeBkgd.png");
 }
 
+/*  This is my original fix for the background
+
+ion-content {
+  --background: none;
+  background: url("/assets/dbdtreeBkgd.png");
+  background-position: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}  */
+
 ion-content:before {
   content: "";
   display: block;
