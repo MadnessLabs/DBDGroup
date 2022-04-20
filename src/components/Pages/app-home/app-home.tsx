@@ -19,6 +19,7 @@ export class AppHome {
 
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);
+    // this.auth.withSocial("google");
   }
 
   render() {
