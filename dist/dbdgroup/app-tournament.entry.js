@@ -5,7 +5,7 @@ let AppTournament = class {
     registerInstance(this, hostRef);
   }
   async componentDidLoad() {
-    this.tournament = (await this.db.find("tournaments", this.tournamentId));
+    this.tournaments = (await this.db.list("tournaments", []));
   }
   render() {
     return (h(Host, null, h("ion-header", null, h("ion-toolbar", { color: "light" }, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Tournament Page"))), h("ion-content", null, h("ion-row", { style: {
@@ -17,7 +17,7 @@ let AppTournament = class {
       } }, h("h1", { style: {
         "font-family": "sans-serif",
         color: "white",
-      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS"))))), h("dbd-tournament-details", null), h("ion-row", { style: {
+      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS"))))), (this.tournaments || []).map((tournament) => (h("dbd-tournament-details", { name: tournament.name, rules: tournament.rules, dateTime: tournament.id }))), h("ion-row", { style: {
         "justify-content": "center",
       } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { style: {
         "max-width": "750px",
