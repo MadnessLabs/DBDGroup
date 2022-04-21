@@ -37,8 +37,14 @@ export namespace Components {
         "rules": string[];
     }
     interface DbdTournamentDetails {
+        "dateTime": string;
+        "image": string;
+        "name": string;
+        "rules": string[];
     }
     interface DbdgroupRouter {
+    }
+    interface FloodteamHeaderBar {
     }
     interface ModalLogin {
     }
@@ -98,6 +104,12 @@ declare global {
         prototype: HTMLDbdgroupRouterElement;
         new (): HTMLDbdgroupRouterElement;
     };
+    interface HTMLFloodteamHeaderBarElement extends Components.FloodteamHeaderBar, HTMLStencilElement {
+    }
+    var HTMLFloodteamHeaderBarElement: {
+        prototype: HTMLFloodteamHeaderBarElement;
+        new (): HTMLFloodteamHeaderBarElement;
+    };
     interface HTMLModalLoginElement extends Components.ModalLogin, HTMLStencilElement {
     }
     var HTMLModalLoginElement: {
@@ -114,6 +126,7 @@ declare global {
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
+        "floodteam-header-bar": HTMLFloodteamHeaderBarElement;
         "modal-login": HTMLModalLoginElement;
     }
 }
@@ -151,8 +164,14 @@ declare namespace LocalJSX {
         "rules"?: string[];
     }
     interface DbdTournamentDetails {
+        "dateTime"?: string;
+        "image"?: string;
+        "name"?: string;
+        "rules"?: string[];
     }
     interface DbdgroupRouter {
+    }
+    interface FloodteamHeaderBar {
     }
     interface ModalLogin {
     }
@@ -166,6 +185,7 @@ declare namespace LocalJSX {
         "dbd-tournament-card": DbdTournamentCard;
         "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
+        "floodteam-header-bar": FloodteamHeaderBar;
         "modal-login": ModalLogin;
     }
 }
@@ -182,6 +202,7 @@ declare module "@stencil/core" {
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
+            "floodteam-header-bar": LocalJSX.FloodteamHeaderBar & JSXBase.HTMLAttributes<HTMLFloodteamHeaderBarElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
         }
     }

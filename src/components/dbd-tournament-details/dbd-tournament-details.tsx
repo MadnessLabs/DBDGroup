@@ -1,72 +1,56 @@
-import { Component, h } from "@stencil/core";
+import { Build, Component, h, Prop } from "@stencil/core";
 
 @Component({
   tag: "dbd-tournament-details",
   styleUrl: "dbd-tournament-details.css",
 })
 export class DbdTournamentDetails {
-  component: string;
-  componentProps?: any;
-  cssClass?: string;
-  paginationEl: HTMLFireenjinPaginationElement;
-  endpoint: string;
-  limit: number;
-  query: string;
+  @Prop() image: string =
+    "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y";
+  @Prop() name: string;
+  @Prop() dateTime: string;
+  @Prop() rules: string[];
+  // @Prop() component: string;
+  // @Prop() componentProps?: any;
+  // @Prop() cssClass?: string;
+  // @Prop() paginationEl: HTMLFireenjinPaginationElement;
+  // @Prop() endpoint: string;
+  // @Prop() limit: number;
+  // @Prop() query: string;
+
+  async componentDidLoad() {
+    if (!Build?.isBrowser) return;
+  }
 
   render() {
     return (
       <div>
         <ion-card>
-          <ion-row>
-            <ion-col size="4" size-md="1">
-              <ion-item>
-                <ion-thumbnail
-                  slot="start"
-                  style={{
-                    height: "90px",
-                    width: "110px",
-                  }}
-                >
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-thumbnail>
-              </ion-item>
-            </ion-col>
-            <ion-col size="8" size-md="11">
-              <ion-card-title>TOURNAMENT NAME</ion-card-title>
-              <ion-card-subtitle>DATE</ion-card-subtitle>
+          <ion-item>
+            <ion-thumbnail
+              slot="start"
+              style={{
+                height: "80px",
+                width: "100px",
+              }}
+            >
+              <img src={this.image} />
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{this.name}</h2>
+              <h2>{this.dateTime}</h2>
               <ion-button size="cover" id="trigger-button">
                 Tournament Details
               </ion-button>
+              {(this.rules || []).find((rule) => (
               <ion-popover trigger="trigger-button">
                 <ul>
-                  <p>
-                    <li>
-                      Don't Be Cringe, Don't Be Cringe, Don't Be Cringe, Don't
-                      Be Cringe
-                    </li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
-                  <p>
-                    <li>Don't Be Cringe</li>
-                  </p>
+                    <li>{rule}</li>
                 </ul>
               </ion-popover>
-            </ion-col>
-          </ion-row>
+                ))}
+            </ion-label>
+          </ion-item>
         </ion-card>
 
         <ion-row

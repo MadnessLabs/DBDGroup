@@ -1,10 +1,8 @@
 export declare class DbdTournamentDetails {
-  component: string;
-  componentProps?: any;
-  cssClass?: string;
-  paginationEl: HTMLFireenjinPaginationElement;
-  endpoint: string;
-  limit: number;
-  query: string;
+  image: string;
+  name: string;
+  dateTime: string;
+  rules: string[];
+  componentDidLoad(): Promise<void>;
   render(): any;
 }

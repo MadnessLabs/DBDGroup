@@ -8,13 +8,10 @@ export class AppTournament {
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
 
-  @State() tournament: Tournament;
+  @State() tournaments: any[];
 
   async componentDidLoad() {
-    this.tournament = (await this.db.find(
-      "tournaments",
-      this.tournamentId
-    )) as Tournament;
+    this.tournaments = (await this.db.list("tournaments", []));
   }
 
   render() {
@@ -57,7 +54,13 @@ export class AppTournament {
               </h1>
             </ion-col>
           </ion-row>
-          <dbd-tournament-details />
+          {(this.tournaments || []).map((tournament) => (
+          <dbd-tournament-details
+            name={tournament.name}
+            rules={tournament.rules}
+            dateTime={tournament.id}
+          />
+          ))}
           <ion-row
             style={{
               "justify-content": "center",
