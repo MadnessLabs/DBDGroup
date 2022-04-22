@@ -1,17 +1,31 @@
 import { DatabaseService } from "@fireenjin/sdk";
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import {
+  Component,
+  h,
+  Event,
+  EventEmitter,
+  Host,
+  Prop,
+  State,
+} from "@stencil/core";
 
 @Component({
   tag: "app-tournament",
 })
 export class AppTournament {
+  @Event() dbdModalOpen: EventEmitter;
+  @Event() dbdPopoverOpen: EventEmitter;
+
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
 
-  @State() tournaments: any[];
+  @State() tournament: Tournament;
 
   async componentDidLoad() {
-    this.tournaments = (await this.db.list("tournaments", []));
+    this.tournament = (await this.db.find(
+      "tournaments",
+      this.tournamentId
+    )) as Tournament;
   }
 
   render() {
@@ -24,10 +38,31 @@ export class AppTournament {
                 <ion-icon name="arrow-back" color="primary" />
               </ion-button>
             </ion-buttons>
-            <ion-title>Tournament Page</ion-title>
+            <ion-title
+              onClick={() =>
+                this.dbdModalOpen.emit({
+                  component: "modal-login",
+                })
+              }
+            >
+              Tournament Page
+            </ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
+          <ion-button
+            onClick={() =>
+              this.dbdModalOpen.emit({
+                component: "modal-tournament-edit",
+                componentProps: {
+                  tournament: this.tournament,
+                  tournamentId: this.tournamentId,
+                },
+              })
+            }
+          >
+            Edit
+          </ion-button>
           <ion-row
             style={{
               "justify-content": "center",
@@ -54,13 +89,11 @@ export class AppTournament {
               </h1>
             </ion-col>
           </ion-row>
-          {(this.tournaments || []).map((tournament) => (
           <dbd-tournament-details
-            name={tournament.name}
-            rules={tournament.rules}
-            dateTime={tournament.id}
+            name={this.tournament?.name}
+            rules={this.tournament?.rules}
+            dateTime={this.tournament?.id}
           />
-          ))}
           <ion-row
             style={{
               "justify-content": "center",
@@ -97,8 +130,13 @@ export class AppTournament {
                 <ion-item>KP: {killer.killerpoints}</ion-item>
               ))}
             </ion-list> */}
-
                 <fireenjin-form
+                  onClick={(event) =>
+                    this.dbdPopoverOpen.emit({
+                      component: "modal-login",
+                      event,
+                    })
+                  }
                   style={{
                     "max-width": "750px",
                     "text-align": "center",

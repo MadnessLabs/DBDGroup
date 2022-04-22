@@ -44,9 +44,13 @@ export namespace Components {
     }
     interface DbdgroupRouter {
     }
-    interface FloodteamHeaderBar {
-    }
     interface ModalLogin {
+    }
+    interface ModalSuccess {
+    }
+    interface ModalTournamentEdit {
+        "tournament": Tournament;
+        "tournamentId": string;
     }
 }
 declare global {
@@ -104,17 +108,23 @@ declare global {
         prototype: HTMLDbdgroupRouterElement;
         new (): HTMLDbdgroupRouterElement;
     };
-    interface HTMLFloodteamHeaderBarElement extends Components.FloodteamHeaderBar, HTMLStencilElement {
-    }
-    var HTMLFloodteamHeaderBarElement: {
-        prototype: HTMLFloodteamHeaderBarElement;
-        new (): HTMLFloodteamHeaderBarElement;
-    };
     interface HTMLModalLoginElement extends Components.ModalLogin, HTMLStencilElement {
     }
     var HTMLModalLoginElement: {
         prototype: HTMLModalLoginElement;
         new (): HTMLModalLoginElement;
+    };
+    interface HTMLModalSuccessElement extends Components.ModalSuccess, HTMLStencilElement {
+    }
+    var HTMLModalSuccessElement: {
+        prototype: HTMLModalSuccessElement;
+        new (): HTMLModalSuccessElement;
+    };
+    interface HTMLModalTournamentEditElement extends Components.ModalTournamentEdit, HTMLStencilElement {
+    }
+    var HTMLModalTournamentEditElement: {
+        prototype: HTMLModalTournamentEditElement;
+        new (): HTMLModalTournamentEditElement;
     };
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
@@ -126,8 +136,9 @@ declare global {
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
-        "floodteam-header-bar": HTMLFloodteamHeaderBarElement;
         "modal-login": HTMLModalLoginElement;
+        "modal-success": HTMLModalSuccessElement;
+        "modal-tournament-edit": HTMLModalTournamentEditElement;
     }
 }
 declare namespace LocalJSX {
@@ -152,6 +163,8 @@ declare namespace LocalJSX {
     }
     interface AppTournament {
         "db"?: DatabaseService;
+        "onDbdModalOpen"?: (event: CustomEvent<any>) => void;
+        "onDbdPopoverOpen"?: (event: CustomEvent<any>) => void;
         "tournamentId"?: string;
     }
     interface AppTournamentList {
@@ -171,9 +184,13 @@ declare namespace LocalJSX {
     }
     interface DbdgroupRouter {
     }
-    interface FloodteamHeaderBar {
-    }
     interface ModalLogin {
+    }
+    interface ModalSuccess {
+    }
+    interface ModalTournamentEdit {
+        "tournament"?: Tournament;
+        "tournamentId"?: string;
     }
     interface IntrinsicElements {
         "app-admin": AppAdmin;
@@ -185,8 +202,9 @@ declare namespace LocalJSX {
         "dbd-tournament-card": DbdTournamentCard;
         "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
-        "floodteam-header-bar": FloodteamHeaderBar;
         "modal-login": ModalLogin;
+        "modal-success": ModalSuccess;
+        "modal-tournament-edit": ModalTournamentEdit;
     }
 }
 export { LocalJSX as JSX };
@@ -202,8 +220,9 @@ declare module "@stencil/core" {
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
-            "floodteam-header-bar": LocalJSX.FloodteamHeaderBar & JSXBase.HTMLAttributes<HTMLFloodteamHeaderBarElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
+            "modal-success": LocalJSX.ModalSuccess & JSXBase.HTMLAttributes<HTMLModalSuccessElement>;
+            "modal-tournament-edit": LocalJSX.ModalTournamentEdit & JSXBase.HTMLAttributes<HTMLModalTournamentEditElement>;
         }
     }
 }

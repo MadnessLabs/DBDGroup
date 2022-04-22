@@ -10,10 +10,10 @@ const httpRequest_1 = require("./units/httpRequest/httpRequest");
 exports.oauth = functions.https.onRequest(async (request, response) => {
     var _a;
     const code = ((_a = request === null || request === void 0 ? void 0 : request.query) === null || _a === void 0 ? void 0 : _a.code) || null;
-    const creds = Buffer.from(`${env_1.default("discord.id")}:${env_1.default("discord.secret")}`).toString("base64");
+    const creds = Buffer.from(`${(0, env_1.default)("discord.id")}:${(0, env_1.default)("discord.secret")}`).toString("base64");
     try {
         console.log(code, creds);
-        const oauthData = await httpRequest_1.default({
+        const oauthData = await (0, httpRequest_1.default)({
             host: "discord.com",
             path: "/api/oauth2/token",
             port: 443,

@@ -1,7 +1,7 @@
 import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
 import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
-import { modalController } from '@ionic/core';
+import { modalController, popoverController } from "@ionic/core";
 
 @Component({
   tag: "dbdgroup-router",
@@ -53,6 +53,7 @@ export class AppRoot implements ComponentInterface {
     fireenjin: this.fireenjin,
   };
   modal: HTMLIonModalElement;
+  popover: HTMLIonPopoverElement;
 
   @Listen("swUpdate", { target: "window" })
   async onUpdate() {
@@ -68,6 +69,17 @@ export class AppRoot implements ComponentInterface {
     if (confirm("There is an update, would you like to reload now?")) {
       window.location.reload();
     }
+  }
+
+  @Listen("dbdPopoverOpen", { target: "document" })
+  async presentPopover(event: CustomEvent) {
+    this.popover = await popoverController.create({
+      event: event?.detail?.event,
+      component: event?.detail?.component,
+      componentProps: event?.detail?.componentProps,
+      cssClass: event?.detail?.cssClass,
+    });
+    await this.popover.present();
   }
 
   @Listen("dbdModalOpen", { target: "document" })
@@ -118,7 +130,7 @@ export class AppRoot implements ComponentInterface {
           componentProps={this.componentProps}
         />
         <ion-route
-          url="/tournament"
+          url="/tournament/:tournamentId"
           component="app-tournament"
           componentProps={this.componentProps}
         />

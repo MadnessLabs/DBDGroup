@@ -32,16 +32,16 @@
   "devDependencies": {
     "@fireenjin/cli": "^1.0.20",
     "@stencil/core": "^2.13.0",
-    "firebase-tools": "^10.6.0",
+    "firebase-tools": "^10.7.1",
     "rollup-plugin-node-polyfills": "^0.2.1",
-    "tslib": "^2.3.1",
+    "tslib": "^2.4.0",
     "typescript": "^4.6.3",
     "workbox-build": "^4.3.1"
   },
   "dependencies": {
-    "@fireenjin/components": "^1.2.20",
-    "@fireenjin/sdk": "^1.2.51",
-    "@ionic/core": "^6.1.1",
+    "@fireenjin/components": "^1.2.21",
+    "@fireenjin/sdk": "^1.2.53",
+    "@ionic/core": "^6.1.2",
     "firebase": "^9.6.11"
   }
 }

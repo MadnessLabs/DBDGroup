@@ -1,10 +1,9 @@
 declare type Tournament = {
   id?: string;
-  survivors: {
-    user: User;
-    bloodpoints: number;
-  }[];
-  killers: {
+  survivors?: Survivor[];
+  name?: string;
+  rules?: string[];
+  killers?: {
     user: User;
     killerpoints: number;
     generatorsLeft: number;
@@ -12,6 +11,11 @@ declare type Tournament = {
     kills: number;
     survivorsEscaped: number;
   }[];
+};
+
+declare type Survivor = {
+  user: User;
+  bloodpoints: number;
 };
 
 declare type User = {

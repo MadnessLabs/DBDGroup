@@ -12,7 +12,9 @@ export declare class AppRoot implements ComponentInterface {
     fireenjin: FireEnjin;
   };
   modal: HTMLIonModalElement;
+  popover: HTMLIonPopoverElement;
   onUpdate(): Promise<void>;
+  presentPopover(event: CustomEvent): Promise<void>;
   presentModal(event: CustomEvent): Promise<void>;
   closeModal(): Promise<void>;
   componentWillLoad(): Promise<void>;
