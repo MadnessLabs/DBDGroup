@@ -219,6 +219,7 @@ declare namespace LocalJSX {
         "tournamentId"?: string;
     }
     interface ModalTournamentEdit {
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }

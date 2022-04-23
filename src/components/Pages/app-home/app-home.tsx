@@ -24,7 +24,16 @@ export class AppHome {
 
   render() {
     return [
-      <ion-header></ion-header>,
+      <ion-header>
+        <ion-toolbar color="light">
+          <ion-buttons slot="start">
+            <ion-button href="/" color="primary">
+              <ion-icon name="arrow-back" color="primary" />
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Dead By Daylight Group</ion-title>
+        </ion-toolbar>
+      </ion-header>,
       <ion-content>
         <ion-grid>
           <ion-row>

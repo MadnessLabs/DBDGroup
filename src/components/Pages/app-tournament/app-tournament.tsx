@@ -22,10 +22,10 @@ export class AppTournament {
   @State() tournament: Tournament;
 
   async componentDidLoad() {
-    this.tournament = (await this.db.find(
-      "tournaments",
-      this.tournamentId
-    )) as Tournament;
+    this.db.watchDocument("tournaments", this.tournamentId, ({ data }) => {
+      console.log(data);
+      this.tournament = data;
+    });
   }
 
   render() {
