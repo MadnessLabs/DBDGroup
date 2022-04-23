@@ -93,6 +93,8 @@ export class AppTournament {
             name={this.tournament?.name}
             rules={this.tournament?.rules}
             dateTime={this.tournament?.id}
+            tournamentId={this.tournamentId}
+            tournament={this.tournament}
           />
           <ion-row
             style={{

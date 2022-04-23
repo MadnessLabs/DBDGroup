@@ -1,15 +1,27 @@
-import { Build, Component, h, Prop } from "@stencil/core";
+import { DatabaseService } from "@fireenjin/sdk";
+import { Component, h, Prop, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: "dbd-tournament-details",
   styleUrl: "dbd-tournament-details.css",
 })
 export class DbdTournamentDetails {
+  @Event() dbdModalOpen: EventEmitter<{
+    component?: string;
+    cssClass?: string;
+    componentProps?: any;
+  }>;
+
   @Prop() image: string =
     "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y";
   @Prop() name: string;
   @Prop() dateTime: string;
   @Prop() rules: string[];
+  @Prop() tournamentId: string;
+  @Prop() db: DatabaseService;
+  @Prop() tournament: Tournament
+
+  
   // @Prop() component: string;
   // @Prop() componentProps?: any;
   // @Prop() cssClass?: string;
@@ -18,9 +30,6 @@ export class DbdTournamentDetails {
   // @Prop() limit: number;
   // @Prop() query: string;
 
-  async componentDidLoad() {
-    if (!Build?.isBrowser) return;
-  }
 
   render() {
     return (
@@ -39,16 +48,19 @@ export class DbdTournamentDetails {
             <ion-label>
               <h2>{this.name}</h2>
               <h2>{this.dateTime}</h2>
-              <ion-button size="cover" id="trigger-button">
+              <ion-button
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-tournament-detail",
+                    componentProps: {
+                      tournament: this.tournament,
+                      tournamentId: this.tournamentId,
+                    },
+                  })
+                }
+              >
                 Tournament Details
               </ion-button>
-              {(this.rules || []).find((rule) => (
-              <ion-popover trigger="trigger-button">
-                <ul>
-                    <li>{rule}</li>
-                </ul>
-              </ion-popover>
-                ))}
             </ion-label>
           </ion-item>
         </ion-card>
