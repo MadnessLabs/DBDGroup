@@ -1,0 +1,1 @@
+import{r as c,h as s}from"./p-a77c936b.js";const n=class{constructor(s){c(this,s)}render(){return s("ion-content",null,s("ion-icon",{name:"checkmark-circle"}),s("h1",null,"Success"))}};n.style="";export{n as modal_success}

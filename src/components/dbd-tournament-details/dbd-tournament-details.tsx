@@ -19,9 +19,8 @@ export class DbdTournamentDetails {
   @Prop() rules: string[];
   @Prop() tournamentId: string;
   @Prop() db: DatabaseService;
-  @Prop() tournament: Tournament
+  @Prop() tournament: Tournament;
 
-  
   // @Prop() component: string;
   // @Prop() componentProps?: any;
   // @Prop() cssClass?: string;
@@ -29,7 +28,6 @@ export class DbdTournamentDetails {
   // @Prop() endpoint: string;
   // @Prop() limit: number;
   // @Prop() query: string;
-
 
   render() {
     return (
@@ -48,7 +46,6 @@ export class DbdTournamentDetails {
             <ion-label>
               <h2>{this.name}</h2>
               <h2>{this.dateTime}</h2>
-<<<<<<< HEAD
               <ion-button
                 onClick={() =>
                   this.dbdModalOpen.emit({
@@ -62,16 +59,6 @@ export class DbdTournamentDetails {
               >
                 Tournament Details
               </ion-button>
-=======
-              <ion-button id="trigger-button">Tournament Details</ion-button>
-              {(this.rules || []).find((rule) => (
-                <ion-popover trigger="trigger-button">
-                  <ul>
-                    <li>{rule}</li>
-                  </ul>
-                </ion-popover>
-              ))}
->>>>>>> master
             </ion-label>
           </ion-item>
         </ion-card>
