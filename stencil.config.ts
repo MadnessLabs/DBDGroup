@@ -7,9 +7,6 @@ export const config: Config = {
   namespace: "dbdgroup",
   outputTargets: [
     {
-      type: "dist",
-    },
-    {
       type: "www",
       serviceWorker: {
         swSrc: "src/sw.js",
