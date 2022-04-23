@@ -137,7 +137,7 @@ ion-card {
 
 ion-content {
   --background:transparent;
-  background: url("/assets/dbdtreeBkgd.png");
+  background: url("/assets/background.png");
   background-position: center;
   width: 100%;
   background-repeat: no-repeat;
