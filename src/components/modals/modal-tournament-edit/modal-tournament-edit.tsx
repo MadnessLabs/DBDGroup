@@ -37,6 +37,22 @@ export class ModalTournamentEdit {
                 label: "No Offerings",
                 value: "no offerings",
               },
+              {
+                label: "No Keys",
+                value: "no keys",
+              },
+              {
+                label: "No Iridescent Items",
+                value: "no iridescent items",
+              },
+              {
+                label: "Killer Picks Map",
+                value: "killer picks map",
+              },
+              {
+                label: "Random Maps",
+                value: "random maps",
+              },
             ]}
           />
         </fireenjin-form>

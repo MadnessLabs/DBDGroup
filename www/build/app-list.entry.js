@@ -44,7 +44,7 @@ let AppList = class {
       } }, h("h1", { style: {
         "font-family": "sans-serif",
         color: "white",
-      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" }, h("ion-card", null, h("ion-card-header", null, h("ion-row", null, h("ion-col", null, h("ion-card-title", null, " Tournament Title ")), h("ion-row", null, h("ion-row", null, h("ion-card-content", null, " Date and Time "))), h("ion-card-content", null, " TLDR Tourney Rules "), h("ion-item", null, h("a", { href: "http://localhost:3333/tournament" }, h("ion-icon", { name: "chevron-forward-outline" })))))))))));
+      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" }, h("ion-card", null, h("ion-card-header", null, h("ion-row", null, h("ion-col", null, h("ion-content", null, h("dbd-tournament-card", null))), h("ion-item", null)))))))));
   }
 };
 AppList.style = appListCss;

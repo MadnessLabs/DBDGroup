@@ -98,21 +98,11 @@ export class AppList {
                 <ion-card-header>
                   <ion-row>
                     <ion-col>
-                      <ion-card-title> Tournament Title </ion-card-title>
+                      <ion-content>
+                        <dbd-tournament-card />
+                      </ion-content>
                     </ion-col>
-                    <ion-row>
-                      <ion-row>
-                        <ion-card-content> Date and Time </ion-card-content>
-                      </ion-row>
-                    </ion-row>
-                    <ion-card-content> TLDR Tourney Rules </ion-card-content>
-                    <ion-item>
-                      
-                      
-                      <a href="http://localhost:3333/tournament"><ion-icon name="chevron-forward-outline"></ion-icon>
-                      </a>
-                    
-                    </ion-item>
+                    <ion-item></ion-item>
                   </ion-row>
                 </ion-card-header>
               </ion-card>
