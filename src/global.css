@@ -136,33 +136,10 @@ ion-card {
 }
 
 ion-content {
-  --background: no-repeat center url("/assets/dbdtreeBkgd.png");
-}
-
-/*  This is my original fix for the background
-
-ion-content {
-  --background: none;
+  --background:transparent;
   background: url("/assets/dbdtreeBkgd.png");
   background-position: center;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-}  */
-
-ion-content:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 30%;
-  min-width: 20 0px;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%);
-  bottom: 0;
-  background-image: url(/assets/dbdlogoblack.png);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  opacity: 1;
-}
+}  
