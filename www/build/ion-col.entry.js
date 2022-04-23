@@ -1,5 +1,5 @@
-import { r as registerInstance, q as forceUpdate, h, m as Host } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, q as forceUpdate, h, m as Host } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -31,7 +31,7 @@ const win = typeof window !== 'undefined' ? window : undefined;
 // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
 const SUPPORTS_VARS = win && !!(win.CSS && win.CSS.supports && win.CSS.supports('--a: 0'));
 const BREAKPOINTS = ['', 'xs', 'sm', 'md', 'lg', 'xl'];
-let Col = class {
+const Col = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

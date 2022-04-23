@@ -1,5 +1,5 @@
-import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { f as findIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
 import { e as clamp } from './helpers-e7913fb8.js';
 import './index-41de208d.js';
@@ -40,7 +40,7 @@ const footerIosCss = "ion-footer{display:block;position:relative;order:1;width:1
 
 const footerMdCss = "ion-footer{display:block;position:relative;order:1;width:100%;z-index:10}ion-footer ion-toolbar:last-of-type{padding-bottom:var(--ion-safe-area-bottom, 0)}.footer-md::before{left:0;top:-2px;bottom:auto;background-position:left 0 top 0;position:absolute;width:100%;height:2px;background-image:url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==\");background-repeat:repeat-x;content:\"\"}[dir=rtl] .footer-md::before,:host-context([dir=rtl]) .footer-md::before{left:unset;right:unset;right:0}[dir=rtl] .footer-md::before,:host-context([dir=rtl]) .footer-md::before{background-position:right 0 top 0}.footer-md.ion-no-border::before{display:none}";
 
-let Footer = class {
+const Footer = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     /**

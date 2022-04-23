@@ -1,8 +1,8 @@
-import { r as registerInstance, k as Build, h, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, k as Build, h, n as getElement } from './index-a091ab89.js';
 
 const inputStateCss = "fireenjin-input-state ion-select{color:var(--ion-color-dark);font-family:var(--ion-font-family);--padding-start:0;max-width:auto}";
 
-let InputState = class {
+const InputState = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.stateList = {

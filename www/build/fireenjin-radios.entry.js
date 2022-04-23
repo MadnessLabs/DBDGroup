@@ -1,8 +1,8 @@
-import { r as registerInstance, i as createEvent, k as Build, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, k as Build, h } from './index-a091ab89.js';
 
 const radiosCss = "";
 
-let Radios = class {
+const Radios = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.fireenjinFetch = createEvent(this, "fireenjinFetch", 7);

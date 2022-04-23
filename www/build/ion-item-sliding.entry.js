@@ -1,5 +1,5 @@
-import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { h as isEndSide } from './helpers-e7913fb8.js';
 
 const itemSlidingCss = "ion-item-sliding{display:block;position:relative;width:100%;overflow:hidden;user-select:none}ion-item-sliding .item{user-select:none}.item-sliding-active-slide .item{position:relative;transition:transform 500ms cubic-bezier(0.36, 0.66, 0.04, 1);opacity:1;z-index:2;pointer-events:none;will-change:transform}.item-sliding-active-swipe-end .item-options-end .item-option-expandable{padding-left:100%;order:1;transition-duration:0.6s;transition-property:padding-left}[dir=rtl] .item-sliding-active-swipe-end .item-options-end .item-option-expandable,:host-context([dir=rtl]) .item-sliding-active-swipe-end .item-options-end .item-option-expandable{order:-1}.item-sliding-active-swipe-start .item-options-start .item-option-expandable{padding-right:100%;order:-1;transition-duration:0.6s;transition-property:padding-right}[dir=rtl] .item-sliding-active-swipe-start .item-options-start .item-option-expandable,:host-context([dir=rtl]) .item-sliding-active-swipe-start .item-options-start .item-option-expandable{order:1}";
@@ -7,7 +7,7 @@ const itemSlidingCss = "ion-item-sliding{display:block;position:relative;width:1
 const SWIPE_MARGIN = 30;
 const ELASTIC_FACTOR = 0.55;
 let openSlidingItem;
-let ItemSliding = class {
+const ItemSliding = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionDrag = createEvent(this, "ionDrag", 7);

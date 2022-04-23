@@ -1,22 +1,22 @@
-import { r as registerInstance, k as Build, h } from './index-0fc14935.js';
+import { r as registerInstance, k as Build, h } from './index-a091ab89.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
 import { E as ErrorFactory, L as Logger, b as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, i as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, g as getModularInstance, f as base64Decode, h as getUA, j as isIE, k as createSubscribe, l as querystringDecode, m as extractQuerystring, n as isEmpty, o as _registerComponent, C as Component, r as registerVersion, p as getApp, s as stringify, t as jsonEval, u as contains, v as stringToByteArray, w as Sha1, x as base64, y as assert, z as isNodeSdk, A as deepCopy, B as base64Encode, D as stringLength, G as Deferred, H as safeGet, I as isAdmin, J as isValidFormat, K as assertionError, M as map, N as errorPrefix, O as createMockUserToken, P as initializeApp, Q as Dc, R as wc, U as Nc, a as al, V as ll, W as hl, X as pc, Y as rl, T as Tc, Z as el, $ as cl, a0 as fl, a1 as kh, a2 as Oh, a3 as $h, a4 as xh } from './index.esm2017-2ab2ab81.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
-import './index-b433e772.js';
-import { p as popoverController, m as modalController } from './overlays-82a22a68.js';
+import './index-8d58a465.js';
+import { p as popoverController, m as modalController } from './overlays-d4c0b42d.js';
 import './global-e1c7e609.js';
-import './utils-c2726041.js';
+import './utils-6d7b2653.js';
 import './animation-f4dcdfa9.js';
 import './helpers-e7913fb8.js';
-import './ios.transition-c755022e.js';
-import './index-18a3e846.js';
-import './md.transition-73af2711.js';
+import './ios.transition-acae6065.js';
+import './index-db11ab58.js';
+import './md.transition-78076c14.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
-import './ionic-global-140a6091.js';
+import './ionic-global-65ffbf98.js';
 import './index-be6112f8.js';
-import './index-78189bad.js';
+import './index-310a046e.js';
 import './hardware-back-button-fa04d6e9.js';
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
@@ -171,7 +171,7 @@ var TwitterConnectOriginal = /** @class */ (function (_super) {
 }(IonicNativePlugin));
 var TwitterConnect = new TwitterConnectOriginal();
 
-/*! *****************************************************************************
+/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -280,7 +280,11 @@ function __generator(thisArg, body) {
 
 var __createBinding = Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -409,6 +413,11 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+function __classPrivateFieldIn(state, receiver) {
+    if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new TypeError("Cannot use 'in' operator on non-object");
+    return typeof state === "function" ? receiver === state : state.has(receiver);
 }
 
 /**
@@ -24953,7 +24962,7 @@ class DatabaseService {
         return rl(this.collection(path));
     }
     document(path, id) {
-        return id ? Tc(this.collection(path), id) : Tc(this.service, path);
+        return id ? Tc(this.service, path, id) : Tc(this.service, path);
     }
     getDocument(path, id) {
         return el(this.document(path, id));
@@ -33913,7 +33922,7 @@ class FireEnjin {
                     data: input?.data,
                 })
             : this.client.request(endpoint, input, {
-                method,
+                method: input?.id ? "put" : "post",
             }), {
             endpoint,
             event,
@@ -34003,7 +34012,7 @@ var version = "9.6.11";
  */
 registerVersion(name, version, 'app');
 
-let AppRoot = class {
+const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.app = Build.isBrowser

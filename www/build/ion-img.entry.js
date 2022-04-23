@@ -1,10 +1,10 @@
-import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { i as inheritAttributes } from './helpers-e7913fb8.js';
 
 const imgCss = ":host{display:block;object-fit:contain}img{display:block;width:100%;height:100%;object-fit:inherit;object-position:inherit}";
 
-let Img = class {
+const Img = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionImgWillLoad = createEvent(this, "ionImgWillLoad", 7);

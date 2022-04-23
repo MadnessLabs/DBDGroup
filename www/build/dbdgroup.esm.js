@@ -1,9 +1,9 @@
-import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-0fc14935.js';
-import { g as globalScripts } from './app-globals-41a4c72c.js';
-import './ionic-global-140a6091.js';
+import { B as BUILD, c as consoleDevInfo, p as plt, w as win, H, d as doc, N as NAMESPACE, a as promiseResolve, b as bootstrapLazy } from './index-a091ab89.js';
+import { g as globalScripts } from './app-globals-2374f3fa.js';
+import './ionic-global-65ffbf98.js';
 
 /*
- Stencil Client Patch Browser v2.13.0 | MIT Licensed | https://stenciljs.com
+ Stencil Client Patch Browser v2.15.1 | MIT Licensed | https://stenciljs.com
  */
 const getDynamicImportFunction = (namespace) => `__sc_import_${namespace.replace(/\s|-/g, '_')}`;
 const patchBrowser = () => {
@@ -21,6 +21,10 @@ const patchBrowser = () => {
     }
     if (BUILD.profile && !performance.mark) {
         // not all browsers support performance.mark/measure (Safari 10)
+        // because the mark/measure APIs are designed to write entries to a buffer in the browser that does not exist,
+        // simply stub the implementations out.
+        // TODO(STENCIL-323): Remove this patch when support for older browsers is removed (breaking)
+        // @ts-ignore
         performance.mark = performance.measure = () => {
             /*noop*/
         };
@@ -58,7 +62,7 @@ const patchBrowser = () => {
         if (BUILD.dynamicImportShim && !win.customElements) {
             // module support, but no custom elements support (Old Edge)
             // @ts-ignore
-            return import(/* webpackChunkName: "polyfills-dom" */ './dom-c5ed0ba5.js').then(() => opts);
+            return import(/* webpackChunkName: "polyfills-dom" */ './dom-1d32cb7b.js').then(() => opts);
         }
     }
     return promiseResolve(opts);

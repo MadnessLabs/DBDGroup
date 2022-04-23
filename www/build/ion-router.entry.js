@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, n as getElement } from './index-a091ab89.js';
 import { c as componentOnReady, n as debounce } from './helpers-e7913fb8.js';
 
 /*!
@@ -541,7 +541,7 @@ const flattenNode = (chain, chains, node) => {
   }
 };
 
-let Router = class {
+const Router = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionRouteWillChange = createEvent(this, "ionRouteWillChange", 7);

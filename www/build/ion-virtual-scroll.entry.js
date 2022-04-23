@@ -1,4 +1,4 @@
-import { r as registerInstance, o as readTask, j as writeTask, q as forceUpdate, h, m as Host, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, o as readTask, j as writeTask, q as forceUpdate, h, m as Host, n as getElement } from './index-a091ab89.js';
 import { c as componentOnReady } from './helpers-e7913fb8.js';
 
 /*!
@@ -261,7 +261,7 @@ const positionForIndex = (index, cells, heightIndex) => {
 
 const virtualScrollCss = "ion-virtual-scroll{display:block;position:relative;width:100%;contain:strict;user-select:none}ion-virtual-scroll>.virtual-loading{opacity:0}ion-virtual-scroll>.virtual-item{position:absolute !important;top:0 !important;right:0 !important;left:0 !important;transition-duration:0ms;will-change:transform}";
 
-let VirtualScroll = class {
+const VirtualScroll = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.range = { offset: 0, length: 0 };

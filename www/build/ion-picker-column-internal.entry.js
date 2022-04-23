@@ -1,5 +1,5 @@
-import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { r as raf, g as getElementRoot } from './helpers-e7913fb8.js';
 import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-a9e94599.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
@@ -8,7 +8,7 @@ const pickerColumnInternalIosCss = ":host{padding-left:16px;padding-right:16px;p
 
 const pickerColumnInternalMdCss = ":host{padding-left:16px;padding-right:16px;padding-top:0px;padding-bottom:0px;height:200px;outline:none;font-size:22px;scroll-snap-type:y mandatory;overflow-x:hidden;overflow-y:scroll;scrollbar-width:none;text-align:center}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host::-webkit-scrollbar{display:none}:host .picker-item{height:34px;line-height:34px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;scroll-snap-align:center}:host .picker-item-empty{scroll-snap-align:none}:host(.picker-column-active) .picker-item.picker-item-active{color:var(--ion-color-base)}@media (any-hover: hover){:host(:focus){outline:none;background:rgba(var(--ion-color-base-rgb), 0.2)}}:host .picker-item-active{color:var(--ion-color-base)}";
 
-let PickerColumnInternal = class {
+const PickerColumnInternal = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionChange = createEvent(this, "ionChange", 7);

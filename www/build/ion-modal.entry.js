@@ -1,12 +1,12 @@
-import { r as registerInstance, i as createEvent, j as writeTask, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, j as writeTask, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode, c as config } from './ionic-global-65ffbf98.js';
 import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { e as clamp, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { KEYBOARD_DID_OPEN } from './keyboard-7e8329b3.js';
 import { p as printIonWarning } from './index-41de208d.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-82a22a68.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-d4c0b42d.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-18a3e846.js';
+import { d as deepReady } from './index-db11ab58.js';
 import { c as createAnimation } from './animation-f4dcdfa9.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { createGesture } from './index-dd414b33.js';
@@ -909,7 +909,7 @@ const modalIosCss = ":host{--width:100%;--min-width:auto;--max-width:auto;--heig
 
 const modalMdCss = ":host{--width:100%;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--overflow:hidden;--border-radius:0;--border-width:0;--border-style:none;--border-color:transparent;--background:var(--ion-background-color, #fff);--box-shadow:none;--backdrop-opacity:0;left:0;right:0;top:0;bottom:0;display:flex;position:absolute;align-items:center;justify-content:center;outline:none;contain:strict}.modal-wrapper,ion-backdrop{pointer-events:auto}:host(.overlay-hidden){display:none}.modal-wrapper,.modal-shadow{border-radius:var(--border-radius);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);box-shadow:var(--box-shadow);overflow:var(--overflow);z-index:10}.modal-shadow{position:absolute;background:transparent}@media only screen and (min-width: 768px) and (min-height: 600px){:host{--width:600px;--height:500px;--ion-safe-area-top:0px;--ion-safe-area-bottom:0px;--ion-safe-area-right:0px;--ion-safe-area-left:0px}}@media only screen and (min-width: 768px) and (min-height: 768px){:host{--width:600px;--height:600px}}.modal-handle{left:0px;right:0px;top:5px;border-radius:8px;margin-left:auto;margin-right:auto;position:absolute;width:36px;height:5px;transform:translateZ(0);background:var(--ion-color-step-350, #c0c0be);z-index:11}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.modal-handle{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}:host(.modal-sheet){--height:calc(100% - (var(--ion-safe-area-top) + 10px))}:host(.modal-sheet) .modal-wrapper,:host(.modal-sheet) .modal-shadow{position:absolute;bottom:0}:host{--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}@media only screen and (min-width: 768px) and (min-height: 600px){:host{--border-radius:2px;--box-shadow:0 28px 48px rgba(0, 0, 0, 0.4)}}.modal-wrapper{transform:translate3d(0,  40px,  0);opacity:0.01}";
 
-let Modal = class {
+const Modal = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.didPresent = createEvent(this, "ionModalDidPresent", 7);

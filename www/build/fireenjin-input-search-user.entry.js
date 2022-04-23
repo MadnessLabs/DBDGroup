@@ -1,8 +1,8 @@
-import { r as registerInstance, i as createEvent, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, h } from './index-a091ab89.js';
 
 const inputSearchUserCss = "";
 
-let InputSearchUser = class {
+const InputSearchUser = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionInput = createEvent(this, "ionInput", 7);

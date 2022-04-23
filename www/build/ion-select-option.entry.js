@@ -1,9 +1,9 @@
-import { r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 
 const selectOptionCss = ":host{display:none}";
 
-let SelectOption = class {
+const SelectOption = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.inputId = `ion-selopt-${selectOptionIds++}`;

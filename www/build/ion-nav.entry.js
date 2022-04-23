@@ -1,8 +1,8 @@
-import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode, c as config } from './ionic-global-65ffbf98.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { j as assert, s as shallowEqualStringMap } from './helpers-e7913fb8.js';
-import { l as lifecycle, L as LIFECYCLE_WILL_UNLOAD, a as LIFECYCLE_WILL_LEAVE, b as LIFECYCLE_DID_LEAVE, t as transition, s as setPageHidden } from './index-18a3e846.js';
+import { l as lifecycle, L as LIFECYCLE_WILL_UNLOAD, a as LIFECYCLE_WILL_LEAVE, b as LIFECYCLE_DID_LEAVE, t as transition, s as setPageHidden } from './index-db11ab58.js';
 import { a as attachComponent } from './framework-delegate-49dc7795.js';
 
 /*!
@@ -83,7 +83,7 @@ const convertToViews = (pages) => {
 
 const navCss = ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}";
 
-let Nav = class {
+const Nav = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionNavWillLoad = createEvent(this, "ionNavWillLoad", 7);

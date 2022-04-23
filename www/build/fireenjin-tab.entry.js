@@ -1,8 +1,8 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 
 const tabCss = "fireenjin-tab .tab-wrapper{opacity:0;pointer-events:none;height:0;display:block;transition:0.3s ease opacity;overflow:hidden}fireenjin-tab .tab-wrapper.tab-selected{opacity:1;pointer-events:all;height:auto;overflow:auto}";
 
-let Tab = class {
+const Tab = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.selected = false;

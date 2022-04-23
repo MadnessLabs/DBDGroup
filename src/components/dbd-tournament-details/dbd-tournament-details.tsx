@@ -39,16 +39,14 @@ export class DbdTournamentDetails {
             <ion-label>
               <h2>{this.name}</h2>
               <h2>{this.dateTime}</h2>
-              <ion-button size="cover" id="trigger-button">
-                Tournament Details
-              </ion-button>
+              <ion-button id="trigger-button">Tournament Details</ion-button>
               {(this.rules || []).find((rule) => (
-              <ion-popover trigger="trigger-button">
-                <ul>
+                <ion-popover trigger="trigger-button">
+                  <ul>
                     <li>{rule}</li>
-                </ul>
-              </ion-popover>
-                ))}
+                  </ul>
+                </ion-popover>
+              ))}
             </ion-label>
           </ion-item>
         </ion-card>

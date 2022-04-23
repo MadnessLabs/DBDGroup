@@ -1,5 +1,5 @@
-import { r as registerInstance, i as createEvent, j as writeTask, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { c as config, g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, j as writeTask, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { c as config, g as getIonMode } from './ionic-global-65ffbf98.js';
 import { p as pointerCoord } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
 import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
@@ -8,7 +8,7 @@ const segmentIosCss = ":host{--ripple-color:currentColor;-moz-osx-font-smoothing
 
 const segmentMdCss = ":host{--ripple-color:currentColor;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:flex;position:relative;align-items:stretch;justify-content:center;width:100%;background:var(--background);font-family:var(--ion-font-family, inherit);text-align:center;contain:paint;user-select:none}:host(.segment-scrollable){justify-content:start;width:auto;overflow-x:auto}:host(.segment-scrollable::-webkit-scrollbar){display:none}:host{--background:transparent}:host(.segment-scrollable) ::slotted(ion-segment-button){min-width:auto}";
 
-let Segment = class {
+const Segment = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionChange = createEvent(this, "ionChange", 7);

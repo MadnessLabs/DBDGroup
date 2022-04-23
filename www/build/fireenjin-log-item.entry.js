@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 
 function toInteger(dirtyNumber) {
   if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
@@ -14629,7 +14629,7 @@ function yearsToQuarters(years) {
 
 const logItemCss = "fireenjin-log-item{display:block}fireenjin-log-item ion-label{margin-top:0}fireenjin-log-item fireenjin-json-viewer{max-height:60px;display:block;overflow:hidden;transition:all ease 0.3s}fireenjin-log-item:hover fireenjin-json-viewer{cursor:pointer;max-height:none}fireenjin-log-item h3{color:var(--ion-color-medium);text-indent:10px}";
 
-let LogItem = class {
+const LogItem = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

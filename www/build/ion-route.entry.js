@@ -1,6 +1,6 @@
-import { r as registerInstance, i as createEvent } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent } from './index-a091ab89.js';
 
-let Route = class {
+const Route = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionRouteDataChanged = createEvent(this, "ionRouteDataChanged", 7);

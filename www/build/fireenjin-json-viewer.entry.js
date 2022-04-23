@@ -1,4 +1,4 @@
-import { r as registerInstance, k as Build, h, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, k as Build, h, n as getElement } from './index-a091ab89.js';
 import { c as createCommonjsModule, a as commonjsGlobal } from './_commonjsHelpers-6cb8dacb.js';
 
 var jsonFormatter_umd = createCommonjsModule(function (module, exports) {
@@ -7,7 +7,7 @@ var jsonFormatter_umd = createCommonjsModule(function (module, exports) {
 
 const jsonViewerCss = "fireenjin-json-viewer{padding:10px;display:block;background:var(--ion-color-base-shade);border-radius:10px}";
 
-let JsonViewer = class {
+const JsonViewer = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.watcher = false;

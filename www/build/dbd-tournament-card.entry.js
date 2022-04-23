@@ -1,8 +1,8 @@
-import { r as registerInstance, k as Build, h, m as Host } from './index-0fc14935.js';
+import { r as registerInstance, k as Build, h, m as Host } from './index-a091ab89.js';
 
 const tournamentCardCss = "dbd-tournament-card{display:block}";
 
-let TournamentCard = class {
+const TournamentCard = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.image = "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y";

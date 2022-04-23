@@ -1,4 +1,4 @@
-import { r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, h, m as Host, n as getElement } from './index-a091ab89.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -23,7 +23,7 @@ const navLink = (el, routerDirection, component, componentProps, routerAnimation
   return Promise.resolve(false);
 };
 
-let NavLink = class {
+const NavLink = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     /**

@@ -1,5 +1,5 @@
-import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { g as getScrollElement, f as findIonContent, p as printIonContentErrorMsg } from './index-b3ce5ef6.js';
 import { e as clamp, i as inheritAttributes } from './helpers-e7913fb8.js';
 import { h as hostContext } from './theme-7ef00c83.js';
@@ -184,7 +184,7 @@ const headerIosCss = "ion-header{display:block;position:relative;order:-1;width:
 
 const headerMdCss = "ion-header{display:block;position:relative;order:-1;width:100%;z-index:10}ion-header ion-toolbar:first-of-type{padding-top:var(--ion-safe-area-top, 0)}.header-md::after{left:0;bottom:-5px;background-position:left 0 top -2px;position:absolute;width:100%;height:5px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMVEUAAAAAAAAAAAAAAAAAAABPDueNAAAABXRSTlMUCS0gBIh/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);background-repeat:repeat-x;content:\"\"}[dir=rtl] .header-md::after,:host-context([dir=rtl]) .header-md::after{left:unset;right:unset;right:0}[dir=rtl] .header-md::after,:host-context([dir=rtl]) .header-md::after{background-position:right 0 top -2px}.header-collapse-condense{display:none}.header-md.ion-no-border::after{display:none}";
 
-let Header = class {
+const Header = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.inheritedAttributes = {};

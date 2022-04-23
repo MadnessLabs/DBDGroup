@@ -1,8 +1,8 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 
 const popoverFilterCss = ".fireenjin-popover-filter-wrapper{--min-width:300px}";
 
-let PopoverFilter = class {
+const PopoverFilter = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

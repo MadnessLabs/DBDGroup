@@ -1,8 +1,8 @@
-import { r as registerInstance, k as Build, h } from './index-0fc14935.js';
+import { r as registerInstance, k as Build, h } from './index-a091ab89.js';
 
 const tournamentListCss = "app-tournament-list{display:block}";
 
-let PageTournamentList = class {
+const PageTournamentList = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.filters = {};

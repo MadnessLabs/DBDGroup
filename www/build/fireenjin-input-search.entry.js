@@ -1,19 +1,19 @@
-import { r as registerInstance, i as createEvent, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, h } from './index-a091ab89.js';
 import { D as Debounce } from './index-d436df2d.js';
-import './index-b433e772.js';
-import { p as popoverController } from './overlays-82a22a68.js';
+import './index-8d58a465.js';
+import { p as popoverController } from './overlays-d4c0b42d.js';
 import './_commonjsHelpers-6cb8dacb.js';
-import './utils-c2726041.js';
+import './utils-6d7b2653.js';
 import './animation-f4dcdfa9.js';
 import './helpers-e7913fb8.js';
-import './ios.transition-c755022e.js';
-import './index-18a3e846.js';
-import './md.transition-73af2711.js';
+import './ios.transition-acae6065.js';
+import './index-db11ab58.js';
+import './md.transition-78076c14.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
-import './ionic-global-140a6091.js';
+import './ionic-global-65ffbf98.js';
 import './index-be6112f8.js';
-import './index-78189bad.js';
+import './index-310a046e.js';
 import './hardware-back-button-fa04d6e9.js';
 
 /**
@@ -39,7 +39,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
         r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-let InputSearch = class {
+const InputSearch = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionInput = createEvent(this, "ionInput", 7);

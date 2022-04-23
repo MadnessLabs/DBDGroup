@@ -1,10 +1,10 @@
-import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, h, m as Host } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
 
 const textCss = ":host(.ion-color){color:var(--ion-color-base)}";
 
-let Text = class {
+const Text = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

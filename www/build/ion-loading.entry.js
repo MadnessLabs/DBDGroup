@@ -1,6 +1,6 @@
-import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode, c as config } from './ionic-global-140a6091.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, d as dismiss, e as eventMethod } from './overlays-82a22a68.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode, c as config } from './ionic-global-65ffbf98.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, d as dismiss, e as eventMethod } from './overlays-d4c0b42d.js';
 import { s as sanitizeDOMString } from './index-be6112f8.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
 import { c as createAnimation } from './animation-f4dcdfa9.js';
@@ -111,7 +111,7 @@ const loadingIosCss = ".sc-ion-loading-ios-h{--min-width:auto;--width:auto;--min
 
 const loadingMdCss = ".sc-ion-loading-md-h{--min-width:auto;--width:auto;--min-height:auto;--height:auto;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;font-family:var(--ion-font-family, inherit);contain:strict;touch-action:none;user-select:none;z-index:1001}.overlay-hidden.sc-ion-loading-md-h{display:none}.loading-wrapper.sc-ion-loading-md{display:flex;align-items:inherit;justify-content:inherit;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);opacity:0;z-index:10}.spinner-lines.sc-ion-loading-md,.spinner-lines-small.sc-ion-loading-md,.spinner-bubbles.sc-ion-loading-md,.spinner-circles.sc-ion-loading-md,.spinner-crescent.sc-ion-loading-md,.spinner-dots.sc-ion-loading-md{color:var(--spinner-color)}.sc-ion-loading-md-h{--background:var(--ion-color-step-50, #f2f2f2);--max-width:280px;--max-height:90%;--spinner-color:var(--ion-color-primary, #3880ff);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32);color:var(--ion-color-step-850, #262626);font-size:14px}.loading-wrapper.sc-ion-loading-md{border-radius:2px;padding-left:24px;padding-right:24px;padding-top:24px;padding-bottom:24px;box-shadow:0 16px 20px rgba(0, 0, 0, 0.4)}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.loading-wrapper.sc-ion-loading-md{padding-left:unset;padding-right:unset;-webkit-padding-start:24px;padding-inline-start:24px;-webkit-padding-end:24px;padding-inline-end:24px}}.loading-spinner.sc-ion-loading-md+.loading-content.sc-ion-loading-md{margin-left:16px}@supports (margin-inline-start: 0) or (-webkit-margin-start: 0){.loading-spinner.sc-ion-loading-md+.loading-content.sc-ion-loading-md{margin-left:unset;-webkit-margin-start:16px;margin-inline-start:16px}}";
 
-let Loading = class {
+const Loading = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.didPresent = createEvent(this, "ionLoadingDidPresent", 7);

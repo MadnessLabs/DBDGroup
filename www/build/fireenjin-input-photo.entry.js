@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-a091ab89.js';
 
 async function resizeImage(base64image, width = 1080, height = 1080) {
   return new Promise((resolve, reject) => {
@@ -68,7 +68,7 @@ async function resizeImage(base64image, width = 1080, height = 1080) {
 
 const inputPhotoCss = "fireenjin-input-photo .upload-wrapper{display:block;margin:0 auto;height:150px;width:150px;position:relative}fireenjin-input-photo .upload-wrapper .photo{position:relative;background:var(--ion-color-medium);border-radius:4px;border:2px solid var(--ion-color-light);height:150px;width:150px;margin:0 auto;display:block;background-repeat:no-repeat;background-size:cover;background-position:center;color:var(--ion-color-medium);font-size:75px;line-height:150px;text-align:center;font-weight:bolder}fireenjin-input-photo .upload-wrapper .photo.is-loading:before{border-radius:4px}fireenjin-input-photo .upload-wrapper .photo.is-loading:after{border-radius:4px}fireenjin-input-photo .upload-wrapper .photo:hover{cursor:pointer;border-color:var(--ion-color-primary)}fireenjin-input-photo input[type=\"file\"]{height:0;width:0;visibility:hidden;opacity:0;pointer-events:none;float:left}";
 
-let InputPhoto = class {
+const InputPhoto = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.fireenjinUpload = createEvent(this, "fireenjinUpload", 7);

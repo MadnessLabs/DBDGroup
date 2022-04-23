@@ -1,8 +1,8 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 
 const modalSuccessCss = "";
 
-let ModalSuccess = class {
+const ModalSuccess = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

@@ -1,8 +1,8 @@
-import { r as registerInstance, i as createEvent, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, h } from './index-a091ab89.js';
 
 const appHomeCss = "app-home ion-card{max-width:600px;margin:30px auto;display:block}";
 
-let AppHome = class {
+const AppHome = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.dbdModalOpen = createEvent(this, "dbdModalOpen", 7);

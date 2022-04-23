@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, k as Build, h } from './index-a091ab89.js';
 import { D as Debounce } from './index-d436df2d.js';
 import { c as createCommonjsModule, g as getDefaultExportFromCjs, a as commonjsGlobal, d as getAugmentedNamespace, b as commonjsRequire } from './_commonjsHelpers-6cb8dacb.js';
 
@@ -8777,7 +8777,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
         r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-let RenderTemplate = class {
+const RenderTemplate = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.fireenjinFetch = createEvent(this, "fireenjinFetch", 7);

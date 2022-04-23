@@ -1,6 +1,6 @@
-import { r as registerInstance, i as createEvent, h, m as Host } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, h, m as Host } from './index-a091ab89.js';
 
-let AppTournament = class {
+const AppTournament = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.dbdModalOpen = createEvent(this, "dbdModalOpen", 7);

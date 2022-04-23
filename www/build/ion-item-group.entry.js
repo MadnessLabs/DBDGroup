@@ -1,11 +1,11 @@
-import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, h, m as Host } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
 
 const itemGroupIosCss = "ion-item-group{display:block}";
 
 const itemGroupMdCss = "ion-item-group{display:block}";
 
-let ItemGroup = class {
+const ItemGroup = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, k as Build, h, n as getElement } from './index-a091ab89.js';
 
 /*!
  * Chart.js v3.7.1
@@ -13128,7 +13128,7 @@ const registerables = [
 
 const graphCss = "fireenjin-graph{font-family:var(\n    --fireenjin-graph-card-font-family,\n    var(--ion-font-family, Arial, Helvetica, sans-serif)\n  )}fireenjin-graph .graph-wrapper{max-width:300px;margin:0 auto;position:relative}fireenjin-graph canvas{z-index:1;position:relative}";
 
-let Graph = class {
+const Graph = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.fireenjinGraphTooltip = createEvent(this, "fireenjinGraphTooltip", 7);

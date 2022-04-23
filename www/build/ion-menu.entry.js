@@ -1,10 +1,10 @@
-import { r as registerInstance, i as createEvent, k as Build, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { c as config, g as getIonMode } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, k as Build, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { c as config, g as getIonMode } from './ionic-global-65ffbf98.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { GESTURE_CONTROLLER } from './index-dd414b33.js';
 import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-e7913fb8.js';
-import { m as menuController } from './index-78189bad.js';
-import { g as getOverlay } from './overlays-82a22a68.js';
+import { m as menuController } from './index-310a046e.js';
+import { g as getOverlay } from './overlays-d4c0b42d.js';
 import './hardware-back-button-fa04d6e9.js';
 import './animation-f4dcdfa9.js';
 
@@ -17,7 +17,7 @@ const mdEasing = 'cubic-bezier(0.0,0.0,0.2,1)';
 const iosEasingReverse = 'cubic-bezier(1, 0, 0.68, 0.28)';
 const mdEasingReverse = 'cubic-bezier(0.4, 0, 0.6, 1)';
 const focusableQueryString = '[tabindex]:not([tabindex^="-"]), input:not([type=hidden]):not([tabindex^="-"]), textarea:not([tabindex^="-"]), button:not([tabindex^="-"]), select:not([tabindex^="-"]), .ion-focusable:not([tabindex^="-"])';
-let Menu = class {
+const Menu = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.ionWillOpen = createEvent(this, "ionWillOpen", 7);

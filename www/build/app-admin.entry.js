@@ -1,11 +1,11 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 import { a as al, T as Tc } from './index.esm2017-2ab2ab81.js';
 import './process-es6-6fcfb3fc.js';
 import './global-e1c7e609.js';
 
 const appAdminCss = "";
 
-let AppAdmin = class {
+const AppAdmin = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.formData = {

@@ -1,8 +1,8 @@
-import { r as registerInstance, h } from './index-0fc14935.js';
+import { r as registerInstance, h } from './index-a091ab89.js';
 
 const flowCss = "fireenjin-flow .flow-controls{display:flex;justify-content:space-between}";
 
-let flow = class {
+const flow = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     /**

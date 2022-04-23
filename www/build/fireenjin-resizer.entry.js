@@ -1,4 +1,4 @@
-import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
+import { r as registerInstance, h, m as Host } from './index-a091ab89.js';
 
 const styles = {
   top: {
@@ -62,7 +62,7 @@ const styles = {
     cursor: 'nw-resize',
   },
 };
-let Resizer = class {
+const Resizer = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }

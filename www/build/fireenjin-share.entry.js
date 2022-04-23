@@ -1,4 +1,4 @@
-import { r as registerInstance, i as createEvent, k as Build, h } from './index-0fc14935.js';
+import { r as registerInstance, i as createEvent, k as Build, h } from './index-a091ab89.js';
 import { c as createCommonjsModule, a as commonjsGlobal, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
 
 var clipboard = createCommonjsModule(function (module, exports) {
@@ -884,7 +884,7 @@ const ClipboardJS = /*@__PURE__*/getDefaultExportFromCjs(clipboard);
 
 const shareCss = "fireenjin-share ion-item:hover{cursor:pointer}fireenjin-share .share-twitter ion-icon{color:#1da1f3}fireenjin-share .share-twitter ion-icon svg{fill:#1da1f3}fireenjin-share .share-twitter:hover .item{color:#1da1f3}fireenjin-share .share-facebook ion-icon{color:#3b5998}fireenjin-share .share-facebook ion-icon svg{fill:#3b5998}fireenjin-share .share-facebook:hover .item{color:#3b5998}fireenjin-share .share-google ion-icon{color:#dd4b38}fireenjin-share .share-google ion-icon svg{fill:#dd4b38}fireenjin-share .share-google:hover .item{color:#dd4b38}";
 
-let Share = class {
+const Share = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.fireenjinShareClose = createEvent(this, "fireenjinShareClose", 7);

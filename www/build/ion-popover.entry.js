@@ -1,10 +1,10 @@
-import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-0fc14935.js';
-import { g as getIonMode, a as isPlatform } from './ionic-global-140a6091.js';
+import { r as registerInstance, i as createEvent, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { g as getIonMode, a as isPlatform } from './ionic-global-65ffbf98.js';
 import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { g as getElementRoot, r as raf, b as addEventListener } from './helpers-e7913fb8.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-82a22a68.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-d4c0b42d.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-18a3e846.js';
+import { d as deepReady } from './index-db11ab58.js';
 import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './hardware-back-button-fa04d6e9.js';
 
@@ -958,7 +958,7 @@ const popoverIosCss = ":host{--background:var(--ion-background-color, #fff);--mi
 
 const popoverMdCss = ":host{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;--offset-x:0px;--offset-y:0px;left:0;right:0;top:0;bottom:0;display:flex;position:fixed;align-items:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}:host(.popover-nested){pointer-events:none}:host(.popover-nested) .popover-wrapper{pointer-events:auto}:host(.overlay-hidden){display:none}.popover-wrapper{opacity:0;z-index:10}.popover-content{display:flex;position:absolute;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px;display:flex;flex-direction:column;overflow:hidden}:host(.popover-nested.popover-side-left){--offset-x:5px}:host(.popover-nested.popover-side-right){--offset-x:-5px}:host(.popover-nested.popover-side-start){--offset-x:5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-start),:host-context([dir=rtl]).popover-nested.popover-side-start{--offset-x:-5px}:host(.popover-nested.popover-side-end){--offset-x:-5px}:host-context([dir=rtl]):host(.popover-nested.popover-side-end),:host-context([dir=rtl]).popover-nested.popover-side-end{--offset-x:5px}:host{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}.popover-content{border-radius:4px;transform-origin:left top}[dir=rtl] .popover-content,:host-context([dir=rtl]) .popover-content{transform-origin:right top}.popover-viewport{transition-delay:100ms}";
 
-let Popover = class {
+const Popover = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     this.didPresent = createEvent(this, "ionPopoverDidPresent", 7);

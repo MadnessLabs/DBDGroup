@@ -1,6 +1,6 @@
-import { r as registerInstance, h, m as Host } from './index-0fc14935.js';
-import { g as getIonMode } from './ionic-global-140a6091.js';
-import { s as safeCall } from './overlays-82a22a68.js';
+import { r as registerInstance, h, m as Host } from './index-a091ab89.js';
+import { g as getIonMode } from './ionic-global-65ffbf98.js';
+import { s as safeCall } from './overlays-d4c0b42d.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
 import './hardware-back-button-fa04d6e9.js';
 import './helpers-e7913fb8.js';
@@ -9,7 +9,7 @@ const selectPopoverIosCss = ".sc-ion-select-popover-ios-h ion-list.sc-ion-select
 
 const selectPopoverMdCss = ".sc-ion-select-popover-md-h ion-list.sc-ion-select-popover-md{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}ion-list-header.sc-ion-select-popover-md,ion-label.sc-ion-select-popover-md{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}ion-list.sc-ion-select-popover-md ion-radio.sc-ion-select-popover-md{opacity:0}ion-item.sc-ion-select-popover-md{--inner-border-width:0}.item-radio-checked.sc-ion-select-popover-md{--background:rgba(var(--ion-color-primary-rgb, 56, 128, 255), 0.08);--background-focused:var(--ion-color-primary, #3880ff);--background-focused-opacity:0.2;--background-hover:var(--ion-color-primary, #3880ff);--background-hover-opacity:0.12}.item-checkbox-checked.sc-ion-select-popover-md{--background-activated:var(--ion-item-color, var(--ion-text-color, #000));--background-focused:var(--ion-item-color, var(--ion-text-color, #000));--background-hover:var(--ion-item-color, var(--ion-text-color, #000));--color:var(--ion-color-primary, #3880ff)}";
 
-let SelectPopover = class {
+const SelectPopover = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
     /**
