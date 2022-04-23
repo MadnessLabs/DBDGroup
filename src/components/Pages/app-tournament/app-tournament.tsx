@@ -47,22 +47,26 @@ export class AppTournament {
             >
               Tournament Page
             </ion-title>
+            <ion-buttons slot="end">
+              <ion-button
+                color="primary"
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-tournament-edit",
+                    componentProps: {
+                      tournament: this.tournament,
+                      tournamentId: this.tournamentId,
+                    },
+                  })
+                }
+              >
+                Edit
+                <ion-icon slot="end" name="create" />
+              </ion-button>
+            </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content>
-          <ion-button
-            onClick={() =>
-              this.dbdModalOpen.emit({
-                component: "modal-tournament-edit",
-                componentProps: {
-                  tournament: this.tournament,
-                  tournamentId: this.tournamentId,
-                },
-              })
-            }
-          >
-            Edit
-          </ion-button>
           <ion-row
             style={{
               "justify-content": "center",

@@ -10,9 +10,9 @@ export class ModalTournamentEdit {
   @Prop() tournament: Tournament;
   @Prop() tournamentId: string;
 
-  @Listen("fireenjinSucess")
-  onSucess(event) {
-    console.log(event);
+  @Listen("fireenjinSuccess")
+  onSucess() {
+    this.dbdModalClose.emit();
   }
 
   closeModal(event: MouseEvent) {
