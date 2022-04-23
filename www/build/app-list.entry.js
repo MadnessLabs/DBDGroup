@@ -36,7 +36,11 @@ const AppList = class {
       }, slot: "header" }, h("ion-label", null, "Links")), h("ion-list", { slot: "content" }, h("ion-item", null, h("a", { href: "https://deadbydaylight.group/tournament" }, "Tournament sign-up")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/list" }, "Tournament List")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/profile" }, "Profile")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/admin" }, "Admin")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group" }, "Home"))))))), h("ion-row", { style: {
         "justify-content": "center",
         padding: "0px",
+<<<<<<< HEAD
       } }, h("ion-col", { size: "12", "size-md": "4", style: {
+=======
+      } }, h("ion-col", { style: {
+>>>>>>> master
         "text-align": "center",
         "border-color": "transparent",
       } }, h("ion-card", { style: {
@@ -44,7 +48,11 @@ const AppList = class {
       } }, h("h1", { style: {
         "font-family": "sans-serif",
         color: "white",
+<<<<<<< HEAD
       } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-row", null, h("ion-col", { size: "12", "size-md": "8" }, h("ion-card", null, h("ion-card-header", null, h("ion-row", null, h("ion-col", null, h("ion-card-title", null, " Tournament Title ")), h("ion-row", null, h("ion-row", null, h("ion-card-content", null, " Date and Time "))), h("ion-card-content", null, " TLDR Tourney Rules "), h("ion-item", null, h("a", { href: "http://localhost:3333/tournament" }, h("ion-icon", { name: "chevron-forward-outline" })))))))))));
+=======
+      } }, h("div", { class: "ion-text-center" }, h("b", null, "DEAD BY DAYLIGHT TOURNAMENTS")))))), h("ion-row", null, h("ion-col", null, h("dbd-tournament-card", null, h("dbd-tournament-details", null, " "), " "))))));
+>>>>>>> master
   }
 };
 AppList.style = appListCss;

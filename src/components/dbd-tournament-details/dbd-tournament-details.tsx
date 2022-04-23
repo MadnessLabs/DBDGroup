@@ -48,6 +48,7 @@ export class DbdTournamentDetails {
             <ion-label>
               <h2>{this.name}</h2>
               <h2>{this.dateTime}</h2>
+<<<<<<< HEAD
               <ion-button
                 onClick={() =>
                   this.dbdModalOpen.emit({
@@ -61,6 +62,16 @@ export class DbdTournamentDetails {
               >
                 Tournament Details
               </ion-button>
+=======
+              <ion-button id="trigger-button">Tournament Details</ion-button>
+              {(this.rules || []).find((rule) => (
+                <ion-popover trigger="trigger-button">
+                  <ul>
+                    <li>{rule}</li>
+                  </ul>
+                </ion-popover>
+              ))}
+>>>>>>> master
             </ion-label>
           </ion-item>
         </ion-card>

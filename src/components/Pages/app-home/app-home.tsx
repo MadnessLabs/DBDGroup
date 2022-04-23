@@ -27,16 +27,6 @@ export class AppHome {
       <ion-content>
         <ion-grid>
           <ion-row>
-            {(this.tournaments || []).map((tournament) => (
-              <ion-col size="12" size-md="6">
-                <dbd-tournament-card
-                  href={`/tournament/${tournament?.id}`}
-                  image={tournament.image}
-                  name={tournament.name || "ope"}
-                  rules={tournament.rules}
-                />
-              </ion-col>
-            ))}
           </ion-row>
         </ion-grid>
       </ion-content>

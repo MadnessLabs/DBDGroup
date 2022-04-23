@@ -67,8 +67,6 @@ export class AppList {
             }}
           >
             <ion-col
-              size="12"
-              size-md="4"
               style={{
                 "text-align": "center",
                 "border-color": "transparent",
@@ -93,29 +91,10 @@ export class AppList {
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="12" size-md="8">
-              <ion-card>
-                <ion-card-header>
-                  <ion-row>
-                    <ion-col>
-                      <ion-card-title> Tournament Title </ion-card-title>
-                    </ion-col>
-                    <ion-row>
-                      <ion-row>
-                        <ion-card-content> Date and Time </ion-card-content>
-                      </ion-row>
-                    </ion-row>
-                    <ion-card-content> TLDR Tourney Rules </ion-card-content>
-                    <ion-item>
-                      
-                      
-                      <a href="http://localhost:3333/tournament"><ion-icon name="chevron-forward-outline"></ion-icon>
-                      </a>
-                    
-                    </ion-item>
-                  </ion-row>
-                </ion-card-header>
-              </ion-card>
+            <ion-col>
+              <dbd-tournament-card>
+                <dbd-tournament-details> </dbd-tournament-details>{" "}
+              </dbd-tournament-card>
             </ion-col>
           </ion-row>
         </ion-grid>
