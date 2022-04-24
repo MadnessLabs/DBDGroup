@@ -21,11 +21,14 @@ export namespace Components {
     }
     interface AppProfile {
         "auth": AuthService;
+        "documentId": string;
+        "user": User;
         "userId": string;
     }
     interface AppTournament {
         "db": DatabaseService;
         "tournamentId": string;
+        "user": User;
     }
     interface AppTournamentList {
     }
@@ -175,6 +178,8 @@ declare namespace LocalJSX {
     }
     interface AppProfile {
         "auth"?: AuthService;
+        "documentId"?: string;
+        "user"?: User;
         "userId"?: string;
     }
     interface AppTournament {
@@ -182,6 +187,7 @@ declare namespace LocalJSX {
         "onDbdModalOpen"?: (event: CustomEvent<any>) => void;
         "onDbdPopoverOpen"?: (event: CustomEvent<any>) => void;
         "tournamentId"?: string;
+        "user"?: User;
     }
     interface AppTournamentList {
     }

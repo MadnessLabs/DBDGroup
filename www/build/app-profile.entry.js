@@ -5,12 +5,22 @@ const AppProfile = class {
     registerInstance(this, hostRef);
   }
   render() {
-    var _a, _b, _c;
-    return (h("ion-content", null, h("ion-grid", null, h("ion-row", { style: {
+    var _a, _b, _c, _d, _e;
+    return (h("ion-content", null, h("ion-header", null, h("ion-toolbar", { color: "light" }, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Edit Profile"))), h("ion-grid", null, h("ion-row", { style: {
         "justify-content": "center",
-      } }, h("ion-col", { size: "8", "size-md": "2" }, h("ion-accordion-group", null, h("ion-accordion", { "toggle-icon": "arrow-down-circle" }, h("ion-item", { style: {
+      } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { endpoint: "", documentId: "", style: {
         "text-align": "center",
-      }, slot: "header" }, h("ion-label", null, "Links")), h("ion-list", { slot: "content" }, h("ion-item", null, h("a", { href: "https://deadbydaylight.group/tournament" }, "Tournament sign-up")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/list" }, "Tournament List")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/profile" }, "Profile")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group/admin" }, "Admin")), h("ion-item", null, h("a", { href: "https://deadbydaylight.group" }, "Home"))))))), h("fireenjin-form", { fetch: true, endpoint: "users", documentId: this.userId || ((_c = (_b = (_a = this.auth) === null || _a === void 0 ? void 0 : _a.isLoggedIn) === null || _b === void 0 ? void 0 : _b.call(_a)) === null || _c === void 0 ? void 0 : _c.uid) }, h("fireenjin-input", { label: "Name", name: "name", "data-fill": true })))));
+        margin: "0 auto",
+      } }, h("fireenjin-input", { labelPosition: "stacked", name: "name", label: "Name", value: (_a = this.user) === null || _a === void 0 ? void 0 : _a.name }), h("fireenjin-input", { labelPosition: "stacked", name: "email", label: "E-mail", value: (_b = this.user) === null || _b === void 0 ? void 0 : _b.email }), h("fireenjin-input", { labelPosition: "stacked", name: "discordId", label: "Discord Username", value: (_c = this.user) === null || _c === void 0 ? void 0 : _c.discordId }), h("fireenjin-input", { labelPosition: "stacked", name: "steamId", label: "Steam Code", value: (_d = this.user) === null || _d === void 0 ? void 0 : _d.steamId }), h("fireenjin-select", { labelPosition: "stacked", "data-fill": true, name: "enteringAs", label: "Entering as?", value: (_e = this.user) === null || _e === void 0 ? void 0 : _e.enteringAs, options: [
+        {
+          label: "Survivor",
+          value: "enteringAs",
+        },
+        {
+          label: "Killer",
+          value: "enteringAs",
+        },
+      ] }))))))));
   }
 };
 

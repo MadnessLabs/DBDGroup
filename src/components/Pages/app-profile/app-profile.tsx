@@ -7,61 +7,83 @@ import { Component, h, Prop } from "@stencil/core";
 export class AppProfile {
   @Prop() userId: string;
   @Prop() auth: AuthService;
+  @Prop() documentId: string;
+  @Prop() user: User;
 
   render() {
     return (
       <ion-content>
+        <ion-header>
+          <ion-toolbar color="light">
+            <ion-buttons slot="start">
+              <ion-button href="/" color="primary">
+                <ion-icon name="arrow-back" color="primary" />
+              </ion-button>
+            </ion-buttons>
+            <ion-title>Edit Profile</ion-title>
+            </ion-toolbar>
+        </ion-header>
         <ion-grid>
           <ion-row
             style={{
               "justify-content": "center",
             }}
           >
-            <ion-col size="8" size-md="2">
-              <ion-accordion-group>
-                <ion-accordion toggle-icon="arrow-down-circle">
-                  <ion-item
-                    style={{
-                      "text-align": "center",
-                    }}
-                    slot="header"
-                  >
-                    <ion-label>Links</ion-label>
-                  </ion-item>
-                  <ion-list slot="content">
-                    <ion-item>
-                      <a href="https://deadbydaylight.group/tournament">
-                        Tournament sign-up
-                      </a>
-                    </ion-item>
-                    <ion-item>
-                      <a href="https://deadbydaylight.group/list">
-                        Tournament List
-                      </a>
-                    </ion-item>
-                    <ion-item>
-                      <a href="https://deadbydaylight.group/profile">
-                        Profile
-                      </a>
-                    </ion-item>
-                    <ion-item>
-                      <a href="https://deadbydaylight.group/admin">Admin</a>
-                    </ion-item>
-                    <ion-item>
-                      <a href="https://deadbydaylight.group">Home</a>
-                    </ion-item>
-                  </ion-list>
-                </ion-accordion>
-              </ion-accordion-group>
+            <ion-col size="12" size-md="9">
+              <ion-card>
+              <fireenjin-form
+                  endpoint=""
+                  documentId=""
+                  style={{
+                    "text-align": "center",
+                    margin: "0 auto",
+                  }}
+                >
+                  <fireenjin-input
+                    labelPosition="stacked"
+                    name="name"
+                    label="Name"
+                    value={this.user?.name}
+                  />
+                  <fireenjin-input
+                    labelPosition="stacked"
+                    name="email"
+                    label="E-mail"
+                    value={this.user?.email}
+                  />
+                  <fireenjin-input
+                    labelPosition="stacked"
+                    name="discordId"
+                    label="Discord Username"
+                    value={this.user?.discordId}
+                  />
+                  <fireenjin-input
+                    labelPosition="stacked"
+                    name="steamId"
+                    label="Steam Code"
+                    value={this.user?.steamId}
+                  />
+                  <fireenjin-select
+                    labelPosition="stacked"
+                    data-fill
+                    name="enteringAs"
+                    label="Entering as?"
+                    value={this.user?.enteringAs}
+                    options={[
+                      {
+                        label: "Survivor",
+                        value: "enteringAs",
+                      },
+                      {
+                        label: "Killer",
+                        value: "enteringAs",
+                      },
+                    ]}
+                  />
+                </fireenjin-form>
+              </ion-card>
             </ion-col>
           </ion-row>
-          <fireenjin-form
-            fetch
-            endpoint="users"
-            documentId={this.userId || this.auth?.isLoggedIn?.()?.uid}
-          >
-            <fireenjin-input label="Name" name="name" data-fill />
-          </fireenjin-form>
         </ion-grid>
       </ion-content>
     );

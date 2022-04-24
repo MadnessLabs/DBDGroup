@@ -1399,4 +1399,8 @@ ion-content {
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-}  
+}
+
+fireenjin-form{
+  max-width:750px;
+} 

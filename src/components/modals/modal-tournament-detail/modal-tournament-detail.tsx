@@ -23,7 +23,7 @@ export class ModalTournamentDetail {
                 width: "25px",
               }}
             >
-              <img src="/assets/icon/bloodpoint.webp" />
+              <img src="./assets/icon/bloodpoint.webp" />
             </ion-thumbnail>
             <ion-label>{rule}</ion-label>
             </ion-item>

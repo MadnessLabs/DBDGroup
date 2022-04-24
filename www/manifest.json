@@ -18,9 +18,11 @@
     }
   ],
   "shortcuts": [],
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
-  "permissions": ["gcm"],
-  "gcm_sender_id": "540141413358",
+  "background_color": "#0b0a0f",
+  "theme_color": "#0b0a0f",
+  "permissions": [
+    "gcm"
+  ],
+  "gcm_sender_id": "974124897552",
   "version": "1.0.0"
 }

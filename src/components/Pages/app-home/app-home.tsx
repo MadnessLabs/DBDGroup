@@ -26,9 +26,12 @@ export class AppHome {
     return [
       <ion-header>
         <ion-toolbar color="light">
-          <ion-buttons slot="start">
-            <ion-button href="/" color="primary">
-              <ion-icon name="arrow-back" color="primary" />
+          <ion-buttons slot="end">
+            <ion-button 
+              color="primary"
+              href="deadbydaylight.group/user/someone">
+              <ion-title>Edit</ion-title>
+              <ion-icon slot="end" color="primary" name="person" />
             </ion-button>
           </ion-buttons>
           <ion-title>Dead By Daylight Group</ion-title>

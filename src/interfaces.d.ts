@@ -21,6 +21,8 @@ declare type Survivor = {
 declare type User = {
   id?: string;
   name?: string;
+  discordId?: string;
   steamId?: string;
   email?: string;
+  enteringAs?:string;
 };
