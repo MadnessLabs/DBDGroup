@@ -29,7 +29,7 @@ export class AppHome {
           <ion-buttons slot="end">
             <ion-button 
               color="primary"
-              href="deadbydaylight.group/user/someone">
+              href="https://deadbydaylight.group/user/someone">
               <ion-title>Edit</ion-title>
               <ion-icon slot="end" color="primary" name="person" />
             </ion-button>
