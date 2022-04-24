@@ -218,6 +218,7 @@ declare namespace LocalJSX {
     }
     interface ModalTournamentDetail {
         "db"?: DatabaseService;
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "rules"?: string[];
         "tournament"?: Tournament;
         "tournamentId"?: string;

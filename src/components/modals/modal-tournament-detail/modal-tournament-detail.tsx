@@ -1,15 +1,23 @@
 import { DatabaseService } from "@fireenjin/sdk";
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Prop, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: "modal-tournament-detail",
   styleUrl: "modal-tournament-detail.css",
 })
 export class ModalTournamentDetail {
+  @Event() dbdModalClose: EventEmitter;
+
   @Prop() tournament: Tournament;
   @Prop() tournamentId: string;
   @Prop() rules: string[];
   @Prop() db: DatabaseService;
+
+  closeModal(event: MouseEvent) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.dbdModalClose.emit();
+  }
 
   render() {
     return (
@@ -17,7 +25,10 @@ export class ModalTournamentDetail {
         <ion-header>
           <ion-toolbar color="light">
             <ion-buttons slot="start">
-              <ion-button href="/" color="primary">
+              <ion-button 
+              href="/"
+              onClick={(event) => this.closeModal(event)} 
+              color="primary">
                 <ion-icon name="arrow-back" color="primary" />
               </ion-button>
             </ion-buttons>
