@@ -19,11 +19,13 @@ export class AppTournament {
 
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
-  @Prop() user: User;
 
   @State() tournament: Tournament;
+  @State() users: any;
 
   async componentDidLoad() {
+    this.users = await this.db.list("users", []);
+    console.log(this.users, "here");
     this.db.watchDocument("tournaments", this.tournamentId, ({ data }) => {
       console.log(data);
       this.tournament = data;
@@ -92,8 +94,8 @@ export class AppTournament {
             <ion-col size="12" size-md="9">
               <ion-card>
                 <fireenjin-form
-                  endpoint=""
-                  documentId=""
+                  endpoint="users"
+                  documentId="userId"
                   style={{
                     "text-align": "center",
                     margin: "0 auto",
@@ -104,32 +106,32 @@ export class AppTournament {
                     labelPosition="stacked"
                     name="name"
                     label="Name"
-                    value={this.user?.name}
+                    value={this.users?.name}
                   />
                   <fireenjin-input
                     labelPosition="stacked"
                     name="email"
                     label="E-mail"
-                    value={this.user?.email}
+                    value={this.users?.email}
                   />
                   <fireenjin-input
                     labelPosition="stacked"
                     name="discordId"
                     label="Discord Username"
-                    value={this.user?.discordId}
+                    value={this.users?.discordId}
                   />
                   <fireenjin-input
                     labelPosition="stacked"
                     name="steamId"
                     label="Steam Code"
-                    value={this.user?.steamId}
+                    value={this.users?.steamId}
                   />
                   <fireenjin-select
                     labelPosition="stacked"
                     data-fill
                     name="enteringAs"
                     label="Entering as?"
-                    value={this.user?.enteringAs}
+                    value={this.users?.enteringAs}
                     options={[
                       {
                         label: "Survivor",

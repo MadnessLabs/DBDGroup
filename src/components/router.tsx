@@ -135,7 +135,7 @@ export class AppRoot implements ComponentInterface {
           componentProps={this.componentProps}
         />
         <ion-route
-          url="/user/:documentId"
+          url="/user/:userId"
           component="app-profile"
           componentProps={this.componentProps}
         />

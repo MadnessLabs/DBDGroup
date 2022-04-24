@@ -16,6 +16,7 @@ export class AppHome {
   @Prop() auth: AuthService;
 
   @State() tournaments: any[];
+  
 
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);

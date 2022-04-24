@@ -1,5 +1,5 @@
-import { AuthService } from "@fireenjin/sdk";
-import { Component, h, Prop } from "@stencil/core";
+import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "app-profile",
@@ -8,7 +8,13 @@ export class AppProfile {
   @Prop() userId: string;
   @Prop() auth: AuthService;
   @Prop() documentId: string;
-  @Prop() user: User;
+  @Prop() db: DatabaseService;
+
+  @State() users: any;
+
+  async componentdidload() {
+    this.users = await this.db.find("users");
+  }
 
   render() {
     return (
@@ -32,43 +38,47 @@ export class AppProfile {
             <ion-col size="12" size-md="9">
               <ion-card>
               <fireenjin-form
-                  endpoint=""
-                  documentId=""
+                  endpoint="users"
+                  documentId={this.userId}
                   style={{
                     "text-align": "center",
                     margin: "0 auto",
                   }}
                 >
                   <fireenjin-input
+                    data-fill
                     labelPosition="stacked"
                     name="name"
                     label="Name"
-                    value={this.user?.name}
+                    value={this.users?.name}
                   />
                   <fireenjin-input
+                    data-fill
                     labelPosition="stacked"
                     name="email"
                     label="E-mail"
-                    value={this.user?.email}
+                    value={this.users?.email}
                   />
                   <fireenjin-input
+                    data-fill
                     labelPosition="stacked"
                     name="discordId"
                     label="Discord Username"
-                    value={this.user?.discordId}
+                    value={this.users?.discordId}
                   />
                   <fireenjin-input
+                    data-fill
                     labelPosition="stacked"
                     name="steamId"
                     label="Steam Code"
-                    value={this.user?.steamId}
+                    value={this.users?.steamId}
                   />
                   <fireenjin-select
                     labelPosition="stacked"
                     data-fill
                     name="enteringAs"
                     label="Entering as?"
-                    value={this.user?.enteringAs}
+                    value={this.users?.enteringAs}
                     options={[
                       {
                         label: "Survivor",

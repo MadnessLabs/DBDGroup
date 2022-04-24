@@ -14,6 +14,16 @@ export class ModalTournamentDetail {
   render() {
     return (
       <ion-content>
+        <ion-header>
+          <ion-toolbar color="light">
+            <ion-buttons slot="start">
+              <ion-button href="/" color="primary">
+                <ion-icon name="arrow-back" color="primary" />
+              </ion-button>
+            </ion-buttons>
+            <ion-title>Tournament Rules</ion-title>
+            </ion-toolbar>
+        </ion-header>
         {(this.tournament?.rules || []).map((rule) => (
         <ion-item>
             <ion-thumbnail
