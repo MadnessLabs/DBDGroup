@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@fireenjin/components": "^1.2.21",
-    "@fireenjin/sdk": "^1.2.56",
+    "@fireenjin/sdk": "^1.2.58",
     "@ionic/core": "^6.1.2",
     "firebase": "^9.6.11"
   }
