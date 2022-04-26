@@ -20,6 +20,7 @@ export class AppTournament {
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
   @Prop() auth: AuthService;
+  @Prop() userId: string;
 
   @State() tournament: Tournament;
   @State() users: any;
@@ -96,7 +97,7 @@ export class AppTournament {
               <ion-card>
                 <fireenjin-form
                   endpoint="users"
-                  documentId="userId"
+                  documentId={this.userId}
                   style={{
                     "text-align": "center",
                     margin: "0 auto",
@@ -136,11 +137,9 @@ export class AppTournament {
                     options={[
                       {
                         label: "Survivor",
-                        value: "enteringAs",
                       },
                       {
                         label: "Killer",
-                        value: "enteringAs",
                       },
                     ]}
                   />

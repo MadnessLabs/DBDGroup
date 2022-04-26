@@ -10,10 +10,10 @@ export class AppProfile {
   @Prop() documentId: string;
   @Prop() db: DatabaseService;
 
-  @State() users: any;
+  @State() user: any;
 
   async componentdidload() {
-    this.users = await this.db.find("users");
+   
   }
 
   render() {
@@ -50,43 +50,40 @@ export class AppProfile {
                     labelPosition="stacked"
                     name="name"
                     label="Name"
-                    value={this.users?.name}
                   />
                   <fireenjin-input
                     data-fill
                     labelPosition="stacked"
                     name="email"
                     label="E-mail"
-                    value={this.users?.email}
+                    value={this.user?.email}
                   />
                   <fireenjin-input
                     data-fill
                     labelPosition="stacked"
                     name="discordId"
                     label="Discord Username"
-                    value={this.users?.discordId}
+                    value={this.user?.discordId}
                   />
                   <fireenjin-input
                     data-fill
                     labelPosition="stacked"
                     name="steamId"
                     label="Steam Code"
-                    value={this.users?.steamId}
+                    value={this.user?.steamId}
                   />
                   <fireenjin-select
                     labelPosition="stacked"
                     data-fill
                     name="enteringAs"
                     label="Entering as?"
-                    value={this.users?.enteringAs}
+                    value={this.user?.enteringAs}
                     options={[
                       {
                         label: "Survivor",
-                        value: "enteringAs",
                       },
                       {
                         label: "Killer",
-                        value: "enteringAs",
                       },
                     ]}
                   />

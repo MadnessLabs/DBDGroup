@@ -31,17 +31,15 @@ const AppTournament = class {
         "text-align": "center",
       } }, h("h1", null, "DEAD BY DAYLIGHT TOURNAMENTS"))), h("dbd-tournament-details", { name: (_a = this.tournament) === null || _a === void 0 ? void 0 : _a.name, rules: (_b = this.tournament) === null || _b === void 0 ? void 0 : _b.rules, dateTime: (_c = this.tournament) === null || _c === void 0 ? void 0 : _c.id, tournamentId: this.tournamentId, tournament: this.tournament }), h("ion-row", { style: {
         "justify-content": "center",
-      } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { endpoint: "users", documentId: "userId", style: {
+      } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { endpoint: "users", documentId: this.userId, style: {
         "text-align": "center",
         margin: "0 auto",
       } }, h("ion-title", null, "Dead by Daylight Tournament Signup"), h("fireenjin-input", { labelPosition: "stacked", name: "name", label: "Name", value: (_d = this.users) === null || _d === void 0 ? void 0 : _d.name }), h("fireenjin-input", { labelPosition: "stacked", name: "email", label: "E-mail", value: (_e = this.users) === null || _e === void 0 ? void 0 : _e.email }), h("fireenjin-input", { labelPosition: "stacked", name: "discordId", label: "Discord Username", value: (_f = this.users) === null || _f === void 0 ? void 0 : _f.discordId }), h("fireenjin-input", { labelPosition: "stacked", name: "steamId", label: "Steam Code", value: (_g = this.users) === null || _g === void 0 ? void 0 : _g.steamId }), h("fireenjin-select", { labelPosition: "stacked", "data-fill": true, name: "enteringAs", label: "Entering as?", value: (_h = this.users) === null || _h === void 0 ? void 0 : _h.enteringAs, options: [
         {
           label: "Survivor",
-          value: "enteringAs",
         },
         {
           label: "Killer",
-          value: "enteringAs",
         },
       ] }))))))));
   }

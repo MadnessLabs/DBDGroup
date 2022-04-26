@@ -25032,7 +25032,11 @@ class DatabaseService {
             params.push(kh(w.key, w.conditional, w.value));
         }
         if (orderBy)
-            params.push(Oh(orderBy));
+            orderBy
+                .split(",")
+                .map((orderPart) => params.push(orderPart.includes(":")
+                ? Oh(orderPart.split(":")[0], orderPart.split(":")[1].includes("asc") ? "asc" : "desc")
+                : Oh(orderPart)));
         if (limit)
             params.push($h(limit));
         return xh(this.collection(collectionName), ...params);
