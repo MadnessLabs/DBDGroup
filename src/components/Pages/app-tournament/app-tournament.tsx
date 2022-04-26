@@ -1,4 +1,4 @@
-import { DatabaseService } from "@fireenjin/sdk";
+import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import {
   Component,
   h,
@@ -19,6 +19,7 @@ export class AppTournament {
 
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
+  @Prop() auth: AuthService;
 
   @State() tournament: Tournament;
   @State() users: any;

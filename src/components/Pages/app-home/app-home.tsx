@@ -16,21 +16,37 @@ export class AppHome {
   @Prop() auth: AuthService;
 
   @State() tournaments: any[];
-  
 
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);
     // this.auth.withSocial("google");
+    this.auth.withEmail("a@a.com", "mypass");
   }
 
   render() {
     return [
       <ion-header>
         <ion-toolbar color="light">
+          <ion-buttons>
+          <ion-button
+                color="primary"
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-login",
+                    componentProps: {
+                      auth: this.auth,
+                    },
+                  })
+                }
+              >
+              Login
+            </ion-button>
+          </ion-buttons>
           <ion-buttons slot="end">
-            <ion-button 
+            <ion-button
               color="primary"
-              href="https://deadbydaylight.group/user/someone">
+              href="https://deadbydaylight.group/user/someone"
+            >
               <ion-title>Edit</ion-title>
               <ion-icon slot="end" color="primary" name="person" />
             </ion-button>

@@ -26,6 +26,7 @@ export namespace Components {
         "userId": string;
     }
     interface AppTournament {
+        "auth": AuthService;
         "db": DatabaseService;
         "tournamentId": string;
     }
@@ -182,6 +183,7 @@ declare namespace LocalJSX {
         "userId"?: string;
     }
     interface AppTournament {
+        "auth"?: AuthService;
         "db"?: DatabaseService;
         "onDbdModalOpen"?: (event: CustomEvent<any>) => void;
         "onDbdPopoverOpen"?: (event: CustomEvent<any>) => void;

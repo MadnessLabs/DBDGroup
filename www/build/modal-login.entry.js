@@ -17,10 +17,10 @@ const ModalLogin = class {
       } }, h("b", null, "DEAD BY DAYLIGHT GROUP SIGN-UP")), h("fireenjin-form", null, h("ion-list", null, h("ion-item", null, h("ion-label", { style: {
         "font-size": "20px",
         "font-family": "sans-serif",
-      }, position: "floating" }, h("b", null, "Name")), h("ion-input", { name: "name", value: (_a = this.formData) === null || _a === void 0 ? void 0 : _a.name })), h("ion-item", null, h("ion-label", { style: {
+      }, position: "floating" }, h("b", null, "Name")), h("fireenjin-input", { name: "name", value: (_a = this.formData) === null || _a === void 0 ? void 0 : _a.name })), h("ion-item", null, h("ion-label", { style: {
         "font-size": "20px",
         "font-family": "sans-serif",
-      }, position: "floating" }, h("b", null, "E-mail")), h("ion-input", { name: "email", value: (_b = this.formData) === null || _b === void 0 ? void 0 : _b.email })))))));
+      }, position: "floating" }, h("b", null, "E-mail")), h("fireenjin-input", { name: "email", value: (_b = this.formData) === null || _b === void 0 ? void 0 : _b.email })))))));
   }
 };
 ModalLogin.style = modalLoginCss;
