@@ -16,6 +16,7 @@ declare type Tournament = {
 declare type Survivor = {
   user: User;
   bloodpoints: number;
+  name?: string;
 };
 
 declare type User = {
@@ -24,5 +25,5 @@ declare type User = {
   discordId?: string;
   steamId?: string;
   email?: string;
-  enteringAs?:string;
+  enteringAs?: string;
 };

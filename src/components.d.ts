@@ -51,6 +51,7 @@ export namespace Components {
     interface DbdgroupRouter {
     }
     interface ModalLogin {
+        "auth": AuthService;
     }
     interface ModalSuccess {
     }
@@ -215,6 +216,7 @@ declare namespace LocalJSX {
     interface DbdgroupRouter {
     }
     interface ModalLogin {
+        "auth"?: AuthService;
     }
     interface ModalSuccess {
     }

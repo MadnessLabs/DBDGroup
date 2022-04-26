@@ -34131,6 +34131,8 @@ const AppRoot = class {
         this.db.watchDocument("users", session.uid, async (snapshot) => {
           console.log(snapshot);
         });
+        // Create the user a document in the database
+        // Email
       }
       else {
         // IF LOGGED OUT

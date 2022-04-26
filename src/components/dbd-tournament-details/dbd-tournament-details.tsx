@@ -76,38 +76,16 @@ export class DbdTournamentDetails {
               query={this.query}
             /> */}
           <ion-col size="12" size-md="6">
-            <ion-card>
-              <ion-item>
-                <ion-avatar slot="start">
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
-                <p>SURVIVOR</p>
-              </ion-item>
-            </ion-card>
-            <ion-card>
-              <ion-item>
-                <ion-avatar slot="start">
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
-                <p>SURVIVOR</p>
-              </ion-item>
-            </ion-card>
-            <ion-card>
-              <ion-item>
-                <ion-avatar slot="start">
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
-                <p>SURVIVOR</p>
-              </ion-item>
-            </ion-card>
-            <ion-card>
-              <ion-item>
-                <ion-avatar slot="start">
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
-                <p>SURVIVOR</p>
-              </ion-item>
-            </ion-card>
+            {(this.tournament?.survivors || []).map((survivor) => (
+              <ion-card>
+                <ion-item>
+                  <ion-avatar slot="start">
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                  </ion-avatar>
+                  <p>{survivor?.name || "No name given"}</p>
+                </ion-item>
+              </ion-card>
+            ))}
           </ion-col>
           {/* <fireenjin-pagination
               ref={(el) => (this.paginationEl = el)}

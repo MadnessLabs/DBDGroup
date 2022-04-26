@@ -1,4 +1,12 @@
-import { Component, ComponentInterface, State, h, Listen } from "@stencil/core";
+import { AuthService } from "@fireenjin/sdk";
+import {
+  Component,
+  ComponentInterface,
+  State,
+  h,
+  Listen,
+  Prop,
+} from "@stencil/core";
 
 @Component({
   tag: "modal-login",
@@ -10,9 +18,34 @@ export class ModalLogin implements ComponentInterface {
     email?: string;
   } = {};
 
+  @Prop() auth: AuthService;
+
   @Listen("ionInput")
   onInput(event) {
     this.formData[event.target.name] = event.target.value;
+  }
+
+  @Listen("fireenjinSubmit")
+  async onSubmit() {
+    let res;
+    if (true === true) {
+      res = await this.auth.withEmailLink(this.formData?.email, {
+        url: "https://deadbydaylight.group",
+        dynamicLinkDomain: "dbdgroup.page.link",
+        iOS: {
+          bundleId: "com.fireenjin.dbdgroup",
+        },
+        android: {
+          packageName: "com.fireenjin.dbdgroup",
+          installApp: false,
+          minimumVersion: "12",
+        },
+        handleCodeInApp: true,
+      });
+    } else {
+      res = await this.auth.withSocial("google");
+    }
+    console.log(res);
   }
 
   render() {
@@ -26,34 +59,19 @@ export class ModalLogin implements ComponentInterface {
           >
             <b>DEAD BY DAYLIGHT GROUP SIGN-UP</b>
           </h1>
-
           <fireenjin-form>
-            <ion-list>
-              <ion-item>
-                <ion-label
-                  style={{
-                    "font-size": "20px",
-                    "font-family": "sans-serif",
-                  }}
-                  position="floating"
-                >
-                  <b>Name</b>
-                </ion-label>
-                <fireenjin-input name="name" value={this.formData?.name} />
-              </ion-item>
-              <ion-item>
-                <ion-label
-                  style={{
-                    "font-size": "20px",
-                    "font-family": "sans-serif",
-                  }}
-                  position="floating"
-                >
-                  <b>E-mail</b>
-                </ion-label>
-                <fireenjin-input name="email" value={this.formData?.email} />
-              </ion-item>
-            </ion-list>
+            <fireenjin-input
+              label="Email"
+              labelPosition="stacked"
+              name="email"
+              type="email"
+            />
+            <fireenjin-input
+              label="Password"
+              labelPosition="stacked"
+              name="password"
+              type="password"
+            />
           </fireenjin-form>
         </ion-card>
       </ion-content>
