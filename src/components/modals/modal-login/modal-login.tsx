@@ -39,7 +39,7 @@ export class ModalLogin implements ComponentInterface {
                 >
                   <b>Name</b>
                 </ion-label>
-                <ion-input name="name" value={this.formData?.name} />
+                <fireenjin-input name="name" value={this.formData?.name} />
               </ion-item>
               <ion-item>
                 <ion-label
@@ -51,7 +51,7 @@ export class ModalLogin implements ComponentInterface {
                 >
                   <b>E-mail</b>
                 </ion-label>
-                <ion-input name="email" value={this.formData?.email} />
+                <fireenjin-input name="email" value={this.formData?.email} />
               </ion-item>
             </ion-list>
           </fireenjin-form>
