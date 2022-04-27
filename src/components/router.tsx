@@ -2,22 +2,13 @@ import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
 import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
 import { modalController, popoverController } from "@ionic/core";
+import env from "../helpers/env";
 
 @Component({
   tag: "dbdgroup-router",
 })
 export class AppRoot implements ComponentInterface {
-  app = Build.isBrowser
-    ? initializeApp({
-        apiKey: "AIzaSyDBJ3MJ0T0pWqWWGVlnGJ6g97cR8axU5ak",
-        authDomain: "dead-by-daylight-group.firebaseapp.com",
-        projectId: "dead-by-daylight-group",
-        storageBucket: "dead-by-daylight-group.appspot.com",
-        messagingSenderId: "974124897552",
-        appId: "1:974124897552:web:48ea2eadb5021f58d3c195",
-        measurementId: "G-4KQFEEYLJS",
-      })
-    : null;
+  app = Build.isBrowser ? initializeApp(env("firebase")) : null;
   auth = Build.isBrowser
     ? new AuthService({
         app: this.app,

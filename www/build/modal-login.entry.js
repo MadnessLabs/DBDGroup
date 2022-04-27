@@ -1,4 +1,5 @@
 import { r as registerInstance, h } from './index-a091ab89.js';
+import { e as env } from './env-2c0efef6.js';
 
 const modalLoginCss = "";
 
@@ -15,8 +16,8 @@ const ModalLogin = class {
     let res;
     if (true === true) {
       res = await this.auth.withEmailLink((_a = this.formData) === null || _a === void 0 ? void 0 : _a.email, {
-        url: "https://deadbydaylight.group",
-        dynamicLinkDomain: "dbdgroup.page.link",
+        url: env("url"),
+        dynamicLinkDomain: env("dynamicLinkDomain"),
         iOS: {
           bundleId: "com.fireenjin.dbdgroup",
         },

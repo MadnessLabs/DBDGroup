@@ -13,10 +13,13 @@
   "collection": "./dist/collection/collection-manifest.json",
   "scripts": {
     "build": "stencil build",
+    "env": "fireenjin env",
+    "env:local": "npm run env local",
+    "env:live": "npm run env live",
     "deploy": "firebase deploy",
     "deploy:hosting": "firebase deploy --only hosting",
     "g": "fireenjin generate",
-    "start": "stencil build --dev --watch --serve",
+    "start": "npm run env:local && stencil build --dev --watch --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

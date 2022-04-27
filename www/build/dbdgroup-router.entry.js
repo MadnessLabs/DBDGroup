@@ -4,6 +4,7 @@ import { E as ErrorFactory, L as Logger, b as LogLevel, S as SDK_VERSION$1, _ as
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
 import './index-8d58a465.js';
+import { e as env } from './env-2c0efef6.js';
 import { p as popoverController, m as modalController } from './overlays-d4c0b42d.js';
 import './global-e1c7e609.js';
 import './utils-6d7b2653.js';
@@ -34047,17 +34048,7 @@ registerVersion(name, version, 'app');
 const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    this.app = Build.isBrowser
-      ? initializeApp({
-        apiKey: "AIzaSyDBJ3MJ0T0pWqWWGVlnGJ6g97cR8axU5ak",
-        authDomain: "dead-by-daylight-group.firebaseapp.com",
-        projectId: "dead-by-daylight-group",
-        storageBucket: "dead-by-daylight-group.appspot.com",
-        messagingSenderId: "974124897552",
-        appId: "1:974124897552:web:48ea2eadb5021f58d3c195",
-        measurementId: "G-4KQFEEYLJS",
-      })
-      : null;
+    this.app = Build.isBrowser ? initializeApp(env("firebase")) : null;
     this.auth = Build.isBrowser
       ? new AuthService({
         app: this.app,

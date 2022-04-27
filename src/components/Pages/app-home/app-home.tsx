@@ -20,7 +20,7 @@ export class AppHome {
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);
     // this.auth.withSocial("google");
-    this.auth.withEmail("a@a.com", "mypass");
+    // this.auth.withEmail("a@a.com", "mypass");
   }
 
   render() {
@@ -28,17 +28,17 @@ export class AppHome {
       <ion-header>
         <ion-toolbar color="light">
           <ion-buttons>
-          <ion-button
-                color="primary"
-                onClick={() =>
-                  this.dbdModalOpen.emit({
-                    component: "modal-login",
-                    componentProps: {
-                      auth: this.auth,
-                    },
-                  })
-                }
-              >
+            <ion-button
+              color="primary"
+              onClick={() =>
+                this.dbdModalOpen.emit({
+                  component: "modal-login",
+                  componentProps: {
+                    auth: this.auth,
+                  },
+                })
+              }
+            >
               Login
             </ion-button>
           </ion-buttons>

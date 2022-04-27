@@ -7,6 +7,7 @@ import {
   Listen,
   Prop,
 } from "@stencil/core";
+import env from "../../../helpers/env";
 
 @Component({
   tag: "modal-login",
@@ -30,8 +31,8 @@ export class ModalLogin implements ComponentInterface {
     let res;
     if (true === true) {
       res = await this.auth.withEmailLink(this.formData?.email, {
-        url: "https://deadbydaylight.group",
-        dynamicLinkDomain: "dbdgroup.page.link",
+        url: env("url"),
+        dynamicLinkDomain: env("dynamicLinkDomain"),
         iOS: {
           bundleId: "com.fireenjin.dbdgroup",
         },

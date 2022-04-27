@@ -10,7 +10,7 @@ const AppHome = class {
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);
     // this.auth.withSocial("google");
-    this.auth.withEmail("a@a.com", "mypass");
+    // this.auth.withEmail("a@a.com", "mypass");
   }
   render() {
     var _a, _b;
