@@ -93,6 +93,20 @@ export class AppTournament {
               "justify-content": "center",
             }}
           >
+
+            {/* // Scoreboard
+
+            // Bloodpoints
+
+                //Game 1            Killer//
+                // S1B                //Kills
+                // S2B                //Total Hooks
+                // S3B                //Gens Left
+                // S4B                //Escapes
+
+                //Game 2
+                // S1B ~~
+            // Total Points Survivors                   //Total Killers */}
             <ion-col size="12" size-md="9">
               <ion-card>
                 <fireenjin-form
