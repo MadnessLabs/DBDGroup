@@ -45,7 +45,13 @@ export class AppHome {
           <ion-buttons slot="end">
             <ion-button
               color="primary"
-              href="https://deadbydaylight.group/user/someone"
+              onClick={() => 
+              this.dbdModalOpen.emit({
+              component: "modal-profile",
+              componentProps: { 
+                auth: this.auth,
+              }
+            })}
             >
               <ion-title>Edit</ion-title>
               <ion-icon slot="end" color="primary" name="person" />

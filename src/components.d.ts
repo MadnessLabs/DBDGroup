@@ -19,12 +19,6 @@ export namespace Components {
     }
     interface AppList {
     }
-    interface AppProfile {
-        "auth": AuthService;
-        "db": DatabaseService;
-        "documentId": string;
-        "userId": string;
-    }
     interface AppTournament {
         "auth": AuthService;
         "db": DatabaseService;
@@ -53,6 +47,12 @@ export namespace Components {
     }
     interface ModalLogin {
         "auth": AuthService;
+    }
+    interface ModalProfile {
+        "auth": AuthService;
+        "db": DatabaseService;
+        "documentId": string;
+        "userId": string;
     }
     interface ModalSuccess {
     }
@@ -85,12 +85,6 @@ declare global {
     var HTMLAppListElement: {
         prototype: HTMLAppListElement;
         new (): HTMLAppListElement;
-    };
-    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
-    }
-    var HTMLAppProfileElement: {
-        prototype: HTMLAppProfileElement;
-        new (): HTMLAppProfileElement;
     };
     interface HTMLAppTournamentElement extends Components.AppTournament, HTMLStencilElement {
     }
@@ -128,6 +122,12 @@ declare global {
         prototype: HTMLModalLoginElement;
         new (): HTMLModalLoginElement;
     };
+    interface HTMLModalProfileElement extends Components.ModalProfile, HTMLStencilElement {
+    }
+    var HTMLModalProfileElement: {
+        prototype: HTMLModalProfileElement;
+        new (): HTMLModalProfileElement;
+    };
     interface HTMLModalSuccessElement extends Components.ModalSuccess, HTMLStencilElement {
     }
     var HTMLModalSuccessElement: {
@@ -150,13 +150,13 @@ declare global {
         "app-admin": HTMLAppAdminElement;
         "app-home": HTMLAppHomeElement;
         "app-list": HTMLAppListElement;
-        "app-profile": HTMLAppProfileElement;
         "app-tournament": HTMLAppTournamentElement;
         "app-tournament-list": HTMLAppTournamentListElement;
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
+        "modal-profile": HTMLModalProfileElement;
         "modal-success": HTMLModalSuccessElement;
         "modal-tournament-detail": HTMLModalTournamentDetailElement;
         "modal-tournament-edit": HTMLModalTournamentEditElement;
@@ -177,12 +177,6 @@ declare namespace LocalJSX {
   }>) => void;
     }
     interface AppList {
-    }
-    interface AppProfile {
-        "auth"?: AuthService;
-        "db"?: DatabaseService;
-        "documentId"?: string;
-        "userId"?: string;
     }
     interface AppTournament {
         "auth"?: AuthService;
@@ -220,6 +214,12 @@ declare namespace LocalJSX {
     interface ModalLogin {
         "auth"?: AuthService;
     }
+    interface ModalProfile {
+        "auth"?: AuthService;
+        "db"?: DatabaseService;
+        "documentId"?: string;
+        "userId"?: string;
+    }
     interface ModalSuccess {
     }
     interface ModalTournamentDetail {
@@ -238,13 +238,13 @@ declare namespace LocalJSX {
         "app-admin": AppAdmin;
         "app-home": AppHome;
         "app-list": AppList;
-        "app-profile": AppProfile;
         "app-tournament": AppTournament;
         "app-tournament-list": AppTournamentList;
         "dbd-tournament-card": DbdTournamentCard;
         "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
+        "modal-profile": ModalProfile;
         "modal-success": ModalSuccess;
         "modal-tournament-detail": ModalTournamentDetail;
         "modal-tournament-edit": ModalTournamentEdit;
@@ -257,13 +257,13 @@ declare module "@stencil/core" {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
-            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
+            "modal-profile": LocalJSX.ModalProfile & JSXBase.HTMLAttributes<HTMLModalProfileElement>;
             "modal-success": LocalJSX.ModalSuccess & JSXBase.HTMLAttributes<HTMLModalSuccessElement>;
             "modal-tournament-detail": LocalJSX.ModalTournamentDetail & JSXBase.HTMLAttributes<HTMLModalTournamentDetailElement>;
             "modal-tournament-edit": LocalJSX.ModalTournamentEdit & JSXBase.HTMLAttributes<HTMLModalTournamentEditElement>;

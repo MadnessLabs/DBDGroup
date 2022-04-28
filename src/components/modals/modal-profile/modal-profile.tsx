@@ -2,9 +2,10 @@ import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
-  tag: "app-profile",
+  tag: "modal-profile",
+  styleUrl: "modal-profile.css"
 })
-export class AppProfile {
+export class ModalProfile {
   @Prop() userId: string;
   @Prop() auth: AuthService;
   @Prop() documentId: string;
@@ -12,20 +13,11 @@ export class AppProfile {
 
   @State() user: any;
 
-  async componentdidload() {
-   
-  }
-
   render() {
     return (
       <ion-content>
         <ion-header>
           <ion-toolbar color="light">
-            <ion-buttons slot="start">
-              <ion-button href="/" color="primary">
-                <ion-icon name="arrow-back" color="primary" />
-              </ion-button>
-            </ion-buttons>
             <ion-title>Edit Profile</ion-title>
             </ion-toolbar>
         </ion-header>

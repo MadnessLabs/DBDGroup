@@ -1,6 +1,8 @@
 import { r as registerInstance, h } from './index-a091ab89.js';
 
-const AppProfile = class {
+const modalProfileCss = "";
+
+const ModalProfile = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
   }
@@ -8,7 +10,7 @@ const AppProfile = class {
   }
   render() {
     var _a, _b, _c, _d;
-    return (h("ion-content", null, h("ion-header", null, h("ion-toolbar", { color: "light" }, h("ion-buttons", { slot: "start" }, h("ion-button", { href: "/", color: "primary" }, h("ion-icon", { name: "arrow-back", color: "primary" }))), h("ion-title", null, "Edit Profile"))), h("ion-grid", null, h("ion-row", { style: {
+    return (h("ion-content", null, h("ion-header", null, h("ion-toolbar", { color: "light" }, h("ion-title", null, "Edit Profile"))), h("ion-grid", null, h("ion-row", { style: {
         "justify-content": "center",
       } }, h("ion-col", { size: "12", "size-md": "9" }, h("ion-card", null, h("fireenjin-form", { endpoint: "users", documentId: this.userId, style: {
         "text-align": "center",
@@ -23,5 +25,6 @@ const AppProfile = class {
       ] }))))))));
   }
 };
+ModalProfile.style = modalProfileCss;
 
-export { AppProfile as app_profile };
+export { ModalProfile as modal_profile };
