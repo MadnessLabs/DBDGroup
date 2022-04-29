@@ -1,4 +1,4 @@
-import { g as getMode, C as Context, s as setPlatformHelpers, e as setMode } from './index-a091ab89.js';
+import { g as getMode, C as Context, s as setPlatformHelpers, e as setMode } from './index-1d93f1ff.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

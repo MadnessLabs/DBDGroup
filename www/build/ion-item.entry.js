@@ -1,6 +1,6 @@
-import { r as registerInstance, q as forceUpdate, h, m as Host, n as getElement } from './index-a091ab89.js';
+import { r as registerInstance, j as forceUpdate, h, o as Host, q as getElement } from './index-1d93f1ff.js';
 import { g as chevronForward } from './index-5e1d0749.js';
-import { g as getIonMode } from './ionic-global-65ffbf98.js';
+import { g as getIonMode } from './ionic-global-67b9f3db.js';
 import { r as raf } from './helpers-e7913fb8.js';
 import { a as printIonError } from './index-41de208d.js';
 import { o as openURL, c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';

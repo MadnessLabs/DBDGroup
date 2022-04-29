@@ -1,10 +1,10 @@
-import { r as registerInstance, i as createEvent, k as Build, h, m as Host, n as getElement } from './index-a091ab89.js';
-import { c as config, g as getIonMode } from './ionic-global-65ffbf98.js';
+import { r as registerInstance, k as createEvent, m as Build, h, o as Host, q as getElement } from './index-1d93f1ff.js';
+import { c as config, g as getIonMode } from './ionic-global-67b9f3db.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { GESTURE_CONTROLLER } from './index-dd414b33.js';
 import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-e7913fb8.js';
-import { m as menuController } from './index-310a046e.js';
-import { g as getOverlay } from './overlays-d4c0b42d.js';
+import { m as menuController } from './index-e3abf51a.js';
+import { g as getOverlay } from './overlays-5e6a7662.js';
 import './hardware-back-button-fa04d6e9.js';
 import './animation-f4dcdfa9.js';
 

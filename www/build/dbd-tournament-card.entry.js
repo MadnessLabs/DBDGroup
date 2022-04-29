@@ -1,4 +1,4 @@
-import { r as registerInstance, k as Build, h, m as Host } from './index-a091ab89.js';
+import { r as registerInstance, m as Build, h, o as Host } from './index-1d93f1ff.js';
 
 const tournamentCardCss = "dbd-tournament-card{display:block}";
 

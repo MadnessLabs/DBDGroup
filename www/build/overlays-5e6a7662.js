@@ -1,4 +1,4 @@
-import { g as getIonMode, c as config } from './ionic-global-65ffbf98.js';
+import { g as getIonMode, c as config } from './ionic-global-67b9f3db.js';
 import { OVERLAY_BACK_BUTTON_PRIORITY } from './hardware-back-button-fa04d6e9.js';
 import { c as componentOnReady, f as focusElement, g as getElementRoot, a as removeEventListener, b as addEventListener } from './helpers-e7913fb8.js';
 

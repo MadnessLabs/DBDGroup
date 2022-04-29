@@ -1,4 +1,4 @@
-import { r as registerInstance, h, m as Host } from './index-a091ab89.js';
+import { r as registerInstance, h, o as Host } from './index-1d93f1ff.js';
 
 const chipBarCss = "fireenjin-chip-bar{display:block;padding:3px;height:46px;width:100%;overflow:hidden;overflow-x:auto !important;white-space:nowrap}ion-chip ion-icon.ft-icon-style{height:14px !important;width:14px !important;padding:4px !important}fireenjin-chip-bar ion-router-link:hover ion-icon{color:var(--ion-color-secondary)}fireenjin-chip-bar::-webkit-scrollbar{width:0;height:5px}fireenjin-chip-bar::-webkit-scrollbar-thumb{background:rgba(var(--ion-text-color-rgb), 0.6);border-radius:2px}";
 

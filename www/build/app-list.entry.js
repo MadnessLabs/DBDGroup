@@ -1,17 +1,17 @@
-import { r as registerInstance, h } from './index-a091ab89.js';
-import './index-8d58a465.js';
-import { t as toastController } from './overlays-d4c0b42d.js';
-import './utils-6d7b2653.js';
+import { r as registerInstance, h } from './index-1d93f1ff.js';
+import './index-43448095.js';
+import { t as toastController } from './overlays-5e6a7662.js';
+import './utils-3ea04350.js';
 import './animation-f4dcdfa9.js';
 import './helpers-e7913fb8.js';
-import './ios.transition-acae6065.js';
-import './index-db11ab58.js';
-import './md.transition-78076c14.js';
+import './ios.transition-31ecc966.js';
+import './index-80bed695.js';
+import './md.transition-55ec1e52.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
-import './ionic-global-65ffbf98.js';
+import './ionic-global-67b9f3db.js';
 import './index-be6112f8.js';
-import './index-310a046e.js';
+import './index-e3abf51a.js';
 import './hardware-back-button-fa04d6e9.js';
 
 const appListCss = "ion-content{--background:none;background:url(\"/assets/\");background-position:center top;background-repeat:repeat;background-size:contain;background-color:rgb(66, 66, 66);opacity:1}.choices{text-align:center;font-size:x-large}ion-row{justify-content:center;padding:30px}ion-col{border-style:ridge;border-color:#7a7a79}#bLogo{position:absolute;height:240px;width:280px;max-width:100%;opacity:.7}";

@@ -1,4 +1,4 @@
-import { r as registerInstance, k as Build, h } from './index-a091ab89.js';
+import { r as registerInstance, m as Build, h } from './index-1d93f1ff.js';
 
 const tournamentListCss = "app-tournament-list{display:block}";
 

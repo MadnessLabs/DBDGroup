@@ -1,5 +1,7 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import { Component, Event, EventEmitter, h, Prop, State } from "@stencil/core";
+import state from "../../../store";
+ 
 
 @Component({
   tag: "app-home",
@@ -16,6 +18,25 @@ export class AppHome {
   @Prop() auth: AuthService;
 
   @State() tournaments: any[];
+
+  async componentWillLoad() {
+    this.auth.onAuthChanged(async (session) => {
+      if (session?.uid) {
+        state.session = session
+        // IF LOGGED IN
+        console.log(session.uid, "session.uid");
+        console.log(session, "session");
+        this.db.watchDocument("users", session.uid, async (snapshot) => {
+          console.log(snapshot);
+        });
+
+        // Create the user a document in the database
+        // Email
+      } else {
+        // IF LOGGED OUT
+      }
+    });
+  }
 
   async componentDidLoad() {
     this.tournaments = await this.db.list("tournaments", []);

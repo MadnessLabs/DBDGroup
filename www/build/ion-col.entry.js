@@ -1,5 +1,5 @@
-import { r as registerInstance, q as forceUpdate, h, m as Host } from './index-a091ab89.js';
-import { g as getIonMode } from './ionic-global-65ffbf98.js';
+import { r as registerInstance, j as forceUpdate, h, o as Host } from './index-1d93f1ff.js';
+import { g as getIonMode } from './ionic-global-67b9f3db.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

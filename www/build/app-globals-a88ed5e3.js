@@ -1,4 +1,4 @@
-import { i as initialize } from './ionic-global-65ffbf98.js';
+import { i as initialize } from './ionic-global-67b9f3db.js';
 
 const globalFn$1 = () => { };
 

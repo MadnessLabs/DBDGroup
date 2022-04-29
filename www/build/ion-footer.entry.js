@@ -1,5 +1,5 @@
-import { o as readTask, j as writeTask, r as registerInstance, h, m as Host, n as getElement } from './index-a091ab89.js';
-import { g as getIonMode } from './ionic-global-65ffbf98.js';
+import { t as readTask, l as writeTask, r as registerInstance, h, o as Host, q as getElement } from './index-1d93f1ff.js';
+import { g as getIonMode } from './ionic-global-67b9f3db.js';
 import { f as findIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
 import { e as clamp } from './helpers-e7913fb8.js';
 import './index-41de208d.js';

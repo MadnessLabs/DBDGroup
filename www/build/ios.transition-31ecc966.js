@@ -1,7 +1,7 @@
 import { c as createAnimation } from './animation-f4dcdfa9.js';
-import { g as getIonPageElement } from './index-db11ab58.js';
+import { g as getIonPageElement } from './index-80bed695.js';
 import './helpers-e7913fb8.js';
-import './index-a091ab89.js';
+import './index-1d93f1ff.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

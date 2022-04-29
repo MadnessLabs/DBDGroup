@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-a091ab89.js';
+import { r as registerInstance, h } from './index-1d93f1ff.js';
 
 const tabCss = "fireenjin-tab .tab-wrapper{opacity:0;pointer-events:none;height:0;display:block;transition:0.3s ease opacity;overflow:hidden}fireenjin-tab .tab-wrapper.tab-selected{opacity:1;pointer-events:all;height:auto;overflow:auto}";
 

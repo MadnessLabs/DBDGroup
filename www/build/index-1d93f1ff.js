@@ -3054,4 +3054,4 @@ const Build = {
     isTesting: BUILD.isTesting ? true : false,
 };
 
-export { BUILD as B, Context as C, H, NAMESPACE as N, promiseResolve as a, bootstrapLazy as b, consoleDevInfo as c, doc as d, setMode as e, CSS as f, getMode as g, h, createEvent as i, writeTask as j, Build as k, getAssetPath as l, Host as m, getElement as n, readTask as o, plt as p, forceUpdate as q, registerInstance as r, setPlatformHelpers as s, win as w };
+export { BUILD as B, Context as C, H, NAMESPACE as N, promiseResolve as a, bootstrapLazy as b, consoleDevInfo as c, doc as d, setMode as e, CSS as f, getMode as g, h, getRenderingRef as i, forceUpdate as j, createEvent as k, writeTask as l, Build as m, getAssetPath as n, Host as o, plt as p, getElement as q, registerInstance as r, setPlatformHelpers as s, readTask as t, win as w };

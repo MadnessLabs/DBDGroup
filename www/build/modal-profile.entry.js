@@ -1,12 +1,10 @@
-import { r as registerInstance, h } from './index-a091ab89.js';
+import { r as registerInstance, h } from './index-1d93f1ff.js';
 
 const modalProfileCss = "";
 
 const ModalProfile = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-  }
-  async componentdidload() {
   }
   render() {
     var _a, _b, _c, _d;

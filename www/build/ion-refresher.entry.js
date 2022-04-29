@@ -1,5 +1,5 @@
-import { j as writeTask, r as registerInstance, i as createEvent, o as readTask, h, m as Host, n as getElement } from './index-a091ab89.js';
-import { a as isPlatform, g as getIonMode } from './ionic-global-65ffbf98.js';
+import { l as writeTask, r as registerInstance, k as createEvent, t as readTask, h, o as Host, q as getElement } from './index-1d93f1ff.js';
+import { a as isPlatform, g as getIonMode } from './ionic-global-67b9f3db.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
 import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
