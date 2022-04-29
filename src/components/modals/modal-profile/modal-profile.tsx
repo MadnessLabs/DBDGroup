@@ -3,7 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "modal-profile",
-  styleUrl: "modal-profile.css"
+  styleUrl: "modal-profile.css",
 })
 export class ModalProfile {
   @Prop() userId: string;
@@ -11,7 +11,7 @@ export class ModalProfile {
   @Prop() documentId: string;
   @Prop() db: DatabaseService;
 
-  @State() user: any;
+  @State() user: User;
 
   render() {
     return (
@@ -19,7 +19,7 @@ export class ModalProfile {
         <ion-header>
           <ion-toolbar color="light">
             <ion-title>Edit Profile</ion-title>
-            </ion-toolbar>
+          </ion-toolbar>
         </ion-header>
         <ion-grid>
           <ion-row
@@ -29,7 +29,8 @@ export class ModalProfile {
           >
             <ion-col size="12" size-md="9">
               <ion-card>
-              <fireenjin-form
+                <fireenjin-form
+                  fetch
                   endpoint="users"
                   documentId={this.userId}
                   style={{
@@ -46,30 +47,30 @@ export class ModalProfile {
                   <fireenjin-input
                     data-fill
                     labelPosition="stacked"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    required
                     name="email"
                     label="E-mail"
-                    value={this.user?.email}
                   />
                   <fireenjin-input
                     data-fill
+                    required
                     labelPosition="stacked"
                     name="discordId"
                     label="Discord Username"
-                    value={this.user?.discordId}
                   />
                   <fireenjin-input
                     data-fill
                     labelPosition="stacked"
                     name="steamId"
                     label="Steam Code"
-                    value={this.user?.steamId}
                   />
                   <fireenjin-select
                     labelPosition="stacked"
                     data-fill
+                    required
                     name="enteringAs"
                     label="Entering as?"
-                    value={this.user?.enteringAs}
                     options={[
                       {
                         label: "Survivor",

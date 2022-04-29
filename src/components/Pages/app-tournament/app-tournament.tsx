@@ -8,6 +8,7 @@ import {
   Prop,
   State,
 } from "@stencil/core";
+import state from "../../../store";
 
 @Component({
   tag: "app-tournament",
@@ -46,21 +47,23 @@ export class AppTournament {
             </ion-buttons>
             <ion-title>Tournament Page</ion-title>
             <ion-buttons slot="end">
-              <ion-button
-                color="primary"
-                onClick={() =>
-                  this.dbdModalOpen.emit({
-                    component: "modal-tournament-edit",
-                    componentProps: {
-                      tournament: this.tournament,
-                      tournamentId: this.tournamentId,
-                    },
-                  })
-                }
-              >
-                Edit
-                <ion-icon slot="end" name="create" />
-              </ion-button>
+              {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() =>
+                    this.dbdModalOpen.emit({
+                      component: "modal-tournament-edit",
+                      componentProps: {
+                        tournament: this.tournament,
+                        tournamentId: this.tournamentId,
+                      },
+                    })
+                  }
+                >
+                  Edit
+                  <ion-icon slot="end" name="create" />
+                </ion-button>
+              )}
             </ion-buttons>
           </ion-toolbar>
         </ion-header>

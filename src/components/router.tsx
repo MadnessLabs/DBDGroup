@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { modalController, popoverController } from "@ionic/core";
 import env from "../helpers/env";
 import state from "../store";
+import pick from "../helpers/pick";
 
 @Component({
   tag: "dbdgroup-router",
@@ -92,6 +93,13 @@ export class AppRoot implements ComponentInterface {
   async componentWillLoad() {
     this.auth.onAuthChanged(async (session) => {
       state.session = session;
+      state.claims = session?.uid
+        ? (pick(await this.auth.getClaims(), ["admin", "tester", "role"]) as {
+            admin: boolean;
+            tester: boolean;
+            role: string;
+          })
+        : {};
       if (session?.uid) {
         // IF LOGGED IN
         console.log(session.uid);

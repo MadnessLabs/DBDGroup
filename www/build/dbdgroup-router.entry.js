@@ -5,7 +5,7 @@ import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
 import './index-299a0e66.js';
 import { e as env } from './env-2c0efef6.js';
-import { s as state } from './store-8e3aad24.js';
+import { s as state } from './store-521aeb0c.js';
 import { p as popoverController, m as modalController } from './overlays-3a4e1763.js';
 import './global-e1c7e609.js';
 import './utils-5f10070f.js';
@@ -34046,6 +34046,16 @@ var version = "9.6.11";
  */
 registerVersion(name, version, 'app');
 
+function pick(sourceObject, keys) {
+  const newObject = {};
+  for (const key of keys) {
+    if (!(sourceObject === null || sourceObject === void 0 ? void 0 : sourceObject[key]))
+      continue;
+    newObject[key] = sourceObject[key];
+  }
+  return newObject;
+}
+
 const AppRoot = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
@@ -34122,6 +34132,9 @@ const AppRoot = class {
   async componentWillLoad() {
     this.auth.onAuthChanged(async (session) => {
       state.session = session;
+      state.claims = (session === null || session === void 0 ? void 0 : session.uid)
+        ? pick(await this.auth.getClaims(), ["admin", "tester", "role"])
+        : {};
       if (session === null || session === void 0 ? void 0 : session.uid) {
         // IF LOGGED IN
         console.log(session.uid);

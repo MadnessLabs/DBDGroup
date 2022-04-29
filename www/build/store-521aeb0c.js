@@ -186,8 +186,12 @@ const createStore = (defaultState, shouldUpdate) => {
 
 const { state, onChange } = createStore({
   session: null,
+  profile: null,
 });
 onChange("session", (value) => {
+  console.log(value);
+});
+onChange("profile", (value) => {
   console.log(value);
 });
 

@@ -1,7 +1,6 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import { Component, Event, EventEmitter, h, Prop, State } from "@stencil/core";
 import state from "../../../store";
- 
 
 @Component({
   tag: "app-home",
@@ -22,7 +21,7 @@ export class AppHome {
   async componentWillLoad() {
     this.auth.onAuthChanged(async (session) => {
       if (session?.uid) {
-        state.session = session
+        state.session = session;
         // IF LOGGED IN
         console.log(session.uid, "session.uid");
         console.log(session, "session");
@@ -48,35 +47,38 @@ export class AppHome {
     return [
       <ion-header>
         <ion-toolbar color="light">
-          <ion-buttons>
-            <ion-button
-              color="primary"
-              onClick={() =>
-                this.dbdModalOpen.emit({
-                  component: "modal-login",
-                  componentProps: {
-                    auth: this.auth,
-                  },
-                })
-              }
-            >
-              Login
-            </ion-button>
-          </ion-buttons>
           <ion-buttons slot="end">
-            <ion-button
-              color="primary"
-              onClick={() => 
-              this.dbdModalOpen.emit({
-              component: "modal-profile",
-              componentProps: { 
-                auth: this.auth,
-              }
-            })}
-            >
-              <ion-title>Edit</ion-title>
-              <ion-icon slot="end" color="primary" name="person" />
-            </ion-button>
+            {state?.session?.uid ? (
+              <ion-button
+                color="primary"
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-profile",
+                    componentProps: {
+                      auth: this.auth,
+                      userId: state?.session?.uid,
+                    },
+                  })
+                }
+              >
+                <ion-title>Edit</ion-title>
+                <ion-icon slot="end" color="primary" name="person" />
+              </ion-button>
+            ) : (
+              <ion-button
+                color="primary"
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-login",
+                    componentProps: {
+                      auth: this.auth,
+                    },
+                  })
+                }
+              >
+                Login
+              </ion-button>
+            )}
           </ion-buttons>
           <ion-title>Dead By Daylight Group</ion-title>
         </ion-toolbar>
