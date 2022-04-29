@@ -27,3 +27,12 @@ declare type User = {
   email?: string;
   enteringAs?: string;
 };
+
+declare type GlobalState = {
+  session?: any;
+  claims?: {
+    admin?: boolean;
+    role?: string;
+  };
+  profile?: User;
+};

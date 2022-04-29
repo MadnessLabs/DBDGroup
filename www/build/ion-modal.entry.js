@@ -1,12 +1,12 @@
-import { r as registerInstance, k as createEvent, l as writeTask, h, o as Host, q as getElement } from './index-1d93f1ff.js';
-import { g as getIonMode, c as config } from './ionic-global-67b9f3db.js';
+import { r as registerInstance, i as createEvent, l as writeTask, h, o as Host, q as getElement } from './index-6e03bf48.js';
+import { g as getIonMode, c as config } from './ionic-global-e5e0f581.js';
 import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { e as clamp, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { KEYBOARD_DID_OPEN } from './keyboard-7e8329b3.js';
 import { p as printIonWarning } from './index-41de208d.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-5e6a7662.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-3a4e1763.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-80bed695.js';
+import { d as deepReady } from './index-63fb703b.js';
 import { c as createAnimation } from './animation-f4dcdfa9.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { createGesture } from './index-dd414b33.js';

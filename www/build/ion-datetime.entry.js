@@ -1,6 +1,6 @@
-import { r as registerInstance, k as createEvent, l as writeTask, h, o as Host, q as getElement } from './index-1d93f1ff.js';
+import { r as registerInstance, i as createEvent, l as writeTask, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { d as chevronDown, f as caretUpSharp, g as chevronForward, h as caretDownSharp, c as chevronBack } from './index-5e1d0749.js';
-import { g as getIonMode } from './ionic-global-67b9f3db.js';
+import { g as getIonMode } from './ionic-global-e5e0f581.js';
 import { startFocusVisible } from './focus-visible-4e9a0764.js';
 import { r as raf, g as getElementRoot, d as renderHiddenInput } from './helpers-e7913fb8.js';
 import { p as printIonWarning, a as printIonError } from './index-41de208d.js';

@@ -1,10 +1,10 @@
-import { r as registerInstance, k as createEvent, h, o as Host, q as getElement } from './index-1d93f1ff.js';
-import { g as getIonMode, a as isPlatform } from './ionic-global-67b9f3db.js';
+import { r as registerInstance, i as createEvent, h, o as Host, q as getElement } from './index-6e03bf48.js';
+import { g as getIonMode, a as isPlatform } from './ionic-global-e5e0f581.js';
 import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
 import { g as getElementRoot, r as raf, b as addEventListener } from './helpers-e7913fb8.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-5e6a7662.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, j as focusFirstDescendant, d as dismiss, e as eventMethod } from './overlays-3a4e1763.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-80bed695.js';
+import { d as deepReady } from './index-63fb703b.js';
 import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './hardware-back-button-fa04d6e9.js';
 

@@ -1,4 +1,4 @@
-import { r as registerInstance, k as createEvent, m as Build, h, q as getElement } from './index-1d93f1ff.js';
+import { r as registerInstance, i as createEvent, m as Build, h, q as getElement } from './index-6e03bf48.js';
 
 /*!
  * Chart.js v3.7.1

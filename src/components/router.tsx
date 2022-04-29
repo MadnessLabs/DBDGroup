@@ -3,6 +3,7 @@ import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
 import { modalController, popoverController } from "@ionic/core";
 import env from "../helpers/env";
+import state from "../store";
 
 @Component({
   tag: "dbdgroup-router",
@@ -90,6 +91,7 @@ export class AppRoot implements ComponentInterface {
 
   async componentWillLoad() {
     this.auth.onAuthChanged(async (session) => {
+      state.session = session;
       if (session?.uid) {
         // IF LOGGED IN
         console.log(session.uid);

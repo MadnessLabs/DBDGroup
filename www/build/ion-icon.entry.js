@@ -1,5 +1,5 @@
-import { r as registerInstance, m as Build, h, o as Host, q as getElement } from './index-1d93f1ff.js';
-import { i as isStr, a as inheritAttributes, g as getUrl, b as getName } from './utils-3ea04350.js';
+import { r as registerInstance, m as Build, h, o as Host, q as getElement } from './index-6e03bf48.js';
+import { i as isStr, a as inheritAttributes, g as getUrl, b as getName } from './utils-5f10070f.js';
 
 const validateContent = (svgContent) => {
   const div = document.createElement('div');

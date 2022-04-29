@@ -93,7 +93,6 @@ export class AppTournament {
               "justify-content": "center",
             }}
           >
-
             {/* // Scoreboard
 
             // Bloodpoints

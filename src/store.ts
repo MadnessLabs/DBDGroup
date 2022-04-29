@@ -1,14 +1,12 @@
 import { createStore } from "@stencil/store";
 
 const { state, onChange } = createStore({
-  clicks: 0,
-  seconds: 0,
-  squaredClicks: 0,
-  session: {}
-});
+  session: null,
+  profile: null,
+} as GlobalState);
 
-onChange('clicks', value => {
-  state.squaredClicks = value ** 2;
+onChange("profile", (value) => {
+  console.log(value);
 });
 
 export default state;

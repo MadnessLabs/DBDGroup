@@ -1,4 +1,4 @@
-import { r as registerInstance, k as createEvent, q as getElement } from './index-1d93f1ff.js';
+import { r as registerInstance, i as createEvent, q as getElement } from './index-6e03bf48.js';
 import { c as componentOnReady, n as debounce } from './helpers-e7913fb8.js';
 
 /*!

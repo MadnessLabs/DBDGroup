@@ -1,6 +1,6 @@
-import { r as registerInstance, h, o as Host, q as getElement } from './index-1d93f1ff.js';
+import { r as registerInstance, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { k as arrowDown, l as caretBackSharp } from './index-5e1d0749.js';
-import { g as getIonMode, c as config, a as isPlatform } from './ionic-global-67b9f3db.js';
+import { g as getIonMode, c as config, a as isPlatform } from './ionic-global-e5e0f581.js';
 import { s as sanitizeDOMString } from './index-be6112f8.js';
 import { S as SPINNERS } from './spinner-configs-a37e628a.js';
 

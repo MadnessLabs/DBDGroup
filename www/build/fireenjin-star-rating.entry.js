@@ -1,4 +1,4 @@
-import { r as registerInstance, k as createEvent, m as Build, h, q as getElement } from './index-1d93f1ff.js';
+import { r as registerInstance, i as createEvent, m as Build, h, q as getElement } from './index-6e03bf48.js';
 
 const starRatingCss = ".star-rating{display:flex;flex-direction:row-reverse;justify-content:space-around;text-align:center;width:var(\n    --star-rating-width,\n    calc(\n      (var(--star-rating-size, 25px) * var(--star-rating-max, 5)) +\n        var(--star-rating-spacing, -10px)\n    )\n  )}.star-rating input{display:none}.star-rating>label{color:var(--star-rating-default, #fff);font-size:var(--star-rating-size, 25px);cursor:pointer}.star-rating .star-active{color:var(--star-rating-active, var(--ion-color-warning-shade, #f90))}.star-rating:not(.is-disabled) label:hover,.star-rating:not(.is-disabled) label:hover~label{color:var(--star-rating-hover, var(--ion-color-warning-tint, #fc0))}";
 
