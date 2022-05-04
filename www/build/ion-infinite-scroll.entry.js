@@ -1,7 +1,7 @@
 import { r as registerInstance, i as createEvent, l as writeTask, t as readTask, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode } from './ionic-global-e5e0f581.js';
-import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
-import './helpers-e7913fb8.js';
+import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-411b3ec7.js';
+import './helpers-caa5a9ed.js';
 import './index-41de208d.js';
 
 const infiniteScrollCss = "ion-infinite-scroll{display:none;width:100%}.infinite-scroll-enabled{display:block}";

@@ -61,7 +61,7 @@ export class AppTournament {
                   }
                 >
                   Edit
-                  <ion-icon slot="end" name="create" />
+                  <ion-icon slot="end" name="document" />
                 </ion-button>
               )}
             </ion-buttons>

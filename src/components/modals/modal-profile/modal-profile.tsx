@@ -1,11 +1,14 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop, State, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: "modal-profile",
   styleUrl: "modal-profile.css",
 })
 export class ModalProfile {
+
+  @Event() dbdModalClose: EventEmitter;
+
   @Prop() userId: string;
   @Prop() auth: AuthService;
   @Prop() documentId: string;
@@ -13,11 +16,26 @@ export class ModalProfile {
 
   @State() user: User;
 
+  closeModal(event: MouseEvent) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.dbdModalClose.emit();
+  }
+
   render() {
     return (
       <ion-content>
         <ion-header>
           <ion-toolbar color="light">
+          <ion-buttons slot="start">
+            <ion-button
+              color="primary"
+              href="/"
+              onClick={(event) => this.closeModal(event)}
+            >
+              <ion-icon name="arrow-back" color="primary" />
+            </ion-button>
+          </ion-buttons>
             <ion-title>Edit Profile</ion-title>
           </ion-toolbar>
         </ion-header>

@@ -1,4 +1,4 @@
-import { c as componentOnReady } from './helpers-e7913fb8.js';
+import { c as componentOnReady } from './helpers-caa5a9ed.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

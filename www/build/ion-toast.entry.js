@@ -1,10 +1,10 @@
 import { r as registerInstance, i as createEvent, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode } from './ionic-global-e5e0f581.js';
-import { i as isCancel, a as prepareOverlay, b as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-3a4e1763.js';
+import { i as isCancel, a as prepareOverlay, b as present, d as dismiss, e as eventMethod, s as safeCall } from './overlays-6f119ace.js';
 import { s as sanitizeDOMString } from './index-be6112f8.js';
 import { g as getClassMap, c as createColorClasses } from './theme-7ef00c83.js';
-import { c as createAnimation } from './animation-f4dcdfa9.js';
-import { g as getElementRoot } from './helpers-e7913fb8.js';
+import { c as createAnimation } from './animation-0a29ef4d.js';
+import { g as getElementRoot } from './helpers-caa5a9ed.js';
 import './hardware-back-button-fa04d6e9.js';
 
 /*!

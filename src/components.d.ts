@@ -56,6 +56,8 @@ export namespace Components {
     }
     interface ModalSuccess {
     }
+    interface ModalTournamentCreate {
+    }
     interface ModalTournamentDetail {
         "db": DatabaseService;
         "rules": string[];
@@ -134,6 +136,12 @@ declare global {
         prototype: HTMLModalSuccessElement;
         new (): HTMLModalSuccessElement;
     };
+    interface HTMLModalTournamentCreateElement extends Components.ModalTournamentCreate, HTMLStencilElement {
+    }
+    var HTMLModalTournamentCreateElement: {
+        prototype: HTMLModalTournamentCreateElement;
+        new (): HTMLModalTournamentCreateElement;
+    };
     interface HTMLModalTournamentDetailElement extends Components.ModalTournamentDetail, HTMLStencilElement {
     }
     var HTMLModalTournamentDetailElement: {
@@ -158,6 +166,7 @@ declare global {
         "modal-login": HTMLModalLoginElement;
         "modal-profile": HTMLModalProfileElement;
         "modal-success": HTMLModalSuccessElement;
+        "modal-tournament-create": HTMLModalTournamentCreateElement;
         "modal-tournament-detail": HTMLModalTournamentDetailElement;
         "modal-tournament-edit": HTMLModalTournamentEditElement;
     }
@@ -218,9 +227,13 @@ declare namespace LocalJSX {
         "auth"?: AuthService;
         "db"?: DatabaseService;
         "documentId"?: string;
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "userId"?: string;
     }
     interface ModalSuccess {
+    }
+    interface ModalTournamentCreate {
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
     }
     interface ModalTournamentDetail {
         "db"?: DatabaseService;
@@ -246,6 +259,7 @@ declare namespace LocalJSX {
         "modal-login": ModalLogin;
         "modal-profile": ModalProfile;
         "modal-success": ModalSuccess;
+        "modal-tournament-create": ModalTournamentCreate;
         "modal-tournament-detail": ModalTournamentDetail;
         "modal-tournament-edit": ModalTournamentEdit;
     }
@@ -265,6 +279,7 @@ declare module "@stencil/core" {
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
             "modal-profile": LocalJSX.ModalProfile & JSXBase.HTMLAttributes<HTMLModalProfileElement>;
             "modal-success": LocalJSX.ModalSuccess & JSXBase.HTMLAttributes<HTMLModalSuccessElement>;
+            "modal-tournament-create": LocalJSX.ModalTournamentCreate & JSXBase.HTMLAttributes<HTMLModalTournamentCreateElement>;
             "modal-tournament-detail": LocalJSX.ModalTournamentDetail & JSXBase.HTMLAttributes<HTMLModalTournamentDetailElement>;
             "modal-tournament-edit": LocalJSX.ModalTournamentEdit & JSXBase.HTMLAttributes<HTMLModalTournamentEditElement>;
         }

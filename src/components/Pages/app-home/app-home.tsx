@@ -48,6 +48,19 @@ export class AppHome {
       <ion-header>
         <ion-toolbar color="light">
           <ion-buttons slot="end">
+          {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() =>
+                    this.dbdModalOpen.emit({
+                      component: "modal-tournament-create",  
+                  })
+                }
+                >
+                  Create
+                  <ion-icon slot="end" name="create" />
+                </ion-button>
+              )}
             {state?.session?.uid ? (
               <ion-button
                 color="primary"
@@ -61,7 +74,7 @@ export class AppHome {
                   })
                 }
               >
-                <ion-title>Edit</ion-title>
+                Edit
                 <ion-icon slot="end" color="primary" name="person" />
               </ion-button>
             ) : (
@@ -80,7 +93,7 @@ export class AppHome {
               </ion-button>
             )}
           </ion-buttons>
-          <ion-title>Dead By Daylight Group</ion-title>
+          <h2>Dead By Daylight Group</h2>
         </ion-toolbar>
       </ion-header>,
       <ion-content>
