@@ -48,12 +48,12 @@ export class AppTournament {
       if (type === "survivor") {
         survivors.push({
           user: this.db.document("users", state?.session?.uid),
-          name: state?.profile?.discordId || "No Name Survived",
+          name: (state?.profile?.discordId || "No Name Survived").split("#")[0],
         });
       } else {
         killers.push({
           user: this.db.document("users", state?.session?.uid),
-          name: state?.profile?.discordId || "Killed His Name",
+          name: (state?.profile?.discordId || "Killed His Name").split("#")[0],
         });
       }
 
