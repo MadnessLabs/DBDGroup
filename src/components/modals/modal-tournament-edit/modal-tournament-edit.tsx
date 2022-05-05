@@ -9,6 +9,8 @@ export class ModalTournamentEdit {
 
   @Prop() tournament: Tournament;
   @Prop() tournamentId: string;
+  @Prop() mainTitle: "Create Tournament"
+  
 
   @Listen("fireenjinSuccess")
   onSucess() {
@@ -41,7 +43,7 @@ export class ModalTournamentEdit {
               <ion-icon name="arrow-back" color="primary" />
             </ion-button>
           </ion-buttons>
-          <ion-title>Edit Tournament</ion-title>
+          <ion-title>{this.mainTitle}</ion-title>
         </ion-toolbar>
       </ion-header>,
       <ion-content class="ion-padding">

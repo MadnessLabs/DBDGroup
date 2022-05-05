@@ -92,6 +92,7 @@ export class AppTournament {
                       componentProps: {
                         tournament: this.tournament,
                         tournamentId: this.tournamentId,
+                        mainTitle: "Edit Tournament"
                       },
                     })
                   }

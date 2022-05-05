@@ -40,7 +40,10 @@ export class AppHome {
                 color="primary"
                 onClick={() =>
                   this.dbdModalOpen.emit({
-                    component: "modal-tournament-create",
+                    component: "modal-tournament-edit",
+                    componentProps: {
+                      mainTitle: "Create Tournament"
+                    }
                   })
                 }
               >
