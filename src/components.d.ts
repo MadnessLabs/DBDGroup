@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { DatetimeOptions } from "@ionic/core";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
@@ -33,6 +34,7 @@ export namespace Components {
         "image": string;
         "name": string;
         "rules": string[];
+        "timestamp": DatetimeOptions;
     }
     interface DbdTournamentDetails {
         "dateTime": string;
@@ -196,6 +198,7 @@ declare namespace LocalJSX {
         "image"?: string;
         "name"?: string;
         "rules"?: string[];
+        "timestamp"?: DatetimeOptions;
     }
     interface DbdTournamentDetails {
         "dateTime"?: string;

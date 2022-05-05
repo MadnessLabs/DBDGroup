@@ -1,3 +1,4 @@
+import { DatetimeOptions } from "@ionic/core";
 import {
   Build,
   Component,
@@ -18,6 +19,7 @@ export class TournamentCard implements ComponentInterface {
   @Prop() dateTime: string;
   @Prop() rules: string[];
   @Prop() href: string;
+  @Prop() timestamp: DatetimeOptions
 
   componentDidLoad() {
     if (!Build?.isBrowser) return;
@@ -40,7 +42,7 @@ export class TournamentCard implements ComponentInterface {
             </ion-thumbnail>
             <ion-label>
               <h2>{this.name || "DBD Tourney"}</h2>
-              <h3>{this.dateTime}</h3>
+              <h3>{this.timestamp}</h3>
               {this.rules && (
                 <fireenjin-chip-bar>
                   {(this.rules || []).map((rule) => (

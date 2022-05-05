@@ -62,9 +62,11 @@ export class ModalTournamentEdit {
             />
             <fireenjin-input
               labelPosition="stacked"
-              name="id"
-              label="id"
-              value={this.tournament?.id}
+              data-fill
+              type="date"
+              name="timestamp"
+              label="Date"
+              value={this.tournament?.timestamp}
             />
             <fireenjin-select-tags
               labelPosition="stacked"
