@@ -6,17 +6,17 @@ declare type Tournament = {
   timestamp?: Date;
   killers?: {
     user: User;
-    killerpoints: number;
-    generatorsLeft: number;
-    hooks: number;
-    kills: number;
-    survivorsEscaped: number;
+    killerpoints?: number;
+    generatorsLeft?: number;
+    hooks?: number;
+    kills?: number;
+    survivorsEscaped?: number;
   }[];
 };
 
 declare type Survivor = {
   user: User;
-  bloodpoints: number;
+  bloodpoints?: number;
   name?: string;
 };
 

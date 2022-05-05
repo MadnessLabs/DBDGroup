@@ -79,7 +79,7 @@ export class AppRoot implements ComponentInterface {
   async presentModal(event: CustomEvent) {
     this.modal = await modalController.create({
       component: event?.detail?.component,
-      componentProps: event?.detail?.componentProps,
+      componentProps: { db: this.db, ...(event?.detail?.componentProps || {}) },
       cssClass: event?.detail?.cssClass,
     });
     await this.modal.present();

@@ -1,20 +1,36 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
-import { Component, h, Prop, State, Event, EventEmitter } from "@stencil/core";
+import {
+  Component,
+  h,
+  Prop,
+  State,
+  Event,
+  EventEmitter,
+  Listen,
+} from "@stencil/core";
 
 @Component({
   tag: "modal-profile",
   styleUrl: "modal-profile.css",
 })
 export class ModalProfile {
-
   @Event() dbdModalClose: EventEmitter;
 
   @Prop() userId: string;
   @Prop() auth: AuthService;
   @Prop() documentId: string;
   @Prop() db: DatabaseService;
+  @Prop() headerTitle = "Edit Profile";
 
   @State() user: User;
+
+  @Listen("fireenjinError")
+  async onError(event) {
+    console.log(event);
+    if (event?.detail?.error?.code === "not-found") {
+      await this.db.add("users", this.user, this.userId);
+    }
+  }
 
   closeModal(event: MouseEvent) {
     event.preventDefault();
@@ -27,16 +43,16 @@ export class ModalProfile {
       <ion-content>
         <ion-header>
           <ion-toolbar color="light">
-          <ion-buttons slot="start">
-            <ion-button
-              color="primary"
-              href="/"
-              onClick={(event) => this.closeModal(event)}
-            >
-              <ion-icon name="arrow-back" color="primary" />
-            </ion-button>
-          </ion-buttons>
-            <ion-title>Edit Profile</ion-title>
+            <ion-buttons slot="start">
+              <ion-button
+                color="primary"
+                href="/"
+                onClick={(event) => this.closeModal(event)}
+              >
+                <ion-icon name="arrow-back" color="primary" />
+              </ion-button>
+            </ion-buttons>
+            <ion-title>{this.headerTitle}</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-grid>
@@ -51,6 +67,10 @@ export class ModalProfile {
                   fetch
                   endpoint="users"
                   documentId={this.userId}
+                  beforeSubmit={async (data) => {
+                    this.user = data;
+                    return data;
+                  }}
                   style={{
                     "text-align": "center",
                     margin: "0 auto",
@@ -82,21 +102,6 @@ export class ModalProfile {
                     labelPosition="stacked"
                     name="steamId"
                     label="Steam Code"
-                  />
-                  <fireenjin-select
-                    labelPosition="stacked"
-                    data-fill
-                    required
-                    name="enteringAs"
-                    label="Entering as?"
-                    options={[
-                      {
-                        label: "Survivor",
-                      },
-                      {
-                        label: "Killer",
-                      },
-                    ]}
                   />
                 </fireenjin-form>
               </ion-card>

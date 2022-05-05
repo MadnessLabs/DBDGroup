@@ -85,13 +85,11 @@ export class DbdTournamentDetails {
                   <p>{survivor?.name || "No name given"}</p>
                 </ion-item>
               ))}
-              {!this.tournament?.survivors?.length && (
-                <ion-item>
-                  <ion-label>
-                    <h2>Searching for Survivors...</h2>
-                  </ion-label>
-                </ion-item>
-              )}
+              <ion-item>
+                <ion-label>
+                  <h2>Searching for Survivors...</h2>
+                </ion-label>
+              </ion-item>
             </ion-card>
           </ion-col>
           {/* <fireenjin-pagination

@@ -35,6 +35,34 @@ export class AppTournament {
     });
   }
 
+  async enterTournament(type?: "killer" | "survivor") {
+    if (state?.session?.uid) {
+      const killers = this.tournament?.killers || [];
+      const survivors = this.tournament?.survivors || [];
+      if (type === "survivor") {
+        survivors.push({
+          user: null,
+        });
+      } else {
+        killers.push({
+          user: null,
+        });
+      }
+
+      this.tournament = { ...this.tournament, killers, survivors };
+      await this.db.update("tournaments", this.tournamentId, this.tournament);
+      console.log(this.tournament, killers);
+    } else {
+      this.dbdModalOpen.emit({
+        component: "modal-profile",
+        componentProps: {
+          headerTitle:
+            type === "survivor" ? "Enter as Survivor" : "Enter as Killer",
+        },
+      });
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -91,12 +119,29 @@ export class AppTournament {
             tournamentId={this.tournamentId}
             tournament={this.tournament}
           />
-          <ion-row
-            style={{
-              "justify-content": "center",
-            }}
-          >
-            {/* // Scoreboard
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-button
+                  expand="block"
+                  onClick={() => this.enterTournament("survivor")}
+                >
+                  Enter as Survivor
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button
+                  expand="block"
+                  fill="outline"
+                  onClick={() => this.enterTournament("killer")}
+                >
+                  Enter as Killer
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          {/* // Scoreboard
 
             // Bloodpoints
 
@@ -109,60 +154,6 @@ export class AppTournament {
                 //Game 2
                 // S1B ~~
             // Total Points Survivors                   //Total Killers */}
-            <ion-col size="12" size-md="9">
-              <ion-card>
-                <fireenjin-form
-                  endpoint="users"
-                  documentId={this.userId}
-                  style={{
-                    "text-align": "center",
-                    margin: "0 auto",
-                  }}
-                >
-                  <ion-title>Dead by Daylight Tournament Signup</ion-title>
-                  <fireenjin-input
-                    labelPosition="stacked"
-                    name="name"
-                    label="Name"
-                    value={this.users?.name}
-                  />
-                  <fireenjin-input
-                    labelPosition="stacked"
-                    name="email"
-                    label="E-mail"
-                    value={this.users?.email}
-                  />
-                  <fireenjin-input
-                    labelPosition="stacked"
-                    name="discordId"
-                    label="Discord Username"
-                    value={this.users?.discordId}
-                  />
-                  <fireenjin-input
-                    labelPosition="stacked"
-                    name="steamId"
-                    label="Steam Code"
-                    value={this.users?.steamId}
-                  />
-                  <fireenjin-select
-                    labelPosition="stacked"
-                    data-fill
-                    name="enteringAs"
-                    label="Entering as?"
-                    value={this.users?.enteringAs}
-                    options={[
-                      {
-                        label: "Survivor",
-                      },
-                      {
-                        label: "Killer",
-                      },
-                    ]}
-                  />
-                </fireenjin-form>
-              </ion-card>
-            </ion-col>
-          </ion-row>
         </ion-content>
       </Host>
     );

@@ -34147,7 +34147,7 @@ const AppRoot = class {
     var _a, _b, _c;
     this.modal = await modalController.create({
       component: (_a = event === null || event === void 0 ? void 0 : event.detail) === null || _a === void 0 ? void 0 : _a.component,
-      componentProps: (_b = event === null || event === void 0 ? void 0 : event.detail) === null || _b === void 0 ? void 0 : _b.componentProps,
+      componentProps: { db: this.db, ...(((_b = event === null || event === void 0 ? void 0 : event.detail) === null || _b === void 0 ? void 0 : _b.componentProps) || {}) },
       cssClass: (_c = event === null || event === void 0 ? void 0 : event.detail) === null || _c === void 0 ? void 0 : _c.cssClass,
     });
     await this.modal.present();
