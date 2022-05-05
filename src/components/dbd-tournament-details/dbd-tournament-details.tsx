@@ -11,6 +11,7 @@ export class DbdTournamentDetails {
     cssClass?: string;
     componentProps?: any;
   }>;
+  @Event() fireenjinShare: EventEmitter;
 
   @Prop() image: string =
     "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y";
@@ -60,6 +61,25 @@ export class DbdTournamentDetails {
                 Tournament Details
               </ion-button>
             </ion-label>
+            <ion-buttons slot="end">
+              <ion-button
+                onClick={() =>
+                  this.fireenjinShare.emit({
+                    data: {
+                      url:
+                        window?.location?.href ||
+                        "https://deadbydaylight.group",
+                      text: `I entered a DBD tourney called ${
+                        this.tournament?.name || "unknown"
+                      } on a new app. Enter with the link so we can play together.`,
+                      title: `Enter this DBD tourney with me.`,
+                    },
+                  })
+                }
+              >
+                Share
+              </ion-button>
+            </ion-buttons>
           </ion-item>
         </ion-card>
 

@@ -21,7 +21,7 @@ import './index-be6112f8.js';
 import './index-f45bd30f.js';
 import './hardware-back-button-fa04d6e9.js';
 
-var __extends$3 = (undefined && undefined.__extends) || (function () {
+var __extends$4 = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -35,7 +35,7 @@ var __extends$3 = (undefined && undefined.__extends) || (function () {
     };
 })();
 var FacebookOriginal = /** @class */ (function (_super) {
-    __extends$3(FacebookOriginal, _super);
+    __extends$4(FacebookOriginal, _super);
     function FacebookOriginal() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.EVENTS = {
@@ -107,7 +107,7 @@ var FacebookOriginal = /** @class */ (function (_super) {
 }(IonicNativePlugin));
 var Facebook = new FacebookOriginal();
 
-var __extends$2 = (undefined && undefined.__extends) || (function () {
+var __extends$3 = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -121,7 +121,7 @@ var __extends$2 = (undefined && undefined.__extends) || (function () {
     };
 })();
 var GooglePlusOriginal = /** @class */ (function (_super) {
-    __extends$2(GooglePlusOriginal, _super);
+    __extends$3(GooglePlusOriginal, _super);
     function GooglePlusOriginal() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -141,7 +141,7 @@ var GooglePlusOriginal = /** @class */ (function (_super) {
 }(IonicNativePlugin));
 var GooglePlus = new GooglePlusOriginal();
 
-var __extends$1 = (undefined && undefined.__extends) || (function () {
+var __extends$2 = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -155,7 +155,7 @@ var __extends$1 = (undefined && undefined.__extends) || (function () {
     };
 })();
 var TwitterConnectOriginal = /** @class */ (function (_super) {
-    __extends$1(TwitterConnectOriginal, _super);
+    __extends$2(TwitterConnectOriginal, _super);
     function TwitterConnectOriginal() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
@@ -196,7 +196,7 @@ var extendStatics = function(d, b) {
     return extendStatics(d, b);
 };
 
-function __extends(d, b) {
+function __extends$1(d, b) {
     if (typeof b !== "function" && b !== null)
         throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
     extendStatics(d, b);
@@ -34072,6 +34072,49 @@ var version = "9.7.0";
  */
 registerVersion(name, version, 'app');
 
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var SocialSharingOriginal = /** @class */ (function (_super) {
+    __extends(SocialSharingOriginal, _super);
+    function SocialSharingOriginal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SocialSharingOriginal.prototype.share = function (message, subject, file, url) { return cordova(this, "share", { "successIndex": 4, "errorIndex": 5 }, arguments); };
+    SocialSharingOriginal.prototype.shareWithOptions = function (options) { return cordova(this, "shareWithOptions", { "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.canShareVia = function (appName, message, subject, image, url) { return cordova(this, "canShareVia", { "successIndex": 5, "errorIndex": 6, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaTwitter = function (message, image, url) { return cordova(this, "shareViaTwitter", { "successIndex": 3, "errorIndex": 4, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaFacebook = function (message, image, url) { return cordova(this, "shareViaFacebook", { "successIndex": 3, "errorIndex": 4, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaFacebookWithPasteMessageHint = function (message, image, url, pasteMessageHint) { return cordova(this, "shareViaFacebookWithPasteMessageHint", { "successIndex": 4, "errorIndex": 5, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaInstagram = function (message, image) { return cordova(this, "shareViaInstagram", { "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaWhatsApp = function (message, image, url) { return cordova(this, "shareViaWhatsApp", { "successIndex": 3, "errorIndex": 4, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaWhatsAppToReceiver = function (receiver, message, image, url) { return cordova(this, "shareViaWhatsAppToReceiver", { "successIndex": 4, "errorIndex": 5, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaSMS = function (messge, phoneNumber) { return cordova(this, "shareViaSMS", { "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.canShareViaEmail = function () { return cordova(this, "canShareViaEmail", { "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaEmail = function (message, subject, to, cc, bcc, files) { return cordova(this, "shareViaEmail", { "platforms": ["iOS", "Android"], "successIndex": 6, "errorIndex": 7 }, arguments); };
+    SocialSharingOriginal.prototype.shareVia = function (appName, message, subject, image, url) { return cordova(this, "shareVia", { "successIndex": 5, "errorIndex": 6, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.prototype.setIPadPopupCoordinates = function (targetBounds) { return cordova(this, "setIPadPopupCoordinates", { "sync": true, "platforms": ["iOS"] }, arguments); };
+    SocialSharingOriginal.prototype.saveToPhotoAlbum = function (fileOrFileArray) { return cordova(this, "saveToPhotoAlbum", { "platforms": ["iOS"] }, arguments); };
+    SocialSharingOriginal.prototype.shareViaWhatsAppToPhone = function (phone, message, fileOrFileArray, url) { return cordova(this, "shareViaWhatsAppToPhone", { "successIndex": 5, "errorIndex": 6, "platforms": ["iOS", "Android"] }, arguments); };
+    SocialSharingOriginal.pluginName = "SocialSharing";
+    SocialSharingOriginal.plugin = "cordova-plugin-x-socialsharing";
+    SocialSharingOriginal.pluginRef = "plugins.socialsharing";
+    SocialSharingOriginal.repo = "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin";
+    SocialSharingOriginal.platforms = ["Android", "Browser", "iOS", "Windows", "Windows Phone"];
+    return SocialSharingOriginal;
+}(IonicNativePlugin));
+var SocialSharing = new SocialSharingOriginal();
+
 function pick(sourceObject, keys) {
   const newObject = {};
   for (const key of keys) {
@@ -34120,6 +34163,33 @@ const AppRoot = class {
       db: this.db,
       fireenjin: this.fireenjin,
     };
+  }
+  async share(event) {
+    const data = event.detail.data;
+    try {
+      if (navigator === null || navigator === void 0 ? void 0 : navigator.share) {
+        await navigator.share(data);
+        return;
+      }
+      if (!(navigator === null || navigator === void 0 ? void 0 : navigator.share)) {
+        this.sharePopover = await popoverController.create({
+          event: event.detail.event,
+          component: "fireenjin-share",
+          componentProps: {
+            options: event.detail.data,
+          },
+        });
+        this.sharePopover.present();
+        return;
+      }
+      await SocialSharing.share(data.text, data.title, data.file || data.files, data.url);
+    }
+    catch (e) {
+      console.log("Error using share functionality...", e);
+    }
+  }
+  closeSharePopover() {
+    this.sharePopover.dismiss();
   }
   async onUpdate() {
     const registration = await navigator.serviceWorker.getRegistration();

@@ -226,6 +226,7 @@ declare namespace LocalJSX {
     cssClass?: string;
     componentProps?: any;
   }>) => void;
+        "onFireenjinShare"?: (event: CustomEvent<any>) => void;
         "rules"?: string[];
         "tournament"?: Tournament;
         "tournamentId"?: string;

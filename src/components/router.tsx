@@ -1,6 +1,7 @@
 import { AuthService, DatabaseService, FireEnjin } from "@fireenjin/sdk";
 import { Component, ComponentInterface, Listen, h, Build } from "@stencil/core";
 import { initializeApp } from "firebase/app";
+import { SocialSharing } from "@ionic-native/social-sharing";
 import { modalController, popoverController } from "@ionic/core";
 import env from "../helpers/env";
 import state from "../store";
@@ -10,6 +11,7 @@ import pick from "../helpers/pick";
   tag: "dbdgroup-router",
 })
 export class AppRoot implements ComponentInterface {
+  sharePopover: HTMLIonPopoverElement;
   app = Build.isBrowser ? initializeApp(env("firebase")) : null;
   auth = Build.isBrowser
     ? new AuthService({
@@ -47,6 +49,45 @@ export class AppRoot implements ComponentInterface {
   };
   modal: HTMLIonModalElement;
   popover: HTMLIonPopoverElement;
+
+  @Listen("fireenjinShare", { target: "document" })
+  async share(event) {
+    const data: ShareData = event.detail.data;
+    try {
+      if (navigator?.share) {
+        await navigator.share(data);
+
+        return;
+      }
+
+      if (!navigator?.share) {
+        this.sharePopover = await popoverController.create({
+          event: event.detail.event,
+          component: "fireenjin-share",
+          componentProps: {
+            options: event.detail.data,
+          },
+        });
+        this.sharePopover.present();
+
+        return;
+      }
+
+      await SocialSharing.share(
+        data.text,
+        data.title,
+        (data as any).file || (data.files as any),
+        data.url
+      );
+    } catch (e) {
+      console.log("Error using share functionality...", e);
+    }
+  }
+
+  @Listen("fireenjinShareClose", { target: "document" })
+  closeSharePopover() {
+    this.sharePopover.dismiss();
+  }
 
   @Listen("swUpdate", { target: "window" })
   async onUpdate() {
