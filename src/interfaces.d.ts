@@ -6,6 +6,7 @@ declare type Tournament = {
   timestamp?: Date;
   killers?: {
     user: User;
+    name?: string;
     killerpoints?: number;
     generatorsLeft?: number;
     hooks?: number;

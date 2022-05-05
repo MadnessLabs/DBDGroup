@@ -144,8 +144,8 @@ export class AppRoot implements ComponentInterface {
       if (session?.uid) {
         // IF LOGGED IN
         console.log(session.uid);
-        this.db.watchDocument("users", session.uid, async (snapshot) => {
-          console.log(snapshot);
+        this.db.watchDocument("users", session.uid, async ({ data }) => {
+          state.profile = data;
         });
 
         // Create the user a document in the database

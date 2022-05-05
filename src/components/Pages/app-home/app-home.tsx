@@ -18,25 +18,6 @@ export class AppHome {
 
   @State() tournaments: any[];
 
-  async componentWillLoad() {
-    this.auth.onAuthChanged(async (session) => {
-      if (session?.uid) {
-        state.session = session;
-        // IF LOGGED IN
-        console.log(session.uid, "session.uid");
-        console.log(session, "session");
-        this.db.watchDocument("users", session.uid, async (snapshot) => {
-          console.log(snapshot);
-        });
-
-        // Create the user a document in the database
-        // Email
-      } else {
-        // IF LOGGED OUT
-      }
-    });
-  }
-
   async componentDidLoad() {
     this.db.subscribe(
       { collectionName: "tournaments", orderBy: "timestamp:desc" },
@@ -47,8 +28,6 @@ export class AppHome {
         }));
       }
     );
-    // this.auth.withSocial("google");
-    // this.auth.withEmail("a@a.com", "mypass");
   }
 
   render() {

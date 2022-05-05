@@ -31,21 +31,29 @@ export class AppTournament {
     console.log(this.users, "here");
     this.db.watchDocument("tournaments", this.tournamentId, ({ data }) => {
       console.log(data);
-      this.tournament = data;
+      this.tournament = data || {
+        id: this.tournamentId,
+      };
     });
   }
 
   async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
-      const killers = this.tournament?.killers || [];
-      const survivors = this.tournament?.survivors || [];
+      const killers = (this.tournament?.killers || []).filter(
+        (killer) => killer?.user?.id !== state?.session?.uid
+      );
+      const survivors = (this.tournament?.survivors || []).filter(
+        (survivor) => survivor?.user?.id !== state?.session?.uid
+      );
       if (type === "survivor") {
         survivors.push({
-          user: null,
+          user: this.db.document("users", state?.session?.uid),
+          name: state?.profile?.discordId || "No Name Survived",
         });
       } else {
         killers.push({
-          user: null,
+          user: this.db.document("users", state?.session?.uid),
+          name: state?.profile?.discordId || "Killed His Name",
         });
       }
 
