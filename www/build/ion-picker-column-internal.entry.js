@@ -1,6 +1,6 @@
 import { r as registerInstance, i as createEvent, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode } from './ionic-global-e5e0f581.js';
-import { r as raf, g as getElementRoot } from './helpers-e7913fb8.js';
+import { r as raf, g as getElementRoot } from './helpers-caa5a9ed.js';
 import { a as hapticSelectionStart, b as hapticSelectionChanged, c as hapticSelectionEnd } from './haptic-a9e94599.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
 
@@ -181,7 +181,7 @@ const PickerColumnInternal = class {
         }
       }
     };
-    new IntersectionObserver(visibleCallback, { threshold: 0.01 }).observe(this.el);
+    new IntersectionObserver(visibleCallback, { threshold: 0.001 }).observe(this.el);
     const parentEl = this.el.closest('ion-picker-internal');
     if (parentEl !== null) {
       parentEl.addEventListener('ionInputModeChange', (ev) => this.inputModeChange(ev));

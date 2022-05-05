@@ -1,4 +1,4 @@
-import { m as menuController } from './index-0e326646.js';
+import { m as menuController } from './index-f45bd30f.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

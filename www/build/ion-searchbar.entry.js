@@ -1,7 +1,7 @@
 import { r as registerInstance, i as createEvent, k as forceUpdate, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { a as arrowBackSharp, o as closeCircle, p as closeSharp, s as searchOutline, q as searchSharp } from './index-5e1d0749.js';
 import { c as config, g as getIonMode } from './ionic-global-e5e0f581.js';
-import { k as debounceEvent, r as raf } from './helpers-e7913fb8.js';
+import { l as debounceEvent, r as raf } from './helpers-caa5a9ed.js';
 import { i as isRTL } from './index-9b5bcea1.js';
 import { c as createColorClasses } from './theme-7ef00c83.js';
 

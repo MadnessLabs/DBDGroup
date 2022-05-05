@@ -64,10 +64,9 @@ export class ModalTournamentEdit {
               label="id"
               value={this.tournament?.id}
             />
-            <fireenjin-select
+            <fireenjin-select-tags
               labelPosition="stacked"
               data-fill
-              multiple
               name="rules"
               label="Rules"
               value={this.tournament?.rules || []}

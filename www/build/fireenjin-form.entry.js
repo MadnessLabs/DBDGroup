@@ -202,6 +202,15 @@ const Form = class {
     });
     this.formData = await this.mapFormData(this.fetchDataMap, data || {});
   }
+  async fetchData() {
+    this.fireenjinFetch.emit({
+      endpoint: typeof this.fetch === "string" ? this.fetch : this.endpoint,
+      name: this.name || null,
+      dataPropsMap: this.fetchDataMap || null,
+      method: "get",
+      params: Object.assign(Object.assign({}, (this.fetchParams ? this.fetchParams : {})), { id: this.documentId }),
+    });
+  }
   async setFilteredValue(key, value) {
     var _a, _b;
     let newValue = value;
@@ -292,13 +301,7 @@ const Form = class {
     if (this.fetch) {
       if (!this.disableLoader)
         this.loading = true;
-      this.fireenjinFetch.emit({
-        endpoint: typeof this.fetch === "string" ? this.fetch : this.endpoint,
-        name: this.name || null,
-        dataPropsMap: this.fetchDataMap || null,
-        method: "get",
-        params: Object.assign(Object.assign({}, (this.fetchParams ? this.fetchParams : {})), { id: this.documentId }),
-      });
+      this.fetchData();
     }
     if (this.formData) {
       this.setFormData(this.formData);

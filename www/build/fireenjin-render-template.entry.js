@@ -8861,7 +8861,7 @@ const RenderTemplate = class {
   }
   async setHelpers(helpers) {
     try {
-      if ((helpers === null || helpers === void 0 ? void 0 : helpers.length) && this.helpers !== helpers) {
+      if (this.helpers !== helpers) {
         this.helpers = helpers;
       }
       for (const [helperName, helperFn] of Object.entries(this.helpers)) {

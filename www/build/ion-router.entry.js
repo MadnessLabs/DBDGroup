@@ -1,5 +1,5 @@
 import { r as registerInstance, i as createEvent, q as getElement } from './index-6e03bf48.js';
-import { c as componentOnReady, n as debounce } from './helpers-e7913fb8.js';
+import { c as componentOnReady, o as debounce } from './helpers-caa5a9ed.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
