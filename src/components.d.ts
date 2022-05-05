@@ -55,10 +55,6 @@ export namespace Components {
         "headerTitle": string;
         "userId": string;
     }
-    interface ModalSignup {
-        "user": User;
-        "userId": string;
-    }
     interface ModalSuccess {
     }
     interface ModalTournamentCreate {
@@ -135,12 +131,6 @@ declare global {
         prototype: HTMLModalProfileElement;
         new (): HTMLModalProfileElement;
     };
-    interface HTMLModalSignupElement extends Components.ModalSignup, HTMLStencilElement {
-    }
-    var HTMLModalSignupElement: {
-        prototype: HTMLModalSignupElement;
-        new (): HTMLModalSignupElement;
-    };
     interface HTMLModalSuccessElement extends Components.ModalSuccess, HTMLStencilElement {
     }
     var HTMLModalSuccessElement: {
@@ -176,7 +166,6 @@ declare global {
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
         "modal-profile": HTMLModalProfileElement;
-        "modal-signup": HTMLModalSignupElement;
         "modal-success": HTMLModalSuccessElement;
         "modal-tournament-create": HTMLModalTournamentCreateElement;
         "modal-tournament-detail": HTMLModalTournamentDetailElement;
@@ -244,11 +233,6 @@ declare namespace LocalJSX {
         "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "userId"?: string;
     }
-    interface ModalSignup {
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
-        "user"?: User;
-        "userId"?: string;
-    }
     interface ModalSuccess {
     }
     interface ModalTournamentCreate {
@@ -277,7 +261,6 @@ declare namespace LocalJSX {
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
         "modal-profile": ModalProfile;
-        "modal-signup": ModalSignup;
         "modal-success": ModalSuccess;
         "modal-tournament-create": ModalTournamentCreate;
         "modal-tournament-detail": ModalTournamentDetail;
@@ -298,7 +281,6 @@ declare module "@stencil/core" {
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
             "modal-profile": LocalJSX.ModalProfile & JSXBase.HTMLAttributes<HTMLModalProfileElement>;
-            "modal-signup": LocalJSX.ModalSignup & JSXBase.HTMLAttributes<HTMLModalSignupElement>;
             "modal-success": LocalJSX.ModalSuccess & JSXBase.HTMLAttributes<HTMLModalSuccessElement>;
             "modal-tournament-create": LocalJSX.ModalTournamentCreate & JSXBase.HTMLAttributes<HTMLModalTournamentCreateElement>;
             "modal-tournament-detail": LocalJSX.ModalTournamentDetail & JSXBase.HTMLAttributes<HTMLModalTournamentDetailElement>;

@@ -140,6 +140,73 @@ export class AppTournament {
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-grid>
+            <ion-row>
+              <ion-card color="tertiary">
+                <ion-item>Game 1</ion-item>
+              </ion-card>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Survivor</ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Killer</ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>S1B</ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Kills</ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>S2B</ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Total Hooks</ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>S3B</ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Generators Left</ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>S4B</ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>Escapes</ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
           {/* // Scoreboard
 
