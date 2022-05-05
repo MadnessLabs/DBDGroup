@@ -1,7 +1,7 @@
 import { r as registerInstance, i as createEvent, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode } from './ionic-global-e5e0f581.js';
-import { f as focusElement, n as findItemLabel, m as getAriaLabel, d as renderHiddenInput } from './helpers-caa5a9ed.js';
-import { p as popoverController, f as actionSheetController, h as alertController } from './overlays-6f119ace.js';
+import { f as focusElement, m as findItemLabel, l as getAriaLabel, d as renderHiddenInput } from './helpers-e7913fb8.js';
+import { p as popoverController, f as actionSheetController, h as alertController } from './overlays-3a4e1763.js';
 import { h as hostContext } from './theme-7ef00c83.js';
 import './hardware-back-button-fa04d6e9.js';
 
@@ -137,8 +137,8 @@ const Select = class {
     if (this.disabled || this.isExpanded) {
       return undefined;
     }
-    this.isExpanded = true;
     const overlay = (this.overlay = await this.createOverlay(event));
+    this.isExpanded = true;
     overlay.onDidDismiss().then(() => {
       this.overlay = undefined;
       this.isExpanded = false;

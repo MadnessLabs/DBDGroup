@@ -1,14 +1,13 @@
 import { r as registerInstance, i as createEvent, l as writeTask, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode, c as config } from './ionic-global-e5e0f581.js';
-import { i as isIonContent, f as findIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-411b3ec7.js';
-import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-0c4bc16a.js';
-import { e as clamp, g as getElementRoot, r as raf } from './helpers-caa5a9ed.js';
+import { C as CoreDelegate, a as attachComponent, d as detachComponent } from './framework-delegate-49dc7795.js';
+import { e as clamp, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { KEYBOARD_DID_OPEN } from './keyboard-7e8329b3.js';
 import { p as printIonWarning } from './index-41de208d.js';
-import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-6f119ace.js';
+import { B as BACKDROP, a as prepareOverlay, b as present, c as activeAnimations, d as dismiss, e as eventMethod } from './overlays-3a4e1763.js';
 import { g as getClassMap } from './theme-7ef00c83.js';
-import { d as deepReady } from './index-e33bd69d.js';
-import { c as createAnimation } from './animation-0a29ef4d.js';
+import { d as deepReady } from './index-63fb703b.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { createGesture } from './index-dd414b33.js';
 import './hardware-back-button-fa04d6e9.js';
@@ -139,79 +138,26 @@ const calculateSpringStep = (t) => {
 const SwipeToCloseDefaults = {
   MIN_PRESENTING_SCALE: 0.93,
 };
-const createSwipeToCloseGesture = (el, contentEl, scrollEl, animation, onDismiss) => {
+const createSwipeToCloseGesture = (el, animation, onDismiss) => {
   const height = el.offsetHeight;
   let isOpen = false;
   let canDismissBlocksGesture = false;
   const canDismissMaxStep = 0.2;
-  const hasRefresherInContent = !!contentEl.querySelector('ion-refresher');
-  const getScrollY = () => {
-    if (isIonContent(contentEl)) {
-      return contentEl.scrollY;
-      /**
-       * Custom scroll containers are intended to be
-       * used with virtual scrolling, so we assume
-       * there is scrolling in this case.
-       */
-    }
-    else {
-      return true;
-    }
-  };
-  const initialScrollY = getScrollY();
-  const disableContentScroll = () => {
-    if (isIonContent(contentEl)) {
-      contentEl.scrollY = false;
-    }
-    else {
-      contentEl.style.setProperty('overflow', 'hidden');
-    }
-  };
-  const resetContentScroll = () => {
-    if (isIonContent(contentEl)) {
-      contentEl.scrollY = initialScrollY;
-    }
-    else {
-      contentEl.style.removeProperty('overflow');
-    }
-  };
   const canStart = (detail) => {
     const target = detail.event.target;
     if (target === null || !target.closest) {
       return true;
     }
-    /**
-     * If we are swiping on the content,
-     * swiping should only be possible if
-     * the content is scrolled all the way
-     * to the top so that we do not interfere
-     * with scrolling.
-     */
-    const content = target.closest('ion-content');
-    if (content) {
-      /**
-       * The card should never swipe to close
-       * on the content with a refresher.
-       * Note: We cannot solve this by making the
-       * swipeToClose gesture have a higher priority
-       * than the refresher gesture as the iOS native
-       * refresh gesture uses a scroll listener in
-       * addition to a gesture.
-       */
-      return !hasRefresherInContent && scrollEl.scrollTop === 0;
-    }
-    /**
-     * Card should be swipeable on all
-     * parts of the modal except for the footer.
-     */
-    const footer = target.closest('ion-footer');
-    if (footer === null) {
+    const contentOrFooter = target.closest('ion-content, ion-footer');
+    if (contentOrFooter === null) {
       return true;
     }
+    // Target is in the content or the footer so do not start the gesture.
+    // We could be more nuanced here and allow it for content that
+    // does not need to scroll.
     return false;
   };
-  const onStart = (detail) => {
-    const { deltaY } = detail;
+  const onStart = () => {
     /**
      * If canDismiss is anything other than `true`
      * then users should be able to swipe down
@@ -221,38 +167,9 @@ const createSwipeToCloseGesture = (el, contentEl, scrollEl, animation, onDismiss
      * Remove undefined check
      */
     canDismissBlocksGesture = el.canDismiss !== undefined && el.canDismiss !== true;
-    /**
-     * If we are pulling down, then
-     * it is possible we are pulling on the
-     * content. We do not want scrolling to
-     * happen at the same time as the gesture.
-     */
-    if (deltaY > 0) {
-      disableContentScroll();
-    }
     animation.progressStart(true, isOpen ? 1 : 0);
   };
   const onMove = (detail) => {
-    const { deltaY } = detail;
-    /**
-     * If we are pulling down, then
-     * it is possible we are pulling on the
-     * content. We do not want scrolling to
-     * happen at the same time as the gesture.
-     */
-    if (deltaY > 0) {
-      disableContentScroll();
-    }
-    /**
-     * If we are swiping on the content
-     * then the swipe gesture should only
-     * happen if we are pulling down.
-     *
-     * However, if we pull up and
-     * then down such that the scroll position
-     * returns to 0, we should be able to swipe
-     * the card.
-     */
     const step = detail.deltaY / height;
     /**
      * Check if user is swiping down and
@@ -308,7 +225,6 @@ const createSwipeToCloseGesture = (el, contentEl, scrollEl, animation, onDismiss
       : computeDuration((1 - clampedStep) * height, velocity);
     isOpen = shouldComplete;
     gesture.enable(false);
-    resetContentScroll();
     animation
       .onFinish(() => {
       if (!shouldComplete) {
@@ -1100,12 +1016,12 @@ const Modal = class {
   onTriggerChange() {
     this.configureTriggerInteraction();
   }
-  async swipeToCloseChanged(enable) {
+  swipeToCloseChanged(enable) {
     if (this.gesture) {
       this.gesture.enable(enable);
     }
     else if (enable) {
-      await this.initSwipeToClose();
+      this.initSwipeToClose();
     }
   }
   breakpointsChanged(breakpoints) {
@@ -1236,7 +1152,7 @@ const Modal = class {
        */
     }
     else if (this.swipeToClose || (this.canDismiss !== undefined && this.presentingElement !== undefined)) {
-      await this.initSwipeToClose();
+      this.initSwipeToClose();
     }
     /* tslint:disable-next-line */
     if (typeof window !== 'undefined') {
@@ -1263,23 +1179,16 @@ const Modal = class {
     }
     this.currentTransition = undefined;
   }
-  async initSwipeToClose() {
+  initSwipeToClose() {
     if (getIonMode(this) !== 'ios') {
       return;
     }
-    const { el } = this;
     // All of the elements needed for the swipe gesture
     // should be in the DOM and referenced by now, except
     // for the presenting el
     const animationBuilder = this.leaveAnimation || config.get('modalLeave', iosLeaveAnimation);
-    const ani = (this.animation = animationBuilder(el, { presentingEl: this.presentingElement }));
-    const contentEl = findIonContent(el);
-    if (!contentEl) {
-      printIonContentErrorMsg(el);
-      return;
-    }
-    const scrollEl = await getScrollElement(contentEl);
-    this.gesture = createSwipeToCloseGesture(el, contentEl, scrollEl, ani, () => {
+    const ani = (this.animation = animationBuilder(this.el, { presentingEl: this.presentingElement }));
+    this.gesture = createSwipeToCloseGesture(this.el, ani, () => {
       /**
        * While the gesture animation is finishing
        * it is possible for a user to tap the backdrop.

@@ -27,7 +27,12 @@ const AppHome = class {
     });
   }
   async componentDidLoad() {
-    this.tournaments = await this.db.list("tournaments", []);
+    this.db.subscribe({ collectionName: "tournaments", orderBy: "timestamp:desc" }, ({ docs }) => {
+      this.tournaments = (docs || []).map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    });
     // this.auth.withSocial("google");
     // this.auth.withEmail("a@a.com", "mypass");
   }

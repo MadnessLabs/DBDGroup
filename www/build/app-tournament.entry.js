@@ -25,7 +25,7 @@ const AppTournament = class {
           tournament: this.tournament,
           tournamentId: this.tournamentId,
         },
-      }) }, "Edit", h("ion-icon", { slot: "end", name: "document" })))))), h("ion-content", null, h("ion-row", { style: {
+      }) }, "Edit", h("ion-icon", { slot: "end", name: "create" })))))), h("ion-content", null, h("ion-row", { style: {
         "justify-content": "center",
         padding: "0px",
       } }, h("ion-col", { size: "12", "size-md": "4", style: {

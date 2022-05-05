@@ -3,6 +3,7 @@ declare type Tournament = {
   survivors?: Survivor[];
   name?: string;
   rules?: string[];
+  timestamp?: Date;
   killers?: {
     user: User;
     killerpoints: number;

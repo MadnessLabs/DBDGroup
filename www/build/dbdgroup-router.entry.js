@@ -1,24 +1,24 @@
 import { r as registerInstance, m as Build, h } from './index-6e03bf48.js';
 import { c as cordova, I as IonicNativePlugin } from './index-8f4ab8fe.js';
-import { E as ErrorFactory, L as Logger, b as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, i as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, g as getModularInstance, f as base64Decode, h as getUA, j as isIE, k as createSubscribe, l as querystringDecode, m as extractQuerystring, n as isEmpty, o as _registerComponent, C as Component, r as registerVersion, p as getApp, s as stringify, t as jsonEval, u as contains, v as stringToByteArray, w as Sha1, x as base64, y as assert, z as isNodeSdk, A as deepCopy, B as base64Encode, D as stringLength, G as Deferred, H as safeGet, I as isAdmin, J as isValidFormat, K as assertionError, M as map, N as errorPrefix, O as createMockUserToken, P as initializeApp, Q as Sc, R as Dc, U as wc, V as Nc, a as al, W as ll, X as hl, Y as pc, Z as rl, T as Tc, $ as el, a0 as cl, a1 as fl, a2 as kh, a3 as Oh, a4 as $h, a5 as xh } from './index.esm2017-c310dab0.js';
+import { E as ErrorFactory, L as Logger, b as LogLevel, S as SDK_VERSION$1, _ as _getProvider, d as deepEqual, i as isBrowserExtension, c as isMobileCordova, e as isReactNative, q as querystring, F as FirebaseError, g as getModularInstance, f as base64Decode, h as getUA, j as isIE, k as createSubscribe, l as querystringDecode, m as extractQuerystring, n as isEmpty, o as _registerComponent, C as Component, r as registerVersion, p as getApp, s as stringify, t as jsonEval, u as contains, v as stringToByteArray, w as Sha1, x as base64, y as assert, z as isNodeSdk, A as deepCopy, B as base64Encode, D as stringLength, G as Deferred, H as safeGet, I as isAdmin, J as isValidFormat, K as assertionError, M as map, N as errorPrefix, O as createMockUserToken, P as initializeApp, Q as Sc, R as Dc, U as wc, V as Nc, a as al, W as ll, X as hl, Y as pc, Z as rl, T as Tc, $ as el, a0 as cl, a1 as fl, a2 as kh, a3 as Oh, a4 as $h, a5 as xh } from './index.esm2017-0ea0ddf8.js';
 import { b as browser$1 } from './process-es6-6fcfb3fc.js';
 import { c as createCommonjsModule, a as commonjsGlobal, b as commonjsRequire, g as getDefaultExportFromCjs } from './_commonjsHelpers-6cb8dacb.js';
-import './index-61fa2b80.js';
+import './index-299a0e66.js';
 import { e as env } from './env-2c0efef6.js';
 import { s as state } from './store-521aeb0c.js';
-import { p as popoverController, m as modalController } from './overlays-6f119ace.js';
+import { p as popoverController, m as modalController } from './overlays-3a4e1763.js';
 import './global-e1c7e609.js';
 import './utils-5f10070f.js';
-import './animation-0a29ef4d.js';
-import './helpers-caa5a9ed.js';
-import './ios.transition-66526da7.js';
-import './index-e33bd69d.js';
-import './md.transition-81d81144.js';
+import './animation-f4dcdfa9.js';
+import './helpers-e7913fb8.js';
+import './ios.transition-fbca6ba9.js';
+import './index-63fb703b.js';
+import './md.transition-d6884639.js';
 import './cubic-bezier-4c0db14f.js';
 import './index-dd414b33.js';
 import './ionic-global-e5e0f581.js';
 import './index-be6112f8.js';
-import './index-f45bd30f.js';
+import './index-0e326646.js';
 import './hardware-back-button-fa04d6e9.js';
 
 var __extends$3 = (undefined && undefined.__extends) || (function () {
@@ -24714,16 +24714,6 @@ function httpsCallable$1(functionsInstance, name, options) {
     });
 }
 /**
- * Returns a reference to the callable https trigger with the given url.
- * @param url - The url of the trigger.
- * @public
- */
-function httpsCallableFromURL$1(functionsInstance, url, options) {
-    return (data => {
-        return callAtURL(functionsInstance, url, data, options || {});
-    });
-}
-/**
  * Does an HTTP POST and returns the completed response.
  * @param url The url to post to.
  * @param body The JSON body of the post.
@@ -24767,16 +24757,8 @@ async function postJSON(url, body, headers, fetchImpl) {
  * @param name The name of the callable trigger.
  * @param data The data to pass as params to the function.s
  */
-function call(functionsInstance, name, data, options) {
+async function call(functionsInstance, name, data, options) {
     const url = functionsInstance._url(name);
-    return callAtURL(functionsInstance, url, data, options);
-}
-/**
- * Calls a callable function asynchronously and returns the result.
- * @param url The url of the callable trigger.
- * @param data The data to pass as params to the function.s
- */
-async function callAtURL(functionsInstance, url, data, options) {
     // Encode any special types, such as dates, in the input data.
     data = encode(data);
     const body = { data };
@@ -24830,7 +24812,7 @@ async function callAtURL(functionsInstance, url, data, options) {
 }
 
 const name$1 = "@firebase/functions";
-const version$1 = "0.8.0";
+const version$1 = "0.7.11";
 
 /**
  * @license
@@ -24918,14 +24900,6 @@ function connectFunctionsEmulator(functionsInstance, host, port) {
  */
 function httpsCallable(functionsInstance, name, options) {
     return httpsCallable$1(getModularInstance(functionsInstance), name, options);
-}
-/**
- * Returns a reference to the callable HTTPS trigger with the specified url.
- * @param url - The url of the trigger.
- * @public
- */
-function httpsCallableFromURL(functionsInstance, url, options) {
-    return httpsCallableFromURL$1(getModularInstance(functionsInstance), url, options);
 }
 
 /**
@@ -34052,7 +34026,7 @@ if (window && !window.FireEnjin) {
 }
 
 var name = "firebase";
-var version = "9.7.0";
+var version = "9.6.11";
 
 /**
  * @license

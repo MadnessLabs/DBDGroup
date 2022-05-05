@@ -38,7 +38,15 @@ export class AppHome {
   }
 
   async componentDidLoad() {
-    this.tournaments = await this.db.list("tournaments", []);
+    this.db.subscribe(
+      { collectionName: "tournaments", orderBy: "timestamp:desc" },
+      ({ docs }) => {
+        this.tournaments = (docs || []).map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+      }
+    );
     // this.auth.withSocial("google");
     // this.auth.withEmail("a@a.com", "mypass");
   }
@@ -48,19 +56,19 @@ export class AppHome {
       <ion-header>
         <ion-toolbar color="light">
           <ion-buttons slot="end">
-          {state?.claims?.admin && (
-                <ion-button
-                  color="primary"
-                  onClick={() =>
-                    this.dbdModalOpen.emit({
-                      component: "modal-tournament-create",  
+            {state?.claims?.admin && (
+              <ion-button
+                color="primary"
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-tournament-create",
                   })
                 }
-                >
-                  Create
-                  <ion-icon slot="end" name="create" />
-                </ion-button>
-              )}
+              >
+                Create
+                <ion-icon slot="end" name="create" />
+              </ion-button>
+            )}
             {state?.session?.uid ? (
               <ion-button
                 color="primary"

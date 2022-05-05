@@ -1,6 +1,6 @@
 import { r as registerInstance, i as createEvent, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { g as getIonMode } from './ionic-global-e5e0f581.js';
-import { e as clamp, l as debounceEvent, i as inheritAriaAttributes, m as getAriaLabel, d as renderHiddenInput } from './helpers-caa5a9ed.js';
+import { e as clamp, k as debounceEvent, i as inheritAttributes, l as getAriaLabel, d as renderHiddenInput } from './helpers-e7913fb8.js';
 import { i as isRTL } from './index-9b5bcea1.js';
 import { c as createColorClasses, h as hostContext } from './theme-7ef00c83.js';
 
@@ -172,7 +172,7 @@ const Range = class {
      * not assign the default incrementing ID.
      */
     this.rangeId = this.el.hasAttribute('id') ? this.el.getAttribute('id') : `ion-r-${rangeIds++}`;
-    this.inheritedAttributes = inheritAriaAttributes(this.el);
+    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
   }
   componentDidLoad() {
     this.setupGesture();

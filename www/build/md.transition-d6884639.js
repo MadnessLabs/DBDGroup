@@ -1,6 +1,6 @@
-import { c as createAnimation } from './animation-0a29ef4d.js';
-import { g as getIonPageElement } from './index-e33bd69d.js';
-import './helpers-caa5a9ed.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
+import { g as getIonPageElement } from './index-63fb703b.js';
+import './helpers-e7913fb8.js';
 import './index-6e03bf48.js';
 
 /*!

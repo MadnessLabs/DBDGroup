@@ -15,6 +15,13 @@ export class ModalTournamentEdit {
     this.dbdModalClose.emit();
   }
 
+  @Listen("fireenjinReset")
+  onReset() {
+    // DELETE Tournament
+    if (!confirm("Are you sure you want to delete?")) return;
+    console.log("TOURNAMENT DELETED!");
+  }
+
   closeModal(event: MouseEvent) {
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -39,7 +46,12 @@ export class ModalTournamentEdit {
       </ion-header>,
       <ion-content class="ion-padding">
         <ion-card>
-          <fireenjin-form endpoint="tournaments" documentId={this.tournamentId}>
+          <fireenjin-form
+            resetButtonColor="warning"
+            resetButton="DELETE"
+            endpoint="tournaments"
+            documentId={this.tournamentId}
+          >
             <fireenjin-input
               labelPosition="stacked"
               name="name"

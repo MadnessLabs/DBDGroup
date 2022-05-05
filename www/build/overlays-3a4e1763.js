@@ -1,6 +1,6 @@
 import { g as getIonMode, c as config } from './ionic-global-e5e0f581.js';
 import { OVERLAY_BACK_BUTTON_PRIORITY } from './hardware-back-button-fa04d6e9.js';
-import { c as componentOnReady, f as focusElement, g as getElementRoot, a as removeEventListener, b as addEventListener } from './helpers-caa5a9ed.js';
+import { c as componentOnReady, f as focusElement, g as getElementRoot, a as removeEventListener, b as addEventListener } from './helpers-e7913fb8.js';
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License

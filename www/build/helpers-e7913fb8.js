@@ -87,72 +87,6 @@ const inheritAttributes = (el, attributes = []) => {
   });
   return attributeObject;
 };
-/**
- * List of available ARIA attributes + `role`.
- * Removed deprecated attributes.
- * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes
- */
-const ariaAttributes = [
-  'role',
-  'aria-activedescendant',
-  'aria-atomic',
-  'aria-autocomplete',
-  'aria-braillelabel',
-  'aria-brailleroledescription',
-  'aria-busy',
-  'aria-checked',
-  'aria-colcount',
-  'aria-colindex',
-  'aria-colindextext',
-  'aria-colspan',
-  'aria-controls',
-  'aria-current',
-  'aria-describedby',
-  'aria-description',
-  'aria-details',
-  'aria-disabled',
-  'aria-errormessage',
-  'aria-expanded',
-  'aria-flowto',
-  'aria-haspopup',
-  'aria-hidden',
-  'aria-invalid',
-  'aria-keyshortcuts',
-  'aria-label',
-  'aria-labelledby',
-  'aria-level',
-  'aria-live',
-  'aria-multiline',
-  'aria-multiselectable',
-  'aria-orientation',
-  'aria-owns',
-  'aria-placeholder',
-  'aria-posinset',
-  'aria-pressed',
-  'aria-readonly',
-  'aria-relevant',
-  'aria-required',
-  'aria-roledescription',
-  'aria-rowcount',
-  'aria-rowindex',
-  'aria-rowindextext',
-  'aria-rowspan',
-  'aria-selected',
-  'aria-setsize',
-  'aria-sort',
-  'aria-valuemax',
-  'aria-valuemin',
-  'aria-valuenow',
-  'aria-valuetext',
-];
-/**
- * Returns an array of aria attributes that should be copied from
- * the shadow host element to a target within the light DOM.
- * @param el The element that the attributes should be copied from.
- */
-const inheritAriaAttributes = (el) => {
-  return inheritAttributes(el, ariaAttributes);
-};
 const addEventListener = (el, eventName, callback, opts) => {
   var _a;
   if (typeof window !== 'undefined') {
@@ -403,4 +337,4 @@ const shallowEqualStringMap = (map1, map2) => {
   return true;
 };
 
-export { removeEventListener as a, addEventListener as b, componentOnReady as c, renderHiddenInput as d, clamp as e, focusElement as f, getElementRoot as g, inheritAttributes as h, inheritAriaAttributes as i, isEndSide as j, assert as k, debounceEvent as l, getAriaLabel as m, findItemLabel as n, debounce as o, pointerCoord as p, hasShadowDom as q, raf as r, shallowEqualStringMap as s, transitionEndAsync as t, now as u };
+export { removeEventListener as a, addEventListener as b, componentOnReady as c, renderHiddenInput as d, clamp as e, focusElement as f, getElementRoot as g, isEndSide as h, inheritAttributes as i, assert as j, debounceEvent as k, getAriaLabel as l, findItemLabel as m, debounce as n, hasShadowDom as o, pointerCoord as p, now as q, raf as r, shallowEqualStringMap as s, transitionEndAsync as t };

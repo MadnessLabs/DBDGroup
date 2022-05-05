@@ -2,11 +2,11 @@ import { r as registerInstance, i as createEvent, m as Build, h, o as Host, q as
 import { c as config, g as getIonMode } from './ionic-global-e5e0f581.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
 import { GESTURE_CONTROLLER } from './index-dd414b33.js';
-import { j as isEndSide, i as inheritAriaAttributes, k as assert, e as clamp } from './helpers-caa5a9ed.js';
-import { m as menuController } from './index-f45bd30f.js';
-import { g as getOverlay } from './overlays-6f119ace.js';
+import { h as isEndSide, i as inheritAttributes, j as assert, e as clamp } from './helpers-e7913fb8.js';
+import { m as menuController } from './index-0e326646.js';
+import { g as getOverlay } from './overlays-3a4e1763.js';
 import './hardware-back-button-fa04d6e9.js';
-import './animation-0a29ef4d.js';
+import './animation-f4dcdfa9.js';
 
 const menuIosCss = ":host{--width:304px;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--background:var(--ion-background-color, #fff);left:0;right:0;top:0;bottom:0;display:none;position:absolute;contain:strict}:host(.show-menu){display:block}.menu-inner{left:0;right:auto;top:0;bottom:0;transform:translate3d(-9999px,  0,  0);display:flex;position:absolute;flex-direction:column;justify-content:space-between;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);contain:strict}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{left:unset;right:unset;left:auto;right:0}[dir=rtl] .menu-inner,:host-context([dir=rtl]) .menu-inner{transform:translate3d(calc(-1 * -9999px),  0,  0)}:host(.menu-side-start) .menu-inner{--ion-safe-area-right:0px;right:auto;left:0}:host(.menu-side-end) .menu-inner{--ion-safe-area-left:0px;right:0;left:auto;}ion-backdrop{display:none;opacity:0.01;z-index:-1}@media (max-width: 340px){.menu-inner{--width:264px}}:host(.menu-type-reveal){z-index:0}:host(.menu-type-reveal.show-menu) .menu-inner{transform:translate3d(0,  0,  0)}:host(.menu-type-overlay){z-index:1000}:host(.menu-type-overlay) .show-backdrop{display:block;cursor:pointer}:host(.menu-pane-visible){width:var(--width);min-width:var(--min-width);max-width:var(--max-width)}:host(.menu-pane-visible) .menu-inner{left:0;right:0;width:auto;transform:none !important;box-shadow:none !important}:host(.menu-pane-visible) ion-backdrop{display:hidden !important;}:host(.menu-type-push){z-index:1000}:host(.menu-type-push) .show-backdrop{display:block}";
 
@@ -135,7 +135,7 @@ const Menu = class {
     this.updateState();
   }
   componentWillLoad() {
-    this.inheritedAttributes = inheritAriaAttributes(this.el);
+    this.inheritedAttributes = inheritAttributes(this.el, ['aria-label']);
   }
   async componentDidLoad() {
     this.ionMenuChange.emit({ disabled: this.disabled, open: this._isOpen });

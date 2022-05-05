@@ -1,4 +1,4 @@
-import { c as componentOnReady } from './helpers-caa5a9ed.js';
+import { c as componentOnReady } from './helpers-e7913fb8.js';
 import { b as printRequiredElementError } from './index-41de208d.js';
 
 /*!
@@ -93,4 +93,4 @@ const printIonContentErrorMsg = (el) => {
   return printRequiredElementError(el, ION_CONTENT_ELEMENT_SELECTOR);
 };
 
-export { findClosestIonContent as a, scrollByPoint as b, findIonContent as f, getScrollElement as g, isIonContent as i, printIonContentErrorMsg as p, scrollToTop as s };
+export { findClosestIonContent as a, scrollByPoint as b, findIonContent as f, getScrollElement as g, printIonContentErrorMsg as p, scrollToTop as s };

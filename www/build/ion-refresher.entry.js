@@ -1,10 +1,10 @@
 import { l as writeTask, r as registerInstance, i as createEvent, t as readTask, h, o as Host, q as getElement } from './index-6e03bf48.js';
 import { a as isPlatform, g as getIonMode } from './ionic-global-e5e0f581.js';
 import { g as getTimeGivenProgression } from './cubic-bezier-4c0db14f.js';
-import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-411b3ec7.js';
-import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-caa5a9ed.js';
+import { a as findClosestIonContent, p as printIonContentErrorMsg, g as getScrollElement } from './index-b3ce5ef6.js';
+import { e as clamp, t as transitionEndAsync, c as componentOnReady, g as getElementRoot, r as raf } from './helpers-e7913fb8.js';
 import { h as hapticImpact } from './haptic-a9e94599.js';
-import { c as createAnimation } from './animation-0a29ef4d.js';
+import { c as createAnimation } from './animation-f4dcdfa9.js';
 import './index-41de208d.js';
 
 /*!
