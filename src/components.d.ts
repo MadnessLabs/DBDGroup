@@ -58,7 +58,8 @@ export namespace Components {
         "headerTitle": string;
         "userId": string;
     }
-    interface ModalSuccess {
+    interface ModalScoring {
+        "tournamentId": string;
     }
     interface ModalTournamentDetail {
         "db": DatabaseService;
@@ -133,11 +134,11 @@ declare global {
         prototype: HTMLModalProfileElement;
         new (): HTMLModalProfileElement;
     };
-    interface HTMLModalSuccessElement extends Components.ModalSuccess, HTMLStencilElement {
+    interface HTMLModalScoringElement extends Components.ModalScoring, HTMLStencilElement {
     }
-    var HTMLModalSuccessElement: {
-        prototype: HTMLModalSuccessElement;
-        new (): HTMLModalSuccessElement;
+    var HTMLModalScoringElement: {
+        prototype: HTMLModalScoringElement;
+        new (): HTMLModalScoringElement;
     };
     interface HTMLModalTournamentDetailElement extends Components.ModalTournamentDetail, HTMLStencilElement {
     }
@@ -162,7 +163,7 @@ declare global {
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
         "modal-profile": HTMLModalProfileElement;
-        "modal-success": HTMLModalSuccessElement;
+        "modal-scoring": HTMLModalScoringElement;
         "modal-tournament-detail": HTMLModalTournamentDetailElement;
         "modal-tournament-edit": HTMLModalTournamentEditElement;
     }
@@ -231,7 +232,8 @@ declare namespace LocalJSX {
         "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "userId"?: string;
     }
-    interface ModalSuccess {
+    interface ModalScoring {
+        "tournamentId"?: string;
     }
     interface ModalTournamentDetail {
         "db"?: DatabaseService;
@@ -257,7 +259,7 @@ declare namespace LocalJSX {
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
         "modal-profile": ModalProfile;
-        "modal-success": ModalSuccess;
+        "modal-scoring": ModalScoring;
         "modal-tournament-detail": ModalTournamentDetail;
         "modal-tournament-edit": ModalTournamentEdit;
     }
@@ -276,7 +278,7 @@ declare module "@stencil/core" {
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
             "modal-profile": LocalJSX.ModalProfile & JSXBase.HTMLAttributes<HTMLModalProfileElement>;
-            "modal-success": LocalJSX.ModalSuccess & JSXBase.HTMLAttributes<HTMLModalSuccessElement>;
+            "modal-scoring": LocalJSX.ModalScoring & JSXBase.HTMLAttributes<HTMLModalScoringElement>;
             "modal-tournament-detail": LocalJSX.ModalTournamentDetail & JSXBase.HTMLAttributes<HTMLModalTournamentDetailElement>;
             "modal-tournament-edit": LocalJSX.ModalTournamentEdit & JSXBase.HTMLAttributes<HTMLModalTournamentEditElement>;
         }
