@@ -92,7 +92,7 @@ export class AppTournament {
                       componentProps: {
                         tournament: this.tournament,
                         tournamentId: this.tournamentId,
-                        mainTitle: "Edit Tournament"
+                        mainTitle: "Edit Tournament",
                       },
                     })
                   }
@@ -158,7 +158,11 @@ export class AppTournament {
             <ion-row>
               <ion-col>
                 <ion-card>
-                  <ion-item>Survivor</ion-item>
+                  <ion-item>
+                    <ion-icon name="home" slot="start" />
+                    Survivor
+                    <ion-badge slot="end">10</ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
               <ion-col>

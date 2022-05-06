@@ -105,6 +105,15 @@ export class AppRoot implements ComponentInterface {
     }
   }
 
+  @Listen("dbdLogin", { target: "document" })
+  async onLogin() {
+    window.location.href = `https://discord.com/api/oauth2/authorize?response_type=code&client_id=${env(
+      "discord.applicationId"
+    )}&scope=identify%20email%20guilds.join&redirect_uri=${env(
+      "discord.redirect"
+    )}&prompt=consent`;
+  }
+
   @Listen("dbdPopoverOpen", { target: "document" })
   async presentPopover(event: CustomEvent) {
     this.popover = await popoverController.create({
@@ -184,6 +193,11 @@ export class AppRoot implements ComponentInterface {
           component=""
           componentProps={this.componentProps}
         /> */}
+        <ion-route
+          url="/oauth/callback"
+          component="app-oauth"
+          componentProps={this.componentProps}
+        />
       </ion-router>
     );
   }

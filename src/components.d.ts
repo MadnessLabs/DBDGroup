@@ -20,6 +20,8 @@ export namespace Components {
     }
     interface AppList {
     }
+    interface AppOauth {
+    }
     interface AppTournament {
         "auth": AuthService;
         "db": DatabaseService;
@@ -90,6 +92,12 @@ declare global {
         prototype: HTMLAppListElement;
         new (): HTMLAppListElement;
     };
+    interface HTMLAppOauthElement extends Components.AppOauth, HTMLStencilElement {
+    }
+    var HTMLAppOauthElement: {
+        prototype: HTMLAppOauthElement;
+        new (): HTMLAppOauthElement;
+    };
     interface HTMLAppTournamentElement extends Components.AppTournament, HTMLStencilElement {
     }
     var HTMLAppTournamentElement: {
@@ -154,6 +162,7 @@ declare global {
         "app-admin": HTMLAppAdminElement;
         "app-home": HTMLAppHomeElement;
         "app-list": HTMLAppListElement;
+        "app-oauth": HTMLAppOauthElement;
         "app-tournament": HTMLAppTournamentElement;
         "app-tournament-list": HTMLAppTournamentListElement;
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
@@ -181,6 +190,8 @@ declare namespace LocalJSX {
   }>) => void;
     }
     interface AppList {
+    }
+    interface AppOauth {
     }
     interface AppTournament {
         "auth"?: AuthService;
@@ -225,6 +236,7 @@ declare namespace LocalJSX {
         "db"?: DatabaseService;
         "documentId"?: string;
         "headerTitle"?: string;
+        "onDbdLogin"?: (event: CustomEvent<any>) => void;
         "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "userId"?: string;
     }
@@ -247,6 +259,7 @@ declare namespace LocalJSX {
         "app-admin": AppAdmin;
         "app-home": AppHome;
         "app-list": AppList;
+        "app-oauth": AppOauth;
         "app-tournament": AppTournament;
         "app-tournament-list": AppTournamentList;
         "dbd-tournament-card": DbdTournamentCard;
@@ -266,6 +279,7 @@ declare module "@stencil/core" {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
+            "app-oauth": LocalJSX.AppOauth & JSXBase.HTMLAttributes<HTMLAppOauthElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;

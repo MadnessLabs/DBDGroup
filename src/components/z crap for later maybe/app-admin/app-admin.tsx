@@ -67,9 +67,7 @@ export class AppAdmin {
                       </a>
                     </ion-item>
                     <ion-item>
-                      <a href="https://deadbydaylight.group/profile">
-                        Profile
-                      </a>
+                      <a href="https://deadbydaylight.group/profile">Profile</a>
                     </ion-item>
                     <ion-item>
                       <a href="https://deadbydaylight.group/admin">Admin</a>
@@ -88,7 +86,7 @@ export class AppAdmin {
                 <ion-list class="ion-no-padding">
                   <ion-item-divider>Survivors</ion-item-divider>
                   {this.formData?.survivors?.map((survivor) => (
-                    <ion-item>BP: {survivor.bloodpoints}</ion-item>
+                    <ion-item>BP: {survivor?.scoring?.bloodpoints}</ion-item>
                   ))}
                 </ion-list>
               </ion-card>
@@ -98,7 +96,7 @@ export class AppAdmin {
                 <ion-list class="ion-no-padding">
                   <ion-item-divider>Killers</ion-item-divider>
                   {this.formData?.killers?.map((killer) => (
-                    <ion-item>KP: {killer.killerpoints}</ion-item>
+                    <ion-item>KP: {killer?.scoring?.bloodpoints}</ion-item>
                   ))}
                 </ion-list>
               </ion-card>

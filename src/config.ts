@@ -13,5 +13,9 @@ export default {
     appId: "1:974124897552:web:48ea2eadb5021f58d3c195",
     measurementId: "G-4KQFEEYLJS",
   },
+  discord: {
+    applicationId: "938334670196723812",
+    redirect: "http://localhost:3333/oauth/callback",
+  },
   dynamicLinkDomain: "dbdgroup.page.link",
 };

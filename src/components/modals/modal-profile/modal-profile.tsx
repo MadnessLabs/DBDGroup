@@ -15,6 +15,7 @@ import {
 })
 export class ModalProfile {
   @Event() dbdModalClose: EventEmitter;
+  @Event() dbdLogin: EventEmitter;
 
   @Prop() userId: string;
   @Prop() auth: AuthService;
@@ -104,6 +105,9 @@ export class ModalProfile {
                     label="Steam Code"
                   />
                 </fireenjin-form>
+                <ion-button onClick={() => this.dbdLogin.emit({})}>
+                  Login with Discord
+                </ion-button>
               </ion-card>
             </ion-col>
           </ion-row>

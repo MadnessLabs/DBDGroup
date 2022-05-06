@@ -7,18 +7,38 @@ declare type Tournament = {
   killers?: {
     user: User;
     name?: string;
-    killerpoints?: number;
-    generatorsLeft?: number;
-    hooks?: number;
-    kills?: number;
-    survivorsEscaped?: number;
+    scoring?: KillerScores;
   }[];
+  matches?: Match[];
+};
+
+declare type Match = {
+  timestamp?: Date;
+  scoring: {
+    survivor: {
+      [userId: string]: SurvivorScores;
+    };
+    killer: {
+      [userId: string]: KillerScores;
+    };
+  };
+};
+
+declare type KillerScores = {
+  bloodpoints?: number;
+  kills?: number;
+  generatorsLeft?: number;
+  escapes?: number;
+};
+
+declare type SurvivorScores = {
+  bloodpoints?: number;
 };
 
 declare type Survivor = {
   user: User;
-  bloodpoints?: number;
   name?: string;
+  scoring?: SurvivorScores;
 };
 
 declare type User = {
