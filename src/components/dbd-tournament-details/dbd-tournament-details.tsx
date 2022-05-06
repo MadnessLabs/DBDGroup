@@ -21,14 +21,7 @@ export class DbdTournamentDetails {
   @Prop() tournamentId: string;
   @Prop() db: DatabaseService;
   @Prop() tournament: Tournament;
-
-  // @Prop() component: string;
-  // @Prop() componentProps?: any;
-  // @Prop() cssClass?: string;
-  // @Prop() paginationEl: HTMLFireenjinPaginationElement;
-  // @Prop() endpoint: string;
-  // @Prop() limit: number;
-  // @Prop() query: string;
+  @Prop() timestamp: Date
 
   render() {
     return (
@@ -46,20 +39,14 @@ export class DbdTournamentDetails {
             </ion-thumbnail>
             <ion-label>
               <h2>{this.name}</h2>
-              <h2>{this.dateTime}</h2>
-              <ion-button
-                onClick={() =>
-                  this.dbdModalOpen.emit({
-                    component: "modal-tournament-detail",
-                    componentProps: {
-                      tournament: this.tournament,
-                      tournamentId: this.tournamentId,
-                    },
-                  })
-                }
-              >
-                Tournament Details
-              </ion-button>
+              <h2>{this.timestamp}</h2>
+              {this.rules && (
+                <fireenjin-chip-bar>
+                  {(this.rules || []).map((rule) => (
+                    <ion-chip>{rule}</ion-chip>
+                  ))}
+                </fireenjin-chip-bar>
+              )}
             </ion-label>
             <ion-buttons slot="end">
               <ion-button
@@ -88,13 +75,6 @@ export class DbdTournamentDetails {
             "flex-wrap": "wrap-reverse",
           }}
         >
-          {/* <fireenjin-pagination
-              ref={(el) => (this.paginationEl = el)}
-              listEl={(result) => <ion-item>{result?.id}</ion-item>}
-              endpoint={this.endpoint}
-              limit={this.limit}
-              query={this.query}
-            /> */}
           <ion-col size="12" size-md="6">
             <ion-card>
               {(this.tournament?.survivors || []).map((survivor) => (
@@ -112,13 +92,6 @@ export class DbdTournamentDetails {
               </ion-item>
             </ion-card>
           </ion-col>
-          {/* <fireenjin-pagination
-              ref={(el) => (this.paginationEl = el)}
-              listEl={(result) => <ion-item>{result?.id}</ion-item>}
-              endpoint={this.endpoint}
-              limit={this.limit}
-              query={this.query}
-            /> */}
           <ion-col size="12" size-md="6">
             <ion-card>
               <ion-item>

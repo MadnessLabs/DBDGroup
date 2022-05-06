@@ -8,7 +8,6 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
-import { DatetimeOptions } from "@ionic/core";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
@@ -17,6 +16,7 @@ export namespace Components {
     interface AppHome {
         "auth": AuthService;
         "db": DatabaseService;
+        "tournamentId": any;
     }
     interface AppList {
     }
@@ -34,7 +34,7 @@ export namespace Components {
         "image": string;
         "name": string;
         "rules": string[];
-        "timestamp": DatetimeOptions;
+        "timestamp": Date;
     }
     interface DbdTournamentDetails {
         "dateTime": string;
@@ -42,6 +42,7 @@ export namespace Components {
         "image": string;
         "name": string;
         "rules": string[];
+        "timestamp": Date;
         "tournament": Tournament;
         "tournamentId": string;
     }
@@ -179,6 +180,7 @@ declare namespace LocalJSX {
     componentProps?: any;
     cssClass?: string;
   }>) => void;
+        "tournamentId"?: any;
     }
     interface AppList {
     }
@@ -198,7 +200,7 @@ declare namespace LocalJSX {
         "image"?: string;
         "name"?: string;
         "rules"?: string[];
-        "timestamp"?: DatetimeOptions;
+        "timestamp"?: Date;
     }
     interface DbdTournamentDetails {
         "dateTime"?: string;
@@ -212,6 +214,7 @@ declare namespace LocalJSX {
   }>) => void;
         "onFireenjinShare"?: (event: CustomEvent<any>) => void;
         "rules"?: string[];
+        "timestamp"?: Date;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
