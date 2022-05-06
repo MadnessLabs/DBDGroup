@@ -115,7 +115,7 @@ export class AppTournament {
           <dbd-tournament-details
             name={this.tournament?.name}
             rules={this.tournament?.rules}
-            dateTime={this.tournament?.id}
+            timestamp={this.tournament?.timestamp}
             tournamentId={this.tournamentId}
             tournament={this.tournament}
           />

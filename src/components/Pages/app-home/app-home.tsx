@@ -15,6 +15,7 @@ export class AppHome {
 
   @Prop() db: DatabaseService;
   @Prop() auth: AuthService;
+  @Prop() tournamentId: any;
 
   @State() tournaments: any[];
 
@@ -33,6 +34,15 @@ export class AppHome {
   render() {
     return [
       <ion-header>
+        <ion-button
+                onClick={() =>
+                  this.dbdModalOpen.emit({
+                    component: "modal-tournament-detail",
+                  })
+                }
+              >
+                Tournament Details
+              </ion-button>
         <ion-toolbar color="light">
           <ion-buttons slot="end">
             {state?.claims?.admin && (
