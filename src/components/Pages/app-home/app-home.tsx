@@ -84,7 +84,7 @@ export class AppHome {
               </ion-button>
             )}
           </ion-buttons>
-          <h2>Dead By Daylight Group</h2>
+          <ion-title>Dead By Daylight Group</ion-title>
         </ion-toolbar>
       </ion-header>,
       <ion-content>
