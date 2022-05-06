@@ -23,6 +23,7 @@ export class DbdTournamentDetails {
   @Prop() tournament: Tournament;
   @Prop() timestamp: Date
 
+
   render() {
     return (
       <div>
@@ -94,12 +95,14 @@ export class DbdTournamentDetails {
           </ion-col>
           <ion-col size="12" size-md="6">
             <ion-card>
-              <ion-item>
-                <ion-avatar slot="start">
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
-                </ion-avatar>
-                <p>KILLER</p>
-              </ion-item>
+              {(this.tournament?.killers || []).map((killer) => (
+                <ion-item>
+                  <ion-avatar slot="start">
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                  </ion-avatar>
+                  <p>{killer?.name || "No name given"}</p>
+                </ion-item>
+              ))}
             </ion-card>
           </ion-col>
         </ion-row>
