@@ -1,4 +1,3 @@
-import { DatetimeOptions } from "@ionic/core";
 import {
   Build,
   Component,
@@ -19,7 +18,7 @@ export class TournamentCard implements ComponentInterface {
   @Prop() dateTime: string;
   @Prop() rules: string[];
   @Prop() href: string;
-  @Prop() timestamp: DatetimeOptions
+  @Prop() timestamp: Date
 
   componentDidLoad() {
     if (!Build?.isBrowser) return;

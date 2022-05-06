@@ -31,29 +31,21 @@ export class AppTournament {
     console.log(this.users, "here");
     this.db.watchDocument("tournaments", this.tournamentId, ({ data }) => {
       console.log(data);
-      this.tournament = data || {
-        id: this.tournamentId,
-      };
+      this.tournament = data;
     });
   }
 
   async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
-      const killers = (this.tournament?.killers || []).filter(
-        (killer) => killer?.user?.id !== state?.session?.uid
-      );
-      const survivors = (this.tournament?.survivors || []).filter(
-        (survivor) => survivor?.user?.id !== state?.session?.uid
-      );
+      const killers = this.tournament?.killers || [];
+      const survivors = this.tournament?.survivors || [];
       if (type === "survivor") {
         survivors.push({
-          user: this.db.document("users", state?.session?.uid),
-          name: (state?.profile?.discordId || "No Name Survived").split("#")[0],
+          user: null,
         });
       } else {
         killers.push({
-          user: this.db.document("users", state?.session?.uid),
-          name: (state?.profile?.discordId || "Killed His Name").split("#")[0],
+          user: null,
         });
       }
 
@@ -124,7 +116,7 @@ export class AppTournament {
           <dbd-tournament-details
             name={this.tournament?.name}
             rules={this.tournament?.rules}
-            dateTime={this.tournament?.id}
+            timestamp={this.tournament?.timestamp}
             tournamentId={this.tournamentId}
             tournament={this.tournament}
           />
@@ -152,70 +144,110 @@ export class AppTournament {
           <ion-grid>
             <ion-row>
               <ion-card color="tertiary">
-                <ion-item>Game 1</ion-item>
+                <ion-item color="light">Game 1</ion-item>
               </ion-card>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-card>
                   <ion-item>
-                    <ion-icon name="home" slot="start" />
-                    Survivor
-                    <ion-badge slot="end">10</ion-badge>
+                    <ion-badge color="primary">Survivor</ion-badge>
                   </ion-item>
                 </ion-card>
               </ion-col>
               <ion-col>
                 <ion-card>
-                  <ion-item>Killer</ion-item>
+                  <ion-item>
+                    <ion-badge>Killer</ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-card>
-                  <ion-item>S1B</ion-item>
+                  <ion-item>
+                    <ion-badge color="secondary">S1B</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      Bloodpoints
+                    </ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
               <ion-col>
                 <ion-card>
-                  <ion-item>Kills</ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>S2B</ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>Total Hooks</ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>S3B</ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>Generators Left</ion-item>
+                  <ion-item>
+                    <ion-badge color="secondary">Kills</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      NumberofKills
+                    </ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-card>
-                  <ion-item>S4B</ion-item>
+                  <ion-item>
+                    <ion-badge color="secondary">S2B</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      Bloodpoints
+                    </ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
               <ion-col>
                 <ion-card>
-                  <ion-item>Escapes</ion-item>
+                  <ion-item>
+                    <ion-badge color="secondary">Total Hooks</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      #
+                    </ion-badge>
+                  </ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>
+                    <ion-badge color="secondary">S3B</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      Bloodpoints
+                    </ion-badge>
+                  </ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>
+                    <ion-badge color="secondary">Gens Left</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      #
+                    </ion-badge>
+                  </ion-item>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-card>
+                  <ion-item>
+                    <ion-badge color="secondary">S4B</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      Bloodpoints
+                    </ion-badge>
+                  </ion-item>
+                </ion-card>
+              </ion-col>
+              <ion-col>
+                <ion-card>
+                  <ion-item>
+                    <ion-badge color="secondary">Escapes</ion-badge>
+                    <ion-badge color="medium" slot="end">
+                      #
+                    </ion-badge>
+                  </ion-item>
                 </ion-card>
               </ion-col>
             </ion-row>
