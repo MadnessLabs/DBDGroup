@@ -34,15 +34,6 @@ export class AppHome {
   render() {
     return [
       <ion-header>
-        <ion-button
-                onClick={() =>
-                  this.dbdModalOpen.emit({
-                    component: "modal-tournament-detail",
-                  })
-                }
-              >
-                Tournament Details
-              </ion-button>
         <ion-toolbar color="light">
           <ion-buttons slot="end">
             {state?.claims?.admin && (
@@ -52,8 +43,8 @@ export class AppHome {
                   this.dbdModalOpen.emit({
                     component: "modal-tournament-edit",
                     componentProps: {
-                      mainTitle: "Create Tournament"
-                    }
+                      mainTitle: "Create Tournament",
+                    },
                   })
                 }
               >
@@ -98,6 +89,27 @@ export class AppHome {
       </ion-header>,
       <ion-content>
         <ion-grid>
+          <ion-row>
+            <ion-col size="12" sizeMd="6">
+              <img
+                src="./assets/icon/icon-group.png"
+                style={{
+                  margin: "15px auto",
+                  display: "block",
+                  maxHeight: "300px",
+                  height: "30vh",
+                }}
+              />
+            </ion-col>
+            <ion-col
+              size="12"
+              sizeMd="6"
+              class="ion-text-center ion-text-md-left"
+            >
+              <h2>Welcome to DeadByDaylight.Group</h2>
+              <ion-text>Rules and Welcome Message</ion-text>
+            </ion-col>
+          </ion-row>
           <ion-row>
             {this.tournaments?.map?.((tournament) => (
               <ion-col size="12" size-md="6">
