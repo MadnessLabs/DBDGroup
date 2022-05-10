@@ -107,7 +107,7 @@ export class AppHome {
               class="ion-text-center ion-text-md-left"
             >
               <h2>Welcome to DeadByDaylight.Group</h2>
-              <ion-text>Rules and Welcome Message</ion-text>
+              <ion-text>General tournament rule - don't be a toxic survivor/killer</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
