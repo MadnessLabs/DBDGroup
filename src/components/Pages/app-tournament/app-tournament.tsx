@@ -80,6 +80,22 @@ export class AppTournament {
                   color="primary"
                   onClick={() =>
                     this.dbdModalOpen.emit({
+                      component: "modal-scoring",
+                      componentProps: {
+                        tournament: this.tournament,
+                        tournamentId: this.tournamentId,
+                      },
+                    })
+                  }
+                >
+                  Score
+                </ion-button>
+              )}
+              {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() =>
+                    this.dbdModalOpen.emit({
                       component: "modal-tournament-edit",
                       componentProps: {
                         tournament: this.tournament,

@@ -96,7 +96,7 @@ export class AppAdmin {
                 <ion-list class="ion-no-padding">
                   <ion-item-divider>Killers</ion-item-divider>
                   {this.formData?.killers?.map((killer) => (
-                    <ion-item>KP: {killer?.scoring?.bloodpoints}</ion-item>
+                    <ion-item>KP: {killer?.name}</ion-item>
                   ))}
                 </ion-list>
               </ion-card>

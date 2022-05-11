@@ -61,6 +61,7 @@ export namespace Components {
         "userId": string;
     }
     interface ModalScoring {
+        "tournament": Tournament;
         "tournamentId": string;
     }
     interface ModalTournamentDetail {
@@ -245,6 +246,7 @@ declare namespace LocalJSX {
         "userId"?: string;
     }
     interface ModalScoring {
+        "tournament"?: Tournament;
         "tournamentId"?: string;
     }
     interface ModalTournamentDetail {

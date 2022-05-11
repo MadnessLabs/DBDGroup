@@ -25,7 +25,6 @@ declare type Match = {
 };
 
 declare type KillerScores = {
-  bloodpoints?: number;
   kills?: number;
   generatorsLeft?: number;
   escapes?: number;
