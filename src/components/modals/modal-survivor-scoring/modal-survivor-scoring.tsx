@@ -1,16 +1,49 @@
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Listen, Prop, Event, EventEmitter } from "@stencil/core";
 
 @Component({
-  tag: "modal-scoring",
+  tag: "modal-survivor-scoring",
 })
-export class ModalScoring {
+export class ModalSurvivorScoring {
   @Prop() tournamentId: string;
   @Prop() tournament: Tournament;
 
+  @Event() dbdModalClose: EventEmitter;
+
+  @Listen("fireenjinSuccess")
+  onSucess() {
+    this.dbdModalClose.emit();
+  }
+
+  closeModal(event: MouseEvent) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    this.dbdModalClose.emit();
+  }
+
   render() {
-    return (
+    return [
+      <ion-header>
+        <ion-toolbar color="light">
+          <ion-buttons slot="start">
+            <ion-button
+              color="primary"
+              href="/"
+              onClick={(event) => this.closeModal(event)}
+            >
+              <ion-icon name="arrow-back" color="primary" />
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Survivor Scoring</ion-title>
+        </ion-toolbar>
+      </ion-header>,
       <ion-content>
-        <fireenjin-form
+        <ion-row style={{
+          "justify-content":"center"
+        }}>
+          <ion-col size="12" size-md="8">
+        <fireenjin-form style={{
+          "text-align":"center"
+        }}
           documentId={this.tournamentId}
           endpoint="tournaments"
           beforeSubmit={async (data) => {
@@ -58,35 +91,22 @@ export class ModalScoring {
             return this.tournament;
           }}
         >
-          {(this.tournament?.killers || []).map((killer) => (
+          {(this.tournament?.survivors || []).map((survivor) => (
             <ion-card>
-              {killer?.name || "No Name"}
+              {survivor?.name || "No Name"}
               <fireenjin-input
                 min="0"
                 type="number"
-                label="Kills"
+                label="Bloodpoints"
                 labelPosition="stacked"
-                name={`killer.${killer?.user?.id}.kills`}
-              />
-              <fireenjin-input
-                min="0"
-                max="5"
-                type="number"
-                label="Generators Left"
-                labelPosition="stacked"
-                name={`killer.${killer?.user?.id}.generatorsLeft`}
-              />
-              <fireenjin-input
-                min="0"
-                type="number"
-                label="Escapes"
-                labelPosition="stacked"
-                name={`killer.${killer?.user?.id}.escapes`}
+                name={`survivor.${survivor?.user?.id}.bloodpoint`}
               />
             </ion-card>
           ))}
         </fireenjin-form>
+        </ion-col>
+        </ion-row>
       </ion-content>
-    );
+    ];
   }
 }

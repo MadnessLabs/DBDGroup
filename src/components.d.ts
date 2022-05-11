@@ -50,6 +50,10 @@ export namespace Components {
     }
     interface DbdgroupRouter {
     }
+    interface ModalKillerScoring {
+        "tournament": Tournament;
+        "tournamentId": string;
+    }
     interface ModalLogin {
         "auth": AuthService;
     }
@@ -60,7 +64,7 @@ export namespace Components {
         "headerTitle": string;
         "userId": string;
     }
-    interface ModalScoring {
+    interface ModalSurvivorScoring {
         "tournament": Tournament;
         "tournamentId": string;
     }
@@ -131,6 +135,12 @@ declare global {
         prototype: HTMLDbdgroupRouterElement;
         new (): HTMLDbdgroupRouterElement;
     };
+    interface HTMLModalKillerScoringElement extends Components.ModalKillerScoring, HTMLStencilElement {
+    }
+    var HTMLModalKillerScoringElement: {
+        prototype: HTMLModalKillerScoringElement;
+        new (): HTMLModalKillerScoringElement;
+    };
     interface HTMLModalLoginElement extends Components.ModalLogin, HTMLStencilElement {
     }
     var HTMLModalLoginElement: {
@@ -143,11 +153,11 @@ declare global {
         prototype: HTMLModalProfileElement;
         new (): HTMLModalProfileElement;
     };
-    interface HTMLModalScoringElement extends Components.ModalScoring, HTMLStencilElement {
+    interface HTMLModalSurvivorScoringElement extends Components.ModalSurvivorScoring, HTMLStencilElement {
     }
-    var HTMLModalScoringElement: {
-        prototype: HTMLModalScoringElement;
-        new (): HTMLModalScoringElement;
+    var HTMLModalSurvivorScoringElement: {
+        prototype: HTMLModalSurvivorScoringElement;
+        new (): HTMLModalSurvivorScoringElement;
     };
     interface HTMLModalTournamentDetailElement extends Components.ModalTournamentDetail, HTMLStencilElement {
     }
@@ -171,9 +181,10 @@ declare global {
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
+        "modal-killer-scoring": HTMLModalKillerScoringElement;
         "modal-login": HTMLModalLoginElement;
         "modal-profile": HTMLModalProfileElement;
-        "modal-scoring": HTMLModalScoringElement;
+        "modal-survivor-scoring": HTMLModalSurvivorScoringElement;
         "modal-tournament-detail": HTMLModalTournamentDetailElement;
         "modal-tournament-edit": HTMLModalTournamentEditElement;
     }
@@ -233,6 +244,11 @@ declare namespace LocalJSX {
     }
     interface DbdgroupRouter {
     }
+    interface ModalKillerScoring {
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "tournament"?: Tournament;
+        "tournamentId"?: string;
+    }
     interface ModalLogin {
         "auth"?: AuthService;
     }
@@ -245,7 +261,8 @@ declare namespace LocalJSX {
         "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "userId"?: string;
     }
-    interface ModalScoring {
+    interface ModalSurvivorScoring {
+        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
@@ -272,9 +289,10 @@ declare namespace LocalJSX {
         "dbd-tournament-card": DbdTournamentCard;
         "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
+        "modal-killer-scoring": ModalKillerScoring;
         "modal-login": ModalLogin;
         "modal-profile": ModalProfile;
-        "modal-scoring": ModalScoring;
+        "modal-survivor-scoring": ModalSurvivorScoring;
         "modal-tournament-detail": ModalTournamentDetail;
         "modal-tournament-edit": ModalTournamentEdit;
     }
@@ -292,9 +310,10 @@ declare module "@stencil/core" {
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
+            "modal-killer-scoring": LocalJSX.ModalKillerScoring & JSXBase.HTMLAttributes<HTMLModalKillerScoringElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
             "modal-profile": LocalJSX.ModalProfile & JSXBase.HTMLAttributes<HTMLModalProfileElement>;
-            "modal-scoring": LocalJSX.ModalScoring & JSXBase.HTMLAttributes<HTMLModalScoringElement>;
+            "modal-survivor-scoring": LocalJSX.ModalSurvivorScoring & JSXBase.HTMLAttributes<HTMLModalSurvivorScoringElement>;
             "modal-tournament-detail": LocalJSX.ModalTournamentDetail & JSXBase.HTMLAttributes<HTMLModalTournamentDetailElement>;
             "modal-tournament-edit": LocalJSX.ModalTournamentEdit & JSXBase.HTMLAttributes<HTMLModalTournamentEditElement>;
         }

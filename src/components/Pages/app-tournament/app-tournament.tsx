@@ -73,14 +73,14 @@ export class AppTournament {
                 <ion-icon name="arrow-back" color="primary" />
               </ion-button>
             </ion-buttons>
-            <ion-title>Tournament Page</ion-title>
+            Tournament Page
             <ion-buttons slot="end">
               {state?.claims?.admin && (
                 <ion-button
                   color="primary"
                   onClick={() =>
                     this.dbdModalOpen.emit({
-                      component: "modal-scoring",
+                      component: "modal-killer-scoring",
                       componentProps: {
                         tournament: this.tournament,
                         tournamentId: this.tournamentId,
@@ -88,7 +88,37 @@ export class AppTournament {
                     })
                   }
                 >
-                  Score
+                  <p
+                    style={{
+                      "font-size": "12px",
+                    }}
+                  >
+                    Killer <br />
+                    Score
+                  </p>
+                </ion-button>
+              )}
+              {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() =>
+                    this.dbdModalOpen.emit({
+                      component: "modal-survivor-scoring",
+                      componentProps: {
+                        tournament: this.tournament,
+                        tournamentId: this.tournamentId,
+                      },
+                    })
+                  }
+                >
+                  <p
+                    style={{
+                      "font-size": "12px",
+                    }}
+                  >
+                    Survivor <br />
+                    Score
+                  </p>
                 </ion-button>
               )}
               {state?.claims?.admin && (
@@ -105,8 +135,14 @@ export class AppTournament {
                     })
                   }
                 >
-                  Edit
-                  <ion-icon slot="end" name="create" />
+                  <p
+                    style={{
+                      "font-size": "12px",
+                    }}
+                  >
+                    Edit <br />
+                    <ion-icon slot="end" name="create" />
+                  </p>
                 </ion-button>
               )}
             </ion-buttons>
@@ -158,130 +194,44 @@ export class AppTournament {
             </ion-row>
           </ion-grid>
           <ion-grid>
-            <ion-row>
-              <ion-card color="tertiary">
-                <ion-item color="light">Game 1</ion-item>
-              </ion-card>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="primary">Survivor</ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge>Killer</ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">S1B</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      Bloodpoints
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">Kills</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      NumberofKills
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">S2B</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      Bloodpoints
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">Total Hooks</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      #
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">S3B</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      Bloodpoints
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">Gens Left</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      #
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">S4B</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      Bloodpoints
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-              <ion-col>
-                <ion-card>
-                  <ion-item>
-                    <ion-badge color="secondary">Escapes</ion-badge>
-                    <ion-badge color="medium" slot="end">
-                      #
-                    </ion-badge>
-                  </ion-item>
-                </ion-card>
-              </ion-col>
-            </ion-row>
+            <ion-card>
+              <ion-row style={{ "justify-content": "center" }}>
+                <ion-text>
+                  <ion-title>
+                    {this.tournament?.name || "no tourney name"}
+                  </ion-title>
+                </ion-text>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12" size-md="6">
+                  {(this.tournament?.survivors || []).map((survivor) => (
+                    <ion-item>
+                      <ion-label>
+                        <ion-title color="">
+                          {survivor?.name || "No Survivor Name"}
+                        </ion-title>
+                        <ion-chip color="">{survivor?.scoring?.bloodpoints} Bloodpoints</ion-chip>
+                      </ion-label>
+                    </ion-item>
+                  ))}
+                </ion-col>
+                <ion-col size="12" size-md="6">
+                  {(this.tournament?.killers || []).map((killer) => (
+                    <ion-item>
+                    <ion-label>
+                      <ion-title color="">
+                        {killer?.name || "No Killer Name"}
+                      </ion-title>
+                      <ion-chip color="">{killer?.scoring?.kills} Kills</ion-chip>
+                      <ion-chip color="">{killer?.scoring?.generatorsLeft} Generators Left</ion-chip>
+                      <ion-chip color="">{killer?.scoring?.escapes} Escapes</ion-chip>
+                      </ion-label>
+                    </ion-item>
+                  ))}
+                </ion-col>
+              </ion-row>
+            </ion-card>
           </ion-grid>
-
-          {/* // Scoreboard
-
-            // Bloodpoints
-
-                //Game 1            Killer//
-                // S1B                //Kills
-                // S2B                //Total Hooks
-                // S3B                //Gens Left
-                // S4B                //Escapes
-
-                //Game 2
-                // S1B ~~
-            // Total Points Survivors                   //Total Killers */}
         </ion-content>
       </Host>
     );
