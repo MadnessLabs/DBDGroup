@@ -73,6 +73,7 @@ export class ModalSurvivorScoring {
                       survivorScores[userId].bloodpoints +
                       parseInt((scores?.bloodpoints as any) || "0");
                   }
+                }
 
                   this.tournament.matches = matches;
                   for (const [userId, score] of Object.entries(
@@ -85,7 +86,6 @@ export class ModalSurvivorScoring {
                   }
 
                   return this.tournament;
-                }
               }}
             >
               {(this.tournament?.survivors || []).map((survivor) => (
@@ -103,7 +103,7 @@ export class ModalSurvivorScoring {
             </fireenjin-form>
           </ion-col>
         </ion-row>
-      </ion-content>,
+      </ion-content>
     ];
   }
 }
