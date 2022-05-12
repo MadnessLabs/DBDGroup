@@ -58,29 +58,29 @@ export class ModalSurvivorScoring {
                     killer: data?.killer || {},
                   },
                 });
-                const SurvivorScores: {
+                const survivorScores: {
                   [userId: string]: SurvivorScores;
                 } = {};
                 for (const match of matches) {
                   for (const [userId, scores] of Object.entries(
                     match?.scoring?.survivor || {}
                   )) {
-                    if (!SurvivorScores[userId])
-                      SurvivorScores[userId] = {
+                    if (!survivorScores[userId])
+                      survivorScores[userId] = {
                         bloodpoints: 0,
                       };
-                    SurvivorScores[userId].bloodpoints =
-                      SurvivorScores[userId].bloodpoints +
+                    survivorScores[userId].bloodpoints =
+                      survivorScores[userId].bloodpoints +
                       parseInt((scores?.bloodpoints as any) || "0");
                   }
 
                   this.tournament.matches = matches;
                   for (const [userId, score] of Object.entries(
-                    SurvivorScores
+                    survivorScores
                   )) {
                     const survivorIndex = (
                       this.tournament?.survivors || []
-                    ).findIndex((killer) => killer?.user?.id === userId);
+                    ).findIndex((survivor) => survivor?.user?.id === userId);
                     this.tournament.survivors[survivorIndex].scoring = score;
                   }
 
