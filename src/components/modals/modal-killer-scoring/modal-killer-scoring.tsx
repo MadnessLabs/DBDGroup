@@ -88,6 +88,10 @@ export class ModalKillerScoring {
                   const killerIndex = (
                     this.tournament?.killers || []
                   ).findIndex((killer) => killer?.user?.id === userId);
+                  if (killerIndex || !this.tournament?.killers[killerIndex])
+                    continue;
+                  if (!this.tournament?.killers[killerIndex]?.scoring)
+                    this.tournament.killers[killerIndex].scoring = {};
                   this.tournament.killers[killerIndex].scoring = score;
                 }
 

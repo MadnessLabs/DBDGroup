@@ -8,6 +8,7 @@ import {
   Prop,
   State,
 } from "@stencil/core";
+import { Match, Tournament } from "../../../interfaces";
 import state from "../../../store";
 
 @Component({
@@ -72,7 +73,15 @@ export class AppTournament {
     }
   }
 
+  getUserName(userId: string) {
+    const user = (this.tournament?.survivors || []).find(
+      (survivor) => survivor?.user?.id === userId
+    );
+    return user?.name || "No Name Given";
+  }
+
   render() {
+    console.log(this.tournament?.matches);
     return (
       <Host>
         <ion-header>
@@ -252,7 +261,20 @@ export class AppTournament {
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
-                    <p>{killer?.name || "No name given"}</p>
+                    <ion-label>
+                      <ion-title color="">
+                        {killer?.name || "No Killer Name"}
+                      </ion-title>
+                      <ion-chip color="">
+                        {killer?.scoring?.kills} Kills
+                      </ion-chip>
+                      <ion-chip color="">
+                        {killer?.scoring?.generatorsLeft} Generators Left
+                      </ion-chip>
+                      <ion-chip color="">
+                        {killer?.scoring?.escapes} Escapes
+                      </ion-chip>
+                    </ion-label>
                   </ion-item>
                 ))}
               </ion-card>
@@ -304,23 +326,58 @@ export class AppTournament {
                   ))}
                 </ion-col>
                 <ion-col size="12" size-md="6">
-                  {(this.tournament?.killers || []).map((killer) => (
-                    <ion-item>
-                      <ion-label>
-                        <ion-title color="">
-                          {killer?.name || "No Killer Name"}
-                        </ion-title>
-                        <ion-chip color="">
-                          {killer?.scoring?.kills} Kills
-                        </ion-chip>
-                        <ion-chip color="">
-                          {killer?.scoring?.generatorsLeft} Generators Left
-                        </ion-chip>
-                        <ion-chip color="">
-                          {killer?.scoring?.escapes} Escapes
-                        </ion-chip>
-                      </ion-label>
-                    </ion-item>
+                  {(this.tournament?.matches || []).map((game: Match) => (
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <h1>
+                            {game?.timestamp
+                              ? game.timestamp.toDate().toLocaleDateString()
+                              : "No Date"}
+                          </h1>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="12" size-md="6">
+                          {Object.keys(game?.scoring?.survivor || {}).map(
+                            (userId) => {
+                              const scoring =
+                                game?.scoring?.survivor?.[userId] || {};
+                              return (
+                                <ion-item>
+                                  <ion-label>
+                                    <ion-title>
+                                      {this.getUserName(userId)}
+                                    </ion-title>
+                                    <ion-chip>
+                                      {scoring.bloodpoints || "0"} Bloodpoints
+                                    </ion-chip>
+                                  </ion-label>
+                                </ion-item>
+                              );
+                            }
+                          )}
+                        </ion-col>
+                        <ion-col size="12" size-md="6">
+                          {Object.keys(game?.scoring?.killer || {}).map(
+                            (userId) => {
+                              const scoring =
+                                game?.scoring?.killer?.[userId] || {};
+                              <ion-item>
+                                <ion-label>
+                                  <ion-title>
+                                    {this.getUserName(userId)}
+                                  </ion-title>
+                                  <ion-chip>
+                                    {scoring.kills || "0"} Kills
+                                  </ion-chip>
+                                </ion-label>
+                              </ion-item>;
+                            }
+                          )}
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
                   ))}
                 </ion-col>
               </ion-row>

@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 declare type Tournament = {
   id?: string;
   image?: string;
@@ -14,8 +16,8 @@ declare type Tournament = {
 };
 
 declare type Match = {
-  timestamp?: Date;
-  scoring: {
+  timestamp?: Timestamp;
+  scoring?: {
     survivor: {
       [userId: string]: SurvivorScores;
     };
