@@ -38,16 +38,6 @@ export namespace Components {
         "rules": string[];
         "timestamp": Date;
     }
-    interface DbdTournamentDetails {
-        "dateTime": string;
-        "db": DatabaseService;
-        "image": string;
-        "name": string;
-        "rules": string[];
-        "timestamp": Date;
-        "tournament": Tournament;
-        "tournamentId": string;
-    }
     interface DbdgroupRouter {
     }
     interface ModalKillerScoring {
@@ -123,12 +113,6 @@ declare global {
         prototype: HTMLDbdTournamentCardElement;
         new (): HTMLDbdTournamentCardElement;
     };
-    interface HTMLDbdTournamentDetailsElement extends Components.DbdTournamentDetails, HTMLStencilElement {
-    }
-    var HTMLDbdTournamentDetailsElement: {
-        prototype: HTMLDbdTournamentDetailsElement;
-        new (): HTMLDbdTournamentDetailsElement;
-    };
     interface HTMLDbdgroupRouterElement extends Components.DbdgroupRouter, HTMLStencilElement {
     }
     var HTMLDbdgroupRouterElement: {
@@ -179,7 +163,6 @@ declare global {
         "app-tournament": HTMLAppTournamentElement;
         "app-tournament-list": HTMLAppTournamentListElement;
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
-        "dbd-tournament-details": HTMLDbdTournamentDetailsElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-killer-scoring": HTMLModalKillerScoringElement;
         "modal-login": HTMLModalLoginElement;
@@ -213,6 +196,7 @@ declare namespace LocalJSX {
         "db"?: DatabaseService;
         "onDbdModalOpen"?: (event: CustomEvent<any>) => void;
         "onDbdPopoverOpen"?: (event: CustomEvent<any>) => void;
+        "onFireenjinShare"?: (event: CustomEvent<any>) => void;
         "tournamentId"?: string;
         "userId"?: string;
     }
@@ -225,22 +209,6 @@ declare namespace LocalJSX {
         "name"?: string;
         "rules"?: string[];
         "timestamp"?: Date;
-    }
-    interface DbdTournamentDetails {
-        "dateTime"?: string;
-        "db"?: DatabaseService;
-        "image"?: string;
-        "name"?: string;
-        "onDbdModalOpen"?: (event: CustomEvent<{
-    component?: string;
-    cssClass?: string;
-    componentProps?: any;
-  }>) => void;
-        "onFireenjinShare"?: (event: CustomEvent<any>) => void;
-        "rules"?: string[];
-        "timestamp"?: Date;
-        "tournament"?: Tournament;
-        "tournamentId"?: string;
     }
     interface DbdgroupRouter {
     }
@@ -287,7 +255,6 @@ declare namespace LocalJSX {
         "app-tournament": AppTournament;
         "app-tournament-list": AppTournamentList;
         "dbd-tournament-card": DbdTournamentCard;
-        "dbd-tournament-details": DbdTournamentDetails;
         "dbdgroup-router": DbdgroupRouter;
         "modal-killer-scoring": ModalKillerScoring;
         "modal-login": ModalLogin;
@@ -308,7 +275,6 @@ declare module "@stencil/core" {
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
             "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
-            "dbd-tournament-details": LocalJSX.DbdTournamentDetails & JSXBase.HTMLAttributes<HTMLDbdTournamentDetailsElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-killer-scoring": LocalJSX.ModalKillerScoring & JSXBase.HTMLAttributes<HTMLModalKillerScoringElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;

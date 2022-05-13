@@ -17,6 +17,7 @@ import state from "../../../store";
 export class AppTournament {
   @Event() dbdModalOpen: EventEmitter;
   @Event() dbdPopoverOpen: EventEmitter;
+  @Event() fireenjinShare: EventEmitter;
 
   @Prop() db: DatabaseService;
   @Prop() tournamentId: string;
@@ -37,8 +38,12 @@ export class AppTournament {
 
   async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
-      const killers = this.tournament?.killers || [];
-      const survivors = this.tournament?.survivors || [];
+      const killers = (this.tournament?.killers || []).filter(
+        (killer) => killer?.user?.id !== state?.session?.uid
+      );
+      const survivors = (this.tournament?.survivors || []).filter(
+        (survivor) => survivor?.user?.id !== state?.session?.uid
+      );
       if (type === "survivor") {
         survivors.push({
           user: this.db.document("users", state?.session?.uid),
@@ -47,7 +52,9 @@ export class AppTournament {
         });
       } else {
         killers.push({
-          user: null,
+          user: this.db.document("users", state?.session?.uid),
+          name: (state?.profile?.discordId || "").split("#")[0],
+          scoring: {},
         });
       }
 
@@ -167,13 +174,90 @@ export class AppTournament {
               <h1>DEAD BY DAYLIGHT TOURNAMENTS</h1>
             </ion-col>
           </ion-row>
-          <dbd-tournament-details
-            name={this.tournament?.name}
-            rules={this.tournament?.rules}
-            timestamp={this.tournament?.timestamp}
-            tournamentId={this.tournamentId}
-            tournament={this.tournament}
-          />
+          <ion-card>
+            <ion-item>
+              <ion-thumbnail
+                slot="start"
+                style={{
+                  height: "80px",
+                  width: "100px",
+                }}
+              >
+                <img
+                  src={
+                    this.tournament?.image ||
+                    "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+                  }
+                />
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{this.tournament?.name || "No Name Given"}</h2>
+                <h2>{this.tournament?.timestamp || "No Date Set"}</h2>
+                {this.tournament?.rules && (
+                  <fireenjin-chip-bar>
+                    {(this.tournament?.rules || []).map((rule) => (
+                      <ion-chip>{rule}</ion-chip>
+                    ))}
+                  </fireenjin-chip-bar>
+                )}
+              </ion-label>
+              <ion-buttons slot="end">
+                <ion-button
+                  onClick={() =>
+                    this.fireenjinShare.emit({
+                      data: {
+                        url:
+                          window?.location?.href ||
+                          "https://deadbydaylight.group",
+                        text: `I entered a DBD tourney called ${
+                          this.tournament?.name || "unknown"
+                        } on a new app. Enter with the link so we can play together.`,
+                        title: `Enter this DBD tourney with me.`,
+                      },
+                    })
+                  }
+                >
+                  Share
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+          </ion-card>
+
+          <ion-row
+            style={{
+              "flex-wrap": "wrap-reverse",
+            }}
+          >
+            <ion-col size="12" size-md="6">
+              <ion-card>
+                {(this.tournament?.survivors || []).map((survivor) => (
+                  <ion-item>
+                    <ion-avatar slot="start">
+                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                    </ion-avatar>
+                    <p>{survivor?.name || "No name given"}</p>
+                  </ion-item>
+                ))}
+                <ion-item>
+                  <ion-label>
+                    <h2>Searching for Survivors...</h2>
+                  </ion-label>
+                </ion-item>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+              <ion-card>
+                {(this.tournament?.killers || []).map((killer) => (
+                  <ion-item>
+                    <ion-avatar slot="start">
+                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+                    </ion-avatar>
+                    <p>{killer?.name || "No name given"}</p>
+                  </ion-item>
+                ))}
+              </ion-card>
+            </ion-col>
+          </ion-row>
           <ion-grid>
             <ion-row>
               <ion-col size="6">

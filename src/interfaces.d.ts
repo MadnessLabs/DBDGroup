@@ -1,5 +1,6 @@
 declare type Tournament = {
   id?: string;
+  image?: string;
   survivors?: Survivor[];
   name?: string;
   rules?: string[];
