@@ -41,7 +41,9 @@ export class AppTournament {
       const survivors = this.tournament?.survivors || [];
       if (type === "survivor") {
         survivors.push({
-          user: null,
+          user: this.db.document("users", state?.session?.uid),
+          name: (state?.profile?.discordId || "").split("#")[0],
+          scoring: {},
         });
       } else {
         killers.push({
@@ -210,7 +212,9 @@ export class AppTournament {
                         <ion-title color="">
                           {survivor?.name || "No Survivor Name"}
                         </ion-title>
-                        <ion-chip color="">{survivor?.scoring?.bloodpoints} Bloodpoints</ion-chip>
+                        <ion-chip color="">
+                          {survivor?.scoring?.bloodpoints} Bloodpoints
+                        </ion-chip>
                       </ion-label>
                     </ion-item>
                   ))}
@@ -218,13 +222,19 @@ export class AppTournament {
                 <ion-col size="12" size-md="6">
                   {(this.tournament?.killers || []).map((killer) => (
                     <ion-item>
-                    <ion-label>
-                      <ion-title color="">
-                        {killer?.name || "No Killer Name"}
-                      </ion-title>
-                      <ion-chip color="">{killer?.scoring?.kills} Kills</ion-chip>
-                      <ion-chip color="">{killer?.scoring?.generatorsLeft} Generators Left</ion-chip>
-                      <ion-chip color="">{killer?.scoring?.escapes} Escapes</ion-chip>
+                      <ion-label>
+                        <ion-title color="">
+                          {killer?.name || "No Killer Name"}
+                        </ion-title>
+                        <ion-chip color="">
+                          {killer?.scoring?.kills} Kills
+                        </ion-chip>
+                        <ion-chip color="">
+                          {killer?.scoring?.generatorsLeft} Generators Left
+                        </ion-chip>
+                        <ion-chip color="">
+                          {killer?.scoring?.escapes} Escapes
+                        </ion-chip>
                       </ion-label>
                     </ion-item>
                   ))}
