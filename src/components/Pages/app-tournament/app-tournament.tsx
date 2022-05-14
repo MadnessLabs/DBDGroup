@@ -136,8 +136,8 @@ export class AppTournament {
                     })
                   }
                 >
-                    Edit
-                    <ion-icon slot="end" name="create" />
+                  Edit
+                  <ion-icon slot="end" name="create" />
                 </ion-button>
               )}
             </ion-buttons>
@@ -229,6 +229,7 @@ export class AppTournament {
                         {survivor?.scoring?.bloodpoints} Bloodpoints
                       </ion-chip>
                     </ion-label>
+                    <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
                 ))}
                 <ion-item>
