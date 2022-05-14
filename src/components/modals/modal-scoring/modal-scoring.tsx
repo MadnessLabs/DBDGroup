@@ -1,10 +1,10 @@
 import { Component, h, Listen, Prop, Event, EventEmitter } from "@stencil/core";
-import { KillerScores, Tournament } from "../../../interfaces";
+import { KillerScores, SurvivorScores, Tournament } from "../../../interfaces";
 
 @Component({
-  tag: "modal-killer-scoring",
+  tag: "modal-scoring",
 })
-export class ModalKillerScoring {
+export class ModalScoring {
   @Prop() tournamentId: string;
   @Prop() tournament: Tournament;
 
@@ -34,7 +34,7 @@ export class ModalKillerScoring {
               <ion-icon name="arrow-back" color="primary" />
             </ion-button>
           </ion-buttons>
-          <ion-title>Killer Scoring</ion-title>
+          <ion-title>Scoring</ion-title>
         </ion-toolbar>
       </ion-header>,
       <ion-content>
@@ -44,6 +44,7 @@ export class ModalKillerScoring {
           }}
         >
           <ion-col size="12" size-md="8">
+          <ion-label>Killer</ion-label>
             <fireenjin-form
               style={{
                 "text-align": "center",
@@ -131,7 +132,76 @@ export class ModalKillerScoring {
             </fireenjin-form>
           </ion-col>
         </ion-row>
-      </ion-content>,
+      <ion-row
+        style={{
+          "justify-content": "center",
+        }}
+      >
+        <ion-col size="12" size-md="8">
+        <ion-label>Survivors</ion-label>
+          <fireenjin-form
+            style={{
+              "text-align": "center",
+            }}
+            documentId={this.tournamentId}
+            endpoint="tournaments"
+            beforeSubmit={async (data) => {
+              const matches = this.tournament?.matches || [];
+              matches.push({
+                timestamp: new Date() as any,
+                scoring: {
+                  survivor: data?.survivor || {},
+                  killer: data?.killer || {},
+                },
+              });
+              const survivorScores: {
+                [userId: string]: SurvivorScores;
+              } = {};
+              for (const match of matches) {
+                for (const [userId, scores] of Object.entries(
+                  match?.scoring?.survivor || {}
+                )) {
+                  if (!survivorScores[userId])
+                    survivorScores[userId] = {
+                      bloodpoints: 0,
+                    };
+                  survivorScores[userId].bloodpoints =
+                    survivorScores[userId].bloodpoints +
+                    parseInt((scores?.bloodpoints as any) || "0");
+                }
+              }
+
+                this.tournament.matches = matches;
+                for (const [userId, score] of Object.entries(
+                  survivorScores
+                )) {
+                  const survivorIndex = (
+                    this.tournament?.survivors || []
+                  ).findIndex((survivor) => survivor?.user?.id === userId);
+                  this.tournament.survivors[survivorIndex].scoring = score;
+                }
+
+                return this.tournament;
+            }}
+          >
+            {(this.tournament?.survivors || []).map((survivor) => (
+              <ion-card>
+                {survivor?.name || "No Name"}
+                <fireenjin-input
+                  min="0"
+                  type="number"
+                  label="Bloodpoints"
+                  labelPosition="stacked"
+                  name={`survivor.${survivor?.user?.id}.bloodpoints`}
+                />
+              </ion-card>
+            ))}
+          </fireenjin-form>
+        </ion-col>
+      </ion-row>
+    </ion-content>
     ];
   }
 }
+      
+  
