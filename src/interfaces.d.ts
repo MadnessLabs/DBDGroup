@@ -2,16 +2,13 @@ import { Timestamp } from "firebase/firestore";
 
 declare type Tournament = {
   id?: string;
+  status?: "open" | "full" | "in progress" | "completed";
   image?: string;
   survivors?: Survivor[];
   name?: string;
   rules?: string[];
   timestamp?: Date;
-  killers?: {
-    user: User;
-    name?: string;
-    scoring?: KillerScores;
-  }[];
+  killers?: Killer[];
   matches?: Match[];
 };
 
@@ -25,6 +22,13 @@ declare type Match = {
       [userId: string]: KillerScores;
     };
   };
+};
+
+declare type Killer = {
+  user: User;
+  name?: string;
+  scoring?: KillerScores;
+  participating?: boolean;
 };
 
 declare type KillerScores = {
@@ -41,6 +45,7 @@ declare type Survivor = {
   user: User;
   name?: string;
   scoring?: SurvivorScores;
+  participating?: boolean;
 };
 
 declare type User = {

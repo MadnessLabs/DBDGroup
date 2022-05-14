@@ -7,6 +7,7 @@ import {
   Host,
   Prop,
   State,
+  Listen,
 } from "@stencil/core";
 import { Match, Tournament } from "../../../interfaces";
 import state from "../../../store";
@@ -27,10 +28,22 @@ export class AppTournament {
 
   @State() tournament: Tournament;
   @State() users: any;
+  @State() userIds: string[] = [];
+
+  @Listen("ionChange")
+  onChange(event) {
+    if (
+      event?.detail?.value === "on" ||
+      (event?.detail?.checked && this.userIds.includes(event?.detail?.value))
+    )
+      return;
+    this.userIds = event?.detail?.checked
+      ? [...this.userIds, event.detail.value]
+      : this.userIds.filter((userId) => userId !== event?.detail?.value);
+  }
 
   async componentDidLoad() {
     this.users = await this.db.list("users", []);
-    console.log(this.users, "here");
     this.db.watchDocument("tournaments", this.tournamentId, ({ data }) => {
       console.log(data);
       this.tournament = data;
@@ -245,6 +258,7 @@ export class AppTournament {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <p>{survivor?.name || "No name given"}</p>
+                    <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
                 ))}
                 <ion-item>
@@ -275,6 +289,7 @@ export class AppTournament {
                         {killer?.scoring?.escapes} Escapes
                       </ion-chip>
                     </ion-label>
+                    <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
                 ))}
               </ion-card>
