@@ -1,4 +1,5 @@
 import { Component, h, Listen, Prop, Event, EventEmitter } from "@stencil/core";
+import { SurvivorScores, Tournament } from "../../../interfaces";
 
 @Component({
   tag: "modal-survivor-scoring",
@@ -52,7 +53,7 @@ export class ModalSurvivorScoring {
               beforeSubmit={async (data) => {
                 const matches = this.tournament?.matches || [];
                 matches.push({
-                  timestamp: new Date(),
+                  timestamp: new Date() as any,
                   scoring: {
                     survivor: data?.survivor || {},
                     killer: data?.killer || {},
@@ -75,17 +76,15 @@ export class ModalSurvivorScoring {
                   }
                 }
 
-                  this.tournament.matches = matches;
-                  for (const [userId, score] of Object.entries(
-                    survivorScores
-                  )) {
-                    const survivorIndex = (
-                      this.tournament?.survivors || []
-                    ).findIndex((survivor) => survivor?.user?.id === userId);
-                    this.tournament.survivors[survivorIndex].scoring = score;
-                  }
+                this.tournament.matches = matches;
+                for (const [userId, score] of Object.entries(survivorScores)) {
+                  const survivorIndex = (
+                    this.tournament?.survivors || []
+                  ).findIndex((survivor) => survivor?.user?.id === userId);
+                  this.tournament.survivors[survivorIndex].scoring = score;
+                }
 
-                  return this.tournament;
+                return this.tournament;
               }}
             >
               {(this.tournament?.survivors || []).map((survivor) => (
@@ -103,7 +102,7 @@ export class ModalSurvivorScoring {
             </fireenjin-form>
           </ion-col>
         </ion-row>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

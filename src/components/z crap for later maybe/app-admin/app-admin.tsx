@@ -1,6 +1,7 @@
 import { Component, h, Listen, Prop, State } from "@stencil/core";
 import { Auth } from "firebase/auth";
 import { setDoc, doc, Firestore } from "firebase/firestore";
+import { Tournament } from "../../../interfaces";
 
 @Component({
   tag: "app-admin",

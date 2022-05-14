@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, h, Listen, Prop } from "@stencil/core";
+import { Tournament } from "../../../interfaces";
 
 @Component({
   tag: "modal-tournament-edit",
@@ -9,8 +10,7 @@ export class ModalTournamentEdit {
 
   @Prop() tournament: Tournament;
   @Prop() tournamentId: string;
-  @Prop() mainTitle: "Create Tournament"
-  
+  @Prop() mainTitle: "Create Tournament";
 
   @Listen("fireenjinSuccess")
   onSucess() {

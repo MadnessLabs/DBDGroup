@@ -8,6 +8,7 @@ import {
   EventEmitter,
   Listen,
 } from "@stencil/core";
+import { User } from "../../../interfaces";
 
 @Component({
   tag: "modal-profile",

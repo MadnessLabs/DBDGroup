@@ -1,5 +1,6 @@
 import { DatabaseService } from "@fireenjin/sdk";
 import { Component, h, Prop, Event, EventEmitter } from "@stencil/core";
+import { Tournament } from "../../../interfaces";
 
 @Component({
   tag: "modal-tournament-detail",

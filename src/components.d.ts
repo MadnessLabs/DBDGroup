@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { Tournament } from "./interfaces";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;

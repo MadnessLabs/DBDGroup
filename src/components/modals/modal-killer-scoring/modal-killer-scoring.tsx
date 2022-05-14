@@ -1,4 +1,5 @@
 import { Component, h, Listen, Prop, Event, EventEmitter } from "@stencil/core";
+import { KillerScores, Tournament } from "../../../interfaces";
 
 @Component({
   tag: "modal-killer-scoring",
@@ -52,7 +53,7 @@ export class ModalKillerScoring {
               beforeSubmit={async (data) => {
                 const matches = this.tournament?.matches || [];
                 matches.push({
-                  timestamp: new Date(),
+                  timestamp: new Date() as any,
                   scoring: {
                     survivor: data?.survivor || {},
                     killer: data?.killer || {},
