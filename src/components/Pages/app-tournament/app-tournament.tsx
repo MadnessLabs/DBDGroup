@@ -111,7 +111,7 @@ export class AppTournament {
                   color="primary"
                   onClick={() =>
                     this.dbdModalOpen.emit({
-                      component: "modal-killer-scoring",
+                      component: "modal-scoring",
                       componentProps: {
                         tournament: this.tournament,
                         tournamentId: this.tournamentId,
@@ -119,37 +119,7 @@ export class AppTournament {
                     })
                   }
                 >
-                  <p
-                    style={{
-                      "font-size": "12px",
-                    }}
-                  >
-                    Killer <br />
-                    Score
-                  </p>
-                </ion-button>
-              )}
-              {state?.claims?.admin && (
-                <ion-button
-                  color="primary"
-                  onClick={() =>
-                    this.dbdModalOpen.emit({
-                      component: "modal-survivor-scoring",
-                      componentProps: {
-                        tournament: this.tournament,
-                        tournamentId: this.tournamentId,
-                      },
-                    })
-                  }
-                >
-                  <p
-                    style={{
-                      "font-size": "12px",
-                    }}
-                  >
-                    Survivor <br />
-                    Score
-                  </p>
+                  Score
                 </ion-button>
               )}
               {state?.claims?.admin && (
@@ -166,14 +136,8 @@ export class AppTournament {
                     })
                   }
                 >
-                  <p
-                    style={{
-                      "font-size": "12px",
-                    }}
-                  >
-                    Edit <br />
+                    Edit
                     <ion-icon slot="end" name="create" />
-                  </p>
                 </ion-button>
               )}
             </ion-buttons>
