@@ -93,6 +93,17 @@ export class AppTournament {
     return user?.name || "No Name Given";
   }
 
+  startTournament() {
+    // 1. They will select list of users with checkboxes
+    //    that adds them to this.userIds
+    // 2. Loop through list of this.tournament.killers
+    //    and flip all active that are in this.userIds
+    // 3. Loop through list of this.tournament.survivors
+    //    and flip all active that are in this.userIds
+    // 4. Change this.tournament.status = "in progress"
+    // 4. Submit to Firestore to save in Tournaments Collection
+  }
+
   render() {
     console.log(this.tournament?.matches);
     return (
@@ -286,6 +297,19 @@ export class AppTournament {
                 </ion-button>
               </ion-col>
             </ion-row>
+            {state?.claims?.admin && (
+              <ion-row>
+                <ion-col>
+                  <ion-button
+                    expand="block"
+                    fill="outline"
+                    onClick={() => this.startTournament()}
+                  >
+                    Start Tournament
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            )}
           </ion-grid>
           <ion-grid>
             <ion-card>
