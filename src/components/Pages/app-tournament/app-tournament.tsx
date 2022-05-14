@@ -208,7 +208,14 @@ export class AppTournament {
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
-                    <p>{survivor?.name || "No name given"}</p>
+                    <ion-label>
+                      <ion-title color="">
+                      {survivor?.name || "No name given"}
+                      </ion-title>
+                      <ion-chip color="">
+                        {survivor?.scoring?.bloodpoints} Bloodpoints
+                      </ion-chip>
+                    </ion-label>
                   </ion-item>
                 ))}
                 <ion-item>
