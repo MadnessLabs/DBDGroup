@@ -250,15 +250,15 @@ export class AppTournament {
                       <ion-title color="">
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <ion-chip color="">
+                      <fireenjin-chip-bar color="">
                         {killer?.scoring?.kills} Kills
-                      </ion-chip>
-                      <ion-chip color="">
+                      </fireenjin-chip-bar>
+                      <fireenjin-chip-bar color="">
                         {killer?.scoring?.generatorsLeft} Generators Left
-                      </ion-chip>
-                      <ion-chip color="">
+                      </fireenjin-chip-bar>
+                      <fireenjin-chip-bar color="">
                         {killer?.scoring?.escapes} Escapes
-                      </ion-chip>
+                      </fireenjin-chip-bar>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
@@ -320,7 +320,7 @@ export class AppTournament {
                             {game?.timestamp
                               ? game.timestamp.toDate().toLocaleDateString()
                               : "No Date"}
-                          </h1>
+                          </h1>               
                         </ion-col>
                       </ion-row>
                       <ion-row>
