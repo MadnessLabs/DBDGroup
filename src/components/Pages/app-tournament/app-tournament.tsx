@@ -250,15 +250,17 @@ export class AppTournament {
                       <ion-title color="">
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <fireenjin-chip-bar color="">
+                      <fireenjin-chip-bar>
+                      <ion-chip color="">
                         {killer?.scoring?.kills} Kills
-                      </fireenjin-chip-bar>
-                      <fireenjin-chip-bar color="">
+                      </ion-chip>
+                      <ion-chip color="">
                         {killer?.scoring?.generatorsLeft} Generators Left
+                      </ion-chip>
                       </fireenjin-chip-bar>
-                      <fireenjin-chip-bar color="">
+                      <ion-chip color="">
                         {killer?.scoring?.escapes} Escapes
-                      </fireenjin-chip-bar>
+                      </ion-chip>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
