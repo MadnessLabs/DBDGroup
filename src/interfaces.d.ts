@@ -3,6 +3,7 @@ import { Timestamp } from "firebase/firestore";
 declare type Tournament = {
   id?: string;
   status?: "open" | "full" | "in progress" | "completed";
+  matchCount?: number;
   image?: string;
   survivors?: Survivor[];
   name?: string;

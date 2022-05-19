@@ -251,12 +251,12 @@ export class AppTournament {
                         {killer?.name || "No Killer Name"}
                       </ion-title>
                       <fireenjin-chip-bar>
-                      <ion-chip color="">
-                        {killer?.scoring?.kills} Kills
-                      </ion-chip>
-                      <ion-chip color="">
-                        {killer?.scoring?.generatorsLeft} Generators Left
-                      </ion-chip>
+                        <ion-chip color="">
+                          {killer?.scoring?.kills} Kills
+                        </ion-chip>
+                        <ion-chip color="">
+                          {killer?.scoring?.generatorsLeft} Generators Left
+                        </ion-chip>
                       </fireenjin-chip-bar>
                       <ion-chip color="">
                         {killer?.scoring?.escapes} Escapes
@@ -293,26 +293,10 @@ export class AppTournament {
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
-                  <ion-title>
-                    {this.tournament?.name || "no tourney name"}
-                  </ion-title>
+                  <ion-title>Matches</ion-title>
                 </ion-text>
               </ion-row>
               <ion-row>
-                <ion-col size="12" size-md="6">
-                  {(this.tournament?.survivors || []).map((survivor) => (
-                    <ion-item>
-                      <ion-label>
-                        <ion-title color="">
-                          {survivor?.name || "No Survivor Name"}
-                        </ion-title>
-                        <ion-chip color="">
-                          {survivor?.scoring?.bloodpoints} Bloodpoints
-                        </ion-chip>
-                      </ion-label>
-                    </ion-item>
-                  ))}
-                </ion-col>
                 <ion-col size="12" size-md="6">
                   {(this.tournament?.matches || []).map((game: Match) => (
                     <ion-grid>
@@ -322,7 +306,7 @@ export class AppTournament {
                             {game?.timestamp
                               ? game.timestamp.toDate().toLocaleDateString()
                               : "No Date"}
-                          </h1>               
+                          </h1>
                         </ion-col>
                       </ion-row>
                       <ion-row>

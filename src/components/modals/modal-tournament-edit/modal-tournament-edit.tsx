@@ -68,6 +68,14 @@ export class ModalTournamentEdit {
               label="Date"
               value={this.tournament?.timestamp}
             />
+            <fireenjin-input
+              labelPosition="stacked"
+              type="number"
+              min="1"
+              name="matchCount"
+              label="Tournament Match Count"
+              value={this.tournament?.matchCount || 4}
+            />
             <fireenjin-select-tags
               labelPosition="stacked"
               data-fill
