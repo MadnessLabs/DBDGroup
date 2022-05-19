@@ -5,11 +5,11 @@ declare type Tournament = {
   status?: "open" | "full" | "in progress" | "completed";
   matchCount?: number;
   image?: string;
-  survivors?: Survivor[];
+  survivors?: Participant<SurvivorScores>[];
   name?: string;
   rules?: string[];
   timestamp?: Date;
-  killers?: Killer[];
+  killers?: Participant<KillerScores>[];
   matches?: Match[];
 };
 
@@ -25,10 +25,10 @@ declare type Match = {
   };
 };
 
-declare type Killer = {
+declare type Participant<T> = {
   user: User;
   name?: string;
-  scoring?: KillerScores;
+  scoring?: T;
   participating?: boolean;
 };
 
@@ -40,13 +40,6 @@ declare type KillerScores = {
 
 declare type SurvivorScores = {
   bloodpoints?: number;
-};
-
-declare type Survivor = {
-  user: User;
-  name?: string;
-  scoring?: SurvivorScores;
-  participating?: boolean;
 };
 
 declare type User = {

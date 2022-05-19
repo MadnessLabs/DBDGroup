@@ -293,11 +293,13 @@ export class AppTournament {
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
-                  <ion-title>Matches</ion-title>
+                  <ion-title>
+                    Matches 0/{this.tournament?.matchCount || 0}
+                  </ion-title>
                 </ion-text>
               </ion-row>
               <ion-row>
-                <ion-col size="12" size-md="6">
+                <ion-col>
                   {(this.tournament?.matches || []).map((game: Match) => (
                     <ion-grid>
                       <ion-row>
@@ -335,16 +337,18 @@ export class AppTournament {
                             (userId) => {
                               const scoring =
                                 game?.scoring?.killer?.[userId] || {};
-                              <ion-item>
-                                <ion-label>
-                                  <ion-title>
-                                    {this.getUserName(userId)}
-                                  </ion-title>
-                                  <ion-chip>
-                                    {scoring.kills || "0"} Kills
-                                  </ion-chip>
-                                </ion-label>
-                              </ion-item>;
+                              return (
+                                <ion-item>
+                                  <ion-label>
+                                    <ion-title>
+                                      {this.getUserName(userId)}
+                                    </ion-title>
+                                    <ion-chip>
+                                      {scoring.kills || "0"} Kills
+                                    </ion-chip>
+                                  </ion-label>
+                                </ion-item>
+                              );
                             }
                           )}
                         </ion-col>
