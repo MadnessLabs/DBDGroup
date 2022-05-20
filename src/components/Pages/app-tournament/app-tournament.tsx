@@ -50,6 +50,19 @@ export class AppTournament {
     });
   }
 
+  async save() {
+    return this.db.update("tournaments", this.tournamentId, this.tournament);
+  }
+  async start() {
+    for (const [index, killer] of Object.entries(this.tournament?.killers || [])) {
+      this.tournament.killers[index].participating = this.userIds.includes(killer?.user?.id);
+    }
+    for (const [index, survivor] of Object.entries(this.tournament?.survivors || [])) {
+      this.tournament.survivors[index].participating = this.userIds.includes(survivor?.user?.id);
+    }
+    await this.save();
+
+  }
   async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
       const killers = (this.tournament?.killers || []).filter(
