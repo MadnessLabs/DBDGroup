@@ -53,6 +53,7 @@ export class AppTournament {
   async save() {
     return this.db.update("tournaments", this.tournamentId, this.tournament);
   }
+
   async start() {
     for (const [index, killer] of Object.entries(this.tournament?.killers || [])) {
       this.tournament.killers[index].participating = this.userIds.includes(killer?.user?.id);
@@ -60,10 +61,11 @@ export class AppTournament {
     for (const [index, survivor] of Object.entries(this.tournament?.survivors || [])) {
       this.tournament.survivors[index].participating = this.userIds.includes(survivor?.user?.id);
     }
-    await this.save();
+    this.tournament.status = "full"
 
   }
-  async enterTournament(type?: "killer" | "survivor") {
+  
+async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
       const killers = (this.tournament?.killers || []).filter(
         (killer) => killer?.user?.id !== state?.session?.uid
@@ -153,6 +155,14 @@ export class AppTournament {
                   <ion-icon slot="end" name="create" />
                 </ion-button>
               )}
+              {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() => this.start()}
+                >
+                  Start 
+                  <ion-icon slot="start" name="start" />
+                </ion-button>)}
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
