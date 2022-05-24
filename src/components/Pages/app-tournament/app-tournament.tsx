@@ -259,7 +259,12 @@ async enterTournament(type?: "killer" | "survivor") {
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
                 ))}
-                <ion-item>
+                <ion-item 
+                // !!!!!!!!!!!!
+                // !!!!!!!!!!!!
+                // !!!!!!!!!!!!
+                // {...this.tournament?.status !== "open"} disabled = {true}
+                >
                   <ion-label>
                     <h2>Searching for Survivors...</h2>
                   </ion-label>
@@ -274,23 +279,28 @@ async enterTournament(type?: "killer" | "survivor") {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title>
+                      <ion-title style={{
+                        "padding-bottom":"5px"
+                      }}>
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                        <ion-badge style={{
-                          "padding":"8px"
+                        <ion-badge  style={{
+                          "padding":"8px",
+                          "border-radius":"10px 10px 30px 30px"
                         }} color="dark">
                         <ion-label>Kills</ion-label>
                           {killer?.scoring?.kills}
-                        </ion-badge> &nbsp;
+                        </ion-badge>  &nbsp;
                         <ion-badge style={{
-                          "padding":"8px"
+                          "padding":"8px",
+                          "border-radius":"10px 10px 30px 30px"
                         }} color="dark">
                         <ion-label>Generators Left</ion-label>
                           {killer?.scoring?.generatorsLeft}
                         </ion-badge> &nbsp;
                       <ion-badge style={{
-                        "padding":"8px"
+                        "padding":"8px",
+                        "border-radius":"10px 10px 30px 30px"
                       }} color="dark">
                       <ion-label>Escapes</ion-label>
                         {killer?.scoring?.escapes}
