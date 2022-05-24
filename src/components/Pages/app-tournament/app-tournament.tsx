@@ -241,7 +241,8 @@ async enterTournament(type?: "killer" | "survivor") {
             <ion-col size="12" size-md="6">
               <ion-card>
                 {(this.tournament?.survivors || []).map((survivor) => (
-                  <ion-item>
+                  <ion-item disabled={this.tournament?.status !== "open"}
+                  >
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
@@ -259,12 +260,7 @@ async enterTournament(type?: "killer" | "survivor") {
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
                 ))}
-                <ion-item 
-                // !!!!!!!!!!!!
-                // !!!!!!!!!!!!
-                // !!!!!!!!!!!!
-                // {...this.tournament?.status !== "open"} disabled = {true}
-                >
+                <ion-item>
                   <ion-label>
                     <h2>Searching for Survivors...</h2>
                   </ion-label>
@@ -274,7 +270,8 @@ async enterTournament(type?: "killer" | "survivor") {
             <ion-col size="12" size-md="6">
               <ion-card>
                 {(this.tournament?.killers || []).map((killer) => (
-                  <ion-item>
+                  <ion-item disabled={this.tournament?.status !== "open"}
+                  >
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
@@ -315,25 +312,23 @@ async enterTournament(type?: "killer" | "survivor") {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                {this.tournament?.status === "open" && (
-                <ion-button
+                <ion-button 
+                  disabled={this.tournament?.status !== "open"}
                   expand="block"
                   onClick={() => this.enterTournament("survivor")}
                 >
                   Enter as Survivor
                 </ion-button>
-                )}
               </ion-col>
               <ion-col size="6">
-              {this.tournament?.status === "open" && (
                 <ion-button
+                  disabled={this.tournament?.status !== "open"}
                   expand="block"
                   fill="outline"
                   onClick={() => this.enterTournament("killer")}
                 >
                   Enter as Killer
                 </ion-button>
-              )}
               </ion-col>
             </ion-row>
           </ion-grid>
