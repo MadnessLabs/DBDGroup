@@ -37,6 +37,7 @@ export namespace Components {
         "image": string;
         "name": string;
         "rules": string[];
+        "status": string;
         "timestamp": Date;
     }
     interface DbdgroupRouter {
@@ -209,6 +210,7 @@ declare namespace LocalJSX {
         "image"?: string;
         "name"?: string;
         "rules"?: string[];
+        "status"?: string;
         "timestamp"?: Date;
     }
     interface DbdgroupRouter {

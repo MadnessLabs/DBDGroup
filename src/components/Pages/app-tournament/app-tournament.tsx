@@ -50,7 +50,22 @@ export class AppTournament {
     });
   }
 
-  async enterTournament(type?: "killer" | "survivor") {
+  async save() {
+    return this.db.update("tournaments", this.tournamentId, this.tournament);
+  }
+
+  async start() {
+    for (const [index, killer] of Object.entries(this.tournament?.killers || [])) {
+      this.tournament.killers[index].participating = this.userIds.includes(killer?.user?.id);
+    }
+    for (const [index, survivor] of Object.entries(this.tournament?.survivors || [])) {
+      this.tournament.survivors[index].participating = this.userIds.includes(survivor?.user?.id);
+    }
+    this.tournament.status = "full"
+
+  }
+  
+async enterTournament(type?: "killer" | "survivor") {
     if (state?.session?.uid) {
       const killers = (this.tournament?.killers || []).filter(
         (killer) => killer?.user?.id !== state?.session?.uid
@@ -140,6 +155,14 @@ export class AppTournament {
                   <ion-icon slot="end" name="create" />
                 </ion-button>
               )}
+              {state?.claims?.admin && (
+                <ion-button
+                  color="primary"
+                  onClick={() => this.start()}
+                >
+                  Start 
+                  <ion-icon slot="start" name="start" />
+                </ion-button>)}
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -179,6 +202,7 @@ export class AppTournament {
               <ion-label>
                 <h2>{this.tournament?.name || "No Name Given"}</h2>
                 <h2>{this.tournament?.timestamp || "No Date Set"}</h2>
+                <h2> Status - {this.tournament?.status}</h2>
                 {this.tournament?.rules && (
                   <fireenjin-chip-bar>
                     {(this.tournament?.rules || []).map((rule) => (
@@ -217,17 +241,24 @@ export class AppTournament {
             <ion-col size="12" size-md="6">
               <ion-card>
                 {(this.tournament?.survivors || []).map((survivor) => (
-                  <ion-item>
+                  <ion-item disabled={this.tournament?.status !== "open"}
+                  >
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title color="">
+                      <ion-title  style={{
+                        "padding-bottom":"5px"
+                      }}>
                         {survivor?.name || "No name given"}
                       </ion-title>
-                      <ion-chip color="">
-                        {survivor?.scoring?.bloodpoints} Bloodpoints
-                      </ion-chip>
+                      <ion-badge style={{
+                        "padding":"8px",
+                        "border-radius":"10px 10px 30px 30px"
+                      }} color="dark">
+                        <ion-label>Bloodpoints</ion-label>
+                        {survivor?.scoring?.bloodpoints}
+                        </ion-badge>
                     </ion-label>
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
@@ -242,25 +273,38 @@ export class AppTournament {
             <ion-col size="12" size-md="6">
               <ion-card>
                 {(this.tournament?.killers || []).map((killer) => (
-                  <ion-item>
+                  <ion-item disabled={this.tournament?.status !== "open"}
+                  >
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title color="">
+                      <ion-title style={{
+                        "padding-bottom":"5px"
+                      }}>
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <fireenjin-chip-bar>
-                        <ion-chip color="">
-                          {killer?.scoring?.kills} Kills
-                        </ion-chip>
-                        <ion-chip color="">
-                          {killer?.scoring?.generatorsLeft} Generators Left
-                        </ion-chip>
-                      </fireenjin-chip-bar>
-                      <ion-chip color="">
-                        {killer?.scoring?.escapes} Escapes
-                      </ion-chip>
+                        <ion-badge  style={{
+                          "padding":"8px",
+                          "border-radius":"10px 10px 30px 30px"
+                        }} color="dark">
+                        <ion-label>Kills</ion-label>
+                          {killer?.scoring?.kills}
+                        </ion-badge>  &nbsp;
+                        <ion-badge style={{
+                          "padding":"8px",
+                          "border-radius":"10px 10px 30px 30px"
+                        }} color="dark">
+                        <ion-label>Generators Left</ion-label>
+                          {killer?.scoring?.generatorsLeft}
+                        </ion-badge> &nbsp;
+                      <ion-badge style={{
+                        "padding":"8px",
+                        "border-radius":"10px 10px 30px 30px"
+                      }} color="dark">
+                      <ion-label>Escapes</ion-label>
+                        {killer?.scoring?.escapes}
+                      </ion-badge>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
@@ -271,7 +315,8 @@ export class AppTournament {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                <ion-button
+                <ion-button 
+                  disabled={this.tournament?.status !== "open"}
                   expand="block"
                   onClick={() => this.enterTournament("survivor")}
                 >
@@ -280,6 +325,7 @@ export class AppTournament {
               </ion-col>
               <ion-col size="6">
                 <ion-button
+                  disabled={this.tournament?.status !== "open"}
                   expand="block"
                   fill="outline"
                   onClick={() => this.enterTournament("killer")}

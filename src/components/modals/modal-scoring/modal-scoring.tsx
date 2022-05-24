@@ -125,7 +125,7 @@ export class ModalScoring {
             >
               <ion-col size="12" sizeMd="6">
                 <ion-card>
-                  <ion-label>Survivors</ion-label>
+                  <ion-title><b>Survivors</b></ion-title>
                   {(this.tournament?.survivors || []).map((survivor) => (
                     <div>
                       {survivor?.name || "No Name"}
@@ -142,7 +142,7 @@ export class ModalScoring {
               </ion-col>
               <ion-col size="12" sizeMd="6">
                 <ion-card>
-                  <ion-label>Killer</ion-label>
+                  <ion-title><b>Killer</b></ion-title>
                   {(this.tournament?.killers || []).map((killer) => (
                     <div>
                       {killer?.name || "No Name"}

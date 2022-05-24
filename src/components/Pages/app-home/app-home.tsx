@@ -84,7 +84,13 @@ export class AppHome {
               </ion-button>
             )}
           </ion-buttons>
-          <ion-label>Dead By Daylight Group </ion-label>
+          <ion-thumbnail slot="start" style={{
+            "height":"50px",
+            "width":"50px"
+          }}>
+            <img src="assets/icon/icon-group.png"></img>
+            </ion-thumbnail>
+            <ion-label>Dead By Daylight Group </ion-label>
         </ion-toolbar>
       </ion-header>,
       <ion-content>
