@@ -295,32 +295,15 @@ async enterTournament(type?: "killer" | "survivor") {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                {/* Won't load the page 
-                as status comes back 
-                undefined 
-                !!!!!
-                !!!!!!!
-                !!!!!!!
-                !!!!!!
-                !!!!!
-                !!!!!!!!!
-                !!!!!!!!
-                !!!!!!!!!!!!
-                 !!!!!!!
-                !!!!!!!
-                !!!!!!
-                !!!!!
-                !!!!!!!!!
-                !!!!!!!!
-                !!!!!!!!!!!!
-                {this.tournament.status === "open" && ( */}
+                
+                {this.tournament?.status === "open" && (
                 <ion-button
                   expand="block"
                   onClick={() => this.enterTournament("survivor")}
                 >
                   Enter as Survivor
                 </ion-button>
-                {/* )} */}
+                )}
               </ion-col>
               <ion-col size="6">
                 <ion-button
