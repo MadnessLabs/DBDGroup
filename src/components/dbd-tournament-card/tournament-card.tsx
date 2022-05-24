@@ -18,7 +18,8 @@ export class TournamentCard implements ComponentInterface {
   @Prop() dateTime: string;
   @Prop() rules: string[];
   @Prop() href: string;
-  @Prop() timestamp: Date
+  @Prop() timestamp: Date;
+  @Prop() status: string;
 
   componentDidLoad() {
     if (!Build?.isBrowser) return;
@@ -42,6 +43,7 @@ export class TournamentCard implements ComponentInterface {
             <ion-label>
               <h2>{this.name || "DBD Tourney"}</h2>
               <h3>{this.timestamp}</h3>
+              <h3>Status - {this.status || "TBD"}</h3>
               {this.rules && (
                 <fireenjin-chip-bar>
                   {(this.rules || []).map((rule) => (
