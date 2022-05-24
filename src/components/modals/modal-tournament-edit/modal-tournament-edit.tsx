@@ -60,6 +60,31 @@ export class ModalTournamentEdit {
               label="Tournament Name"
               value={this.tournament?.name}
             />
+            <fireenjin-select-tags
+              labelPosition="stacked"
+              data-fill
+              name="status"
+              label="Status"
+              value={this.tournament?.status || []}
+              options={[
+                {
+                  label: "Open",
+                  value: "open",
+                },
+                {
+                  label: "Full",
+                  value: "full",
+                },
+                {
+                  label: "In Progress",
+                  value: "in progress",
+                },
+                {
+                  label: "Completed",
+                  value: "completed",
+                },
+              ]}
+            />
             <fireenjin-input
               labelPosition="stacked"
               data-fill
