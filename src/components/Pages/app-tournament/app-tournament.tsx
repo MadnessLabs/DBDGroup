@@ -249,9 +249,12 @@ async enterTournament(type?: "killer" | "survivor") {
                       <ion-title color="">
                         {survivor?.name || "No name given"}
                       </ion-title>
-                      <ion-chip color="">
-                        {survivor?.scoring?.bloodpoints} Bloodpoints
-                      </ion-chip>
+                      <ion-badge style={{
+                          "padding":"8px"
+                        }} color="dark">
+                        <ion-label>Bloodpoints</ion-label>
+                        {survivor?.scoring?.bloodpoints}
+                        </ion-badge>
                     </ion-label>
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
@@ -271,20 +274,27 @@ async enterTournament(type?: "killer" | "survivor") {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title color="">
+                      <ion-title>
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <fireenjin-chip-bar>
-                        <ion-chip color="">
-                          {killer?.scoring?.kills} Kills
-                        </ion-chip>
-                        <ion-chip color="">
-                          {killer?.scoring?.generatorsLeft} Generators Left
-                        </ion-chip>
-                      </fireenjin-chip-bar>
-                      <ion-chip color="">
-                        {killer?.scoring?.escapes} Escapes
-                      </ion-chip>
+                        <ion-badge style={{
+                          "padding":"8px"
+                        }} color="dark">
+                        <ion-label>Kills</ion-label>
+                          {killer?.scoring?.kills}
+                        </ion-badge> &nbsp;
+                        <ion-badge style={{
+                          "padding":"8px"
+                        }} color="dark">
+                        <ion-label>Generators Left</ion-label>
+                          {killer?.scoring?.generatorsLeft}
+                        </ion-badge> &nbsp;
+                      <ion-badge style={{
+                        "padding":"8px"
+                      }} color="dark">
+                      <ion-label>Escapes</ion-label>
+                        {killer?.scoring?.escapes}
+                      </ion-badge>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
