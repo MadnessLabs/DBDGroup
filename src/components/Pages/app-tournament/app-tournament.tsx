@@ -247,12 +247,15 @@ async enterTournament(type?: "killer" | "survivor") {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title color="">
+                      <ion-title  style={{
+                        "padding-bottom":"5px"
+                      }}>
                         {survivor?.name || "No name given"}
                       </ion-title>
                       <ion-badge style={{
-                          "padding":"8px"
-                        }} color="dark">
+                        "padding":"8px",
+                        "border-radius":"10px 10px 30px 30px"
+                      }} color="dark">
                         <ion-label>Bloodpoints</ion-label>
                         {survivor?.scoring?.bloodpoints}
                         </ion-badge>
