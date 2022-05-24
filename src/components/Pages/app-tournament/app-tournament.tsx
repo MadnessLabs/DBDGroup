@@ -295,7 +295,6 @@ async enterTournament(type?: "killer" | "survivor") {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                
                 {this.tournament?.status === "open" && (
                 <ion-button
                   expand="block"
@@ -306,6 +305,7 @@ async enterTournament(type?: "killer" | "survivor") {
                 )}
               </ion-col>
               <ion-col size="6">
+              {this.tournament?.status === "open" && (
                 <ion-button
                   expand="block"
                   fill="outline"
@@ -313,6 +313,7 @@ async enterTournament(type?: "killer" | "survivor") {
                 >
                   Enter as Killer
                 </ion-button>
+              )}
               </ion-col>
             </ion-row>
           </ion-grid>
