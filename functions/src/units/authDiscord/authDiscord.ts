@@ -25,7 +25,10 @@ export default async function authDiscord(code?: string): Promise<{
     {
       code,
       grant_type: "authorization_code",
-      redirect_uri: env("discord.redirect"),
+      redirect_uri: env(
+        "discord.redirect",
+        "https://deadbydaylight.group/oauth"
+      ),
     }
   );
 
