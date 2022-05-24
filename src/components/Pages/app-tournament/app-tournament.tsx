@@ -294,6 +294,7 @@ async enterTournament(type?: "killer" | "survivor") {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
+                
                 <ion-button
                   expand="block"
                   onClick={() => this.enterTournament("survivor")}
