@@ -202,6 +202,7 @@ async enterTournament(type?: "killer" | "survivor") {
               <ion-label>
                 <h2>{this.tournament?.name || "No Name Given"}</h2>
                 <h2>{this.tournament?.timestamp || "No Date Set"}</h2>
+                <h2> Status - {this.tournament?.status}</h2>
                 {this.tournament?.rules && (
                   <fireenjin-chip-bar>
                     {(this.tournament?.rules || []).map((rule) => (
@@ -294,13 +295,32 @@ async enterTournament(type?: "killer" | "survivor") {
           <ion-grid>
             <ion-row>
               <ion-col size="6">
-                
+                {/* Won't load the page 
+                as status comes back 
+                undefined 
+                !!!!!
+                !!!!!!!
+                !!!!!!!
+                !!!!!!
+                !!!!!
+                !!!!!!!!!
+                !!!!!!!!
+                !!!!!!!!!!!!
+                 !!!!!!!
+                !!!!!!!
+                !!!!!!
+                !!!!!
+                !!!!!!!!!
+                !!!!!!!!
+                !!!!!!!!!!!!
+                {this.tournament.status === "open" && ( */}
                 <ion-button
                   expand="block"
                   onClick={() => this.enterTournament("survivor")}
                 >
                   Enter as Survivor
                 </ion-button>
+                {/* )} */}
               </ion-col>
               <ion-col size="6">
                 <ion-button
