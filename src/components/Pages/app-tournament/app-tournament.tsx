@@ -258,23 +258,18 @@ export class AppTournament {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title
-                        style={{
-                          "padding-bottom": "5px",
-                        }}
-                      >
+                      <ion-title>
                         {survivor?.name || "No name given"}
                       </ion-title>
-                      <ion-badge
-                        style={{
-                          padding: "8px",
-                          "border-radius": "10px 10px 30px 30px",
-                        }}
-                        color="dark"
-                      >
-                        <ion-label>Bloodpoints</ion-label>
-                        {survivor?.scoring?.bloodpoints}
-                      </ion-badge>
+                      <ion-chip style={{
+                        "padding":"20px"
+                      }}>
+                        <ion-label style={{
+                          "text-align":"center",
+                          "line-height":"20px"
+                        }}>Bloodpoints<br></br>
+                        {survivor?.scoring?.bloodpoints}</ion-label>
+                      </ion-chip>
                     </ion-label>
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
                   </ion-item>
@@ -293,46 +288,40 @@ export class AppTournament {
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
-                    <ion-label>
-                      <ion-title
-                        style={{
-                          "padding-bottom": "5px",
-                        }}
-                      >
+                    <ion-label text-wrap class="ion-text-wrap">
+                      <ion-title>
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <ion-badge
-                        style={{
-                          padding: "8px",
-                          "border-radius": "10px 10px 30px 30px",
-                        }}
-                        color="dark"
-                      >
-                        <ion-label>Kills</ion-label>
-                        {killer?.scoring?.kills}
-                      </ion-badge>{" "}
-                      &nbsp;
-                      <ion-badge
-                        style={{
-                          padding: "8px",
-                          "border-radius": "10px 10px 30px 30px",
-                        }}
-                        color="dark"
-                      >
-                        <ion-label>Generators Left</ion-label>
-                        {killer?.scoring?.generatorsLeft}
-                      </ion-badge>{" "}
-                      &nbsp;
-                      <ion-badge
-                        style={{
-                          padding: "8px",
-                          "border-radius": "10px 10px 30px 30px",
-                        }}
-                        color="dark"
-                      >
-                        <ion-label>Escapes</ion-label>
-                        {killer?.scoring?.escapes}
-                      </ion-badge>
+                      <ion-list>
+                      <ion-chip style={{
+                        "padding":"20px"
+                      }}>
+                        <ion-label style={{
+                          "text-align":"center",
+                          "line-height":"20px"
+                        }}>Kills<br></br>
+                        {killer?.scoring?.kills}</ion-label>
+                      </ion-chip>
+                      <ion-chip style={{
+                        "padding":"20px"
+                      }}>
+                        <ion-label style={{
+                          "text-align":"center",
+                          "line-height":"20px"
+                        }}>
+                          Generators Left<br></br>
+                        {killer?.scoring?.generatorsLeft}</ion-label>
+                      </ion-chip>
+                      <ion-chip style={{
+                        "padding":"20px"
+                      }}>
+                        <ion-label style={{
+                          "text-align":"center",
+                          "line-height":"20px"
+                        }}>Escapes<br></br>
+                        {killer?.scoring?.escapes}</ion-label>
+                      </ion-chip>
+                      </ion-list>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
@@ -405,8 +394,13 @@ export class AppTournament {
                             </ion-item>
                           </ion-col>
                         </ion-row>
-                        <ion-row>
+                        <ion-row
+                          style={{
+                            "flex-wrap": "wrap-reverse",
+                          }}
+                        >
                           <ion-col size="12" size-md="6">
+                            <ion-title>Survivor</ion-title>
                             {Object.keys(game?.scoring?.survivor || {}).map(
                               (userId) => {
                                 const scoring =
@@ -427,6 +421,7 @@ export class AppTournament {
                             )}
                           </ion-col>
                           <ion-col size="12" size-md="6">
+                            <ion-title>Killer</ion-title>
                             {Object.keys(game?.scoring?.killer || {}).map(
                               (userId) => {
                                 const scoring =
@@ -439,6 +434,13 @@ export class AppTournament {
                                       </ion-title>
                                       <ion-chip>
                                         {scoring.kills || "0"} Kills
+                                      </ion-chip>
+                                      <ion-chip>
+                                        {scoring.generatorsLeft || "0"}{" "}
+                                        Generators Left
+                                      </ion-chip>
+                                      <ion-chip>
+                                        {scoring.escapes || "0"} Escapes
                                       </ion-chip>
                                     </ion-label>
                                   </ion-item>
