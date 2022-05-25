@@ -1,4 +1,4 @@
-app-tournament ion-grid {
+.gradient {
     --background:transparent;
     background: linear-gradient(transparent, var(--ion-color-light))
 }

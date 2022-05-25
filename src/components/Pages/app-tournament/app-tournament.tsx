@@ -330,7 +330,8 @@ export class AppTournament {
                           "line-height":"20px"
                         }}>
                           <b>Score</b><br></br>
-                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes || 0}</ion-label>
+                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes || 0}
+                        </ion-label>
                       </ion-chip>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
@@ -339,6 +340,7 @@ export class AppTournament {
               </ion-card>
             </ion-col>
           </ion-row>
+          <ion-grid>
             <ion-row>
               <ion-col size="6">
                 <ion-button
@@ -360,7 +362,8 @@ export class AppTournament {
                 </ion-button>
               </ion-col>
             </ion-row>
-          <ion-grid>
+            </ion-grid>
+          <ion-grid class="gradient">
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
