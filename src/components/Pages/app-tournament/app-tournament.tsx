@@ -379,7 +379,9 @@ export class AppTournament {
                         <ion-row>
                           <ion-col>
                             <ion-item>
-                              <ion-label>
+                              <ion-label style={{
+                                "text-align":"center"
+                              }}>
                                 <h1>
                                   {game?.timestamp
                                     ? game.timestamp
