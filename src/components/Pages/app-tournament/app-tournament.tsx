@@ -321,6 +321,16 @@ export class AppTournament {
                         }}>Escapes<br></br>
                         {killer?.scoring?.escapes}</ion-label>
                       </ion-chip>
+                      <ion-chip style={{
+                        "padding":"20px"
+                      }}>
+                        <ion-label style={{
+                          "text-align":"center",
+                          "line-height":"20px"
+                        }}>
+                          <b>Score</b><br></br>
+                        ??</ion-label>
+                      </ion-chip>
                       </ion-list>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
