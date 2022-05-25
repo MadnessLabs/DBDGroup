@@ -330,7 +330,7 @@ export class AppTournament {
                           "line-height":"20px"
                         }}>
                           <b>Score</b><br></br>
-                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes}</ion-label>
+                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes || 0}</ion-label>
                       </ion-chip>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
