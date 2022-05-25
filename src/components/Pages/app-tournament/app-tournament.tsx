@@ -109,8 +109,10 @@ export class AppTournament {
   }
 
   getUserName(userId: string) {
-    const user = (this.tournament?.survivors || []).find(
-      (survivor) => survivor?.user?.id === userId
+    const user = [
+    ...(this.tournament?.survivors || []),
+    ...(this.tournament?.killers || []),
+    ].find((participant) => participant?.user?.id === userId
     );
     return user?.name || "No Name Given";
   }
@@ -292,8 +294,7 @@ export class AppTournament {
                       <ion-title>
                         {killer?.name || "No Killer Name"}
                       </ion-title>
-                      <ion-list>
-                      <ion-chip style={{
+                      {/* <ion-chip style={{
                         "padding":"20px"
                       }}>
                         <ion-label style={{
@@ -320,7 +321,7 @@ export class AppTournament {
                           "line-height":"20px"
                         }}>Escapes<br></br>
                         {killer?.scoring?.escapes}</ion-label>
-                      </ion-chip>
+                      </ion-chip> */}
                       <ion-chip style={{
                         "padding":"20px"
                       }}>
@@ -329,9 +330,8 @@ export class AppTournament {
                           "line-height":"20px"
                         }}>
                           <b>Score</b><br></br>
-                        ??</ion-label>
+                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes}</ion-label>
                       </ion-chip>
-                      </ion-list>
                     </ion-label>
                     <ion-checkbox slot="end" value={killer?.user?.id} />
                   </ion-item>
@@ -339,7 +339,6 @@ export class AppTournament {
               </ion-card>
             </ion-col>
           </ion-row>
-          <ion-grid>
             <ion-row>
               <ion-col size="6">
                 <ion-button
@@ -361,7 +360,6 @@ export class AppTournament {
                 </ion-button>
               </ion-col>
             </ion-row>
-          </ion-grid>
           <ion-grid>
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
