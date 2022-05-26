@@ -336,9 +336,9 @@ export class AppTournament {
                         >
                           <b>Score</b>
                           <br></br>
-                          {killer?.scoring?.kills * 2 +
-                            (killer?.scoring?.generatorsLeft || 0) -
-                            (killer?.scoring?.escapes || 0)}
+                          {(killer?.scoring?.kills * 2 +
+                            killer?.scoring?.generatorsLeft -
+                            killer?.scoring?.escapes) || 0}
                         </ion-label>
                       </ion-chip>
                     </ion-label>
