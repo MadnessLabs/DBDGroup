@@ -2,4 +2,6 @@
 
 Stick Together, Stay Alive.
 
+https://deadbydaylight.group
+
 https://discord.gg/zpXUAaR6
