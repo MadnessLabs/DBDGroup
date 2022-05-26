@@ -22,6 +22,7 @@ export namespace Components {
     interface AppList {
     }
     interface AppOauth {
+        "discord": boolean;
     }
     interface AppTournament {
         "auth": AuthService;
@@ -192,6 +193,7 @@ declare namespace LocalJSX {
     interface AppList {
     }
     interface AppOauth {
+        "discord"?: boolean;
     }
     interface AppTournament {
         "auth"?: AuthService;

@@ -62,7 +62,7 @@ export default async function authDiscord(code?: string): Promise<{
       grant_type: "authorization_code",
       redirect_uri: env(
         "discord.redirect",
-        "https://deadbydaylight.group/oauth"
+        "https://deadbydaylight.group/oauth/callback"
       ),
     }
   );

@@ -1,34 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.oauth = void 0;
+const graphql_1 = require("@fireenjin/graphql");
 const functions = require("firebase-functions");
 const env_1 = require("./env");
-const httpRequest_1 = require("./units/httpRequest/httpRequest");
+const authDiscord_1 = require("./units/authDiscord/authDiscord");
+(0, graphql_1.connectFirestore)();
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
 exports.oauth = functions.https.onRequest(async (request, response) => {
     var _a;
-    const code = ((_a = request === null || request === void 0 ? void 0 : request.query) === null || _a === void 0 ? void 0 : _a.code) || null;
-    const creds = Buffer.from(`${(0, env_1.default)("discord.id")}:${(0, env_1.default)("discord.secret")}`).toString("base64");
+    const code = (((_a = request === null || request === void 0 ? void 0 : request.query) === null || _a === void 0 ? void 0 : _a.code) || null);
     try {
-        console.log(code, creds);
-        const oauthData = await (0, httpRequest_1.default)({
-            host: "discord.com",
-            path: "/api/oauth2/token",
-            port: 443,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: `Basic ${creds}`,
-            },
-        }, {
-            code,
-            grant_type: "authorization_code",
-            redirect_uri: `https://deadbydaylight.group/oauth/callback`,
-        });
-        console.log(oauthData);
-        response.redirect("https://deadbydaylight.group/discord");
+        await (0, authDiscord_1.default)(code);
+        response.redirect(`${(0, env_1.default)("app.url", "https://deadbydaylight.group")}/discord`);
     }
     catch (e) {
         console.log(e);

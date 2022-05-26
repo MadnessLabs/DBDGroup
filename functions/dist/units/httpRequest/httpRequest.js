@@ -40,7 +40,7 @@ async function httpRequest(options, data) {
                 try {
                     response = Buffer.concat(body).toString();
                     if (!isHTML) {
-                        response = JSON.stringify(response);
+                        response = JSON.parse(response);
                     }
                 }
                 catch (e) {

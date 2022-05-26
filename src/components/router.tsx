@@ -198,6 +198,11 @@ export class AppRoot implements ComponentInterface {
           component="app-oauth"
           componentProps={this.componentProps}
         />
+        <ion-route
+          url="/discord"
+          component="app-oauth"
+          componentProps={{ ...this.componentProps, discord: true }}
+        />
       </ion-router>
     );
   }
