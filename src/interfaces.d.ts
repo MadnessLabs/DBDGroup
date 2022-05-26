@@ -48,6 +48,8 @@ declare type User = {
   id?: string;
   name?: string;
   discordId?: string;
+  discordUsername?: string;
+  discordCode?: string;
   steamId?: string;
   email?: string;
   enteringAs?: string;

@@ -6,7 +6,7 @@ describe("Set User Claims", () => {
     serviceAccount: true,
   });
   it("Should auth a user with Discord code", async () => {
-    const response = await authDiscord("lChrkr69jhBhodCUczp583JxXRc2W2");
+    const response = await authDiscord("SCm25HyCNpsPJ4LhknoRFNaIInvhUR");
     console.log(response);
     expect(response).toMatchObject({});
   });

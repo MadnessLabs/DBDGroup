@@ -45,7 +45,7 @@ export default async function httpRequest(
         try {
           response = Buffer.concat(body).toString();
           if (!isHTML) {
-            response = JSON.stringify(response);
+            response = JSON.parse(response);
           }
         } catch (e) {
           reject(e);
