@@ -293,7 +293,7 @@ export class AppTournament {
                     <ion-avatar slot="start">
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
-                    <ion-label text-wrap class="ion-text-wrap">
+                    <ion-label class="ion-text-wrap">
                       <ion-title>{killer?.name || "No Killer Name"}</ion-title>
                       {/* <ion-chip style={{
                         "padding":"20px"
@@ -371,7 +371,7 @@ export class AppTournament {
               </ion-col>
             </ion-row>
           </ion-grid>
-          <ion-grid class="gradient">
+          <ion-grid>
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
@@ -390,7 +390,7 @@ export class AppTournament {
                 <ion-col>
                   {(this.tournament?.matches || []).map(
                     (game: Match, index) => (
-                      <ion-grid>
+                      <ion-grid class="gradient">
                         <ion-row>
                           <ion-col>
                             <ion-item>
