@@ -388,6 +388,9 @@ export class AppTournament {
                         <ion-row>
                           <ion-col>
                             <ion-item>
+                              <ion-badge slot="start">
+                                Match {index + 1}
+                              </ion-badge>
                               <ion-label
                                 style={{
                                   "text-align": "center",
