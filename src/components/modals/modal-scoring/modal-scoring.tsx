@@ -134,6 +134,7 @@ export class ModalScoring {
                     <div>
                       {survivor?.name || "No Name"}
                       <fireenjin-input
+                        required
                         min="0"
                         type="number"
                         label="Bloodpoints"
@@ -153,6 +154,7 @@ export class ModalScoring {
                     <div>
                       {killer?.name || "No Name"}
                       <fireenjin-input
+                        required
                         min="0"
                         max="4"
                         type="number"
@@ -161,6 +163,7 @@ export class ModalScoring {
                         name={`killer.${killer?.user?.id}.kills`}
                       />
                       <fireenjin-input
+                        required
                         min="0"
                         max="5"
                         type="number"
@@ -169,6 +172,7 @@ export class ModalScoring {
                         name={`killer.${killer?.user?.id}.generatorsLeft`}
                       />
                       <fireenjin-input
+                        required
                         min="0"
                         max="4"
                         type="number"

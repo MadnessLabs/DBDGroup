@@ -110,10 +110,9 @@ export class AppTournament {
 
   getUserName(userId: string) {
     const user = [
-    ...(this.tournament?.survivors || []),
-    ...(this.tournament?.killers || []),
-    ].find((participant) => participant?.user?.id === userId
-    );
+      ...(this.tournament?.survivors || []),
+      ...(this.tournament?.killers || []),
+    ].find((participant) => participant?.user?.id === userId);
     return user?.name || "No Name Given";
   }
 
@@ -260,17 +259,21 @@ export class AppTournament {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label>
-                      <ion-title>
-                        {survivor?.name || "No name given"}
-                      </ion-title>
-                      <ion-chip style={{
-                        "padding":"20px"
-                      }}>
-                        <ion-label style={{
-                          "text-align":"center",
-                          "line-height":"20px"
-                        }}>Bloodpoints<br></br>
-                        {survivor?.scoring?.bloodpoints}</ion-label>
+                      <ion-title>{survivor?.name || "No name given"}</ion-title>
+                      <ion-chip
+                        style={{
+                          padding: "20px",
+                        }}
+                      >
+                        <ion-label
+                          style={{
+                            "text-align": "center",
+                            "line-height": "20px",
+                          }}
+                        >
+                          Bloodpoints<br></br>
+                          {survivor?.scoring?.bloodpoints}
+                        </ion-label>
                       </ion-chip>
                     </ion-label>
                     <ion-checkbox slot="end" value={survivor?.user?.id} />
@@ -291,9 +294,7 @@ export class AppTournament {
                       <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
                     </ion-avatar>
                     <ion-label text-wrap class="ion-text-wrap">
-                      <ion-title>
-                        {killer?.name || "No Killer Name"}
-                      </ion-title>
+                      <ion-title>{killer?.name || "No Killer Name"}</ion-title>
                       {/* <ion-chip style={{
                         "padding":"20px"
                       }}>
@@ -322,15 +323,22 @@ export class AppTournament {
                         }}>Escapes<br></br>
                         {killer?.scoring?.escapes}</ion-label>
                       </ion-chip> */}
-                      <ion-chip style={{
-                        "padding":"20px"
-                      }}>
-                        <ion-label style={{
-                          "text-align":"center",
-                          "line-height":"20px"
-                        }}>
-                          <b>Score</b><br></br>
-                        {(killer?.scoring?.kills * 2) + killer?.scoring?.generatorsLeft - killer?.scoring?.escapes || 0}
+                      <ion-chip
+                        style={{
+                          padding: "20px",
+                        }}
+                      >
+                        <ion-label
+                          style={{
+                            "text-align": "center",
+                            "line-height": "20px",
+                          }}
+                        >
+                          <b>Score</b>
+                          <br></br>
+                          {killer?.scoring?.kills * 2 +
+                            (killer?.scoring?.generatorsLeft || 0) -
+                            (killer?.scoring?.escapes || 0)}
                         </ion-label>
                       </ion-chip>
                     </ion-label>
@@ -362,7 +370,7 @@ export class AppTournament {
                 </ion-button>
               </ion-col>
             </ion-row>
-            </ion-grid>
+          </ion-grid>
           <ion-grid class="gradient">
             <ion-card>
               <ion-row style={{ "justify-content": "center" }}>
@@ -380,9 +388,11 @@ export class AppTournament {
                         <ion-row>
                           <ion-col>
                             <ion-item>
-                              <ion-label style={{
-                                "text-align":"center"
-                              }}>
+                              <ion-label
+                                style={{
+                                  "text-align": "center",
+                                }}
+                              >
                                 <h1>
                                   {game?.timestamp
                                     ? game.timestamp
