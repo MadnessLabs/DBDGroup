@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
-import { Tournament } from "./interfaces";
+import { Tournament, TournamentStatus } from "./interfaces";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
@@ -37,7 +37,7 @@ export namespace Components {
         "image": string;
         "name": string;
         "rules": string[];
-        "status": string;
+        "status": TournamentStatus;
         "timestamp": Date;
     }
     interface DbdgroupRouter {
@@ -210,7 +210,7 @@ declare namespace LocalJSX {
         "image"?: string;
         "name"?: string;
         "rules"?: string[];
-        "status"?: string;
+        "status"?: TournamentStatus;
         "timestamp"?: Date;
     }
     interface DbdgroupRouter {

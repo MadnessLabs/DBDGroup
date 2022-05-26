@@ -1,3 +1,4 @@
+import { Color } from "@ionic/core";
 import {
   Build,
   Component,
@@ -6,6 +7,7 @@ import {
   Host,
   Prop,
 } from "@stencil/core";
+import { TournamentStatus } from "../../interfaces";
 
 @Component({
   tag: "dbd-tournament-card",
@@ -19,11 +21,24 @@ export class TournamentCard implements ComponentInterface {
   @Prop() rules: string[];
   @Prop() href: string;
   @Prop() timestamp: Date;
-  @Prop() status: string;
+  @Prop() status: TournamentStatus;
 
   componentDidLoad() {
     if (!Build?.isBrowser) return;
     // Get Data
+  }
+
+  getStatusColor(status: TournamentStatus): Color {
+    let color: Color = "primary";
+    if (status === "completed") {
+      color = "medium";
+    } else if (status === "full") {
+      color = "secondary";
+    } else if (status === "in progress") {
+      color = "warning";
+    }
+
+    return color;
   }
 
   render() {
@@ -43,7 +58,6 @@ export class TournamentCard implements ComponentInterface {
             <ion-label>
               <h2>{this.name || "DBD Tourney"}</h2>
               <h3>{this.timestamp}</h3>
-              <h3>Status - {this.status || "TBD"}</h3>
               {this.rules && (
                 <div class="ion-text-wrap">
                   {(this.rules || []).map((rule) => (
@@ -52,6 +66,9 @@ export class TournamentCard implements ComponentInterface {
                 </div>
               )}
             </ion-label>
+            <ion-badge slot="end" color={this.getStatusColor(this.status)}>
+              {this.status || "TBD"}
+            </ion-badge>
           </ion-item>
         </ion-card>
       </Host>
