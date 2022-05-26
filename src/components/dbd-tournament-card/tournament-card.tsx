@@ -45,11 +45,11 @@ export class TournamentCard implements ComponentInterface {
               <h3>{this.timestamp}</h3>
               <h3>Status - {this.status || "TBD"}</h3>
               {this.rules && (
-                <fireenjin-chip-bar>
+                <div class="ion-text-wrap">
                   {(this.rules || []).map((rule) => (
                     <ion-chip>{rule}</ion-chip>
                   ))}
-                </fireenjin-chip-bar>
+                </div>
               )}
             </ion-label>
           </ion-item>
