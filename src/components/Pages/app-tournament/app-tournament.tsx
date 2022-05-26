@@ -376,7 +376,13 @@ export class AppTournament {
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
                   <ion-title>
-                    Matches 0/{this.tournament?.matchCount || 0}
+                    {(this.tournament?.matches || []).length >=
+                    this.tournament?.matchCount
+                      ? `Matches Complete: ${this.tournament.matchCount}`
+                      : `Current Match: ${
+                          (this.tournament?.matches || []).length + 1
+                        }
+                    / ${this.tournament?.matchCount || 0}`}
                   </ion-title>
                 </ion-text>
               </ion-row>
