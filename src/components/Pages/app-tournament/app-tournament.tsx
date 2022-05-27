@@ -1,4 +1,5 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { Color } from "@ionic/core";
 import {
   Component,
   h,
@@ -9,8 +10,9 @@ import {
   State,
   Listen,
 } from "@stencil/core";
-import { Match, Tournament } from "../../../interfaces";
+import { Match, Tournament, TournamentStatus } from "../../../interfaces";
 import state from "../../../store";
+
 
 @Component({
   tag: "app-tournament",
@@ -25,6 +27,7 @@ export class AppTournament {
   @Prop() tournamentId: string;
   @Prop() auth: AuthService;
   @Prop() userId: string;
+  @Prop() status: TournamentStatus;
 
   @State() tournament: Tournament;
   @State() users: any;
@@ -115,6 +118,18 @@ export class AppTournament {
     ].find((participant) => participant?.user?.id === userId);
     return user?.name || "No Name Given";
   }
+  getStatusColor(status: TournamentStatus): Color {
+    let color: Color = "primary";
+    if (status === "completed") {
+      color = "medium";
+    } else if (status === "full") {
+      color = "secondary";
+    } else if (status === "in progress") {
+      color = "warning";
+    }
+
+    return color;
+  }
 
   async deleteMatch(_event, index) {
     this.tournament.matches = this.tournament.matches.filter(
@@ -122,6 +137,7 @@ export class AppTournament {
     );
     this.save();
   }
+  
 
   render() {
     console.log(this.tournament?.matches);
@@ -215,7 +231,6 @@ export class AppTournament {
               <ion-label>
                 <h2>{this.tournament?.name || "No Name Given"}</h2>
                 <h2>{this.tournament?.timestamp || "No Date Set"}</h2>
-                <h2> Status - {this.tournament?.status}</h2>
                 {this.tournament?.rules && (
                   <fireenjin-chip-bar>
                     {(this.tournament?.rules || []).map((rule) => (
@@ -224,6 +239,9 @@ export class AppTournament {
                   </fireenjin-chip-bar>
                 )}
               </ion-label>
+              <ion-badge slot="end" color={this.getStatusColor(this.status)}>
+              {this.status || "TBD"}
+            </ion-badge>
               <ion-buttons slot="end">
                 <ion-button
                   onClick={() =>
