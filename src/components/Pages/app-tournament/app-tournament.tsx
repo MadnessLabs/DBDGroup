@@ -289,7 +289,7 @@ export class AppTournament {
                             "line-height": "20px",
                           }}
                         >
-                          Bloodpoints<br></br>
+                          Total Bloodpoints<br></br>
                           {survivor?.scoring?.bloodpoints}
                         </ion-label>
                       </ion-chip>
@@ -390,11 +390,11 @@ export class AppTournament {
             </ion-row>
           </ion-grid>
           <ion-grid>
-            <ion-card>
+            <ion-card disabled={this.tournament?.status !== "in progress"}>
               <ion-row style={{ "justify-content": "center" }}>
                 <ion-text>
                   <ion-title>
-                    {(this.tournament?.matches || []).length >=
+                  {(this.tournament?.matches || []).length >=
                     this.tournament?.matchCount
                       ? `Matches Complete: ${this.tournament.matchCount}`
                       : `Current Match: ${
