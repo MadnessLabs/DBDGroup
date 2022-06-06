@@ -239,8 +239,8 @@ export class AppTournament {
                   </fireenjin-chip-bar>
                 )}
               </ion-label>
-              <ion-badge slot="end" color={this.getStatusColor(this.status)}>
-              {this.status || "TBD"}
+              <ion-badge slot="end" color={this.getStatusColor(this.tournament?.status)}>
+              {this.tournament?.status || "TBD"}
             </ion-badge>
               <ion-buttons slot="end">
                 <ion-button
