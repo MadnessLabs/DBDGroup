@@ -1,5 +1,6 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import { Component, Event, EventEmitter, h, Prop, State } from "@stencil/core";
+
 import state from "../../../store";
 
 @Component({
@@ -18,6 +19,10 @@ export class AppHome {
   @Prop() tournamentId: any;
 
   @State() tournaments: any[];
+
+  async googleLogin() {
+    await this.auth?.withSocial("google");
+  }
 
   async componentDidLoad() {
     this.db.subscribe(
@@ -70,6 +75,7 @@ export class AppHome {
               </ion-button>
             ) : (
               <ion-button
+                style={{ textTransform: "capitalize" }}
                 color="primary"
                 onClick={() =>
                   this.dbdModalOpen.emit({
@@ -80,17 +86,30 @@ export class AppHome {
                   })
                 }
               >
-                Login
+                Email Login
+              </ion-button>
+            )}
+            {!state?.session?.uid && (
+              <ion-button
+                style={{ textTransform: "capitalize" }}
+                size="small"
+                color="primary"
+                onClick={() => this.googleLogin()}
+              >
+                Google login
               </ion-button>
             )}
           </ion-buttons>
-          <ion-thumbnail slot="start" style={{
-            "height":"50px",
-            "width":"50px"
-          }}>
+          <ion-thumbnail
+            slot="start"
+            style={{
+              height: "50px",
+              width: "50px",
+            }}
+          >
             <img src="assets/icon/icon-group.png"></img>
-            </ion-thumbnail>
-            <ion-label>Dead By Daylight Group </ion-label>
+          </ion-thumbnail>
+          <ion-label>Dead By Daylight Group </ion-label>
         </ion-toolbar>
       </ion-header>,
       <ion-content>
@@ -113,7 +132,9 @@ export class AppHome {
               class="ion-text-center ion-text-md-left"
             >
               <h2>Welcome to DeadByDaylight Group</h2>
-              <ion-text>General tournament rule - don't be a toxic survivor/killer</ion-text>
+              <ion-text>
+                General tournament rule - don't be a toxic survivor/killer
+              </ion-text>
             </ion-col>
           </ion-row>
           <ion-row>

@@ -1,4 +1,5 @@
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
+import { toastController } from "@ionic/core";
 import {
   Component,
   h,
@@ -9,6 +10,7 @@ import {
   Listen,
 } from "@stencil/core";
 import { User } from "../../../interfaces";
+import state from "../../../store";
 
 @Component({
   tag: "modal-profile",
@@ -34,6 +36,20 @@ export class ModalProfile {
     }
   }
 
+  async logout() {
+    this.auth?.logout();
+    this.presentToast();
+    setTimeout(() => window.location.reload(), 3000);
+  }
+
+  async presentToast() {
+    const toast = await toastController.create({
+      message: "You have been logged out",
+      duration: 3000,
+    });
+    toast.present();
+  }
+
   closeModal(event: MouseEvent) {
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -53,6 +69,17 @@ export class ModalProfile {
               >
                 <ion-icon name="arrow-back" color="primary" />
               </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              {state.session?.uid && (
+                <ion-button
+                  style={{ textTransform: "capitalize" }}
+                  size="small"
+                  onClick={() => this.logout()}
+                >
+                  Logout
+                </ion-button>
+              )}
             </ion-buttons>
             <ion-title>{this.headerTitle}</ion-title>
           </ion-toolbar>
