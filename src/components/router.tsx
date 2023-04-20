@@ -188,6 +188,11 @@ export class AppRoot implements ComponentInterface {
           component="app-tournament"
           componentProps={this.componentProps}
         />
+        <ion-route
+          url="/tournament"
+          component="app-completed-tournament-list"
+          componentProps={this.componentProps}
+        />
         {/* <ion-route
           url="/user/:userId"
           component=""

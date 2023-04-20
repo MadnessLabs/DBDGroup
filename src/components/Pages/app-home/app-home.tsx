@@ -113,6 +113,7 @@ export class AppHome {
         </ion-toolbar>
       </ion-header>,
       <ion-content>
+        <ion-router-link href="/tournament">Completed</ion-router-link>
         <ion-grid>
           <ion-row>
             <ion-col size="12" sizeMd="6">
@@ -138,14 +139,17 @@ export class AppHome {
             </ion-col>
           </ion-row>
           <ion-row>
-            {this.tournaments?.map?.((tournament) => (
-              <ion-col size="12" size-md="6">
-                <dbd-tournament-card
-                  {...tournament}
-                  href={`/tournament/${tournament?.id}`}
-                />
-              </ion-col>
-            ))}
+            {this.tournaments?.map?.(
+              (tournament) =>
+                tournament?.status != "completed" && (
+                  <ion-col size="12" size-md="6">
+                    <dbd-tournament-card
+                      {...tournament}
+                      href={`/tournament/${tournament?.id}`}
+                    />
+                  </ion-col>
+                )
+            )}
           </ion-row>
         </ion-grid>
       </ion-content>,

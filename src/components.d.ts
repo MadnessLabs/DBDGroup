@@ -18,12 +18,13 @@ export namespace Components {
         "auth": Auth;
         "db": Firestore;
     }
+    interface AppCompletedTournamentList {
+        "db": DatabaseService;
+    }
     interface AppHome {
         "auth": AuthService;
         "db": DatabaseService;
         "tournamentId": any;
-    }
-    interface AppList {
     }
     interface AppOauth {
         "discord": boolean;
@@ -34,8 +35,6 @@ export namespace Components {
         "status": TournamentStatus;
         "tournamentId": string;
         "userId": string;
-    }
-    interface AppTournamentList {
     }
     interface DbdTournamentCard {
         "dateTime": string;
@@ -113,17 +112,17 @@ declare global {
         prototype: HTMLAppAdminElement;
         new (): HTMLAppAdminElement;
     };
+    interface HTMLAppCompletedTournamentListElement extends Components.AppCompletedTournamentList, HTMLStencilElement {
+    }
+    var HTMLAppCompletedTournamentListElement: {
+        prototype: HTMLAppCompletedTournamentListElement;
+        new (): HTMLAppCompletedTournamentListElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
         prototype: HTMLAppHomeElement;
         new (): HTMLAppHomeElement;
-    };
-    interface HTMLAppListElement extends Components.AppList, HTMLStencilElement {
-    }
-    var HTMLAppListElement: {
-        prototype: HTMLAppListElement;
-        new (): HTMLAppListElement;
     };
     interface HTMLAppOauthElement extends Components.AppOauth, HTMLStencilElement {
     }
@@ -136,12 +135,6 @@ declare global {
     var HTMLAppTournamentElement: {
         prototype: HTMLAppTournamentElement;
         new (): HTMLAppTournamentElement;
-    };
-    interface HTMLAppTournamentListElement extends Components.AppTournamentList, HTMLStencilElement {
-    }
-    var HTMLAppTournamentListElement: {
-        prototype: HTMLAppTournamentListElement;
-        new (): HTMLAppTournamentListElement;
     };
     interface HTMLDbdTournamentCardElement extends Components.DbdTournamentCard, HTMLStencilElement {
     }
@@ -193,11 +186,10 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "app-admin": HTMLAppAdminElement;
+        "app-completed-tournament-list": HTMLAppCompletedTournamentListElement;
         "app-home": HTMLAppHomeElement;
-        "app-list": HTMLAppListElement;
         "app-oauth": HTMLAppOauthElement;
         "app-tournament": HTMLAppTournamentElement;
-        "app-tournament-list": HTMLAppTournamentListElement;
         "dbd-tournament-card": HTMLDbdTournamentCardElement;
         "dbdgroup-router": HTMLDbdgroupRouterElement;
         "modal-login": HTMLModalLoginElement;
@@ -213,6 +205,9 @@ declare namespace LocalJSX {
         "auth"?: Auth;
         "db"?: Firestore;
     }
+    interface AppCompletedTournamentList {
+        "db"?: DatabaseService;
+    }
     interface AppHome {
         "auth"?: AuthService;
         "db"?: DatabaseService;
@@ -222,8 +217,6 @@ declare namespace LocalJSX {
     cssClass?: string;
   }>) => void;
         "tournamentId"?: any;
-    }
-    interface AppList {
     }
     interface AppOauth {
         "discord"?: boolean;
@@ -237,8 +230,6 @@ declare namespace LocalJSX {
         "status"?: TournamentStatus;
         "tournamentId"?: string;
         "userId"?: string;
-    }
-    interface AppTournamentList {
     }
     interface DbdTournamentCard {
         "dateTime"?: string;
@@ -288,11 +279,10 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "app-admin": AppAdmin;
+        "app-completed-tournament-list": AppCompletedTournamentList;
         "app-home": AppHome;
-        "app-list": AppList;
         "app-oauth": AppOauth;
         "app-tournament": AppTournament;
-        "app-tournament-list": AppTournamentList;
         "dbd-tournament-card": DbdTournamentCard;
         "dbdgroup-router": DbdgroupRouter;
         "modal-login": ModalLogin;
@@ -308,11 +298,10 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "app-admin": LocalJSX.AppAdmin & JSXBase.HTMLAttributes<HTMLAppAdminElement>;
+            "app-completed-tournament-list": LocalJSX.AppCompletedTournamentList & JSXBase.HTMLAttributes<HTMLAppCompletedTournamentListElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
-            "app-list": LocalJSX.AppList & JSXBase.HTMLAttributes<HTMLAppListElement>;
             "app-oauth": LocalJSX.AppOauth & JSXBase.HTMLAttributes<HTMLAppOauthElement>;
             "app-tournament": LocalJSX.AppTournament & JSXBase.HTMLAttributes<HTMLAppTournamentElement>;
-            "app-tournament-list": LocalJSX.AppTournamentList & JSXBase.HTMLAttributes<HTMLAppTournamentListElement>;
             "dbd-tournament-card": LocalJSX.DbdTournamentCard & JSXBase.HTMLAttributes<HTMLDbdTournamentCardElement>;
             "dbdgroup-router": LocalJSX.DbdgroupRouter & JSXBase.HTMLAttributes<HTMLDbdgroupRouterElement>;
             "modal-login": LocalJSX.ModalLogin & JSXBase.HTMLAttributes<HTMLModalLoginElement>;
