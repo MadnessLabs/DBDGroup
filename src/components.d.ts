@@ -9,6 +9,10 @@ import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { AuthService, DatabaseService } from "@fireenjin/sdk";
 import { Tournament, TournamentStatus } from "./interfaces";
+export { Firestore } from "firebase/firestore";
+export { Auth } from "firebase/auth";
+export { AuthService, DatabaseService } from "@fireenjin/sdk";
+export { Tournament, TournamentStatus } from "./interfaces";
 export namespace Components {
     interface AppAdmin {
         "auth": Auth;
@@ -73,6 +77,34 @@ export namespace Components {
         "tournament": Tournament;
         "tournamentId": string;
     }
+}
+export interface AppHomeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppHomeElement;
+}
+export interface AppTournamentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppTournamentElement;
+}
+export interface ModalProfileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalProfileElement;
+}
+export interface ModalScoringCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalScoringElement;
+}
+export interface ModalSurvivorScoringCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalSurvivorScoringElement;
+}
+export interface ModalTournamentDetailCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalTournamentDetailElement;
+}
+export interface ModalTournamentEditCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLModalTournamentEditElement;
 }
 declare global {
     interface HTMLAppAdminElement extends Components.AppAdmin, HTMLStencilElement {
@@ -184,7 +216,7 @@ declare namespace LocalJSX {
     interface AppHome {
         "auth"?: AuthService;
         "db"?: DatabaseService;
-        "onDbdModalOpen"?: (event: CustomEvent<{
+        "onDbdModalOpen"?: (event: AppHomeCustomEvent<{
     component: string;
     componentProps?: any;
     cssClass?: string;
@@ -199,9 +231,9 @@ declare namespace LocalJSX {
     interface AppTournament {
         "auth"?: AuthService;
         "db"?: DatabaseService;
-        "onDbdModalOpen"?: (event: CustomEvent<any>) => void;
-        "onDbdPopoverOpen"?: (event: CustomEvent<any>) => void;
-        "onFireenjinShare"?: (event: CustomEvent<any>) => void;
+        "onDbdModalOpen"?: (event: AppTournamentCustomEvent<any>) => void;
+        "onDbdPopoverOpen"?: (event: AppTournamentCustomEvent<any>) => void;
+        "onFireenjinShare"?: (event: AppTournamentCustomEvent<any>) => void;
         "status"?: TournamentStatus;
         "tournamentId"?: string;
         "userId"?: string;
@@ -227,30 +259,30 @@ declare namespace LocalJSX {
         "db"?: DatabaseService;
         "documentId"?: string;
         "headerTitle"?: string;
-        "onDbdLogin"?: (event: CustomEvent<any>) => void;
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "onDbdLogin"?: (event: ModalProfileCustomEvent<any>) => void;
+        "onDbdModalClose"?: (event: ModalProfileCustomEvent<any>) => void;
         "userId"?: string;
     }
     interface ModalScoring {
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "onDbdModalClose"?: (event: ModalScoringCustomEvent<any>) => void;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
     interface ModalSurvivorScoring {
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "onDbdModalClose"?: (event: ModalSurvivorScoringCustomEvent<any>) => void;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
     interface ModalTournamentDetail {
         "db"?: DatabaseService;
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "onDbdModalClose"?: (event: ModalTournamentDetailCustomEvent<any>) => void;
         "rules"?: string[];
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
     interface ModalTournamentEdit {
         "mainTitle"?: "Create Tournament";
-        "onDbdModalClose"?: (event: CustomEvent<any>) => void;
+        "onDbdModalClose"?: (event: ModalTournamentEditCustomEvent<any>) => void;
         "tournament"?: Tournament;
         "tournamentId"?: string;
     }
